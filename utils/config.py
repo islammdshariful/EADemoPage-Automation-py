@@ -8,9 +8,11 @@ flip_box = base_url + "flip-box/"
 create_button = base_url + "creative-buttons/"
 static_product = base_url + "static-product/"
 event_calendar = base_url + "event-calendar/"
+team_members_carousel = base_url + "team-members-carousel/"
+logo_carousel = base_url + "logo-carousel/"
 
-check_doc = False
-# check_doc = True
+# check_doc = False
+check_doc = True
 
 
 class Documentation:
