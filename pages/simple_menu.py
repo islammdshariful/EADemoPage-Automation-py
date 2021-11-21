@@ -11,6 +11,9 @@ from utils.config import *
 
 class SimpleMenu:
     PAGE_TITLE_TEXT = "Simple Menu | Essential Addons for Elementor"
+    doc_link = f'//*[@id="post-267411"]/div/div/div/div/section[1]/div[4]/div/div[2]/div/div/' \
+               f'section/div/div/div[2]/div/div/div[3]/div/div/a/span/span'
+    doc_name = "SIMPLE MENU"
 
     # Horizontal Layouts
     H_HOME = (By.XPATH, f'//*[@id="menu-item-267446"]')
@@ -58,7 +61,7 @@ class SimpleMenu:
 
             doc = Documentation(self.browser)
             if check_doc:
-                doc.check_doc("SIMPLE MENU")
+                doc.check_doc(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 905)")
             self.browser.find_element(*self.H_HOME).click()

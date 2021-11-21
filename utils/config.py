@@ -5,7 +5,10 @@ demo_page = "https://essential-addons.com/elementor/demos/"
 base_url = "https://essential-addons.com/elementor/"
 simple_menu = base_url + "simple-menu/"
 flip_box = base_url + "flip-box/"
+create_button = base_url + "creative-buttons/"
+static_product = base_url + "static-product/"
 
+# check_doc = False
 check_doc = True
 
 

@@ -1,17 +1,13 @@
-import time
-
-from assertpy import soft_assertions, assert_that
 from selenium.webdriver import ActionChains
-# from src.testproject.sdk.drivers.webdriver import ActionChains
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
 
 from utils.config import *
 
 
 class FlipBox:
     PAGE_TITLE_TEXT = "Flip Box | Essential Addons for Elementor"
-    DOC_LINK = '//*[@id="post-1519"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section/div/div/div[2]/div/div/div[3]/div/div/a/span/span'
+    DOC_LINK = '//*[@id="post-1519"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section/div/' \
+               'div/div[2]/div/div/div[3]/div/div/a/span/span'
+    doc_name = "FLIP BOX"
     BOX_1 = (By.XPATH, f'//*[@id="post-1519"]/div/div/div/div/section[2]/div/div/div/div/div/section['
                      f'2]/div/div/div[1]/div/div/div/div/div')
     BOX_2 = (By.XPATH, f'//*[@id="post-1519"]/div/div/div/div/section[2]/div/div/div/div/div/section[2]'
@@ -42,7 +38,7 @@ class FlipBox:
 
             doc = Documentation(self.browser)
             if check_doc:
-                doc.check_doc(self.DOC_LINK, "FLIP BOX")
+                doc.check_doc(self.DOC_LINK, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 1023)")
 

@@ -1,5 +1,7 @@
+from pages.creative_button import CreativeButton
 from pages.flip_box import FlipBox
 from pages.simple_menu import SimpleMenu
+from pages.static_product import StaticProduct
 
 
 def test_widgets(browser):
@@ -9,5 +11,11 @@ def test_widgets(browser):
     fpb = FlipBox(browser)
     fpb.load()
     fpb.testcase()
+    # cb = CreativeButton(browser)
+    # cb.load()
+    # cb.testcase()
+    # sp = StaticProduct(browser)
+    # sp.load()
+    # sp.testcase()
 
     browser.quit()
