@@ -6,7 +6,9 @@ from utils.config import *
 
 
 class TeamMemberCarousel:
-    PAGE_TITLE_TEXT = "Team Members Carousel | Essential Addons for Elementor"
+    widget = '//*[@id="post-2946"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
+             '/div/div/div[2]/div/div/div[1]/div/h2'
+    widget_name = "Team Members Carousel"
     DOC_LINK = '//*[@id="post-2946"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/' \
                'section/div/div/div[2]/div/div/div[3]/div/div/a/span/span'
     doc_name = "TEAM MEMBER CAROUSEL"
@@ -77,13 +79,12 @@ class TeamMemberCarousel:
         self.browser.get(team_members_carousel)
 
     def testcase(self):
+        c = CheckText(self.browser)
 
         with soft_assertions():
-            assert_that(self.browser.title).is_equal_to(self.PAGE_TITLE_TEXT)
-
-            doc = Documentation(self.browser)
+            c.check_widget_name(self.widget, self.widget_name)
             if check_doc:
-                doc.check_doc(self.DOC_LINK, self.doc_name)
+                c.check_doc(self.DOC_LINK, self.doc_name)
 
             cursor = ActionChains(self.browser)
             scrol_ele = self.browser.find_element(By.XPATH, '//*[@id="post-2946"]/div/div/div/div/section[2]/div/div/'

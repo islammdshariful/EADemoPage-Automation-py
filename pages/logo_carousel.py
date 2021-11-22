@@ -6,7 +6,9 @@ from utils.config import *
 
 
 class LogoCarousel:
-    PAGE_TITLE_TEXT = "Logo Carousel | Essential Addons for Elementor"
+    widget = '//*[@id="post-2942"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
+             '/div/div/div[2]/div/div/div[1]/div/h2'
+    widget_name = "Logo Carousel"
     DOC_LINK = '//*[@id="post-2942"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
                '/div/div/div[2]/div/div/div[3]/div/div/a/span/span'
     doc_name = "LOGO CAROUSEL"
@@ -29,13 +31,12 @@ class LogoCarousel:
         self.browser.get(logo_carousel)
 
     def testcase(self):
+        c = CheckText(self.browser)
 
         with soft_assertions():
-            assert_that(self.browser.title).is_equal_to(self.PAGE_TITLE_TEXT)
-
-            doc = Documentation(self.browser)
+            c.check_widget_name(self.widget, self.widget_name)
             if check_doc:
-                doc.check_doc(self.DOC_LINK, self.doc_name)
+                c.check_doc(self.DOC_LINK, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 943)")
             time.sleep(1)

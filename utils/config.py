@@ -10,12 +10,13 @@ static_product = base_url + "static-product/"
 event_calendar = base_url + "event-calendar/"
 team_members_carousel = base_url + "team-members-carousel/"
 logo_carousel = base_url + "logo-carousel/"
+dual_color_heading = base_url + "dual-color-headline/"
 
-# check_doc = False
-check_doc = True
+check_doc = False
+# check_doc = True
 
 
-class Documentation:
+class CheckText:
     HEADING = (By.ID, f'betterdocs-entry-title')
 
     WIDGET_TITLE = (By.XPATH, f'//*[@id="post-266629"]/div/div/div/div/section[1]/div[3]/div/div['
@@ -39,7 +40,8 @@ class Documentation:
         self.browser.close()
         self.browser.switch_to.window(windows[0])
 
-    def check_widget_name(self, name):
+    def check_widget_name(self, locator, name):
         with soft_assertions():
-            assert_that(self.browser.title).is_equal_to(name)
+            assert_that(self.browser.find_element(By.XPATH, locator).text).is_equal_to(name)
+
 

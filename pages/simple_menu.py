@@ -10,7 +10,11 @@ from utils.config import *
 
 
 class SimpleMenu:
-    PAGE_TITLE_TEXT = "Simple Menu | Essential Addons for Elementor"
+    widget = '//*[@id="post-267411"]/div/div/div/div/section[1]/div[4]/div/div[2]/div/div/section' \
+             '/div/div/div[2]/div/div/div[1]/div/h2'
+    widget_name = "Simple Menu"
+    DOC_LINK = f'//*[@id="post-267411"]/div/div/div/div/section[1]/div[4]/div/div[2]/div/div/section' \
+               f'/div/div/div[2]/div/div/div[3]/div/div/a/span/span'
     doc_link = f'//*[@id="post-267411"]/div/div/div/div/section[1]/div[4]/div/div[2]/div/div/' \
                f'section/div/div/div[2]/div/div/div[3]/div/div/a/span/span'
     doc_name = "SIMPLE MENU"
@@ -52,16 +56,12 @@ class SimpleMenu:
 
     def testcase(self):
         with soft_assertions():
-            assert_that(self.browser.title).is_equal_to(self.PAGE_TITLE_TEXT)
+            c = CheckText(self.browser)
 
-            # try:
-            #     assert self.browser.title == self.PAGE_TITLE_TEXT
-            # except AssertionError:
-            #     print("Assertion failed. Actual value is %s" % self.browser.title)
-
-            doc = Documentation(self.browser)
-            if check_doc:
-                doc.check_doc(self.doc_link, self.doc_name)
+            with soft_assertions():
+                c.check_widget_name(self.widget, self.widget_name)
+                if check_doc:
+                    c.check_doc(self.DOC_LINK, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 905)")
             self.browser.find_element(*self.H_HOME).click()

@@ -1,4 +1,5 @@
 from pages.creative_button import CreativeButton
+from pages.dual_color_headline import DualColorHeading
 from pages.event_calendar import EventCalendar
 from pages.flip_box import FlipBox
 from pages.logo_carousel import LogoCarousel
@@ -8,9 +9,12 @@ from pages.team_members_carousel import TeamMemberCarousel
 
 
 def test_widgets(browser):
-    lc = LogoCarousel(browser)
-    lc.load()
-    lc.testcase()
+    dc = DualColorHeading(browser)
+    dc.load()
+    dc.testcase()
+    # lc = LogoCarousel(browser)
+    # lc.load()
+    # lc.testcase()
     # tmc = TeamMemberCarousel(browser)
     # tmc.load()
     # tmc.testcase()

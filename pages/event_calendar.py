@@ -4,7 +4,9 @@ from utils.config import *
 
 
 class EventCalendar:
-    PAGE_TITLE_TEXT = "Event Calendar | Essential Addons for Elementor"
+    widget = '//*[@id="post-257828"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
+             '/div/div/div[2]/div/div/div[1]/div/h2'
+    widget_name = "Event Calendar"
     DOC_LINK = '//*[@id="post-257828"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/' \
                'section/div/div/div[2]/div/div/div[3]/div/div/a/span/span'
     doc_name = "EA EVENT CALENDAR"
@@ -42,11 +44,12 @@ class EventCalendar:
     def testcase(self):
 
         with soft_assertions():
-            assert_that(self.browser.title).is_equal_to(self.PAGE_TITLE_TEXT)
+            c = CheckText(self.browser)
 
-            doc = Documentation(self.browser)
-            if check_doc:
-                doc.check_doc(self.DOC_LINK, self.doc_name)
+            with soft_assertions():
+                c.check_widget_name(self.widget, self.widget_name)
+                if check_doc:
+                    c.check_doc(self.DOC_LINK, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 1628)")
             # while assert_that(self.browser.find_element(*self.month).text).is_not_equal_to(self.month_text):
