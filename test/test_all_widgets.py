@@ -1,17 +1,26 @@
+from pages.AB_sample import Sample
 from pages.creative_button import CreativeButton
 from pages.dual_color_headline import DualColorHeading
 from pages.event_calendar import EventCalendar
 from pages.flip_box import FlipBox
+from pages.info_box import InfoBox
 from pages.logo_carousel import LogoCarousel
 from pages.simple_menu import SimpleMenu
 from pages.static_product import StaticProduct
+from pages.team_members import TeamMember
 from pages.team_members_carousel import TeamMemberCarousel
 
 
 def test_widgets(browser):
-    dc = DualColorHeading(browser)
-    dc.load()
-    dc.testcase()
+    tc = TeamMember(browser)
+    tc.load()
+    tc.testcase()
+    # ib = InfoBox(browser)
+    # ib.load()
+    # ib.testcase()
+    # dc = DualColorHeading(browser)
+    # dc.load()
+    # dc.testcase()
     # lc = LogoCarousel(browser)
     # lc.load()
     # lc.testcase()
@@ -33,5 +42,8 @@ def test_widgets(browser):
     # evc = EventCalendar(browser)
     # evc.load()
     # evc.testcase()
+    # do = Sample(browser)
+    # do.load()
+    # do.do_something()
 
     browser.quit()
