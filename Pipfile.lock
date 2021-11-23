@@ -1,11 +1,11 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "43275f34c9c1252645b8717acecff10b382e67c9ff121aff2d005379e542aa26"
+            "sha256": "97b4b9a517a673ef84304cb9ec8945ab717d3dc4601e4863ba4a048c93276af5"
         },
         "pipfile-spec": 6,
         "requires": {
-            "python_version": "3.9"
+            "python_version": "3.10"
         },
         "sources": [
             {
@@ -21,6 +21,13 @@
                 "sha256:44e2cf8040dc9d52ad2947046f221eddfbf4055b8c99615e3f1808b6aeb6a8ec"
             ],
             "version": "==1.0.2"
+        },
+        "assertpy": {
+            "hashes": [
+                "sha256:acc64329934ad71a3221de185517a43af33e373bb44dc05b5a9b174394ef4833"
+            ],
+            "index": "pypi",
+            "version": "==1.1"
         },
         "atomicwrites": {
             "hashes": [
@@ -145,7 +152,6 @@
                 "sha256:2d7131d7bc5a5b99a2d9b04aaf2612c411b03b8ca1b1ee8d3de5845a9be2cb3c",
                 "sha256:deaf32b60ad91a4611b98d8002757f29e6f2c2d5fcaf202e1c9ad06d6772300d"
             ],
-            "index": "pypi",
             "version": "==3.141.0"
         },
         "testproject-python-sdk": {
@@ -165,7 +171,6 @@
             "version": "==0.10.2"
         },
         "urllib3": {
-            "extras": [],
             "hashes": [
                 "sha256:4987c65554f7a2dbf30c18fd48778ef124af6fab771a377103da0585e2336ece",
                 "sha256:c4fdf4019605b6e5423637e01bc9fe4daef873709a7973e195ceba0a62bbc844"

@@ -13,10 +13,11 @@ logo_carousel = base_url + "logo-carousel/"
 dual_color_heading = base_url + "dual-color-headline/"
 info_box = base_url + "info-box/"
 team_members = base_url + "team-members/"
+advanced_accordion = base_url + "advanced-accordion/"
 
 
-# check_doc = False
-check_doc = True
+check_doc = False
+# check_doc = True
 
 
 class CheckText:
