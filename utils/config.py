@@ -14,6 +14,7 @@ dual_color_heading = base_url + "dual-color-headline/"
 info_box = base_url + "info-box/"
 team_members = base_url + "team-members/"
 advanced_accordion = base_url + "advanced-accordion/"
+advanced_tabs = base_url + "advanced-tabs/"
 
 
 check_doc = False

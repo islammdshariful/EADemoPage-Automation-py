@@ -1,5 +1,6 @@
 from pages.AB_sample import Sample
 from pages.advanced_accordion import AdvancedAccordion
+from pages.advanced_tabs import AdvancedTabs
 from pages.creative_button import CreativeButton
 from pages.dual_color_headline import DualColorHeading
 from pages.event_calendar import EventCalendar
@@ -13,9 +14,12 @@ from pages.team_members_carousel import TeamMemberCarousel
 
 
 def test_widgets(browser):
-    adva = AdvancedAccordion(browser)
-    adva.load()
-    adva.testcase()
+    at = AdvancedTabs(browser)
+    at.load()
+    at.testcase()
+    # adva = AdvancedAccordion(browser)
+    # adva.load()
+    # adva.testcase()
     # tc = TeamMember(browser)
     # tc.load()
     # tc.testcase()
