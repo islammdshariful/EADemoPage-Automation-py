@@ -11,12 +11,16 @@ from pages.simple_menu import SimpleMenu
 from pages.static_product import StaticProduct
 from pages.team_members import TeamMember
 from pages.team_members_carousel import TeamMemberCarousel
+from pages.testimonial_slider import TestimonialSlider
 
 
 def test_widgets(browser):
-    at = AdvancedTabs(browser)
-    at.load()
-    at.testcase()
+    ts = TestimonialSlider(browser)
+    ts.load()
+    ts.testcase()
+    # at = AdvancedTabs(browser)
+    # at.load()
+    # at.testcase()
     # adva = AdvancedAccordion(browser)
     # adva.load()
     # adva.testcase()

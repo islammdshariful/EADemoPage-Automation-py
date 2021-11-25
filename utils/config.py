@@ -15,10 +15,12 @@ info_box = base_url + "info-box/"
 team_members = base_url + "team-members/"
 advanced_accordion = base_url + "advanced-accordion/"
 advanced_tabs = base_url + "advanced-tabs/"
+testimonial_slider = base_url + "testimonial-slider/"
 
 
 check_doc = False
 # check_doc = True
+display = 1
 
 
 class CheckText:
