@@ -7,17 +7,33 @@ from pages.event_calendar import EventCalendar
 from pages.flip_box import FlipBox
 from pages.info_box import InfoBox
 from pages.logo_carousel import LogoCarousel
+from pages.protected_content import ProtectedContent
 from pages.simple_menu import SimpleMenu
 from pages.static_product import StaticProduct
+from pages.sticky_video import StickyVideo
 from pages.team_members import TeamMember
 from pages.team_members_carousel import TeamMemberCarousel
 from pages.testimonial_slider import TestimonialSlider
+from pages.testimonials import Testimonial
+from pages.tooltip import ToolTip
 
 
 def test_widgets(browser):
-    ts = TestimonialSlider(browser)
-    ts.load()
-    ts.testcase()
+    t = Testimonial(browser)
+    t.load()
+    t.testcase()
+    # sv = StickyVideo(browser)
+    # sv.load()
+    # sv.testcase()
+    # tt = ToolTip(browser)
+    # tt.load()
+    # tt.testcase()
+    # pc = ProtectedContent(browser)
+    # pc.load()
+    # pc.testcase()
+    # ts = TestimonialSlider(browser)
+    # ts.load()
+    # ts.testcase()
     # at = AdvancedTabs(browser)
     # at.load()
     # at.testcase()

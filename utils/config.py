@@ -16,6 +16,13 @@ team_members = base_url + "team-members/"
 advanced_accordion = base_url + "advanced-accordion/"
 advanced_tabs = base_url + "advanced-tabs/"
 testimonial_slider = base_url + "testimonial-slider/"
+protected_content = base_url + "protected-content/"
+tooltip = base_url + "tooltip/"
+sticky_video = base_url + "sticky-video/"
+testimonials = base_url + "testimonials/"
+
+
+
 
 
 check_doc = False
