@@ -20,10 +20,7 @@ protected_content = base_url + "protected-content/"
 tooltip = base_url + "tooltip/"
 sticky_video = base_url + "sticky-video/"
 testimonials = base_url + "testimonials/"
-
-
-
-
+feature_list = base_url + "feature-list/"
 
 check_doc = False
 # check_doc = True

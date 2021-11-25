@@ -4,6 +4,7 @@ from pages.advanced_tabs import AdvancedTabs
 from pages.creative_button import CreativeButton
 from pages.dual_color_headline import DualColorHeading
 from pages.event_calendar import EventCalendar
+from pages.feature_list import FeatureList
 from pages.flip_box import FlipBox
 from pages.info_box import InfoBox
 from pages.logo_carousel import LogoCarousel
@@ -19,9 +20,12 @@ from pages.tooltip import ToolTip
 
 
 def test_widgets(browser):
-    t = Testimonial(browser)
-    t.load()
-    t.testcase()
+    fl = FeatureList(browser)
+    fl.load()
+    fl.testcase()
+    # t = Testimonial(browser)
+    # t.load()
+    # t.testcase()
     # sv = StickyVideo(browser)
     # sv.load()
     # sv.testcase()
