@@ -1,4 +1,3 @@
-from pages.AB_sample import Sample
 from pages.advanced_accordion import AdvancedAccordion
 from pages.advanced_tabs import AdvancedTabs
 from pages.creative_button import CreativeButton
@@ -8,6 +7,7 @@ from pages.feature_list import FeatureList
 from pages.flip_box import FlipBox
 from pages.info_box import InfoBox
 from pages.logo_carousel import LogoCarousel
+from pages.offcanvas_content import OffCanvas
 from pages.protected_content import ProtectedContent
 from pages.simple_menu import SimpleMenu
 from pages.static_product import StaticProduct
@@ -20,9 +20,12 @@ from pages.tooltip import ToolTip
 
 
 def test_widgets(browser):
-    fl = FeatureList(browser)
-    fl.load()
-    fl.testcase()
+    oc = OffCanvas(browser)
+    oc.load()
+    oc.testcase()
+    # fl = FeatureList(browser)
+    # fl.load()
+    # fl.testcase()
     # t = Testimonial(browser)
     # t.load()
     # t.testcase()

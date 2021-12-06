@@ -21,6 +21,7 @@ tooltip = base_url + "tooltip/"
 sticky_video = base_url + "sticky-video/"
 testimonials = base_url + "testimonials/"
 feature_list = base_url + "feature-list/"
+offcanvas_content = base_url + "offcanvas-content/"
 
 check_doc = False
 # check_doc = True
