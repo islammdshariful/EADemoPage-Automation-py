@@ -1,4 +1,5 @@
 from pages.advanced_accordion import AdvancedAccordion
+from pages.advanced_menu import AdvancedMenu
 from pages.advanced_tabs import AdvancedTabs
 from pages.creative_button import CreativeButton
 from pages.dual_color_headline import DualColorHeading
@@ -20,9 +21,12 @@ from pages.tooltip import ToolTip
 
 
 def test_widgets(browser):
-    oc = OffCanvas(browser)
-    oc.load()
-    oc.testcase()
+    am = AdvancedMenu(browser)
+    am.load()
+    am.testcase()
+    # oc = OffCanvas(browser)
+    # oc.load()
+    # oc.testcase()
     # fl = FeatureList(browser)
     # fl.load()
     # fl.testcase()

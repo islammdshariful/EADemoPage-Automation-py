@@ -1,3 +1,5 @@
+import time
+
 from assertpy import soft_assertions, assert_that
 from selenium.webdriver.common.by import By
 
@@ -22,6 +24,7 @@ sticky_video = base_url + "sticky-video/"
 testimonials = base_url + "testimonials/"
 feature_list = base_url + "feature-list/"
 offcanvas_content = base_url + "offcanvas-content/"
+advanced_menu = base_url + "advanced-menu/"
 
 check_doc = False
 # check_doc = True
@@ -51,6 +54,12 @@ class CheckText:
 
         self.browser.close()
         self.browser.switch_to.window(windows[0])
+
+    def check_title(self, name):
+        with soft_assertions():
+            time.sleep(1)
+            assert_that(self.browser.title).is_equal_to(name)
+            # time.sleep(1)
 
     def check_widget_name(self, locator, name):
         with soft_assertions():

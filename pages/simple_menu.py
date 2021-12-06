@@ -84,7 +84,7 @@ class SimpleMenu:
                 move_to_element(h_blog).move_to_element(h_support).perform()
 
             cursor.move_to_element(h_ele_ele).move_to_element(h_ele_woo_slider).click().perform()
-            doc.check_widget_name('Woo Product Slider | Essential Addons for Elementor')
+            c.check_widget_name('Woo Product Slider | Essential Addons for Elementor')
             self.browser.back()
 
             self.browser.execute_script("window.scrollTo(0, 3971)")
