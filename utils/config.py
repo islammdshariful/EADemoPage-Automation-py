@@ -25,6 +25,7 @@ testimonials = base_url + "testimonials/"
 feature_list = base_url + "feature-list/"
 offcanvas_content = base_url + "offcanvas-content/"
 advanced_menu = base_url + "advanced-menu/"
+content_toggle = base_url + "content-toggle/"
 
 check_doc = False
 # check_doc = True
