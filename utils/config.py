@@ -27,6 +27,7 @@ offcanvas_content = base_url + "offcanvas-content/"
 advanced_menu = base_url + "advanced-menu/"
 content_toggle = base_url + "content-toggle/"
 advanced_data_table = base_url + "advanced-data-table/"
+post_block = base_url + "post-block/"
 
 check_doc = False
 # check_doc = True

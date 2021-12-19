@@ -12,6 +12,7 @@ from pages.flip_box import FlipBox
 from pages.info_box import InfoBox
 from pages.logo_carousel import LogoCarousel
 from pages.offcanvas_content import OffCanvas
+from pages.post_block import PostBlock
 from pages.protected_content import ProtectedContent
 from pages.simple_menu import SimpleMenu
 from pages.static_product import StaticProduct
@@ -149,7 +150,12 @@ from pages.tooltip import ToolTip
 # DYNAMIC CONTENT ELEMENTS
 # ------------------------------------------------
 
-def test_advanced_data_table(browser):
-    adt = AdvancedDataTable(browser)
-    adt.load()
-    adt.testcase()
+# def test_advanced_data_table(browser):
+#     adt = AdvancedDataTable(browser)
+#     adt.load()
+#     adt.testcase()
+
+def test_post_block(browser):
+    pb = PostBlock(browser)
+    pb.load()
+    pb.testcase()
