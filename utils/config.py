@@ -26,6 +26,7 @@ feature_list = base_url + "feature-list/"
 offcanvas_content = base_url + "offcanvas-content/"
 advanced_menu = base_url + "advanced-menu/"
 content_toggle = base_url + "content-toggle/"
+advanced_data_table = base_url + "advanced-data-table/"
 
 check_doc = False
 # check_doc = True

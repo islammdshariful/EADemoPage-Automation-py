@@ -6,8 +6,9 @@ from selenium import webdriver
 # from src.testproject.sdk.drivers import webdriver
 from selenium.webdriver.chrome.options import Options
 
+
 # This will run before all test case
-@pytest.fixture
+@pytest.fixture(scope='module')
 def browser():
     opts = Options()
     # opts.add_experimental_option("detach", True)
