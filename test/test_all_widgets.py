@@ -13,6 +13,7 @@ from pages.info_box import InfoBox
 from pages.logo_carousel import LogoCarousel
 from pages.offcanvas_content import OffCanvas
 from pages.post_block import PostBlock
+from pages.post_timeline import PostTimeline
 from pages.protected_content import ProtectedContent
 from pages.simple_menu import SimpleMenu
 from pages.static_product import StaticProduct
@@ -159,3 +160,8 @@ def test_static_product(browser):
 #     pb = PostBlock(browser)
 #     pb.load()
 #     pb.testcase()
+
+def test_post_block(browser):
+    pl = PostTimeline(browser)
+    pl.load()
+    pl.testcase()
