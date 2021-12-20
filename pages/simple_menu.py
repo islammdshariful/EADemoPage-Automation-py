@@ -55,69 +55,63 @@ class SimpleMenu:
         self.browser.get(simple_menu)
 
     def testcase(self):
-        with soft_assertions():
-            c = CheckText(self.browser)
+        c = CheckText(self.browser)
+        # with soft_assertions():
+        c.check_widget_name(self.widget, self.widget_name)
+        if check_doc:
+            c.check_doc(self.DOC_LINK, self.doc_name)
+        self.browser.execute_script("window.scrollTo(0, 905)")
+        self.browser.find_element(*self.H_HOME).click()
+        self.browser.back()
 
-            with soft_assertions():
-                c.check_widget_name(self.widget, self.widget_name)
-                if check_doc:
-                    c.check_doc(self.DOC_LINK, self.doc_name)
+        cursor = ActionChains(self.browser)
 
-            self.browser.execute_script("window.scrollTo(0, 905)")
-            self.browser.find_element(*self.H_HOME).click()
-            self.browser.back()
+        h_ele_ele = self.browser.find_element(*self.H_ELEMENTOR)
+        h_ele_woo_slider = self.browser.find_element(*self.H_ELEMENTOR_WOO_SLIDER)
+        h_ele_woo_grid = self.browser.find_element(*self.H_ELEMENTOR_WOO_GRID)
+        h_ele_woo_compare = self.browser.find_element(*self.H_ELEMENTOR_WOO_COMPARE)
+        h_ele_woo_carousel = self.browser.find_element(*self.H_ELEMENTOR_WOO_CAROUSEL)
+        h_ele_woo_action = self.browser.find_element(*self.H_ELEMENTOR_CALL_ACTION)
+        h_blog = self.browser.find_element(*self.H_BLOG)
+        h_support = self.browser.find_element(*self.H_SUPPORT)
 
-            cursor = ActionChains(self.browser)
+        cursor.move_to_element(h_ele_ele).move_to_element(h_ele_woo_slider). \
+            move_to_element(h_ele_woo_grid).move_to_element(h_ele_woo_compare). \
+            move_to_element(h_ele_woo_carousel).move_to_element(h_ele_woo_action). \
+            move_to_element(h_blog).move_to_element(h_support).perform()
 
-            h_ele_ele = self.browser.find_element(*self.H_ELEMENTOR)
-            h_ele_woo_slider = self.browser.find_element(*self.H_ELEMENTOR_WOO_SLIDER)
-            h_ele_woo_grid = self.browser.find_element(*self.H_ELEMENTOR_WOO_GRID)
-            h_ele_woo_compare = self.browser.find_element(*self.H_ELEMENTOR_WOO_COMPARE)
-            h_ele_woo_carousel = self.browser.find_element(*self.H_ELEMENTOR_WOO_CAROUSEL)
-            h_ele_woo_action = self.browser.find_element(*self.H_ELEMENTOR_CALL_ACTION)
-            h_blog = self.browser.find_element(*self.H_BLOG)
-            h_support = self.browser.find_element(*self.H_SUPPORT)
+        cursor.move_to_element(h_ele_ele).move_to_element(h_ele_woo_slider).click().perform()
+        c.check_title('Woo Product Slider | Essential Addons for Elementor')
+        self.browser.back()
 
-            cursor.move_to_element(h_ele_ele).move_to_element(h_ele_woo_slider). \
-                move_to_element(h_ele_woo_grid).move_to_element(h_ele_woo_compare). \
-                move_to_element(h_ele_woo_carousel).move_to_element(h_ele_woo_action). \
-                move_to_element(h_blog).move_to_element(h_support).perform()
+        self.browser.execute_script("window.scrollTo(0, 3971)")
+        self.browser.find_element(*self.V_HOME).click()
+        self.browser.back()
 
-            cursor.move_to_element(h_ele_ele).move_to_element(h_ele_woo_slider).click().perform()
-            c.check_widget_name('Woo Product Slider | Essential Addons for Elementor')
-            self.browser.back()
+        self.browser.execute_script("window.scrollTo(0, 3971)")
+        cursor = ActionChains(self.browser)
 
-            self.browser.execute_script("window.scrollTo(0, 3971)")
-            self.browser.find_element(*self.V_HOME).click()
-            self.browser.back()
+        v_ele_ele = self.browser.find_element(*self.V_ELEMENTOR)
+        v_ele_accordion = self.browser.find_element(*self.V_ELEMENTOR_ACCORDION)
+        v_ele_map = self.browser.find_element(*self.V_ELEMENTOR_MAP)
+        v_ele_menu = self.browser.find_element(*self.V_ELEMENTOR_ACCORDION)
+        v_ele_tab = self.browser.find_element(*self.V_ELEMENTOR_TABS)
+        v_ele_caldera_form = self.browser.find_element(*self.V_ELEMENTOR_CAL_FORM)
+        v_ele_action = self.browser.find_element(*self.V_ELEMENTOR_CALL_ACTION)
+        v_ele_cf7 = self.browser.find_element(*self.V_ELEMENTOR_FORM_7)
+        v_ele_ticker = self.browser.find_element(*self.V_ELEMENTOR_TICKER)
+        v_ele_support = self.browser.find_element(*self.V_SUPPORT)
+        v_ele_blog = self.browser.find_element(*self.V_BLOG)
+        v_ele_contact_us = self.browser.find_element(*self.V_CONTACT)
 
-            self.browser.execute_script("window.scrollTo(0, 3971)")
-            cursor = ActionChains(self.browser)
+        cursor.move_to_element(v_ele_ele).perform()
+        self.browser.find_element(*self.V_EXPAND_BUTTON).click()
 
-            v_ele_ele = self.browser.find_element(*self.V_ELEMENTOR)
-            v_ele_accordion = self.browser.find_element(*self.V_ELEMENTOR_ACCORDION)
-            v_ele_map = self.browser.find_element(*self.V_ELEMENTOR_MAP)
-            v_ele_menu = self.browser.find_element(*self.V_ELEMENTOR_ACCORDION)
-            v_ele_tab = self.browser.find_element(*self.V_ELEMENTOR_TABS)
-            v_ele_caldera_form = self.browser.find_element(*self.V_ELEMENTOR_CAL_FORM)
-            v_ele_action = self.browser.find_element(*self.V_ELEMENTOR_CALL_ACTION)
-            v_ele_cf7 = self.browser.find_element(*self.V_ELEMENTOR_FORM_7)
-            v_ele_ticker = self.browser.find_element(*self.V_ELEMENTOR_TICKER)
-            v_ele_support = self.browser.find_element(*self.V_SUPPORT)
-            v_ele_blog = self.browser.find_element(*self.V_BLOG)
-            v_ele_contact_us = self.browser.find_element(*self.V_CONTACT)
+        cursor.move_to_element(v_ele_accordion).move_to_element(v_ele_map).move_to_element(v_ele_menu). \
+            move_to_element(v_ele_tab).move_to_element(v_ele_caldera_form).move_to_element(v_ele_action). \
+            move_to_element(v_ele_cf7).move_to_element(v_ele_ticker).move_to_element(v_ele_support).\
+            move_to_element(v_ele_blog).move_to_element(v_ele_contact_us).perform()
 
-            cursor.move_to_element(v_ele_ele).perform()
-            self.browser.find_element(*self.V_EXPAND_BUTTON).click()
-
-            cursor.move_to_element(v_ele_accordion).move_to_element(v_ele_map).move_to_element(v_ele_menu). \
-                move_to_element(v_ele_tab).move_to_element(v_ele_caldera_form).move_to_element(v_ele_action). \
-                move_to_element(v_ele_cf7).move_to_element(v_ele_ticker).move_to_element(v_ele_support).\
-                move_to_element(v_ele_blog).move_to_element(v_ele_contact_us).perform()
-
-            cursor.move_to_element(v_ele_accordion).click().perform()
-            doc.check_widget_name('Advanced Accordion for Elementor | Essential Addons for Elementor')
-            self.browser.back()
-
-            # self.browser.execute_script("window.scrollTo(0, 3971)")
-            # self.browser.find_element(*self.V_EXPAND_BUTTON).click()
+        cursor.move_to_element(v_ele_accordion).click().perform()
+        c.check_title('Advanced Accordion for Elementor | Essential Addons for Elementor')
+        self.browser.back()

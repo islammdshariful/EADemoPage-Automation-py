@@ -80,94 +80,93 @@ class TeamMemberCarousel:
 
     def testcase(self):
         c = CheckText(self.browser)
+        # with soft_assertions():
+        c.check_widget_name(self.widget, self.widget_name)
+        if check_doc:
+            c.check_doc(self.DOC_LINK, self.doc_name)
 
-        with soft_assertions():
-            c.check_widget_name(self.widget, self.widget_name)
-            if check_doc:
-                c.check_doc(self.DOC_LINK, self.doc_name)
+        cursor = ActionChains(self.browser)
+        scrol_ele = self.browser.find_element(By.XPATH, '//*[@id="post-2946"]/div/div/div/div/section[2]/div/div/'
+                                                        'div/div/div/section/div/div/div[2]/div/div/div[1]/div/h3')
+        self.browser.execute_script("arguments[0].scrollIntoView();", scrol_ele)
 
-            cursor = ActionChains(self.browser)
-            scrol_ele = self.browser.find_element(By.XPATH, '//*[@id="post-2946"]/div/div/div/div/section[2]/div/div/'
-                                                            'div/div/div/section/div/div/div[2]/div/div/div[1]/div/h3')
-            self.browser.execute_script("arguments[0].scrollIntoView();", scrol_ele)
+        mem_1 = self.browser.find_element(*self.mem_1_img)
+        mem_2 = self.browser.find_element(*self.mem_2_img)
 
-            mem_1 = self.browser.find_element(*self.mem_1_img)
-            mem_2 = self.browser.find_element(*self.mem_2_img)
-
-            cursor.move_to_element(mem_1).perform()
-            if self.browser.find_element(*self.mem_1_soc_fb).is_displayed():
-                print("MEMBER 1 FACEBOOK ICON IS VISIBLE")
-                if self.browser.find_element(*self.mem_1_soc_tw).is_displayed():
-                    print("MEMBER 1 TWITTER ICON IS VISIBLE")
-                    if self.browser.find_element(*self.mem_1_soc_lk).is_displayed():
-                        print("MEMBER 1 LINKEDIN ICON IS VISIBLE")
-                    else:
-                        print("MEMBER 1 LINKEDINICON IS NOT VISIBLE")
+        cursor.move_to_element(mem_1).perform()
+        if self.browser.find_element(*self.mem_1_soc_fb).is_displayed():
+            print("MEMBER 1 FACEBOOK ICON IS VISIBLE")
+            if self.browser.find_element(*self.mem_1_soc_tw).is_displayed():
+                print("MEMBER 1 TWITTER ICON IS VISIBLE")
+                if self.browser.find_element(*self.mem_1_soc_lk).is_displayed():
+                    print("MEMBER 1 LINKEDIN ICON IS VISIBLE")
                 else:
-                    print("MEMBER 1 FACEBOOK ICON IS NOT VISIBLE")
+                    print("MEMBER 1 LINKEDINICON IS NOT VISIBLE")
             else:
                 print("MEMBER 1 FACEBOOK ICON IS NOT VISIBLE")
+        else:
+            print("MEMBER 1 FACEBOOK ICON IS NOT VISIBLE")
 
-            assert_that(self.browser.find_element(*self.mem_1_name).text).is_equal_to(self.mem_name_text)
-            assert_that(self.browser.find_element(*self.mem_1_pos).text).is_equal_to(self.mem_pos_text)
+        assert_that(self.browser.find_element(*self.mem_1_name).text).is_equal_to(self.mem_name_text)
+        assert_that(self.browser.find_element(*self.mem_1_pos).text).is_equal_to(self.mem_pos_text)
 
-            self.browser.find_element(*self.prev_button).click()
-            self.browser.find_element(*self.prev_button).click()
-            self.browser.find_element(*self.next_button).click()
-            self.browser.find_element(*self.next_button).click()
+        self.browser.find_element(*self.prev_button).click()
+        self.browser.find_element(*self.prev_button).click()
+        self.browser.find_element(*self.next_button).click()
+        self.browser.find_element(*self.next_button).click()
 
-            cursor.move_to_element(mem_2).perform()
-            if self.browser.find_element(*self.mem_2_soc_fb).is_displayed():
-                print("MEMBER 2 FACEBOOK ICON IS VISIBLE")
-                if self.browser.find_element(*self.mem_2_soc_tw).is_displayed():
-                    print("MEMBER 2 TWITTER ICON IS VISIBLE")
-                    if self.browser.find_element(*self.mem_2_soc_lk).is_displayed():
-                        print("MEMBER 2 LINKEDIN ICON IS VISIBLE")
-                    else:
-                        print("MEMBER 2 LINKEDINICON IS NOT VISIBLE")
+        cursor.move_to_element(mem_2).perform()
+        if self.browser.find_element(*self.mem_2_soc_fb).is_displayed():
+            print("MEMBER 2 FACEBOOK ICON IS VISIBLE")
+            if self.browser.find_element(*self.mem_2_soc_tw).is_displayed():
+                print("MEMBER 2 TWITTER ICON IS VISIBLE")
+                if self.browser.find_element(*self.mem_2_soc_lk).is_displayed():
+                    print("MEMBER 2 LINKEDIN ICON IS VISIBLE")
                 else:
-                    print("MEMBER 2 FACEBOOK ICON IS NOT VISIBLE")
+                    print("MEMBER 2 LINKEDINICON IS NOT VISIBLE")
             else:
                 print("MEMBER 2 FACEBOOK ICON IS NOT VISIBLE")
+        else:
+            print("MEMBER 2 FACEBOOK ICON IS NOT VISIBLE")
 
-            assert_that(self.browser.find_element(*self.mem_2_name).text).is_equal_to(self.mem_name_text)
-            assert_that(self.browser.find_element(*self.mem_2_pos).text).is_equal_to(self.mem_pos_text)
+        assert_that(self.browser.find_element(*self.mem_2_name).text).is_equal_to(self.mem_name_text)
+        assert_that(self.browser.find_element(*self.mem_2_pos).text).is_equal_to(self.mem_pos_text)
 
-            # self.browser.execute_script("window.scrollTo(0, 3566)")
-            scrol_ele_1 = self.browser.find_element(By.XPATH, '//*[@id="post-2946"]/div/div/div/div/section[5]/div/div'
-                                                            '/div/div/div/section/div/div/div[2]/div/div/div[1]/div/h3')
-            self.browser.execute_script("arguments[0].scrollIntoView();", scrol_ele_1)
+        # self.browser.execute_script("window.scrollTo(0, 3566)")
+        scrol_ele_1 = self.browser.find_element(By.XPATH, '//*[@id="post-2946"]/div/div/div/div/section[5]/div/div'
+                                                        '/div/div/div/section/div/div/div[2]/div/div/div[1]/div/h3')
+        self.browser.execute_script("arguments[0].scrollIntoView();", scrol_ele_1)
 
-            self.browser.find_element(*self.dot_1).click()
-            time.sleep(.5)
-            if self.browser.find_element(*self.mem_3_img).is_displayed():
-                print("MEMBER 3 IMAGE IS VISIBLE")
-            else:
-                print("MEMBER 3 IMAGE IS NOT VISIBLE")
-            assert_that(self.browser.find_element(*self.mem_3_name).text).is_equal_to(self.mem_3_name_text)
-            assert_that(self.browser.find_element(*self.mem_3_name).text).is_equal_to(self.mem_3_pos_text)
-            mem_3_fb = self.browser.find_element(*self.mem_3_soc_fb)
-            mem_3_tw = self.browser.find_element(*self.mem_3_soc_tw)
-            mem_3_lk = self.browser.find_element(*self.mem_3_soc_lk)
-            cursor.move_to_element(mem_3_fb).move_to_element(mem_3_tw).move_to_element(mem_3_lk).perform()
-            self.browser.find_element(*self.dot_2).click()
-            time.sleep(.5)
-            self.browser.find_element(*self.dot_3).click()
-            time.sleep(.5)
-            if self.browser.find_element(*self.mem_4_img).is_displayed():
-                print("MEMBER 4 IMAGE IS NOT VISIBLE")
-            else:
-                print("MEMBER 4 IMAGE IS NOT VISIBLE")
-            assert_that(self.browser.find_element(*self.mem_4_name).text).is_equal_to(self.mem_4_name_text)
-            assert_that(self.browser.find_element(*self.mem_4_name).text).is_equal_to(self.mem_4_pos_text)
-            mem_4_fb = self.browser.find_element(*self.mem_4_soc_fb)
-            mem_4_tw = self.browser.find_element(*self.mem_4_soc_tw)
-            mem_4_lk = self.browser.find_element(*self.mem_4_soc_lk)
+        self.browser.find_element(*self.dot_1).click()
+        time.sleep(.5)
+        if self.browser.find_element(*self.mem_3_img).is_displayed():
+            print("MEMBER 3 IMAGE IS VISIBLE")
+        else:
+            print("MEMBER 3 IMAGE IS NOT VISIBLE")
+        assert_that(self.browser.find_element(*self.mem_3_name).text).is_equal_to(self.mem_3_name_text)
+        assert_that(self.browser.find_element(*self.mem_3_pos).text).is_equal_to(self.mem_3_pos_text)
+        mem_3_fb = self.browser.find_element(*self.mem_3_soc_fb)
+        mem_3_tw = self.browser.find_element(*self.mem_3_soc_tw)
+        mem_3_lk = self.browser.find_element(*self.mem_3_soc_lk)
+        cursor.move_to_element(mem_3_fb).move_to_element(mem_3_tw).move_to_element(mem_3_lk).perform()
+        self.browser.find_element(*self.dot_2).click()
+        time.sleep(.5)
+        self.browser.find_element(*self.dot_3).click()
+        time.sleep(.5)
+        if self.browser.find_element(*self.mem_4_img).is_displayed():
+            print("MEMBER 4 IMAGE IS NOT VISIBLE")
+        else:
+            print("MEMBER 4 IMAGE IS NOT VISIBLE")
+        assert_that(self.browser.find_element(*self.mem_4_name).text).is_equal_to(self.mem_4_name_text)
+        assert_that(self.browser.find_element(*self.mem_4_pos).text).is_equal_to(self.mem_4_pos_text)
+        mem_4_fb = self.browser.find_element(*self.mem_4_soc_fb)
+        mem_4_tw = self.browser.find_element(*self.mem_4_soc_tw)
+        mem_4_lk = self.browser.find_element(*self.mem_4_soc_lk)
 
-            self.browser.execute_script("arguments[0].scrollIntoView();", scrol_ele_1)
-            self.browser.find_element(*self.dot_3).click()
-            time.sleep(1)
-            cursor.move_to_element(mem_4_fb).move_to_element(mem_4_tw).move_to_element(mem_4_lk).perform()
+        self.browser.execute_script("arguments[0].scrollIntoView();", scrol_ele_1)
+        self.browser.find_element(*self.dot_3).click()
+        time.sleep(1)
+        cursor.move_to_element(mem_4_fb).move_to_element(mem_4_tw).move_to_element(mem_4_lk).perform()
             
 
 
