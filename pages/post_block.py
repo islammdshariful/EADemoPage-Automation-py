@@ -10,20 +10,36 @@ class PostBlock:
     doc_link = '//*[@id="post-1347"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
                '/div/div/div[2]/div/div/div[3]/div/div/a'
     doc_name = "POST BLOCK"
+    # # Post 1
+    # post_1_media = (By.XPATH, f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[1]/div/div/div[1]')
+    # post_1_overlay_icon = (By.XPATH, f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[1]/div/div/div[1]/div[1]/i')
+    # post_1_title = (By.XPATH, f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[1]/div/div/div[2]/header/h2/a')
+    # post_1_des = (By.XPATH, f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[1]/div/div/div[2]/div/div/p')
+    # post_1_author = (By.XPATH, f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[1]/div/div/div[3]/div[2]/div[1]/a')
+    # post_1_date = (By.XPATH, f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[1]/div/div/div[3]/div[2]/div[2]/time')
+    # # Post 2
+    # post_2_media = (By.XPATH, f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[5]/div/div/div[1]')
+    # post_2_overlay_icon = (By.XPATH, f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[5]/div/div/div[1]/div[1]/i')
+    # post_2_title = (By.XPATH, f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[5]/div/div/div[2]/header/h2/a')
+    # post_2_des = (By.XPATH, f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[5]/div/div/div[2]/div/div/p')
+    # post_2_author = (By.XPATH, f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[5]/div/div/div[3]/div[2]/div[1]/a')
+    # post_2_date = (By.XPATH, f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[5]/div/div/div[3]/div[2]/div[2]/time')
+
     # Post 1
-    post_1_media = (By.XPATH, f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[1]/div/div/div[1]')
-    post_1_overlay_icon = (By.XPATH, f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[1]/div/div/div[1]/div[1]/i')
-    post_1_title = (By.XPATH, f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[1]/div/div/div[2]/header/h2/a')
-    post_1_des = (By.XPATH, f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[1]/div/div/div[2]/div/div/p')
-    post_1_author = (By.XPATH, f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[1]/div/div/div[3]/div[2]/div[1]/a')
-    post_1_date = (By.XPATH, f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[1]/div/div/div[3]/div[2]/div[2]/time')
+    post_1_media = f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[1]/div/div/div[1]'
+    post_1_overlay_icon = f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[1]/div/div/div[1]/div[1]/i'
+    post_1_title = f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[1]/div/div/div[2]/header/h2/a'
+    post_1_des = f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[1]/div/div/div[2]/div/div/p'
+    post_1_author = f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[1]/div/div/div[3]/div[2]/div[1]/a'
+    post_1_date = f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[1]/div/div/div[3]/div[2]/div[2]/time'
     # Post 2
-    post_2_media = (By.XPATH, f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[5]/div/div/div[1]')
-    post_2_overlay_icon = (By.XPATH, f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[5]/div/div/div[1]/div[1]/i')
-    post_2_title = (By.XPATH, f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[5]/div/div/div[2]/header/h2/a')
-    post_2_des = (By.XPATH, f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[5]/div/div/div[2]/div/div/p')
-    post_2_author = (By.XPATH, f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[5]/div/div/div[3]/div[2]/div[1]/a')
-    post_2_date = (By.XPATH, f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[5]/div/div/div[3]/div[2]/div[2]/time')
+    post_2_media = f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[5]/div/div/div[1]'
+    post_2_overlay_icon = f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[5]/div/div/div[1]/div[1]/i'
+    post_2_title = f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[5]/div/div/div[2]/header/h2/a'
+    post_2_des = f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[5]/div/div/div[2]/div/div/p'
+    post_2_author = f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[5]/div/div/div[3]/div[2]/div[1]/a'
+    post_2_date = f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[5]/div/div/div[3]/div[2]/div[2]/time'
+
     # Article
     article_title = (By.XPATH, f'//*[@id="page"]/div[1]/div/section/div/div/div[1]/div/div/section[1]'
                                f'/div/div/div/div/div/div[1]/div/h1')
@@ -44,6 +60,34 @@ class PostBlock:
     def check_author(self, author):
         assert_that(self.browser.find_element(*self.article_author).text).is_equal_to(author)
 
+    def check_visibility(self, media, icon):
+        cursor = ActionChains(self.browser)
+        post_media_1 = self.browser.find_element(By.XPATH, media)
+        cursor.move_to_element(post_media_1).perform()
+        time.sleep(.5)
+        if self.browser.find_element(By.XPATH, icon).is_displayed():
+            assert_that(display).is_equal_to(1)
+        else:
+            assert_that(display).is_equal_to(0)
+
+    def check_widget_post(self, post, author, date, media, icon):
+        self.check_visibility(media, icon)
+        p_title = self.browser.find_element(By.XPATH, post).text
+        p_author = self.browser.find_element(By.XPATH, author).text
+        p_date = self.browser.find_element(By.XPATH, date).text
+
+        self.browser.find_element(By.XPATH, post).click()
+        self.check_post(p_title, p_date)
+        self.browser.back()
+        time.sleep(1)
+        self.browser.find_element(By.XPATH, author).click()
+        self.check_author(p_author)
+        self.browser.back()
+        time.sleep(1)
+
+        self.browser.execute_script("window.scrollTo(0, 1150)")
+        time.sleep(.5)
+
     def testcase(self):
         c = CheckText(self.browser)
         with soft_assertions():
@@ -53,53 +97,8 @@ class PostBlock:
 
             self.browser.execute_script("window.scrollTo(0, 1150)")
 
-            cursor = ActionChains(self.browser)
-            post_media_1 = self.browser.find_element(*self.post_1_media)
-            post_media_2 = self.browser.find_element(*self.post_2_media)
+            self.check_widget_post(self.post_1_title, self.post_1_author, self.post_1_date, self.post_1_media,
+                                   self.post_1_overlay_icon)
+            self.check_widget_post(self.post_2_title, self.post_2_author, self.post_2_date, self.post_2_media,
+                                   self.post_2_overlay_icon)
 
-            cursor.move_to_element(post_media_1).perform()
-            time.sleep(.5)
-            if self.browser.find_element(*self.post_1_overlay_icon).is_displayed():
-                assert_that(display).is_equal_to(1)
-            else:
-                assert_that(display).is_equal_to(0)
-
-            cursor.move_to_element(post_media_2).perform()
-            time.sleep(.5)
-            if self.browser.find_element(*self.post_1_des).is_displayed():
-                assert_that(display).is_equal_to(1)
-            else:
-                assert_that(display).is_equal_to(0)
-
-            title_1 = self.browser.find_element(*self.post_1_title).text
-            author_1 = self.browser.find_element(*self.post_1_author).text
-            date_1 = self.browser.find_element(*self.post_1_date).text
-
-            self.browser.find_element(*self.post_1_title).click()
-            self.check_post(title_1, date_1)
-            self.browser.back()
-            time.sleep(1)
-            self.browser.find_element(*self.post_1_author).click()
-            self.check_author(author_1)
-            self.browser.back()
-            time.sleep(1)
-
-            self.browser.execute_script("window.scrollTo(0, 1150)")
-            time.sleep(.5)
-
-            title_2 = self.browser.find_element(*self.post_2_title).text
-            author_2 = self.browser.find_element(*self.post_2_author).text
-            date_2 = self.browser.find_element(*self.post_2_date).text
-
-            if self.browser.find_element(*self.post_2_des).is_displayed():
-                assert_that(display).is_equal_to(1)
-            else:
-                assert_that(display).is_equal_to(0)
-            self.browser.find_element(*self.post_2_title).click()
-            self.check_post(title_2, date_2)
-            self.browser.back()
-            time.sleep(1)
-            self.browser.find_element(*self.post_2_author).click()
-            self.check_author(author_2)
-            self.browser.back()
-            time.sleep(1)

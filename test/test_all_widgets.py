@@ -156,12 +156,12 @@ def test_static_product(browser):
 #     adt.load()
 #     adt.testcase()
 
-# def test_post_block(browser):
-#     pb = PostBlock(browser)
-#     pb.load()
-#     pb.testcase()
-
 def test_post_block(browser):
-    pl = PostTimeline(browser)
-    pl.load()
-    pl.testcase()
+    pb = PostBlock(browser)
+    pb.load()
+    pb.testcase()
+
+# def test_post_block(browser):
+#     pl = PostTimeline(browser)
+#     pl.load()
+#     pl.testcase()
