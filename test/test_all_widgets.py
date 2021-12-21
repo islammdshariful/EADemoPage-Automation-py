@@ -4,6 +4,7 @@ from pages.advanced_data_table import AdvancedDataTable
 from pages.advanced_google_map import AdvancedGoogleMap
 from pages.advanced_menu import AdvancedMenu
 from pages.advanced_tabs import AdvancedTabs
+from pages.content_ticker import ContentTicker
 from pages.content_toggle import ContentToggle
 from pages.creative_button import CreativeButton
 from pages.dual_color_headline import DualColorHeading
@@ -180,7 +181,12 @@ def test_static_product(browser):
 #     spl.load()
 #     spl.testcase()
 
-def test_google_map(browser):
-    gm = AdvancedGoogleMap(browser)
-    gm.load()
-    gm.testcase()
+# def test_google_map(browser):
+#     gm = AdvancedGoogleMap(browser)
+#     gm.load()
+#     gm.testcase()
+
+def test_content_ticker(browser):
+    ct = ContentTicker(browser)
+    ct.load()
+    ct.testcase()
