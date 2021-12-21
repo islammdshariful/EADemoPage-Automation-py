@@ -13,6 +13,7 @@ from pages.info_box import InfoBox
 from pages.logo_carousel import LogoCarousel
 from pages.offcanvas_content import OffCanvas
 from pages.post_block import PostBlock
+from pages.post_list import PostList
 from pages.post_timeline import PostTimeline
 from pages.protected_content import ProtectedContent
 from pages.simple_menu import SimpleMenu
@@ -24,6 +25,7 @@ from pages.testimonial_slider import TestimonialSlider
 from pages.testimonials import Testimonial
 from pages.tooltip import ToolTip
 
+
 # ------------------------------------------------
 # CONTENT ELEMENTS
 # ------------------------------------------------
@@ -33,25 +35,30 @@ def test_content_toggle(browser):
     ct.load()
     ct.testcase()
 
+
 def test_advanced_menu(browser):
     am = AdvancedMenu(browser)
     am.load()
     am.testcase()
+
 
 def test_off_canvas(browser):
     oc = OffCanvas(browser)
     oc.load()
     oc.testcase()
 
+
 def test_feature_list(browser):
     fl = FeatureList(browser)
     fl.load()
     fl.testcase()
 
+
 def testimonial(browser):
     t = Testimonial(browser)
     t.load()
     t.testcase()
+
 
 # def test_sticky_video(browser):
 #     sv = StickyVideo(browser)
@@ -142,6 +149,7 @@ def test_static_product(browser):
     sp.load()
     sp.testcase()
 
+
 # def test_event_calender(browser):
 #     evc = EventCalendar(browser)
 #     evc.load()
@@ -156,12 +164,17 @@ def test_static_product(browser):
 #     adt.load()
 #     adt.testcase()
 
-def test_post_block(browser):
-    pb = PostBlock(browser)
-    pb.load()
-    pb.testcase()
+# def test_post_block(browser):
+#     pb = PostBlock(browser)
+#     pb.load()
+#     pb.testcase()
 
 # def test_post_block(browser):
-#     pl = PostTimeline(browser)
-#     pl.load()
-#     pl.testcase()
+#     ptl = PostTimeline(browser)
+#     ptl.load()
+#     ptl.testcase()
+
+def test_smart_post_list(browser):
+    spl = PostList(browser)
+    spl.load()
+    spl.testcase()

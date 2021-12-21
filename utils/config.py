@@ -29,6 +29,7 @@ content_toggle = base_url + "content-toggle/"
 advanced_data_table = base_url + "advanced-data-table/"
 post_block = base_url + "post-block/"
 post_timeline = base_url + "post-timeline/"
+post_list = base_url + "post-list/"
 
 check_doc = False
 # check_doc = True
