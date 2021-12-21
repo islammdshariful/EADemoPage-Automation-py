@@ -1,3 +1,7 @@
+import hashlib
+import os
+import os.path
+import sys
 import time
 
 from assertpy import soft_assertions, assert_that
@@ -30,6 +34,7 @@ advanced_data_table = base_url + "advanced-data-table/"
 post_block = base_url + "post-block/"
 post_timeline = base_url + "post-timeline/"
 post_list = base_url + "post-list/"
+advanced_google_map = base_url + "advanced-google-map/"
 
 check_doc = False
 # check_doc = True
@@ -69,5 +74,37 @@ class CheckText:
     def check_widget_name(self, locator, name):
         with soft_assertions():
             assert_that(self.browser.find_element(By.XPATH, locator).text).is_equal_to(name)
+
+
+class ImageComparison():
+    def __init__(self, browser):
+        self.browser = browser
+
+    def hash_it(self, path):
+        with open(path, 'rb') as f:
+            hasher = hashlib.md5()
+            hasher.update(f.read())
+            return hasher.hexdigest()
+
+    def take_new_snap(self, widget):
+        if not os.path.exists(str(sys.path[1]) + '/images/' + widget):
+            os.makedirs(str(sys.path[1]) + '/images/' + widget)
+        time.sleep(1)
+        self.browser.save_screenshot(str(sys.path[1]) + '/images/' + widget + '/local.png')
+
+    def image_comparison(self, widget):
+        time.sleep(1)
+        local_img = str(sys.path[1]) + '/images/' + widget + '/local.png'
+
+        self.browser.save_screenshot(str(sys.path[1]) + '/images/' + widget + '/remote.png')
+
+        # this for downloading the image
+        # urllib.request.urlretrieve(img, remote_img)
+
+        local_img_hash = self.hash_it(local_img)
+        remote_img_hash = self.hash_it(str(sys.path[1]) + '/images/' + widget + '/remote.png')
+        with soft_assertions():
+            # assert local_img_hash == remote_img_hash, "Image not Matched".format(local_img_hash, remote_img_hash)
+            assert_that(local_img_hash).is_equal_to(remote_img_hash)
 
 

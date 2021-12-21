@@ -1,6 +1,7 @@
 from pages.AB_sample import Sample
 from pages.advanced_accordion import AdvancedAccordion
 from pages.advanced_data_table import AdvancedDataTable
+from pages.advanced_google_map import AdvancedGoogleMap
 from pages.advanced_menu import AdvancedMenu
 from pages.advanced_tabs import AdvancedTabs
 from pages.content_toggle import ContentToggle
@@ -174,7 +175,12 @@ def test_static_product(browser):
 #     ptl.load()
 #     ptl.testcase()
 
-def test_smart_post_list(browser):
-    spl = PostList(browser)
-    spl.load()
-    spl.testcase()
+# def test_smart_post_list(browser):
+#     spl = PostList(browser)
+#     spl.load()
+#     spl.testcase()
+
+def test_google_map(browser):
+    gm = AdvancedGoogleMap(browser)
+    gm.load()
+    gm.testcase()
