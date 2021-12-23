@@ -46,7 +46,11 @@ class PostBlock:
     def check_author(self, author):
         assert_that(self.browser.find_element(*self.article_author).text).is_equal_to(author)
 
-    def check_visibility(self, media, icon):
+    def check_visibility(self, des, media, icon):
+        if self.browser.find_element(By.XPATH, des).is_displayed():
+            assert_that(display).is_equal_to(1)
+        else:
+            assert_that(display).is_equal_to("Description is not visible.")
         cursor = ActionChains(self.browser)
         post_media_1 = self.browser.find_element(By.XPATH, media)
         cursor.move_to_element(post_media_1).perform()
@@ -54,10 +58,10 @@ class PostBlock:
         if self.browser.find_element(By.XPATH, icon).is_displayed():
             assert_that(display).is_equal_to(1)
         else:
-            assert_that(display).is_equal_to(0)
+            assert_that(display).is_equal_to("Icon is not visible.")
 
-    def check_widget_post(self, post, author, date, media, icon):
-        self.check_visibility(media, icon)
+    def check_widget_post(self, post, author, des, date, media, icon):
+        self.check_visibility(des, media, icon)
         p_title = self.browser.find_element(By.XPATH, post).text
         p_author = self.browser.find_element(By.XPATH, author).text
         p_date = self.browser.find_element(By.XPATH, date).text
@@ -83,8 +87,8 @@ class PostBlock:
 
             self.browser.execute_script("window.scrollTo(0, 1150)")
 
-            self.check_widget_post(self.post_1_title, self.post_1_author, self.post_1_date, self.post_1_media,
-                                   self.post_1_overlay_icon)
-            self.check_widget_post(self.post_2_title, self.post_2_author, self.post_2_date, self.post_2_media,
-                                   self.post_2_overlay_icon)
+            self.check_widget_post(self.post_1_title, self.post_1_author, self.post_1_des,
+                                   self.post_1_date, self.post_1_media, self.post_1_overlay_icon)
+            self.check_widget_post(self.post_2_title, self.post_2_author, self.post_1_des,
+                                   self.post_2_date, self.post_2_media, self.post_2_overlay_icon)
 

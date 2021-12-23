@@ -174,7 +174,7 @@ def test_static_product(browser):
 #     pb.load()
 #     pb.testcase()
 
-# def test_post_block(browser):
+# def test_post_timeline(browser):
 #     ptl = PostTimeline(browser)
 #     ptl.load()
 #     ptl.testcase()
@@ -204,7 +204,7 @@ def test_static_product(browser):
 #     dg.load()
 #     dg.testcase()
 
-def test_post_grid(browser):
-    pg = PostGrid(browser)
-    pg.load()
-    pg.testcase()
+# def test_post_grid(browser):
+#     pg = PostGrid(browser)
+#     pg.load()
+#     pg.testcase()
