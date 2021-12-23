@@ -9,6 +9,7 @@ from pages.content_timeline import ContentTimeline
 from pages.content_toggle import ContentToggle
 from pages.creative_button import CreativeButton
 from pages.dual_color_headline import DualColorHeading
+from pages.dynamic_gallery import DynamicGallery
 from pages.event_calendar import EventCalendar
 from pages.feature_list import FeatureList
 from pages.flip_box import FlipBox
@@ -192,7 +193,12 @@ def test_static_product(browser):
 #     ct.load()
 #     ct.testcase()
 
-def test_content_timeline(browser):
-    ct = ContentTimeline(browser)
-    ct.load()
-    ct.testcase()
+# def test_content_timeline(browser):
+#     ct = ContentTimeline(browser)
+#     ct.load()
+#     ct.testcase()
+
+def test_dynamic_gallery(browser):
+    dg = DynamicGallery(browser)
+    dg.load()
+    dg.testcase()
