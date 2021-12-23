@@ -18,6 +18,7 @@ from pages.info_box import InfoBox
 from pages.logo_carousel import LogoCarousel
 from pages.offcanvas_content import OffCanvas
 from pages.post_block import PostBlock
+from pages.post_carousel import PostCarousel
 from pages.post_grid import PostGrid
 from pages.post_list import PostList
 from pages.post_timeline import PostTimeline
@@ -210,7 +211,12 @@ def test_static_product(browser):
 #     pg.load()
 #     pg.testcase()
 
-def test_data_table(browser):
-    dt = DataTable(browser)
-    dt.load()
-    dt.testcase()
+# def test_data_table(browser):
+#     dt = DataTable(browser)
+#     dt.load()
+#     dt.testcase()
+
+def test_post_carousel(browser):
+    pc = PostCarousel(browser)
+    pc.load()
+    pc.testcase()
