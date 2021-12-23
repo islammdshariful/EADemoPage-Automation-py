@@ -43,6 +43,8 @@ data_table = base_url + "table/"
 post_carousel = base_url + "post-carousel/"
 pricing_table = base_url + "pricing-table/"
 call_to_action = base_url + "call-to-action/"
+price_menu = base_url + "price-menu/"
+interactive_promo = base_url + "interactive-promo/"
 
 check_doc = False
 # check_doc = True

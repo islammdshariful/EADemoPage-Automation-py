@@ -81,7 +81,7 @@ class SimpleMenu:
             move_to_element(h_blog).move_to_element(h_support).perform()
 
         cursor.move_to_element(h_ele_ele).move_to_element(h_ele_woo_slider).click().perform()
-        c.check_title('Woo Product Slider | Essential Addons for Elementor')
+        c.check_title('💬1 - Woo Product Slider | Essential Addons for Elementor')
         self.browser.back()
 
         self.browser.execute_script("window.scrollTo(0, 3971)")
@@ -113,5 +113,5 @@ class SimpleMenu:
             move_to_element(v_ele_blog).move_to_element(v_ele_contact_us).perform()
 
         cursor.move_to_element(v_ele_accordion).click().perform()
-        c.check_title('Advanced Accordion for Elementor | Essential Addons for Elementor')
+        c.check_title('💬1 - Advanced Accordion for Elementor | Essential Addons for Elementor')
         self.browser.back()
