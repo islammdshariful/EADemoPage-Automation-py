@@ -39,6 +39,7 @@ content_ticker = base_url + "content-ticker/"
 content_timeline = base_url + "content-timeline/"
 dynamic_gallery = base_url + "dynamic-gallery/"
 post_grid = base_url + "post-grid/"
+data_table = base_url + "table/"
 
 check_doc = False
 # check_doc = True

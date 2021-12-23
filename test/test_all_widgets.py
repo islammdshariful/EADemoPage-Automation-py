@@ -8,6 +8,7 @@ from pages.content_ticker import ContentTicker
 from pages.content_timeline import ContentTimeline
 from pages.content_toggle import ContentToggle
 from pages.creative_button import CreativeButton
+from pages.data_table import DataTable
 from pages.dual_color_headline import DualColorHeading
 from pages.dynamic_gallery import DynamicGallery
 from pages.event_calendar import EventCalendar
@@ -208,3 +209,8 @@ def test_static_product(browser):
 #     pg = PostGrid(browser)
 #     pg.load()
 #     pg.testcase()
+
+def test_data_table(browser):
+    dt = DataTable(browser)
+    dt.load()
+    dt.testcase()
