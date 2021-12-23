@@ -5,6 +5,7 @@ from pages.advanced_google_map import AdvancedGoogleMap
 from pages.advanced_menu import AdvancedMenu
 from pages.advanced_tabs import AdvancedTabs
 from pages.content_ticker import ContentTicker
+from pages.content_timeline import ContentTimeline
 from pages.content_toggle import ContentToggle
 from pages.creative_button import CreativeButton
 from pages.dual_color_headline import DualColorHeading
@@ -186,7 +187,12 @@ def test_static_product(browser):
 #     gm.load()
 #     gm.testcase()
 
-def test_content_ticker(browser):
-    ct = ContentTicker(browser)
+# def test_content_ticker(browser):
+#     ct = ContentTicker(browser)
+#     ct.load()
+#     ct.testcase()
+
+def test_content_timeline(browser):
+    ct = ContentTimeline(browser)
     ct.load()
     ct.testcase()

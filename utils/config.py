@@ -36,6 +36,7 @@ post_timeline = base_url + "post-timeline/"
 post_list = base_url + "post-list/"
 advanced_google_map = base_url + "advanced-google-map/"
 content_ticker = base_url + "content-ticker/"
+content_timeline = base_url + "content-timeline/"
 
 check_doc = False
 # check_doc = True
