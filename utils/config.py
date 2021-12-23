@@ -41,6 +41,7 @@ dynamic_gallery = base_url + "dynamic-gallery/"
 post_grid = base_url + "post-grid/"
 data_table = base_url + "table/"
 post_carousel = base_url + "post-carousel/"
+pricing_table = base_url + "pricing-table/"
 
 check_doc = False
 # check_doc = True

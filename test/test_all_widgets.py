@@ -22,6 +22,7 @@ from pages.post_carousel import PostCarousel
 from pages.post_grid import PostGrid
 from pages.post_list import PostList
 from pages.post_timeline import PostTimeline
+from pages.pricing_table import PricingTable
 from pages.protected_content import ProtectedContent
 from pages.simple_menu import SimpleMenu
 from pages.static_product import StaticProduct
@@ -216,7 +217,17 @@ def test_static_product(browser):
 #     dt.load()
 #     dt.testcase()
 
-def test_post_carousel(browser):
-    pc = PostCarousel(browser)
-    pc.load()
-    pc.testcase()
+# def test_post_carousel(browser):
+#     pc = PostCarousel(browser)
+#     pc.load()
+#     pc.testcase()
+
+# ------------------------------------------------
+# DYNAMIC CONTENT ELEMENTS
+# ------------------------------------------------
+
+def test_pricing_table(browser):
+    pt = PricingTable(browser)
+    pt.load()
+    pt.testcase()
+
