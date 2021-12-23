@@ -4,6 +4,7 @@ from pages.advanced_data_table import AdvancedDataTable
 from pages.advanced_google_map import AdvancedGoogleMap
 from pages.advanced_menu import AdvancedMenu
 from pages.advanced_tabs import AdvancedTabs
+from pages.call_to_action import CallToAction
 from pages.content_ticker import ContentTicker
 from pages.content_timeline import ContentTimeline
 from pages.content_toggle import ContentToggle
@@ -223,11 +224,16 @@ def test_static_product(browser):
 #     pc.testcase()
 
 # ------------------------------------------------
-# DYNAMIC CONTENT ELEMENTS
+# MARKETING ELEMENTS
 # ------------------------------------------------
 
-def test_pricing_table(browser):
-    pt = PricingTable(browser)
-    pt.load()
-    pt.testcase()
+# def test_pricing_table(browser):
+#     pt = PricingTable(browser)
+#     pt.load()
+#     pt.testcase()
+
+def test_call_to_action(browser):
+    cta = CallToAction(browser)
+    cta.load()
+    cta.testcase()
 
