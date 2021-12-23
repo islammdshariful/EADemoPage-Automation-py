@@ -17,6 +17,7 @@ from pages.info_box import InfoBox
 from pages.logo_carousel import LogoCarousel
 from pages.offcanvas_content import OffCanvas
 from pages.post_block import PostBlock
+from pages.post_grid import PostGrid
 from pages.post_list import PostList
 from pages.post_timeline import PostTimeline
 from pages.protected_content import ProtectedContent
@@ -198,7 +199,12 @@ def test_static_product(browser):
 #     ct.load()
 #     ct.testcase()
 
-def test_dynamic_gallery(browser):
-    dg = DynamicGallery(browser)
-    dg.load()
-    dg.testcase()
+# def test_dynamic_gallery(browser):
+#     dg = DynamicGallery(browser)
+#     dg.load()
+#     dg.testcase()
+
+def test_post_grid(browser):
+    pg = PostGrid(browser)
+    pg.load()
+    pg.testcase()

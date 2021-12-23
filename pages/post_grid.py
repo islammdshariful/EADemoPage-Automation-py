@@ -3,28 +3,34 @@ from selenium.webdriver import ActionChains
 from utils.config import *
 
 
-class PostBlock:
-    widget = '//*[@id="post-1347"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
+class PostGrid:
+    widget = '//*[@id="post-1345"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
-    widget_name = 'Post Block'
-    doc_link = '//*[@id="post-1347"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
-               '/div/div/div[2]/div/div/div[3]/div/div/a'
-    doc_name = "POST BLOCK"
+    widget_name = 'Post Grid'
+    doc_link = '//*[@id="post-1345"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
+               '/div/div/div[2]/div/div/div[3]/div/div/a/span/span'
+    doc_name = "POST GRID"
 
     # Post 1
-    post_1_media = f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[1]/div/div/div[1]'
-    post_1_overlay_icon = f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[1]/div/div/div[1]/div[1]/i'
-    post_1_title = f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[1]/div/div/div[2]/header/h2/a'
-    post_1_des = f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[1]/div/div/div[2]/div/div/p'
-    post_1_author = f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[1]/div/div/div[3]/div[2]/div[1]/a'
-    post_1_date = f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[1]/div/div/div[3]/div[2]/div[2]/time'
+    post_1_media = f'//*[@id="eael-post-grid-4d645e5c"]/div[1]/article[1]/div/div/div[1]/div[2]'
+    post_1_overlay_icon = f'//*[@id="eael-post-grid-4d645e5c"]/div[1]/article[1]/div/div/div[1]/div[1]/i'
+    post_1_title = f'//*[@id="eael-post-grid-4d645e5c"]/div[1]/article[1]/div/div/div[2]/header/h2/a'
+    post_1_author = f'//*[@id="eael-post-grid-4d645e5c"]/div[1]/article[1]/div/div/div[2]/div/span[1]/a'
+    post_1_date = f'//*[@id="eael-post-grid-4d645e5c"]/div[1]/article[1]/div/div/div[2]/div/span[2]/time'
     # Post 2
-    post_2_media = f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[5]/div/div/div[1]'
-    post_2_overlay_icon = f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[5]/div/div/div[1]/div[1]/i'
-    post_2_title = f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[5]/div/div/div[2]/header/h2/a'
-    post_2_des = f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[5]/div/div/div[2]/div/div/p'
-    post_2_author = f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[5]/div/div/div[3]/div[2]/div[1]/a'
-    post_2_date = f'//*[@id="eael-post-block-4c6c0c0c"]/div/article[5]/div/div/div[3]/div[2]/div[2]/time'
+    post_2_media = f'//*[@id="eael-post-grid-4d645e5c"]/div[1]/article[6]/div/div/div[1]/div[2]'
+    post_2_overlay_icon = f'//*[@id="eael-post-grid-4d645e5c"]/div[1]/article[6]/div/div/div[1]/div[1]/i'
+    post_2_title = f'//*[@id="eael-post-grid-4d645e5c"]/div[1]/article[6]/div/div/div[2]/header/h2/a'
+    post_2_author = f'//*[@id="eael-post-grid-4d645e5c"]/div[1]/article[6]/div/div/div[2]/div/span[1]/a'
+    post_2_date = f'//*[@id="eael-post-grid-4d645e5c"]/div[1]/article[6]/div/div/div[2]/div/span[2]/time'
+    # Post 3
+    post_3_media = f'//*[@id="eael-post-grid-4d645e5c"]/div[1]/article[11]/div/div/div[2]/header/h2/a'
+    post_3_overlay_icon = f'//*[@id="eael-post-grid-4d645e5c"]/div[1]/article[11]/div/div/div[1]/div[1]/i'
+    post_3_title = f'//*[@id="eael-post-grid-4d645e5c"]/div[1]/article[11]/div/div/div[2]/header/h2/a'
+    post_3_author = f'//*[@id="eael-post-grid-4d645e5c"]/div[1]/article[11]/div/div/div[2]/div/span[1]/a'
+    post_3_date = f'//*[@id="eael-post-grid-4d645e5c"]/div[1]/article[11]/div/div/div[2]/div/span[2]/time'
+
+    load_more_btn = (By.ID, f'eael-load-more-btn-4d645e5c')
 
     # Article
     article_title = (By.XPATH, f'//*[@id="page"]/div[1]/div/section/div/div/div[1]/div/div/section[1]'
@@ -37,7 +43,7 @@ class PostBlock:
         self.browser = browser
 
     def load(self):
-        self.browser.get(post_block)
+        self.browser.get(post_grid)
 
     def check_post(self, title, date):
         assert_that(self.browser.find_element(*self.article_title).text).is_equal_to(title)
@@ -54,7 +60,7 @@ class PostBlock:
         if self.browser.find_element(By.XPATH, icon).is_displayed():
             assert_that(display).is_equal_to(1)
         else:
-            assert_that(display).is_equal_to(0)
+            assert_that(display).is_equal_to("Icon Is Not Visible.")
 
     def check_widget_post(self, post, author, date, media, icon):
         self.check_visibility(media, icon)
@@ -71,7 +77,7 @@ class PostBlock:
         self.browser.back()
         time.sleep(1)
 
-        self.browser.execute_script("window.scrollTo(0, 1150)")
+        self.browser.execute_script("window.scrollTo(0, 1037)")
         time.sleep(.5)
 
     def testcase(self):
@@ -81,10 +87,10 @@ class PostBlock:
             if check_doc:
                 c.check_doc(self.doc_link, self.doc_name)
 
-            self.browser.execute_script("window.scrollTo(0, 1150)")
+            self.browser.execute_script("window.scrollTo(0, 1037)")
 
             self.check_widget_post(self.post_1_title, self.post_1_author, self.post_1_date, self.post_1_media,
                                    self.post_1_overlay_icon)
             self.check_widget_post(self.post_2_title, self.post_2_author, self.post_2_date, self.post_2_media,
                                    self.post_2_overlay_icon)
-
+            self.browser.find_element(*self.load_more_btn).click()
