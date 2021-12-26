@@ -3,6 +3,7 @@ from pages.advanced_accordion import AdvancedAccordion
 from pages.advanced_data_table import AdvancedDataTable
 from pages.advanced_google_map import AdvancedGoogleMap
 from pages.advanced_menu import AdvancedMenu
+from pages.advanced_search import AdvancedSearch
 from pages.advanced_tabs import AdvancedTabs
 from pages.call_to_action import CallToAction
 from pages.content_ticker import ContentTicker
@@ -294,3 +295,9 @@ def test_filterable_gallery(browser):
     fg = FilterableGallery(browser)
     fg.load()
     fg.testcase()
+
+
+def test_advanced_search(browser):
+    ads = AdvancedSearch(browser)
+    ads.load()
+    ads.testcase()

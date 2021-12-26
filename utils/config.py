@@ -49,6 +49,7 @@ interactive_cards = base_url + "interactive-cards/"
 one_page_nav = base_url + "one-page-nav/"
 image_comparison = base_url + "image-comparison/"
 filterable_gallery = base_url + "filterable-gallery/"
+advanced_search = base_url + "advanced-search/"
 
 check_doc = False
 # check_doc = True
@@ -82,7 +83,7 @@ class CheckText:
     def check_title(self, name):
         with soft_assertions():
             time.sleep(1)
-            assert_that(self.browser.title).is_equal_to(name)
+            assert_that(self.browser.search_title).is_equal_to(name)
             # time.sleep(1)
 
     def check_widget_name(self, locator, name):
