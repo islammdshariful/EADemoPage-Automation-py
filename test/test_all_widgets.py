@@ -14,6 +14,7 @@ from pages.dual_color_headline import DualColorHeading
 from pages.dynamic_gallery import DynamicGallery
 from pages.event_calendar import EventCalendar
 from pages.feature_list import FeatureList
+from pages.filterable_gallery import FilterableGallery
 from pages.flip_box import FlipBox
 from pages.info_box import InfoBox
 from pages.interactive_cards import InteractiveCards
@@ -37,6 +38,7 @@ from pages.team_members_carousel import TeamMemberCarousel
 from pages.testimonial_slider import TestimonialSlider
 from pages.testimonials import Testimonial
 from pages.tooltip import ToolTip
+from pages.image_comparison import ImageComparison
 
 
 # ------------------------------------------------
@@ -280,3 +282,15 @@ def test_one_page_nav(browser):
     opn = OnePageNav(browser)
     opn.load()
     opn.testcase()
+
+
+# def test_image_comparison(browser):
+#     ic = ImageComparison(browser)
+#     ic.load()
+#     ic.testcase()
+
+
+def test_filterable_gallery(browser):
+    fg = FilterableGallery(browser)
+    fg.load()
+    fg.testcase()
