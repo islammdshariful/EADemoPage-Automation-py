@@ -17,6 +17,7 @@ from pages.event_calendar import EventCalendar
 from pages.feature_list import FeatureList
 from pages.filterable_gallery import FilterableGallery
 from pages.flip_box import FlipBox
+from pages.image_hotspots import ImageHotspots
 from pages.info_box import InfoBox
 from pages.interactive_cards import InteractiveCards
 from pages.interactive_circle import InteractiveCircle
@@ -309,3 +310,9 @@ def test_interactive_circle(browser):
     ic = InteractiveCircle(browser)
     ic.load()
     ic.testcase()
+
+
+def test_image_hotspots(browser):
+    ih = ImageHotspots(browser)
+    ih.load()
+    ih.testcase()

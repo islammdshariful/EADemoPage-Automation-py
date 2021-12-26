@@ -51,6 +51,7 @@ image_comparison = base_url + "image-comparison/"
 filterable_gallery = base_url + "filterable-gallery/"
 advanced_search = base_url + "advanced-search/"
 interactive_circle = base_url + "interactive-circle/"
+image_hotspots = base_url + "image-hotspots/"
 
 check_doc = False
 # check_doc = True
