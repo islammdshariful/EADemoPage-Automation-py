@@ -19,6 +19,7 @@ from pages.filterable_gallery import FilterableGallery
 from pages.flip_box import FlipBox
 from pages.info_box import InfoBox
 from pages.interactive_cards import InteractiveCards
+from pages.interactive_circle import InteractiveCircle
 from pages.interactive_promo import InteractivePromo
 from pages.logo_carousel import LogoCarousel
 from pages.offcanvas_content import OffCanvas
@@ -171,6 +172,13 @@ def test_static_product(browser):
 #     evc.load()
 #     evc.testcase()
 
+
+def test_advanced_search(browser):
+    ads = AdvancedSearch(browser)
+    ads.load()
+    ads.testcase()
+
+
 # ------------------------------------------------
 # DYNAMIC CONTENT ELEMENTS
 # ------------------------------------------------
@@ -297,7 +305,7 @@ def test_filterable_gallery(browser):
     fg.testcase()
 
 
-def test_advanced_search(browser):
-    ads = AdvancedSearch(browser)
-    ads.load()
-    ads.testcase()
+def test_interactive_circle(browser):
+    ic = InteractiveCircle(browser)
+    ic.load()
+    ic.testcase()

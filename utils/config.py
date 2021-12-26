@@ -50,6 +50,7 @@ one_page_nav = base_url + "one-page-nav/"
 image_comparison = base_url + "image-comparison/"
 filterable_gallery = base_url + "filterable-gallery/"
 advanced_search = base_url + "advanced-search/"
+interactive_circle = base_url + "interactive-circle/"
 
 check_doc = False
 # check_doc = True
