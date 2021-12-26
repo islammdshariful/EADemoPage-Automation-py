@@ -20,6 +20,7 @@ from pages.interactive_cards import InteractiveCards
 from pages.interactive_promo import InteractivePromo
 from pages.logo_carousel import LogoCarousel
 from pages.offcanvas_content import OffCanvas
+from pages.one_page_nav import OnePageNav
 from pages.post_block import PostBlock
 from pages.post_carousel import PostCarousel
 from pages.post_grid import PostGrid
@@ -273,3 +274,9 @@ def test_interactive_cards(browser):
     ic = InteractiveCards(browser)
     ic.load()
     ic.testcase()
+
+
+def test_one_page_nav(browser):
+    opn = OnePageNav(browser)
+    opn.load()
+    opn.testcase()

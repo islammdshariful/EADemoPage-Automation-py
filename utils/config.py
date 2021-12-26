@@ -46,6 +46,7 @@ call_to_action = base_url + "call-to-action/"
 price_menu = base_url + "price-menu/"
 interactive_promo = base_url + "interactive-promo/"
 interactive_cards = base_url + "interactive-cards/"
+one_page_nav = base_url + "one-page-nav/"
 
 check_doc = False
 # check_doc = True
