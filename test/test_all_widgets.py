@@ -16,6 +16,7 @@ from pages.event_calendar import EventCalendar
 from pages.feature_list import FeatureList
 from pages.flip_box import FlipBox
 from pages.info_box import InfoBox
+from pages.interactive_cards import InteractiveCards
 from pages.interactive_promo import InteractivePromo
 from pages.logo_carousel import LogoCarousel
 from pages.offcanvas_content import OffCanvas
@@ -175,55 +176,66 @@ def test_advanced_data_table(browser):
     adt.load()
     adt.testcase()
 
+
 def test_post_block(browser):
     pb = PostBlock(browser)
     pb.load()
     pb.testcase()
+
 
 def test_post_timeline(browser):
     ptl = PostTimeline(browser)
     ptl.load()
     ptl.testcase()
 
+
 def test_smart_post_list(browser):
     spl = PostList(browser)
     spl.load()
     spl.testcase()
+
 
 def test_google_map(browser):
     gm = AdvancedGoogleMap(browser)
     gm.load()
     gm.testcase()
 
+
 def test_content_ticker(browser):
     ct = ContentTicker(browser)
     ct.load()
     ct.testcase()
+
 
 def test_content_timeline(browser):
     ct = ContentTimeline(browser)
     ct.load()
     ct.testcase()
 
+
 def test_dynamic_gallery(browser):
     dg = DynamicGallery(browser)
     dg.load()
     dg.testcase()
+
 
 def test_post_grid(browser):
     pg = PostGrid(browser)
     pg.load()
     pg.testcase()
 
+
 def test_data_table(browser):
     dt = DataTable(browser)
     dt.load()
     dt.testcase()
 
+
 def test_post_carousel(browser):
     pc = PostCarousel(browser)
     pc.load()
     pc.testcase()
+
 
 # ------------------------------------------------
 # MARKETING ELEMENTS
@@ -234,15 +246,18 @@ def test_pricing_table(browser):
     pt.load()
     pt.testcase()
 
+
 def test_call_to_action(browser):
     cta = CallToAction(browser)
     cta.load()
     cta.testcase()
 
+
 def test_price_menu(browser):
     pm = PriceMenu(browser)
     pm.load()
     pm.testcase()
+
 
 # ------------------------------------------------
 # CREATIVE ELEMENTS
@@ -253,3 +268,8 @@ def test_interactive_promo(browser):
     ip.load()
     ip.testcase()
 
+
+def test_interactive_cards(browser):
+    ic = InteractiveCards(browser)
+    ic.load()
+    ic.testcase()
