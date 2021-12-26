@@ -18,6 +18,7 @@ from pages.feature_list import FeatureList
 from pages.filterable_gallery import FilterableGallery
 from pages.flip_box import FlipBox
 from pages.image_hotspots import ImageHotspots
+from pages.image_scroller import ImageScroller
 from pages.info_box import InfoBox
 from pages.interactive_cards import InteractiveCards
 from pages.interactive_circle import InteractiveCircle
@@ -316,3 +317,9 @@ def test_image_hotspots(browser):
     ih = ImageHotspots(browser)
     ih.load()
     ih.testcase()
+
+
+def test_image_scroller(browser):
+    imgs = ImageScroller(browser)
+    imgs.load()
+    imgs.testcase()
