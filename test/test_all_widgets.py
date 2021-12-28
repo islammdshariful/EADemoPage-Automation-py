@@ -11,6 +11,7 @@ from pages.content_timeline import ContentTimeline
 from pages.content_toggle import ContentToggle
 from pages.creative_button import CreativeButton
 from pages.data_table import DataTable
+from pages.divider import Divider
 from pages.dual_color_headline import DualColorHeading
 from pages.dynamic_gallery import DynamicGallery
 from pages.event_calendar import EventCalendar
@@ -323,3 +324,10 @@ def test_image_scroller(browser):
     imgs = ImageScroller(browser)
     imgs.load()
     imgs.testcase()
+
+
+def test_divider(browser):
+    d = Divider(browser)
+    d.load()
+    d.testcase()
+
