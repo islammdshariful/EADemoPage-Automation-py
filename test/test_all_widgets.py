@@ -6,6 +6,7 @@ from pages.advanced_menu import AdvancedMenu
 from pages.advanced_search import AdvancedSearch
 from pages.advanced_tabs import AdvancedTabs
 from pages.call_to_action import CallToAction
+from pages.contact_form_7 import ContactForm7
 from pages.content_ticker import ContentTicker
 from pages.content_timeline import ContentTimeline
 from pages.content_toggle import ContentToggle
@@ -379,5 +380,16 @@ def test_image_accordion(browser):
     ia = ImageAccordion(browser)
     ia.load()
     ia.testcase()
+
+
+# ------------------------------------------------
+# FORM STYLER ELEMENTS
+# ------------------------------------------------
+
+def test_contact_form_7(browser):
+    cf7 = ContactForm7(browser)
+    cf7.load()
+    cf7.testcase()
+
 
 

@@ -63,6 +63,7 @@ lightbox_modal = base_url + "lightbox-modal/"
 flip_carousel = base_url + "flip-carousel/"
 progress_bar = base_url + "progress-bar/"
 image_accordion = base_url + "image-accordion/"
+contact_form_7 = base_url + "contact-form-7/"
 
 check_doc = False
 # check_doc = True
