@@ -9,6 +9,7 @@ from pages.call_to_action import CallToAction
 from pages.content_ticker import ContentTicker
 from pages.content_timeline import ContentTimeline
 from pages.content_toggle import ContentToggle
+from pages.countdown import Countdown
 from pages.creative_button import CreativeButton
 from pages.data_table import DataTable
 from pages.divider import Divider
@@ -44,6 +45,7 @@ from pages.team_members_carousel import TeamMemberCarousel
 from pages.testimonial_slider import TestimonialSlider
 from pages.testimonials import Testimonial
 from pages.tooltip import ToolTip
+from pages.counter import Counter
 from pages.image_comparison import ImageComparison
 
 
@@ -337,4 +339,16 @@ def test_fancy_text(browser):
     ft = FancyText(browser)
     ft.load()
     ft.testcase()
+
+
+def test_counter(browser):
+    c = Counter(browser)
+    c.load()
+    c.testcase()
+
+
+def test_countdown(browser):
+    c = Countdown(browser)
+    c.load()
+    c.testcase()
 

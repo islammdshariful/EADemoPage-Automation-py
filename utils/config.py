@@ -55,6 +55,8 @@ image_hotspots = base_url + "image-hotspots/"
 image_scroller = base_url + "image-scroller/"
 divider = base_url + "divider/"
 fancy_text = base_url + "fancy-text/"
+counter = base_url + "counter/"
+countdown = base_url + "countdown/"
 
 
 check_doc = False
