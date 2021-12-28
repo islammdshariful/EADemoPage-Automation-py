@@ -15,6 +15,7 @@ from pages.divider import Divider
 from pages.dual_color_headline import DualColorHeading
 from pages.dynamic_gallery import DynamicGallery
 from pages.event_calendar import EventCalendar
+from pages.fancy_text import FancyText
 from pages.feature_list import FeatureList
 from pages.filterable_gallery import FilterableGallery
 from pages.flip_box import FlipBox
@@ -330,4 +331,10 @@ def test_divider(browser):
     d = Divider(browser)
     d.load()
     d.testcase()
+
+
+def test_fancy_text(browser):
+    ft = FancyText(browser)
+    ft.load()
+    ft.testcase()
 

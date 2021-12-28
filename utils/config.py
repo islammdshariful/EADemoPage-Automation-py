@@ -54,6 +54,7 @@ interactive_circle = base_url + "interactive-circle/"
 image_hotspots = base_url + "image-hotspots/"
 image_scroller = base_url + "image-scroller/"
 divider = base_url + "divider/"
+fancy_text = base_url + "fancy-text/"
 
 
 check_doc = False

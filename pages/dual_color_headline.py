@@ -4,7 +4,6 @@ from utils.config import *
 from selenium.webdriver.support.color import Color
 
 
-
 class DualColorHeading:
     widget = '//*[@id="post-1511"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
