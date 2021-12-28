@@ -60,6 +60,7 @@ fancy_text = base_url + "fancy-text/"
 counter = base_url + "counter/"
 countdown = base_url + "countdown/"
 lightbox_modal = base_url + "lightbox-modal/"
+flip_carousel = base_url + "flip-carousel/"
 
 
 check_doc = False

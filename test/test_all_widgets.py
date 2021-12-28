@@ -20,6 +20,7 @@ from pages.fancy_text import FancyText
 from pages.feature_list import FeatureList
 from pages.filterable_gallery import FilterableGallery
 from pages.flip_box import FlipBox
+from pages.flip_carousel import FlipCarousel
 from pages.image_hotspots import ImageHotspots
 from pages.image_scroller import ImageScroller
 from pages.info_box import InfoBox
@@ -358,4 +359,10 @@ def test_lightbox_modal(browser):
     lm = LightboxModal(browser)
     lm.load()
     lm.testcase()
+
+
+def test_flip_carousel(browser):
+    fc = FlipCarousel(browser)
+    fc.load()
+    fc.testcase()
 
