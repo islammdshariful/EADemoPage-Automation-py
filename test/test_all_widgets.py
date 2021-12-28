@@ -21,6 +21,7 @@ from pages.feature_list import FeatureList
 from pages.filterable_gallery import FilterableGallery
 from pages.flip_box import FlipBox
 from pages.flip_carousel import FlipCarousel
+from pages.image_accordion import ImageAccordion
 from pages.image_hotspots import ImageHotspots
 from pages.image_scroller import ImageScroller
 from pages.info_box import InfoBox
@@ -49,6 +50,7 @@ from pages.testimonials import Testimonial
 from pages.tooltip import ToolTip
 from pages.counter import Counter
 from pages.image_comparison import ImageComparison
+from pages.progress_bar import ProgressBar
 
 
 # ------------------------------------------------
@@ -365,4 +367,17 @@ def test_flip_carousel(browser):
     fc = FlipCarousel(browser)
     fc.load()
     fc.testcase()
+
+
+def test_progress_bar(browser):
+    pb = ProgressBar(browser)
+    pb.load()
+    pb.testcase()
+
+
+def test_image_accordion(browser):
+    ia = ImageAccordion(browser)
+    ia.load()
+    ia.testcase()
+
 

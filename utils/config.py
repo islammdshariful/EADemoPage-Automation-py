@@ -61,7 +61,8 @@ counter = base_url + "counter/"
 countdown = base_url + "countdown/"
 lightbox_modal = base_url + "lightbox-modal/"
 flip_carousel = base_url + "flip-carousel/"
-
+progress_bar = base_url + "progress-bar/"
+image_accordion = base_url + "image-accordion/"
 
 check_doc = False
 # check_doc = True
