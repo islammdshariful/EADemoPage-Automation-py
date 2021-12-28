@@ -39,5 +39,5 @@ class Counter:
                 assert_that(display).is_equal_to("Icon is visible")
 
             assert_that(self.browser.find_element(*self.counter_text).text).is_equal_to(self.counter_text_text)
-            time.sleep(1)
+            time.sleep(2)
             assert_that(self.browser.find_element(*self.number).text).is_equal_to(self.number_text)

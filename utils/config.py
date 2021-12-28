@@ -1,8 +1,10 @@
 import hashlib
+import urllib.request
 import os
 import os.path
 import sys
 import time
+
 
 from assertpy import soft_assertions, assert_that
 from selenium.webdriver.common.by import By
@@ -57,6 +59,7 @@ divider = base_url + "divider/"
 fancy_text = base_url + "fancy-text/"
 counter = base_url + "counter/"
 countdown = base_url + "countdown/"
+lightbox_modal = base_url + "lightbox-modal/"
 
 
 check_doc = False
@@ -91,7 +94,7 @@ class CheckText:
     def check_title(self, name):
         with soft_assertions():
             time.sleep(1)
-            assert_that(self.browser.search_title).is_equal_to(name)
+            assert_that(self.browser.title).is_equal_to(name)
             # time.sleep(1)
 
     def check_widget_name(self, locator, name):
@@ -109,6 +112,29 @@ class ImageComparison():
             hasher.update(f.read())
             return hasher.hexdigest()
 
+    def download_image(self, element_xpth, widget):
+        if not os.path.exists(str(sys.path[1]) + '/images/' + widget):
+            os.makedirs(str(sys.path[1]) + '/images/' + widget)
+        time.sleep(1)
+        img_element = self.browser.find_element(By.XPATH, element_xpth).get_attribute("src")
+        save_img_path = str(sys.path[1]) + '/images/' + widget + '/local.png'
+        urllib.request.urlretrieve(img_element, save_img_path)
+        time.sleep(1)
+
+    def download_image_comparison(self, element_xpth, widget):
+        time.sleep(1)
+        local_img = str(sys.path[1]) + '/images/' + widget + '/local.png'
+        remote_img_path = str(sys.path[1]) + '/images/' + widget + '/remote.png'
+
+        img_element = self.browser.find_element(By.XPATH, element_xpth).get_attribute("src")
+        urllib.request.urlretrieve(img_element, remote_img_path)
+
+        local_img_hash = self.hash_it(local_img)
+        remote_img_hash = self.hash_it(remote_img_path)
+        with soft_assertions():
+            # assert local_img_hash == remote_img_hash, "Image not Matched".format(local_img_hash, remote_img_hash)
+            assert_that(local_img_hash).is_equal_to(remote_img_hash)
+
     def take_new_snap(self, widget):
         if not os.path.exists(str(sys.path[1]) + '/images/' + widget):
             os.makedirs(str(sys.path[1]) + '/images/' + widget)
@@ -117,15 +143,13 @@ class ImageComparison():
 
     def image_comparison(self, widget):
         time.sleep(1)
-        local_img = str(sys.path[1]) + '/images/' + widget + '/local.png'
+        local_img_path = str(sys.path[1]) + '/images/' + widget + '/local.png'
+        remote_img_path = str(sys.path[1]) + '/images/' + widget + '/remote.png'
 
         self.browser.save_screenshot(str(sys.path[1]) + '/images/' + widget + '/remote.png')
 
-        # this for downloading the image
-        # urllib.request.urlretrieve(img, remote_img)
-
-        local_img_hash = self.hash_it(local_img)
-        remote_img_hash = self.hash_it(str(sys.path[1]) + '/images/' + widget + '/remote.png')
+        local_img_hash = self.hash_it(local_img_path)
+        remote_img_hash = self.hash_it(remote_img_path)
         with soft_assertions():
             # assert local_img_hash == remote_img_hash, "Image not Matched".format(local_img_hash, remote_img_hash)
             assert_that(local_img_hash).is_equal_to(remote_img_hash)

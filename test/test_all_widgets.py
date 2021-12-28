@@ -26,6 +26,7 @@ from pages.info_box import InfoBox
 from pages.interactive_cards import InteractiveCards
 from pages.interactive_circle import InteractiveCircle
 from pages.interactive_promo import InteractivePromo
+from pages.lightbox_modal import LightboxModal
 from pages.logo_carousel import LogoCarousel
 from pages.offcanvas_content import OffCanvas
 from pages.one_page_nav import OnePageNav
@@ -351,4 +352,10 @@ def test_countdown(browser):
     c = Countdown(browser)
     c.load()
     c.testcase()
+
+
+def test_lightbox_modal(browser):
+    lm = LightboxModal(browser)
+    lm.load()
+    lm.testcase()
 
