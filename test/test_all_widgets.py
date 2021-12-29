@@ -17,6 +17,7 @@ from pages.divider import Divider
 from pages.dual_color_headline import DualColorHeading
 from pages.dynamic_gallery import DynamicGallery
 from pages.event_calendar import EventCalendar
+from pages.facebook_feed import FacebookFeed
 from pages.fancy_text import FancyText
 from pages.feature_list import FeatureList
 from pages.filterable_gallery import FilterableGallery
@@ -26,6 +27,7 @@ from pages.image_accordion import ImageAccordion
 from pages.image_hotspots import ImageHotspots
 from pages.image_scroller import ImageScroller
 from pages.info_box import InfoBox
+from pages.instagram_feed import InstagramFeed
 from pages.interactive_cards import InteractiveCards
 from pages.interactive_circle import InteractiveCircle
 from pages.interactive_promo import InteractivePromo
@@ -57,6 +59,9 @@ from pages.progress_bar import ProgressBar
 # ------------------------------------------------
 # CONTENT ELEMENTS
 # ------------------------------------------------
+from pages.twitter_feed import TwitterFeed
+from pages.twitter_feed_carousel import TwitterFeedCarousel
+
 
 def test_content_toggle(browser):
     ct = ContentToggle(browser)
@@ -390,6 +395,36 @@ def test_contact_form_7(browser):
     cf7 = ContactForm7(browser)
     cf7.load()
     cf7.testcase()
+
+
+# ------------------------------------------------
+# SOCIAL ELEMENTS
+# ------------------------------------------------
+
+def test_twitter_feed_carousel(browser):
+    tfc = TwitterFeedCarousel(browser)
+    tfc.load()
+    tfc.testcase()
+
+
+def test_twitter_feed(browser):
+    tf = TwitterFeed(browser)
+    tf.load()
+    tf.testcase()
+
+
+def test_instagram_feed(browser):
+    insf = InstagramFeed(browser)
+    insf.load()
+    insf.testcase()
+
+
+def test_facebook_feed(browser):
+    fac = FacebookFeed(browser)
+    fac.load()
+    fac.testcase()
+
+
 
 
 

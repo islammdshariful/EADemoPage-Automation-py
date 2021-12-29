@@ -61,4 +61,3 @@ class ContactForm7:
 
             WebDriverWait(self.browser, 15).until(EC.text_to_be_present_in_element((By.XPATH, self.success_msg),
                                                                                    self.success_msg_text))
-            # assert_that(msg.text).is_equal_to(self.success_msg_text)

@@ -64,6 +64,10 @@ flip_carousel = base_url + "flip-carousel/"
 progress_bar = base_url + "progress-bar/"
 image_accordion = base_url + "image-accordion/"
 contact_form_7 = base_url + "contact-form-7/"
+twitter_feed_carousel = base_url + "twitter-feed-carousel/"
+twitter_feed = base_url + "twitter-feed/"
+instagram_feed = base_url + "instagram-feed/"
+facebook_feed = base_url + "facebook-feed/"
 
 check_doc = False
 # check_doc = True
