@@ -31,6 +31,7 @@ from pages.instagram_feed import InstagramFeed
 from pages.interactive_cards import InteractiveCards
 from pages.interactive_circle import InteractiveCircle
 from pages.interactive_promo import InteractivePromo
+from pages.learndash_course_list import LearndashCourseList
 from pages.lightbox_modal import LightboxModal
 from pages.logo_carousel import LogoCarousel
 from pages.offcanvas_content import OffCanvas
@@ -423,6 +424,12 @@ def test_facebook_feed(browser):
     fac = FacebookFeed(browser)
     fac.load()
     fac.testcase()
+
+
+def test_learndash_course_list(browser):
+    learndash = LearndashCourseList(browser)
+    learndash.load()
+    learndash.testcase()
 
 
 

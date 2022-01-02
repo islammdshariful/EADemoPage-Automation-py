@@ -68,6 +68,7 @@ twitter_feed_carousel = base_url + "twitter-feed-carousel/"
 twitter_feed = base_url + "twitter-feed/"
 instagram_feed = base_url + "instagram-feed/"
 facebook_feed = base_url + "facebook-feed/"
+learndash_course_list = base_url + "learndash-course-list/"
 
 check_doc = False
 # check_doc = True
