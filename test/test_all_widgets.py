@@ -5,6 +5,9 @@ from pages.advanced_google_map import AdvancedGoogleMap
 from pages.advanced_menu import AdvancedMenu
 from pages.advanced_search import AdvancedSearch
 from pages.advanced_tabs import AdvancedTabs
+from pages.betterdocs_category_box import BetterdocsCategoryBox
+from pages.betterdocs_category_grid import BetterdocsCategoryGrid
+from pages.betterdocs_search_form import BetterdocsSearchForm
 from pages.call_to_action import CallToAction
 from pages.contact_form_7 import ContactForm7
 from pages.content_ticker import ContentTicker
@@ -56,10 +59,9 @@ from pages.counter import Counter
 from pages.image_comparison import ImageComparison
 from pages.progress_bar import ProgressBar
 
-
-# ------------------------------------------------
+# ------------------------------------------------------------------------------------------------
 # CONTENT ELEMENTS
-# ------------------------------------------------
+# ------------------------------------------------------------------------------------------------
 from pages.twitter_feed import TwitterFeed
 from pages.twitter_feed_carousel import TwitterFeedCarousel
 
@@ -196,9 +198,9 @@ def test_advanced_search(browser):
     ads.testcase()
 
 
-# ------------------------------------------------
+# ------------------------------------------------------------------------------------------------
 # DYNAMIC CONTENT ELEMENTS
-# ------------------------------------------------
+# ------------------------------------------------------------------------------------------------
 
 def test_advanced_data_table(browser):
     adt = AdvancedDataTable(browser)
@@ -266,9 +268,9 @@ def test_post_carousel(browser):
     pc.testcase()
 
 
-# ------------------------------------------------
+# ------------------------------------------------------------------------------------------------
 # MARKETING ELEMENTS
-# ------------------------------------------------
+# ------------------------------------------------------------------------------------------------
 
 def test_pricing_table(browser):
     pt = PricingTable(browser)
@@ -288,9 +290,9 @@ def test_price_menu(browser):
     pm.testcase()
 
 
-# ------------------------------------------------
+# ------------------------------------------------------------------------------------------------
 # CREATIVE ELEMENTS
-# ------------------------------------------------
+# ------------------------------------------------------------------------------------------------
 
 def test_interactive_promo(browser):
     ip = InteractivePromo(browser)
@@ -388,9 +390,9 @@ def test_image_accordion(browser):
     ia.testcase()
 
 
-# ------------------------------------------------
+# ------------------------------------------------------------------------------------------------
 # FORM STYLER ELEMENTS
-# ------------------------------------------------
+# ------------------------------------------------------------------------------------------------
 
 def test_contact_form_7(browser):
     cf7 = ContactForm7(browser)
@@ -398,9 +400,9 @@ def test_contact_form_7(browser):
     cf7.testcase()
 
 
-# ------------------------------------------------
+# ------------------------------------------------------------------------------------------------
 # SOCIAL ELEMENTS
-# ------------------------------------------------
+# ------------------------------------------------------------------------------------------------
 
 def test_twitter_feed_carousel(browser):
     tfc = TwitterFeedCarousel(browser)
@@ -426,12 +428,33 @@ def test_facebook_feed(browser):
     fac.testcase()
 
 
+# ------------------------------------------------------------------------------------------------
+# LEARNDASH ELEMENTS
+# ------------------------------------------------------------------------------------------------
+
 def test_learndash_course_list(browser):
     learndash = LearndashCourseList(browser)
     learndash.load()
     learndash.testcase()
 
 
+# ------------------------------------------------------------------------------------------------
+# DOCUMENTATION ELEMENTS
+# ------------------------------------------------------------------------------------------------
+
+def test_betterdocs_category_grid(browser):
+    bd = BetterdocsCategoryGrid(browser)
+    bd.load()
+    bd.testcase()
 
 
+def test_betterdocs_category_box(browser):
+    bcb = BetterdocsCategoryBox(browser)
+    bcb.load()
+    bcb.testcase()
 
+
+def test_betterdocs_search_form(browser):
+    bsf = BetterdocsSearchForm(browser)
+    bsf.load()
+    bsf.testcase()

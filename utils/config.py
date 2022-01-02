@@ -69,6 +69,9 @@ twitter_feed = base_url + "twitter-feed/"
 instagram_feed = base_url + "instagram-feed/"
 facebook_feed = base_url + "facebook-feed/"
 learndash_course_list = base_url + "learndash-course-list/"
+betterdocs_category_grid = base_url + "betterdocs-category-grid/"
+betterdocs_category_box = base_url + "betterdocs-category-box/"
+betterdocs_search_form = base_url + "betterdocs-search-form/"
 
 check_doc = False
 # check_doc = True
