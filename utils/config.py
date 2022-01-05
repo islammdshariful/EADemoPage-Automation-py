@@ -72,6 +72,14 @@ learndash_course_list = base_url + "learndash-course-list/"
 betterdocs_category_grid = base_url + "betterdocs-category-grid/"
 betterdocs_category_box = base_url + "betterdocs-category-box/"
 betterdocs_search_form = base_url + "betterdocs-search-form/"
+woo_cart = base_url + "woo-cart/"
+woo_product_slider = base_url + "woo-product-slider/"
+woo_product_carousel = base_url + "woo-product-carousel/"
+woo_product_gallery = base_url + "woo-product-gallery/"
+woo_product_compare = base_url + "woo-product-compare/"
+woocommerce_product_collections = base_url + "woocommerce-product-collections/"
+woo_product_grid = base_url + "woo-product-grid/"
+woo_checkout = base_url + "woo-checkout/"
 
 check_doc = False
 # check_doc = True

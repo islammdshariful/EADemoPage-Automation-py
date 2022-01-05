@@ -64,6 +64,14 @@ from pages.progress_bar import ProgressBar
 # ------------------------------------------------------------------------------------------------
 from pages.twitter_feed import TwitterFeed
 from pages.twitter_feed_carousel import TwitterFeedCarousel
+from pages.woo_cart import WooCart
+from pages.woo_checkout import WooCheckout
+from pages.woo_product_carousel import WooProductCarousel
+from pages.woo_product_compare import WooProductCompare
+from pages.woo_product_gallery import WooProductGallery
+from pages.woo_product_grid import WooProductGrid
+from pages.woo_product_slider import WooProductSlider
+from pages.woocommerce_product_collections import WoocommerceProductCollections
 
 
 def test_content_toggle(browser):
@@ -458,3 +466,55 @@ def test_betterdocs_search_form(browser):
     bsf = BetterdocsSearchForm(browser)
     bsf.load()
     bsf.testcase()
+
+
+# ------------------------------------------------------------------------------------------------
+# WOOCOMMERCE ELEMENTS
+# ------------------------------------------------------------------------------------------------
+
+def test_woo_cart(browser):
+    wc = WooCart(browser)
+    wc.load()
+    wc.testcase()
+
+
+def test_woo_product_slider(browser):
+    wps = WooProductSlider(browser)
+    wps.load()
+    wps.testcase()
+
+
+def test_woo_product_carousel(browser):
+    wpc = WooProductCarousel(browser)
+    wpc.load()
+    wpc.testcase()
+
+
+def test_woo_product_gallery(browser):
+    wpg = WooProductGallery(browser)
+    wpg.load()
+    wpg.testcase()
+
+
+def test_woo_product_compare(browser):
+    wpc = WooProductCompare(browser)
+    wpc.load()
+    wpc.testcase()
+
+
+def test_woocommerce_product_collections(browser):
+    wpc = WoocommerceProductCollections(browser)
+    wpc.load()
+    wpc.testcase()
+
+
+def test_woo_product_grid(browser):
+    wpg = WooProductGrid(browser)
+    wpg.load()
+    wpg.testcase()
+
+
+def test_woo_checkout(browser):
+    wc = WooCheckout(browser)
+    wc.load()
+    wc.testcase()
