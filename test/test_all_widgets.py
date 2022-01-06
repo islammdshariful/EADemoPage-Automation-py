@@ -1,23 +1,28 @@
 from pages.AB_sample import Sample
+from pages.Wpforms import Wpforms
 from pages.advanced_accordion import AdvancedAccordion
 from pages.advanced_data_table import AdvancedDataTable
 from pages.advanced_google_map import AdvancedGoogleMap
 from pages.advanced_menu import AdvancedMenu
 from pages.advanced_search import AdvancedSearch
 from pages.advanced_tabs import AdvancedTabs
+from pages.advanced_tooltip import AdvancedTooltip
 from pages.betterdocs_category_box import BetterdocsCategoryBox
 from pages.betterdocs_category_grid import BetterdocsCategoryGrid
 from pages.betterdocs_search_form import BetterdocsSearchForm
 from pages.call_to_action import CallToAction
 from pages.contact_form_7 import ContactForm7
+from pages.content_protection import ContentProtection
 from pages.content_ticker import ContentTicker
 from pages.content_timeline import ContentTimeline
 from pages.content_toggle import ContentToggle
 from pages.countdown import Countdown
 from pages.creative_button import CreativeButton
+from pages.cross_domain_copy_paste import CrossDomainCopyPaste
 from pages.data_table import DataTable
 from pages.divider import Divider
 from pages.dual_color_headline import DualColorHeading
+from pages.duplicator import Duplicator
 from pages.dynamic_gallery import DynamicGallery
 from pages.event_calendar import EventCalendar
 from pages.facebook_feed import FacebookFeed
@@ -37,8 +42,12 @@ from pages.interactive_promo import InteractivePromo
 from pages.learndash_course_list import LearndashCourseList
 from pages.lightbox_modal import LightboxModal
 from pages.logo_carousel import LogoCarousel
+from pages.mailchimp import Mailchimp
+from pages.ninja_forms import NinjaForms
 from pages.offcanvas_content import OffCanvas
 from pages.one_page_nav import OnePageNav
+from pages.parallax_scrolling import ParallaxScrolling
+from pages.particle_effect import ParticleEffect
 from pages.post_block import PostBlock
 from pages.post_carousel import PostCarousel
 from pages.post_grid import PostGrid
@@ -47,9 +56,12 @@ from pages.post_timeline import PostTimeline
 from pages.price_menu import PriceMenu
 from pages.pricing_table import PricingTable
 from pages.protected_content import ProtectedContent
+from pages.reading_progress import ReadingProgress
+from pages.scroll_to_top import ScrollToTop
 from pages.simple_menu import SimpleMenu
 from pages.static_product import StaticProduct
 from pages.sticky_video import StickyVideo
+from pages.table_of_content import TableOfContent
 from pages.team_members import TeamMember
 from pages.team_members_carousel import TeamMemberCarousel
 from pages.testimonial_slider import TestimonialSlider
@@ -408,6 +420,24 @@ def test_contact_form_7(browser):
     cf7.testcase()
 
 
+def test_wpforms(browser):
+    wpf = Wpforms(browser)
+    wpf.load()
+    wpf.testcase()
+
+
+def test_ninja_forms(browser):
+    nf = NinjaForms(browser)
+    nf.load()
+    nf.testcase()
+
+
+def test_mailchimp(browser):
+    mc = Mailchimp(browser)
+    mc.load()
+    mc.testcase()
+
+
 # ------------------------------------------------------------------------------------------------
 # SOCIAL ELEMENTS
 # ------------------------------------------------------------------------------------------------
@@ -518,3 +548,62 @@ def test_woo_checkout(browser):
     wc = WooCheckout(browser)
     wc.load()
     wc.testcase()
+
+
+# ------------------------------------------------------------------------------------------------
+# EXTENSIONS
+# ------------------------------------------------------------------------------------------------
+
+
+def test_cross_domain_copy_paste(browser):
+    cdcp = CrossDomainCopyPaste(browser)
+    cdcp.load()
+    cdcp.testcase()
+
+
+def test_scroll_to_top(browser):
+    stt = ScrollToTop(browser)
+    stt.load()
+    stt.testcase()
+
+
+def test_content_protection(browser):
+    cp = ContentProtection(browser)
+    cp.load()
+    cp.testcase()
+
+
+def test_duplicator(browser):
+    d = Duplicator(browser)
+    d.load()
+    d.testcase()
+
+
+def test_table_of_content(browser):
+    toc = TableOfContent(browser)
+    toc.load()
+    toc.testcase()
+
+
+def test_parallax_scrolling(browser):
+    ps = ParallaxScrolling(browser)
+    ps.load()
+    ps.testcase()
+
+
+def test_reading_progress(browser):
+    rpb = ReadingProgress(browser)
+    rpb.load()
+    rpb.testcase()
+
+
+def test_particle_effect(browser):
+    pe = ParticleEffect(browser)
+    pe.load()
+    pe.testcase()
+
+
+def test_advanced_tooltip(browser):
+    att = AdvancedTooltip(browser)
+    att.load()
+    att.testcase()

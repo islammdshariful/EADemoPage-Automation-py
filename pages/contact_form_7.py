@@ -51,7 +51,7 @@ class ContactForm7:
             assert_that(self.browser.find_element(*self.sub_label).text).is_equal_to(self.sub_label_text)
             assert_that(self.browser.find_element(*self.msg_label).text).is_equal_to(self.msg_label_text)
 
-            self.browser.find_element(*self.name_field).send_keys("Tester Bhai")
+            self.browser.find_element(*self.name_field).send_keys("Tester Bhaai")
             self.browser.find_element(*self.email_field).send_keys("testerbhaai@gmail.com")
             self.browser.find_element(*self.sub_field).send_keys("Automation Script is Running...")
             self.browser.find_element(*self.msg_field).send_keys("Hi, Don't reply to this message. Have a good day.")
@@ -59,5 +59,7 @@ class ContactForm7:
             self.browser.find_element(*self.send_btn).click()
             time.sleep(1)
 
+            WebDriverWait(self.browser, 15).until(
+                EC.presence_of_element_located((By.XPATH, self.success_msg)))
             WebDriverWait(self.browser, 15).until(EC.text_to_be_present_in_element((By.XPATH, self.success_msg),
                                                                                    self.success_msg_text))
