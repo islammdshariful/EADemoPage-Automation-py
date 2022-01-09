@@ -212,10 +212,10 @@ def test_static_product(browser):
     sp.testcase()
 
 
-# def test_event_calender(browser):
-#     evc = EventCalendar(browser)
-#     evc.load()
-#     evc.testcase()
+def test_event_calender(browser):
+    evc = EventCalendar(browser)
+    evc.load()
+    evc.testcase()
 
 
 def test_advanced_search(browser):
