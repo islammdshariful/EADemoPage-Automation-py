@@ -338,10 +338,10 @@ def test_one_page_nav(browser):
     opn.testcase()
 
 
-# def test_image_comparison(browser):
-#     ic = ImageComparison(browser)
-#     ic.load()
-#     ic.testcase()
+def test_image_comparison(browser):
+    ic = ImageComparison(browser)
+    ic.load()
+    ic.testcase()
 
 
 def test_filterable_gallery(browser):
