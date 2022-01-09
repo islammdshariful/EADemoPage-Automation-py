@@ -122,10 +122,10 @@ def testimonial(browser):
     t.testcase()
 
 
-# def test_sticky_video(browser):
-#     sv = StickyVideo(browser)
-#     sv.load()
-#     sv.testcase()
+def test_sticky_video(browser):
+    sv = StickyVideo(browser)
+    sv.load()
+    sv.testcase()
 
 
 def test_tooltip(browser):
