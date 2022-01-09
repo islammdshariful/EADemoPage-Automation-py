@@ -10,6 +10,7 @@ from pages.advanced_tooltip import AdvancedTooltip
 from pages.betterdocs_category_box import BetterdocsCategoryBox
 from pages.betterdocs_category_grid import BetterdocsCategoryGrid
 from pages.betterdocs_search_form import BetterdocsSearchForm
+from pages.caldera_forms import CalderaForms
 from pages.call_to_action import CallToAction
 from pages.contact_form_7 import ContactForm7
 from pages.content_protection import ContentProtection
@@ -31,6 +32,9 @@ from pages.feature_list import FeatureList
 from pages.filterable_gallery import FilterableGallery
 from pages.flip_box import FlipBox
 from pages.flip_carousel import FlipCarousel
+from pages.fluent_forms import FluentForms
+from pages.formstack import Formstack
+from pages.gravity_forms import GravityForms
 from pages.image_accordion import ImageAccordion
 from pages.image_hotspots import ImageHotspots
 from pages.image_scroller import ImageScroller
@@ -41,6 +45,7 @@ from pages.interactive_circle import InteractiveCircle
 from pages.interactive_promo import InteractivePromo
 from pages.learndash_course_list import LearndashCourseList
 from pages.lightbox_modal import LightboxModal
+from pages.login_register_form import LoginRegisterForm
 from pages.logo_carousel import LogoCarousel
 from pages.mailchimp import Mailchimp
 from pages.ninja_forms import NinjaForms
@@ -76,6 +81,7 @@ from pages.progress_bar import ProgressBar
 # ------------------------------------------------------------------------------------------------
 from pages.twitter_feed import TwitterFeed
 from pages.twitter_feed_carousel import TwitterFeedCarousel
+from pages.weforms import Weforms
 from pages.woo_cart import WooCart
 from pages.woo_checkout import WooCheckout
 from pages.woo_product_carousel import WooProductCarousel
@@ -436,6 +442,42 @@ def test_mailchimp(browser):
     mc = Mailchimp(browser)
     mc.load()
     mc.testcase()
+
+
+def test_caldera_forms(browser):
+    cf = CalderaForms(browser)
+    cf.load()
+    cf.testcase()
+
+
+def test_fluent_forms(browser):
+    ff = FluentForms(browser)
+    ff.load()
+    ff.testcase()
+
+
+def test_weforms(browser):
+    wf = Weforms(browser)
+    wf.load()
+    wf.testcase()
+
+
+def test_formstack(browser):
+    fs = Formstack(browser)
+    fs.load()
+    fs.testcase()
+
+
+def test_gravity_forms(browser):
+    gf = GravityForms(browser)
+    gf.load()
+    gf.testcase()
+
+
+def test_login_register_form(browser):
+    lrf = LoginRegisterForm(browser)
+    lrf.load()
+    lrf.testcase()
 
 
 # ------------------------------------------------------------------------------------------------
