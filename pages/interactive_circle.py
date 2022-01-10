@@ -25,6 +25,7 @@ class InteractiveCircle:
                 c.check_doc(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 986)")
+            time.sleep(1)
 
             for i in range(1, 7):
                 self.browser.find_element(By.XPATH, f'//*[@id="eael-circle-item-' + str(i) + '"]/div[2]').click()

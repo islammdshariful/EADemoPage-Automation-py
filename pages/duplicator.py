@@ -40,6 +40,7 @@ class Duplicator:
                 c.check_doc(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 1003)")
+            time.sleep(1)
 
             self.check_visibility(self.img_1)
             self.browser.execute_script("window.scrollTo(0, 1938)")

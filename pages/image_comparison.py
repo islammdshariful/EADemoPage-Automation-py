@@ -32,6 +32,7 @@ class ImageComparison:
 
             self.browser.execute_script("window.scrollTo(0, 1082)")
             time.sleep(1)
+
             if self.browser.find_element(*self.img_1).is_displayed():
                 assert_that(display).is_equal_to(1)
             else:

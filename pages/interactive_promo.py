@@ -32,6 +32,8 @@ class InteractivePromo:
                 c.check_doc(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 905)")
+            time.sleep(1)
+
             cursor = ActionChains(self.browser)
             promo = self.browser.find_element(*self.promo_1)
 

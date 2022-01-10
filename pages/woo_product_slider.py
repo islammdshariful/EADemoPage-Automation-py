@@ -110,6 +110,7 @@ class WooProductSlider:
                 c.check_doc(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 1070)")
+            time.sleep(1)
 
             self.check_product_info(self.p_1_title, self.p_1_title_text, self.p_1_price, self.p_1_price_text,
                                     self.p_1_tag_1, self.p_1_tag_1_text, self.p_1_tag_2, self.p_1_tag_2_text,

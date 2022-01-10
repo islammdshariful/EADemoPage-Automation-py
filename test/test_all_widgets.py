@@ -75,10 +75,6 @@ from pages.tooltip import ToolTip
 from pages.counter import Counter
 from pages.image_comparison import ImageComparison
 from pages.progress_bar import ProgressBar
-
-# ------------------------------------------------------------------------------------------------
-# CONTENT ELEMENTS
-# ------------------------------------------------------------------------------------------------
 from pages.twitter_feed import TwitterFeed
 from pages.twitter_feed_carousel import TwitterFeedCarousel
 from pages.weforms import Weforms
@@ -91,6 +87,10 @@ from pages.woo_product_grid import WooProductGrid
 from pages.woo_product_slider import WooProductSlider
 from pages.woocommerce_product_collections import WoocommerceProductCollections
 
+
+# ------------------------------------------------------------------------------------------------
+# CONTENT ELEMENTS
+# ------------------------------------------------------------------------------------------------
 
 def test_content_toggle(browser):
     ct = ContentToggle(browser)

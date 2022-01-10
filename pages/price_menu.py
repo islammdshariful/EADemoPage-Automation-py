@@ -64,6 +64,7 @@ class PriceMenu:
                 c.check_doc(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 965)")
+            time.sleep(1)
 
             if self.browser.find_element(*self.menu_img).is_displayed():
                 assert_that(display).is_equal_to(1)

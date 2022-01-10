@@ -42,6 +42,7 @@ class FlipBox:
                 c.check_doc(self.DOC_LINK, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 1023)")
+            time.sleep(1)
 
             front_header_ele = self.browser.find_element(*self.BOX_FRONT_HEADER)
 

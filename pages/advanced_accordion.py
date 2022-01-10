@@ -47,6 +47,7 @@ class AdvancedAccordion:
                 c.check_doc(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 1047)")
+            time.sleep(1)
 
             accor_1 = self.browser.find_element(*self.accor_1_title)
             accor_2 = self.browser.find_element(*self.accor_2_title)

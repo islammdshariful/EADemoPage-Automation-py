@@ -130,6 +130,8 @@ class WooProductGallery:
                 c.check_doc(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 1002)")
+            time.sleep(1)
+
             cursor = ActionChains(self.browser)
             all = self.browser.find_element(*self.all_tab)
             fashion = self.browser.find_element(*self.fashion_tab)
@@ -171,6 +173,7 @@ class WooProductGallery:
                                  self.p_5_title_text, self.p_2_price, self.p_5_price_text, self.p_2_cart_btn,
                                  self.p_2_qview_btn, self.p_3_img, self.p_3_title, self.p_6_title_text,
                                  self.p_3_price, self.p_6_price_text, self.p_3_cart_btn, self.p_3_qview_btn)
+            time.sleep(.5)
             self.browser.find_element(By.XPATH, self.p_3_qview_btn).click()
             self.check_quick_view(self.q_title, self.p_6_title_text, self.q_price, self.p_6_price_text, self.q_cart_btn,
                                   self.q_cat, self.p_6_cat_text, self.q_tag, self.p_6_tag_text, self.q_image,

@@ -38,6 +38,7 @@ class TeamMember:
                         c.check_doc(self.doc_link, self.doc_name)
 
                 self.browser.execute_script("window.scrollTo(0, 4204)")
+                time.sleep(1)
 
                 if self.browser.find_element(*self.mem_1_img).is_displayed():
                     print("IMAGE IS VISIBLE")

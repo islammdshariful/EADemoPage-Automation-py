@@ -41,6 +41,8 @@ class DualColorHeading:
                 c.check_doc(self.DOC_LINK, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 908)")
+            time.sleep(1)
+
             if self.browser.find_element(*self.icon).is_displayed():
                 print("ICON IS VISIBLE")
             else:

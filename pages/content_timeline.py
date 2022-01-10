@@ -71,12 +71,15 @@ class ContentTimeline:
                 c.check_doc(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 1004)")
+            time.sleep(1)
+
             self.check_visibility(self.post_1_icon)
             self.check_post(self.post_1_title, self.post_1_title_text, self.post_1_des,
                             self.post_1_des_text, self.post_1_date, self.post_1_date_text)
 
             self.check_visibility(self.post_2_icon)
             self.browser.execute_script("window.scrollTo(0, 1393)")
+
             self.check_post(self.post_2_title, self.post_2_title_text, self.post_2_des,
                             self.post_2_des_text, self.post_2_date, self.post_2_date_text)
 

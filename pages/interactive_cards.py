@@ -34,6 +34,8 @@ class InteractiveCards:
                 c.check_doc(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 1031)")
+            time.sleep(1)
+
             self.browser.find_element(*self.promo).click()
             time.sleep(1.5)
             assert_that(self.browser.find_element(*self.title).text).is_equal_to(self.title_text)

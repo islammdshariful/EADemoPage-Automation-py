@@ -68,6 +68,7 @@ class TwitterFeed:
                 c.check_doc(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 1004)")
+            time.sleep(1)
 
             self.check_post(self.img_1, self.icon_1, self.author_1, self.content_1, self.read_more_1)
             self.check_post(self.img_2, self.icon_2, self.author_2, self.content_2, self.read_more_2)

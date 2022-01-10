@@ -74,6 +74,7 @@ class LoginRegisterForm:
                 c.check_doc(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 1063)")
+            time.sleep(1)
 
             assert_that(self.browser.find_element(*self.reg_have_acc_label).text).\
                 is_equal_to(self.reg_have_acc_label_text)

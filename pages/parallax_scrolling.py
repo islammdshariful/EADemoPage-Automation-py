@@ -25,6 +25,8 @@ class ParallaxScrolling:
                 c.check_doc(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 1004)")
+            time.sleep(1)
+
             for i in range(1004, 2360, 3):
                 self.browser.execute_script("window.scrollTo(0, " + str(i) + ")")
 

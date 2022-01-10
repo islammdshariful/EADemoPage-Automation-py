@@ -336,6 +336,7 @@ class AdvancedDataTable:
                 c.check_doc(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 2811)")
+            time.sleep(1)
 
             assert_that(self.browser.find_element(*self.thaead_1).text).is_equal_to(self.thaead_1_text)
             assert_that(self.browser.find_element(*self.thaead_2).text).is_equal_to(self.thaead_2_text)

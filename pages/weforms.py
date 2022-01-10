@@ -50,6 +50,7 @@ class Weforms:
                 c.check_doc(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 984)")
+            time.sleep(1)
 
             assert_that(self.browser.find_element(*self.name_label).text).is_equal_to(self.name_label_text)
             assert_that(self.browser.find_element(*self.email_label).text).is_equal_to(self.email_label_text)

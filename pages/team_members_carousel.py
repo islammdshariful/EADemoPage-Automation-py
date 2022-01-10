@@ -89,6 +89,7 @@ class TeamMemberCarousel:
         scrol_ele = self.browser.find_element(By.XPATH, '//*[@id="post-2946"]/div/div/div/div/section[2]/div/div/'
                                                         'div/div/div/section/div/div/div[2]/div/div/div[1]/div/h3')
         self.browser.execute_script("arguments[0].scrollIntoView();", scrol_ele)
+        time.sleep(1)
 
         mem_1 = self.browser.find_element(*self.mem_1_img)
         mem_2 = self.browser.find_element(*self.mem_2_img)

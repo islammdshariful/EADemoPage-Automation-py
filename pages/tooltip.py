@@ -39,6 +39,7 @@ class ToolTip:
                 c.check_doc(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 1010)")
+            time.sleep(1)
 
             cursor_1 = ActionChains(self.browser)
             cursor_2 = ActionChains(self.browser)

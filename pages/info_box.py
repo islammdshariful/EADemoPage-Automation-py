@@ -37,6 +37,7 @@ class InfoBox:
                         c.check_doc(self.doc_link, self.doc_name)
 
                 self.browser.execute_script("window.scrollTo(0, 1028)")
+                time.sleep(1)
 
                 box_1 = self.browser.find_element(*self.info_box_icon_1)
                 box_2 = self.browser.find_element(*self.info_box_icon_2)

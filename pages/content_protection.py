@@ -30,6 +30,7 @@ class ContentProtection:
                 c.check_doc(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 947)")
+            time.sleep(1)
             self.browser.find_element(*self.input).send_keys("HOLIDAY")
             if self.browser.find_element(*self.submit_btn).is_displayed():
                 assert_that(display).is_equal_to(1)

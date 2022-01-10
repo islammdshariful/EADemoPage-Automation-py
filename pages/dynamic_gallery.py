@@ -44,9 +44,9 @@ class DynamicGallery:
     wp_post_1_des = f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[1]/div[1]/div[2]/p'
     wp_post_1_img = f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[1]/div[1]/div[1]/img'
 
-    wp_post_2_title = f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[6]/div[1]/div[2]/h2/a'
-    wp_post_2_des = f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[6]/div[1]/div[2]/p'
-    wp_post_2_img = f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[6]/div[1]/div[1]/img'
+    wp_post_2_title = f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[4]/div[1]/div[2]/h2/a'
+    wp_post_2_des = f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[4]/div[1]/div[2]/p'
+    wp_post_2_img = f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[4]/div[1]/div[1]/img'
 
     tm_post_1_title = f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[2]/div[1]/div[2]/h2/a'
     tm_post_1_des = f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[2]/div[1]/div[2]/p'
@@ -119,16 +119,20 @@ class DynamicGallery:
             # WordPress
             self.browser.find_element(*self.wordpress).click()
             time.sleep(1)
-            self.check_widget_post(self.wp_post_1_title, self.wp_post_1_des, self.wp_post_1_img)
-            self.browser.find_element(*self.wordpress).click()
+            self.browser.find_element(*self.load_more_btn).click()
             time.sleep(1)
-            self.check_widget_post(self.wp_post_2_title, self.wp_post_2_des, self.wp_post_2_img)
+            # self.check_widget_post(self.wp_post_1_title, self.wp_post_1_des, self.wp_post_1_img)
+            # self.browser.find_element(*self.wordpress).click()
+            # time.sleep(1)
+            # self.check_widget_post(self.wp_post_2_title, self.wp_post_2_des, self.wp_post_2_img)
             # Templates
-            self.browser.find_element(*self.templates).click()
-            time.sleep(1)
-            self.check_widget_post(self.tm_post_1_title, self.tm_post_1_des, self.tm_post_1_img)
             self.browser.find_element(*self.templates).click()
             time.sleep(1)
             self.browser.find_element(*self.load_more_btn).click()
             time.sleep(1)
-            self.check_widget_post(self.tm_post_2_title, self.tm_post_2_des, self.tm_post_2_img)
+            # self.check_widget_post(self.tm_post_1_title, self.tm_post_1_des, self.tm_post_1_img)
+            # self.browser.find_element(*self.templates).click()
+            # time.sleep(1)
+            # self.browser.find_element(*self.load_more_btn).click()
+            # time.sleep(1)
+            # self.check_widget_post(self.tm_post_2_title, self.tm_post_2_des, self.tm_post_2_img)

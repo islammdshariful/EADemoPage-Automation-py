@@ -50,6 +50,7 @@ class FeatureList:
                 c.check_doc(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 852)")
+            time.sleep(1)
 
             assert_that(self.browser.find_element(*self.list_1_title).text).is_equal_to(self.list_1_title_text)
             assert_that(self.browser.find_element(*self.list_1_des).text).is_equal_to(self.list_1_des_text)

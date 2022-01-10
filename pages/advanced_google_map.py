@@ -36,6 +36,7 @@ class AdvancedGoogleMap:
                 c.check_doc(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 933)")
+            time.sleep(1)
             snap = ImageComparison(self.browser)
             # snap.take_new_snap("AdvancedGoogleMap")
             snap.image_comparison("AdvancedGoogleMap")

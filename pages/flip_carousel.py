@@ -36,6 +36,8 @@ class FlipCarousel:
                 c.check_doc(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 905)")
+            time.sleep(1)
+
             self.browser.find_element(*self.flip_2).click()
             time.sleep(.5)
             self.browser.find_element(*self.flip_1).click()

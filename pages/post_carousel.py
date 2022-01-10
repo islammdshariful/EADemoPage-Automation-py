@@ -74,6 +74,7 @@ class PostCarousel:
         self.check_post(p_title, p_date)
         self.browser.back()
         time.sleep(1)
+        self.browser.find_element(By.XPATH, self.dot_3).click()
         self.browser.find_element(By.XPATH, dot).click()
         time.sleep(.5)
         self.browser.find_element(By.XPATH, author).click()
@@ -92,6 +93,8 @@ class PostCarousel:
 
             self.browser.execute_script("window.scrollTo(0, 957)")
             time.sleep(1)
+            self.browser.find_element(By.XPATH, self.dot_3).click()
+            time.sleep(.5)
             self.browser.find_element(By.XPATH, self.dot_1).click()
             time.sleep(.5)
             self.check_widget_post(self.post_1_title, self.post_1_author, self.post_1_date,

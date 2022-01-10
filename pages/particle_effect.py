@@ -25,6 +25,7 @@ class ParticleEffect:
                 c.check_doc(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 1137)")
+            time.sleep(1)
             cursor = ActionChains(self.browser)
             cursor.move_by_offset(10, 100).perform()
             time.sleep(.5)

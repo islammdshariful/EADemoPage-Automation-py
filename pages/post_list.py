@@ -84,6 +84,7 @@ class PostList:
                 c.check_doc(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 1133)")
+            time.sleep(1)
 
             # All
             self.browser.find_element(*self.all).click()
@@ -119,7 +120,7 @@ class PostList:
             else:
                 assert_that(display).is_equal_to("Search Icon not Visible")
             self.browser.find_element(*self.search).send_keys("Essential Addons")
-            time.sleep(2)
+            time.sleep(3)
             title = self.browser.find_element(*self.search_result_title).text
             self.browser.find_element(*self.search_result_title).click()
             assert_that(self.browser.find_element(*self.article_title).text).is_equal_to(title)

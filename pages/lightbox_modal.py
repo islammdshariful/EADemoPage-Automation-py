@@ -11,9 +11,10 @@ class LightboxModal:
                '/div/div/div[3]/div/div/a/span/span'
     doc_name = "LIGHTBOX & MODAL"
 
-    button = (By.ID, f'btn-eael-lightbox-61caa763a7516')
-    cross_btn = (By.XPATH, f'//*[@id="eael-lightbox-window-61caa763a7516"]/button')
-    img = f'//*[@id="eael-lightbox-window-61caa763a7516"]/div/img'
+    button = (By.XPATH, f'/html/body/div[4]/div[1]/div/div/div/main/article/div/div/div/div/section[2]/div/div/div'
+                        f'/div/div/section[2]/div/div/div[4]/div/div/div/div/div[1]/div/span')
+    cross_btn = (By.XPATH, f'/html/body/div[2]/div/div[1]/div/button')
+    img = f'/html/body/div[2]/div/div[1]/div/div/img'
 
     def __init__(self, browser):
         self.browser = browser

@@ -32,6 +32,7 @@ class ReadingProgress:
 
             self.browser.execute_script("window.scrollTo(0, 1004)")
             time.sleep(5)
+
             bar = self.browser.find_element(*self.progress_bar)
             assert_that(bar.get_attribute("style")).is_equal_to(self.width_1)
             rgb = bar.value_of_css_property('background-color')

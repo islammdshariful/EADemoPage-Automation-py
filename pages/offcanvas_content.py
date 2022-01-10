@@ -50,6 +50,7 @@ class OffCanvas:
             c.check_doc(self.doc_link, self.doc_name)
 
         self.browser.execute_script("window.scrollTo(0, 958)")
+        time.sleep(1)
 
         # Left
         self.browser.find_element(*self.left_side).click()

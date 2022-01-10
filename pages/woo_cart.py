@@ -25,7 +25,7 @@ class WooCart:
                 f'/div/div/div/div/div/div/form/div[1]/div[2]/div[1]/div[1]/div[2]/a'
     p_price_1 = f'//*[@id="post-271400"]/div/div/div/div/section[2]/div/div/div/div/div/section[2]/div/div' \
                 f'/div/div/div/div/div/div/form/div[1]/div[2]/div[1]/div[2]/div[1]/span'
-    p_quantity_1 = f'//*[@id="quantity_61d3eed55b370"]'
+    p_quantity_1 = f'//*[@id="quantity_61db647eb23c6"]'
     p_quantity_1_minus = f'//*[@id="post-271400"]/div/div/div/div/section[2]/div/div/div/div/div' \
                          f'/section[2]/div/div/div/div/div/div/div/div/form/div[1]/div[2]/div[1]' \
                          f'/div[2]/div[2]/div/span[1]'
@@ -43,7 +43,7 @@ class WooCart:
                 f'/div/div/div/div/div/div/div/form/div[1]/div[2]/div[2]/div[1]/div[2]/a'
     p_price_2 = f'//*[@id="post-271400"]/div/div/div/div/section[2]/div/div/div/div/div/section[2]/div' \
                 f'/div/div/div/div/div/div/div/form/div[1]/div[2]/div[2]/div[2]/div[1]/span'
-    p_quantity_2 = f'//*[@id="quantity_61d3eed55b818"]'
+    p_quantity_2 = f'//*[@id="quantity_61db647eb28c2"]'
     p_quantity_2_minus = f'//*[@id="post-271400"]/div/div/div/div/section[2]/div/div/div/div/div/section[2]' \
                          f'/div/div/div/div/div/div/div/div/form/div[1]/div[2]/div[2]/div[2]' \
                          f'/div[2]/div/span[1]'

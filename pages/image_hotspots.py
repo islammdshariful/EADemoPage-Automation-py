@@ -43,5 +43,7 @@ class ImageHotspots:
                 c.check_doc(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 1077)")
+            time.sleep(1)
+
             self.hotspot(self.hotspot_1, self.hotspot_1_title, self.hotspot_1_title_text)
             self.hotspot(self.hotspot_2, self.hotspot_2_title, self.hotspot_2_title_text)

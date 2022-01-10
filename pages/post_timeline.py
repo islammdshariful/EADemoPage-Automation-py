@@ -93,6 +93,7 @@ class PostTimeline:
                 c.check_doc(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 989)")
+            time.sleep(1)
 
             cursor = ActionChains(self.browser)
 

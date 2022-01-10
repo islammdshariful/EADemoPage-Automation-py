@@ -48,6 +48,14 @@ class SimpleMenu:
     V_SUPPORT = (By.XPATH, f'//*[@id="menu-advanced-menu-7"]/li[5]')
     V_CONTACT = (By.XPATH, f'//*[@id="menu-advanced-menu-7"]/li[5]')
 
+    ea_p_s = f'//*[@id="post-266629"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
+             f'/div/div/div[2]/div/div/div[1]/div/h2'
+    ea_p_s_text = "Woo Product Slider"
+
+    adv_acor = f'//*[@id="post-2453"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section/div/div/div[2]/div' \
+               f'/div/div[1]/div/h2'
+    adv_acor_text = "Advanced Accordion"
+
     def __init__(self, browser):
         self.browser = browser
 
@@ -61,6 +69,8 @@ class SimpleMenu:
         if check_doc:
             c.check_doc(self.DOC_LINK, self.doc_name)
         self.browser.execute_script("window.scrollTo(0, 905)")
+        time.sleep(1)
+
         self.browser.find_element(*self.H_HOME).click()
         self.browser.back()
 
@@ -81,7 +91,7 @@ class SimpleMenu:
             move_to_element(h_blog).move_to_element(h_support).perform()
 
         cursor.move_to_element(h_ele_ele).move_to_element(h_ele_woo_slider).click().perform()
-        c.check_title('💬1 - Woo Product Slider | Essential Addons for Elementor')
+        c.check_widget_name(self.ea_p_s, self.ea_p_s_text)
         self.browser.back()
 
         self.browser.execute_script("window.scrollTo(0, 3971)")
@@ -113,5 +123,5 @@ class SimpleMenu:
             move_to_element(v_ele_blog).move_to_element(v_ele_contact_us).perform()
 
         cursor.move_to_element(v_ele_accordion).click().perform()
-        c.check_title('💬1 - Advanced Accordion for Elementor | Essential Addons for Elementor')
+        c.check_widget_name(self.adv_acor, self.adv_acor_text)
         self.browser.back()

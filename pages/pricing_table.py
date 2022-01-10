@@ -78,6 +78,7 @@ class PricingTable:
                 c.check_doc(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 962)")
+            time.sleep(1)
 
             cursor = ActionChains(self.browser)
             table = self.browser.find_element(*self.basic_table)

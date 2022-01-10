@@ -85,6 +85,8 @@ class ContentToggle:
     s_1_button = (By.XPATH, f'//*[@id="eael-toggle-container-6bee69bf"]/div[2]/div[2]/div/div/section'
                             f'/div/div/div/div/div/div/div/div/div/div[4]/a')
 
+    close_scrips_chat_btn = (By.XPATH, f'//*[@id="crisp-chatbox"]/div/a/span[1]/span/span[1]/span[1]/span')
+
     def __init__(self, browser):
         self.browser = browser
 
@@ -99,6 +101,7 @@ class ContentToggle:
                 c.check_doc(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 1967)")
+            time.sleep(1)
 
             assert_that(self.browser.find_element(*self.primary_btn).text).is_equal_to(self.primary_btn_text)
             assert_that(self.browser.find_element(*self.secondary_btn).text).is_equal_to(self.secondary_btn_text)
@@ -150,5 +153,7 @@ class ContentToggle:
             assert_that(self.browser.find_element(*self.s_1_item_5).text).is_equal_to(self.s_1_item_5_text)
 
             cursor.move_to_element(s_btn).perform()
+
+            self.browser.find_element(*self.close_scrips_chat_btn).click()
 
 

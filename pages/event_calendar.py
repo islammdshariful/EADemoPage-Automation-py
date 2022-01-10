@@ -49,6 +49,8 @@ class EventCalendar:
                 c.check_doc(self.doc_link, self.doc_name)
 
         self.browser.execute_script("window.scrollTo(0, 1641)")
+        time.sleep(1)
+
         for i in range(0, 12):
             mnt = self.browser.find_element(*self.month).text
             if mnt == self.month_text:

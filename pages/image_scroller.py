@@ -30,6 +30,7 @@ class ImageScroller:
                 c.check_doc(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 818)")
+            time.sleep(1)
 
             img_com = ImageComparison(self.browser)
             cursor = ActionChains(self.browser)

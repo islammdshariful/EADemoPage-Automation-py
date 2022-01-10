@@ -41,7 +41,6 @@ class ProgressBar:
             self.browser.execute_script("window.scrollTo(0, 1037)")
             assert_that(self.browser.find_element(*self.name).text).is_equal_to(self.name_text)
             time.sleep(1)
-            assert_that(self.browser.find_element(*self.count).text).is_equal_to(self.count_text)
 
             full_rgb = self.browser.find_element(*self.progress_bar_full).value_of_css_property('background-color')
             hex_1 = Color.from_string(full_rgb).hex
@@ -50,3 +49,5 @@ class ProgressBar:
             fill_rgb = self.browser.find_element(*self.progress_bar_fill).value_of_css_property('background-color')
             hex_2 = Color.from_string(fill_rgb).hex
             assert_that(hex_2).is_equal_to(self.progress_bar_fill_color)
+            time.sleep(1)
+            assert_that(self.browser.find_element(*self.count).text).is_equal_to(self.count_text)
