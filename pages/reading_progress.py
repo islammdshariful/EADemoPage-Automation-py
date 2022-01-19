@@ -1,4 +1,6 @@
 from selenium.webdriver import ActionChains
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 from utils.config import *
 from selenium.webdriver.support.color import Color
@@ -31,7 +33,7 @@ class ReadingProgress:
                 c.check_doc(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 1004)")
-            time.sleep(5)
+            wait_for_bar_to_come(self.browser)
 
             bar = self.browser.find_element(*self.progress_bar)
             assert_that(bar.get_attribute("style")).is_equal_to(self.width_1)

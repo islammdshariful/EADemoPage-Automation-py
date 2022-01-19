@@ -26,6 +26,8 @@ class ParticleEffect:
 
             self.browser.execute_script("window.scrollTo(0, 1137)")
             time.sleep(1)
+            wait_for_bar_to_come(self.browser)
+
             cursor = ActionChains(self.browser)
             cursor.move_by_offset(10, 100).perform()
             time.sleep(.5)

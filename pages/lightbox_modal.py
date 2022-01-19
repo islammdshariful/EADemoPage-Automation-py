@@ -13,7 +13,7 @@ class LightboxModal:
 
     button = (By.XPATH, f'/html/body/div[4]/div[1]/div/div/div/main/article/div/div/div/div/section[2]/div/div/div'
                         f'/div/div/section[2]/div/div/div[4]/div/div/div/div/div[1]/div/span')
-    cross_btn = (By.XPATH, f'/html/body/div[2]/div/div[1]/div/button')
+    cross_btn = (By.XPATH, f"/html/body/div[3]/div/div[1]/div/button")
     img = f'/html/body/div[2]/div/div[1]/div/div/img'
 
     def __init__(self, browser):

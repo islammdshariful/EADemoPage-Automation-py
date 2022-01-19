@@ -25,7 +25,7 @@ class WooCart:
                 f'/div/div/div/div/div/div/form/div[1]/div[2]/div[1]/div[1]/div[2]/a'
     p_price_1 = f'//*[@id="post-271400"]/div/div/div/div/section[2]/div/div/div/div/div/section[2]/div/div' \
                 f'/div/div/div/div/div/div/form/div[1]/div[2]/div[1]/div[2]/div[1]/span'
-    p_quantity_1 = f'//*[@id="quantity_61db647eb23c6"]'
+    p_quantity_1 = f"//input[@id='quantity_61e7ccb797617']"
     p_quantity_1_minus = f'//*[@id="post-271400"]/div/div/div/div/section[2]/div/div/div/div/div' \
                          f'/section[2]/div/div/div/div/div/div/div/div/form/div[1]/div[2]/div[1]' \
                          f'/div[2]/div[2]/div/span[1]'
@@ -43,7 +43,7 @@ class WooCart:
                 f'/div/div/div/div/div/div/div/form/div[1]/div[2]/div[2]/div[1]/div[2]/a'
     p_price_2 = f'//*[@id="post-271400"]/div/div/div/div/section[2]/div/div/div/div/div/section[2]/div' \
                 f'/div/div/div/div/div/div/div/form/div[1]/div[2]/div[2]/div[2]/div[1]/span'
-    p_quantity_2 = f'//*[@id="quantity_61db647eb28c2"]'
+    p_quantity_2 = f"//input[@id='quantity_61e7ccb797d63']"
     p_quantity_2_minus = f'//*[@id="post-271400"]/div/div/div/div/section[2]/div/div/div/div/div/section[2]' \
                          f'/div/div/div/div/div/div/div/div/form/div[1]/div[2]/div[2]/div[2]' \
                          f'/div[2]/div/span[1]'
@@ -170,19 +170,12 @@ class WooCart:
                 c.check_doc(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 1000)")
+            wait_for_bar_to_come(self.browser)
 
             assert_that(self.browser.find_element(*self.p_title_header).text).is_equal_to(self.p_title_header_text)
             assert_that(self.browser.find_element(*self.p_price_header).text).is_equal_to(self.p_price_header_text)
             assert_that(self.browser.find_element(*self.p_quantity_header).text).is_equal_to(self.p_quantity_header_text)
             assert_that(self.browser.find_element(*self.p_subtotal_header).text).is_equal_to(self.p_subtotal_header_text)
-
-            self.check_cart_item(self.p_title_1, self.p_title_1_text, self.p_price_1, self.p_price_1_text,
-                                 self.p_quantity_1, self.p_quantity_1_text, self.p_subtotal_1,
-                                 self.p_subtotal_1_text, self.p_img_1, self.p_cross_1)
-
-            self.check_cart_item(self.p_title_2, self.p_title_2_text, self.p_price_2, self.p_price_2_text,
-                                 self.p_quantity_2, self.p_quantity_2_text, self.p_subtotal_2,
-                                 self.p_subtotal_2_text, self.p_img_2, self.p_cross_2)
 
             self.update_quantity(self.p_quantity_1_plus, self.p_quantity_1_minus, 4, 3)
             self.update_quantity(self.p_quantity_2_plus, self.p_quantity_2_minus, 3, 2)
@@ -221,6 +214,14 @@ class WooCart:
             self.browser.back()
             self.browser.execute_script("window.scrollTo(0, 1000)")
             time.sleep(1)
+
+            self.check_cart_item(self.p_title_1, self.p_title_1_text, self.p_price_1, self.p_price_1_text,
+                                 self.p_quantity_1, self.p_quantity_1_text, self.p_subtotal_1,
+                                 self.p_subtotal_1_text, self.p_img_1, self.p_cross_1)
+
+            self.check_cart_item(self.p_title_2, self.p_title_2_text, self.p_price_2, self.p_price_2_text,
+                                 self.p_quantity_2, self.p_quantity_2_text, self.p_subtotal_2,
+                                 self.p_subtotal_2_text, self.p_img_2, self.p_cross_2)
 
 
 

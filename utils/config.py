@@ -8,6 +8,8 @@ import time
 
 from assertpy import soft_assertions, assert_that
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 demo_page = "https://essential-addons.com/elementor/demos/"
 base_url = "https://essential-addons.com/elementor/"
@@ -102,6 +104,12 @@ advanced_tooltip = base_url + "advanced-tooltip/"
 check_doc = False
 # check_doc = True
 display = 1
+
+
+def wait_for_bar_to_come(browser):
+    WebDriverWait(browser, 15).until(
+        EC.presence_of_element_located(
+            (By.XPATH, "//span[@class='elementor-countdown-digits elementor-countdown-minutes']")))
 
 
 class CheckText:

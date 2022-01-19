@@ -122,7 +122,7 @@ class AdvancedTabs:
                 c.check_doc(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 2378)")
-            time.sleep(1)
+            wait_for_bar_to_come(self.browser)
 
             assert_that(self.browser.find_element(*self.tab_1).text).is_equal_to(self.tab_1_text)
             self.browser.find_element(*self.tab_1).click()

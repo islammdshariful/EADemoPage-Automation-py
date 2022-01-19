@@ -34,7 +34,6 @@ class ContentTicker:
                 c.check_doc(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 982)")
-            time.sleep(1)
 
             assert_that(self.browser.find_element(*self.label).text).is_equal_to(self.label_text)
             if self.browser.find_element(*self.content_1).is_displayed():

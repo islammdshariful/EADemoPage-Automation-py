@@ -15,7 +15,7 @@ class ImageComparison:
     img_1 = (By.XPATH, f'//*[@id="eael-image-comparison-23558b85"]/img[1]')
     img_2 = (By.XPATH, f'//*[@id="eael-image-comparison-23558b85"]/img[2]')
 
-    handle = (By.XPATH, f'//*[@id="eael-image-comparison-23558b85"]/div[2]/span[2]')
+    handle = (By.XPATH, f'//*[@id="eael-image-comparison-23558b85"]/div[2]')
 
     def __init__(self, browser):
         self.browser = browser
