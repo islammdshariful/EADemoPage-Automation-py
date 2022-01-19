@@ -101,7 +101,7 @@ class ContentToggle:
                 c.check_doc(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 1967)")
-            wait_for_bar_to_come(self.browser)
+            time.sleep(1)
 
             assert_that(self.browser.find_element(*self.primary_btn).text).is_equal_to(self.primary_btn_text)
             assert_that(self.browser.find_element(*self.secondary_btn).text).is_equal_to(self.secondary_btn_text)
