@@ -16,8 +16,7 @@ class ContentToggle:
     secondary_btn = (By.XPATH, f'//*[@id="eael-toggle-container-6bee69bf"]/div[1]/div/div[3]')
     secondary_btn_text = "Unlimited"
 
-    p_1_title = (By.XPATH, f'//*[@id="eael-toggle-container-6bee69bf"]/div[2]/div[1]/div/div/section'
-                           f'/div/div/div/div/div/div/div/div/div/div[2]/h2')
+    p_1_title = (By.XPATH, f"//h2[normalize-space()='Single']")
     p_1_title_text = "Single"
     p_1_price = (By.XPATH, f'//*[@id="eael-toggle-container-6bee69bf"]/div[2]/div[1]/div/div/section'
                            f'/div/div/div/div/div/div/div/div/div/div[1]/span[1]/span')
@@ -51,8 +50,7 @@ class ContentToggle:
                             f'/div/div/div/div/div/div/div/div/div/div[4]/a')
 
     # Secondary
-    s_1_title = (By.XPATH, f'//*[@id="eael-toggle-container-6bee69bf"]/div[2]/div[2]/div/div/section'
-                           f'/div/div/div/div/div/div/div/div/div/div[2]/h2')
+    s_1_title = (By.XPATH, f"//div[@class='eael-pricing style-3']//h2[@class='title'][normalize-space()='Unlimited']")
     s_1_title_text = "Unlimited"
     s_1_price = (By.XPATH, f'//*[@id="eael-toggle-container-6bee69bf"]/div[2]/div[2]/div/div/section'
                            f'/div/div/div/div/div/div/div/div/div/div[1]/span[1]/span')

@@ -1,4 +1,7 @@
+from selenium.common.exceptions import WebDriverException
 from selenium.webdriver import ActionChains
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 from utils.config import *
 
@@ -29,7 +32,8 @@ class ScrollToTop:
             self.browser.execute_script("window.scrollTo(0, document.body.scrollHeight)")
             time.sleep(1)
 
-            self.browser.find_element(*self.scroll_to_top_btn).click()
+            element = self.browser.find_element(*self.scroll_to_top_btn)
+            self.browser.execute_script("arguments[0].click();", element)
             if self.browser.find_element(By.XPATH, self.widget).is_displayed():
                 assert_that(display).is_equal_to(1)
             else:
