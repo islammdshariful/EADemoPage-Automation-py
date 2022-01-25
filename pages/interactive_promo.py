@@ -43,6 +43,7 @@ class InteractivePromo:
                 assert_that(display).is_equal_to("Image not visible")
             assert_that(self.browser.find_element(*self.promo_1_title).text).is_equal_to(self.promo_1_title_text)
             cursor.move_to_element(promo).perform()
+            time.sleep(1)
             if self.browser.find_element(*self.promo_1_des).is_displayed():
                 assert_that(self.browser.find_element(*self.promo_1_des).text).is_equal_to(self.promo_1_des_text)
             else:

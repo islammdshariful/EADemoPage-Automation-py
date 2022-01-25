@@ -15,8 +15,8 @@ class ReadingProgress:
 
     progress_bar = (By.XPATH, f'/html/body/div[4]/div[3]/div/div')
     color_fill = "#1fd18e"
-    width_1 = "width: 22.8026%;"
-    width_2 = "width: 79.6421%;"
+    width_1 = "width: 22.237%;"
+    width_2 = "width: 78.8483%;"
     width_3 = "width: 100%;"
 
     def __init__(self, browser):

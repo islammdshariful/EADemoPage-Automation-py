@@ -1,4 +1,3 @@
-from pages.AB_sample import Sample
 from pages.Wpforms import Wpforms
 from pages.advanced_accordion import AdvancedAccordion
 from pages.advanced_data_table import AdvancedDataTable
@@ -92,10 +91,10 @@ from pages.woocommerce_product_collections import WoocommerceProductCollections
 # CONTENT ELEMENTS
 # ------------------------------------------------------------------------------------------------
 
-def test_content_toggle(browser):
-    ct = ContentToggle(browser)
-    ct.load()
-    ct.testcase()
+# def test_content_toggle(browser):
+#     ct = ContentToggle(browser)
+#     ct.load()
+#     ct.testcase()
 
 
 def test_advanced_menu(browser):
@@ -104,16 +103,16 @@ def test_advanced_menu(browser):
     am.testcase()
 
 
-def test_off_canvas(browser):
-    oc = OffCanvas(browser)
-    oc.load()
-    oc.testcase()
+# def test_off_canvas(browser):
+#     oc = OffCanvas(browser)
+#     oc.load()
+#     oc.testcase()
 
 
-def test_feature_list(browser):
-    fl = FeatureList(browser)
-    fl.load()
-    fl.testcase()
+# def test_feature_list(browser):
+#     fl = FeatureList(browser)
+#     fl.load()
+#     fl.testcase()
 
 
 def testimonial(browser):
