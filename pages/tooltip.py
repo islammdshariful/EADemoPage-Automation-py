@@ -45,8 +45,8 @@ class ToolTip(Helper):
             self.check_visibility(self.tooltip_1_img, "Tool Tip 1 image is not visible.")
             self.check_visibility(self.tooltip_2_img, "Tool Tip 2 image is not visible.")
 
-            tip_1 = self.browser.find_element(*self.tooltip_1_img)
-            tip_2 = self.browser.find_element(*self.tooltip_2_img)
+            tip_1 = self.browser.find_element(By.XPATH, self.tooltip_1_img)
+            tip_2 = self.browser.find_element(By.XPATH, self.tooltip_2_img)
             cursor_1.move_to_element(tip_1).perform()
             assert_that(self.browser.find_element(*self.tooltip_1).text).is_equal_to(self.tooltip_1_text)
             cursor_2.move_to_element(tip_2).perform()
