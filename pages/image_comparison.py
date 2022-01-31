@@ -3,7 +3,7 @@ from selenium.webdriver import ActionChains
 from utils.config import *
 
 
-class ImageComparison:
+class ImageComparison(Helper):
     widget = '//*[@id="post-17"]/div/div/div/div/section[1]/div[4]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Image Comparison'
@@ -12,35 +12,29 @@ class ImageComparison:
     doc_name = "IMAGE COMPARISON"
 
     img_com = (By.XPATH, f'//*[@id="eael-image-comparison-23558b85"]')
-    img_1 = (By.XPATH, f'//*[@id="eael-image-comparison-23558b85"]/img[1]')
-    img_2 = (By.XPATH, f'//*[@id="eael-image-comparison-23558b85"]/img[2]')
+    img_1 = f'//*[@id="eael-image-comparison-23558b85"]/img[1]'
+    img_2 = f'//*[@id="eael-image-comparison-23558b85"]/img[2]'
 
     handle = (By.XPATH, f'//*[@id="eael-image-comparison-23558b85"]/div[2]')
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(image_comparison)
+        self.browser.get(self.image_comparison)
 
     def testcase(self):
-        c = CheckText(self.browser)
         with soft_assertions():
-            c.check_widget_name(self.widget, self.widget_name)
-            if check_doc:
-                c.check_doc(self.doc_link, self.doc_name)
+            self.check_widget_name(self.widget, self.widget_name)
+            if self.check_doc:
+                self.check_documents(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 1082)")
             time.sleep(1)
 
-            if self.browser.find_element(*self.img_1).is_displayed():
-                assert_that(display).is_equal_to(1)
-            else:
-                assert_that(display).is_equal_to("Image is not visible.")
-            if self.browser.find_element(*self.img_2).is_displayed():
-                assert_that(display).is_equal_to(1)
-            else:
-                assert_that(display).is_equal_to("Image is not visible.")
+            self.check_visibility(self.img_1, "Image 1 is not visible.")
+            self.check_visibility(self.img_2, "Image 2 is not visible.")
 
             cursor = ActionChains(self.browser)
             com = self.browser.find_element(*self.img_com)

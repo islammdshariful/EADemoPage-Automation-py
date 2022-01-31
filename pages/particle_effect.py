@@ -3,7 +3,7 @@ from selenium.webdriver import ActionChains
 from utils.config import *
 
 
-class ParticleEffect:
+class ParticleEffect(Helper):
     widget = '//*[@id="post-4577"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section/div/div/div[2]' \
              '/div/div/div[1]/div/h2'
     widget_name = 'Particles'
@@ -12,21 +12,21 @@ class ParticleEffect:
     doc_name = "EA PARTICLES"
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(particle_effect)
+        self.browser.get(self.particle_effect)
 
     def testcase(self):
-        c = CheckText(self.browser)
         with soft_assertions():
-            c.check_widget_name(self.widget, self.widget_name)
-            if check_doc:
-                c.check_doc(self.doc_link, self.doc_name)
+            self.check_widget_name(self.widget, self.widget_name)
+            if self.check_doc:
+                self.check_documents(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 1137)")
             time.sleep(1)
-            wait_for_bar_to_come(self.browser)
+            self.wait_for_bar_to_come()
 
             cursor = ActionChains(self.browser)
             cursor.move_by_offset(10, 100).perform()

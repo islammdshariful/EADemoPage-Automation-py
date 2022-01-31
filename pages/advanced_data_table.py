@@ -1,9 +1,7 @@
-from selenium.webdriver import ActionChains
-
 from utils.config import *
 
 
-class AdvancedDataTable:
+class AdvancedDataTable(Helper):
     widget = '//*[@id="post-256377"]/div/div/div/div/section[1]/div[4]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Advanced Data Table'
@@ -230,10 +228,11 @@ class AdvancedDataTable:
                            f'/div[2]/a[4]')
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(advanced_data_table)
+        self.browser.get(self.advanced_data_table)
 
     def first_page_list(self):
         with soft_assertions():
@@ -329,11 +328,10 @@ class AdvancedDataTable:
             assert_that(self.browser.find_element(*self.tbody_tr7_td6).text).is_equal_to(self.tbody_tr1_td6_text)
 
     def testcase(self):
-        c = CheckText(self.browser)
         with soft_assertions():
-            c.check_widget_name(self.widget, self.widget_name)
-            if check_doc:
-                c.check_doc(self.doc_link, self.doc_name)
+            self.check_widget_name(self.widget, self.widget_name)
+            if self.check_doc:
+                self.check_documents(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 2811)")
             time.sleep(1)

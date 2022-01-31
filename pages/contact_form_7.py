@@ -1,11 +1,8 @@
-from selenium.webdriver import ActionChains
-from selenium.webdriver.support.wait import WebDriverWait
-
 from utils.config import *
 from selenium.webdriver.support import expected_conditions as EC
 
 
-class ContactForm7:
+class ContactForm7(Helper):
     widget = '//*[@id="post-1231"]/div/div/div/div/section[1]/div[4]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Contact Form 7'
@@ -33,17 +30,17 @@ class ContactForm7:
     success_msg_text = "Thank you for your message. It has been sent."
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(contact_form_7)
+        self.browser.get(self.contact_form_7)
 
     def testcase(self):
-        c = CheckText(self.browser)
         with soft_assertions():
-            c.check_widget_name(self.widget, self.widget_name)
-            if check_doc:
-                c.check_doc(self.doc_link, self.doc_name)
+            self.check_widget_name(self.widget, self.widget_name)
+            if self.check_doc:
+                self.check_documents(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 2374)")
             assert_that(self.browser.find_element(*self.name_label).text).is_equal_to(self.name_label_text)

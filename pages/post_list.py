@@ -3,7 +3,7 @@ from selenium.webdriver import ActionChains
 from utils.config import *
 
 
-class PostList:
+class PostList(Helper):
     widget = '//*[@id="post-2322"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Smart Post List'
@@ -12,7 +12,7 @@ class PostList:
     doc_name = "SMART POST LIST"
 
     search = (By.ID, f'search_field')
-    search_icon = (By.XPATH, f'//*[@id="post-list-search-form-312f98e8"]/i')
+    search_icon = f'//*[@id="post-list-search-form-312f98e8"]/i'
     search_result_title = (By.XPATH, f'//*[@id="post-2322"]/div/div/div/div/section[2]/div/div/div'
                                      f'/div/div/div/div/div/div[1]/div[2]/div/div[1]/h6/a')
 
@@ -46,27 +46,22 @@ class PostList:
                               f'/div/div/div/div/div/div[2]/div/ul/li[1]/a/span[2]')
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(post_list)
+        self.browser.get(self.post_list)
 
     def check_post(self, title, date):
         assert_that(self.browser.find_element(*self.article_title).text).is_equal_to(title)
         assert_that(self.browser.find_element(*self.article_date).text).is_equal_to(date)
-
-    def check_visibility(self, img):
-        if self.browser.find_element(By.XPATH, img).is_displayed():
-            assert_that(display).is_equal_to(1)
-        else:
-            assert_that(display).is_equal_to("Post Image is not showing")
 
     def check_widget_post(self, post, date, img):
         cursor = ActionChains(self.browser)
         post_title = self.browser.find_element(By.XPATH, post)
 
         cursor.move_to_element(post_title).perform()
-        self.check_visibility(img)
+        self.check_visibility(img, "Post Image is not visible.")
 
         p_title = post_title.text
         p_date = self.browser.find_element(By.XPATH, date).text
@@ -77,11 +72,10 @@ class PostList:
         time.sleep(1)
 
     def testcase(self):
-        c = CheckText(self.browser)
         with soft_assertions():
-            c.check_widget_name(self.widget, self.widget_name)
-            if check_doc:
-                c.check_doc(self.doc_link, self.doc_name)
+            self.check_widget_name(self.widget, self.widget_name)
+            if self.check_doc:
+                self.check_documents(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 1133)")
             time.sleep(1)
@@ -115,12 +109,9 @@ class PostList:
             self.check_widget_post(self.post_2_title, self.post_2_date, self.post_2_img)
 
             # Search
-            if self.browser.find_element(*self.search_icon).is_displayed():
-                assert_that(display).is_equal_to(1)
-            else:
-                assert_that(display).is_equal_to("Search Icon not Visible")
+            self.check_visibility(self.search_icon, "Search Icon not Visible.")
             self.browser.find_element(*self.search).send_keys("Essential Addons")
-            time.sleep(3)
+            time.sleep(4)
             title = self.browser.find_element(*self.search_result_title).text
             self.browser.find_element(*self.search_result_title).click()
             assert_that(self.browser.find_element(*self.article_title).text).is_equal_to(title)

@@ -1,9 +1,7 @@
-from selenium.webdriver import ActionChains
-
 from utils.config import *
 
 
-class FacebookFeed:
+class FacebookFeed(Helper):
     widget = '//*[@id="post-1840"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Facebook Feed'
@@ -38,81 +36,34 @@ class FacebookFeed:
     comment_count_2 = f'//*[@id="eael-facebook-feed-1ba7c6e5"]/div[3]/div/footer/div/span[2]/text()'
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(facebook_feed)
+        self.browser.get(self.facebook_feed)
 
-    def check_post(self, avatar, name, date, des, img, url, title, des_bottom, like, l_count, comment, c_count):
-        if self.browser.find_element(By.XPATH, avatar).is_displayed():
-            assert_that(display).is_equal_to(1)
-        else:
-            assert_that(display).is_equal_to("Avatar is not visible")
+    def check_post(self, avatar, name, date, des, img, url, title, des_bottom, like, comment):
+        self.check_visibility(avatar, "Avatar is not visible")
+        self.check_visibility(date, "Date is not visible")
 
         assert_that(self.browser.find_element(By.XPATH, name).text).is_equal_to("WPDeveloper")
-
-        if self.browser.find_element(By.XPATH, date).is_displayed():
-            assert_that(display).is_equal_to(1)
-        else:
-            assert_that(display).is_equal_to("Date is not visible")
-
-        if self.browser.find_element(By.XPATH, des).is_displayed():
-            assert_that(display).is_equal_to(1)
-        else:
-            assert_that(display).is_equal_to("Description is not visible")
-
-        if self.browser.find_element(By.XPATH, img).is_displayed():
-            assert_that(display).is_equal_to(1)
-        else:
-            assert_that(display).is_equal_to("Image is not visible")
-
-        if self.browser.find_element(By.XPATH, url).is_displayed():
-            assert_that(display).is_equal_to(1)
-        else:
-            assert_that(display).is_equal_to("URL is not visible")
-
-        if self.browser.find_element(By.XPATH, title).is_displayed():
-            assert_that(display).is_equal_to(1)
-        else:
-            assert_that(display).is_equal_to("Title is not visible")
-
-        if self.browser.find_element(By.XPATH, des_bottom).is_displayed():
-            assert_that(display).is_equal_to(1)
-        else:
-            assert_that(display).is_equal_to("Bottom Content is not visible")
-
-        if self.browser.find_element(By.XPATH, like).is_displayed():
-            assert_that(display).is_equal_to(1)
-        else:
-            assert_that(display).is_equal_to("Like is not visible")
-
-        # if self.browser.find_element(By.XPATH, l_count).is_displayed():
-        #     assert_that(display).is_equal_to(1)
-        # else:
-        #     assert_that(display).is_equal_to("Like Count is not visible")
-
-        if self.browser.find_element(By.XPATH, comment).is_displayed():
-            assert_that(display).is_equal_to(1)
-        else:
-            assert_that(display).is_equal_to("Comment is not visible")
-
-        # if self.browser.find_element(By.XPATH, c_count).is_displayed():
-        #     assert_that(display).is_equal_to(1)
-        # else:
-        #     assert_that(display).is_equal_to("Comment Count is not visible")
+        self.check_visibility(des, "Description is not visible")
+        self.check_visibility(img, "Image is not visible")
+        self.check_visibility(url, "URL is not visible")
+        self.check_visibility(title, "Title is not visible")
+        self.check_visibility(des_bottom, "Bottom is not visible")
+        self.check_visibility(like, "Like is not visible")
+        self.check_visibility(comment, "Comment is not visible")
 
     def testcase(self):
-        c = CheckText(self.browser)
         with soft_assertions():
-            c.check_widget_name(self.widget, self.widget_name)
-            if check_doc:
-                c.check_doc(self.doc_link, self.doc_name)
+            self.check_widget_name(self.widget, self.widget_name)
+            if self.check_doc:
+                self.check_documents(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 982)")
             self.check_post(self.avatar_1, self.name_1, self.date_1, self.des_1, self.img_1, self.des_url_1,
-                            self.des_title_1, self.des_bottom_content_1, self.like_icon_1, self.like_count_1,
-                            self.comment_icon_1, self.comment_count_1)
+                            self.des_title_1, self.des_bottom_content_1, self.like_icon_1, self.comment_icon_1)
             time.sleep(.5)
             self.check_post(self.avatar_2, self.name_2, self.date_2, self.des_2, self.img_2, self.des_url_2,
-                            self.des_title_2, self.des_bottom_content_2, self.like_icon_2, self.like_count_2,
-                            self.comment_icon_2, self.comment_count_2)
+                            self.des_title_2, self.des_bottom_content_2, self.like_icon_2, self.comment_icon_2)

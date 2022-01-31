@@ -1,9 +1,7 @@
-from selenium.webdriver import ActionChains
-
 from utils.config import *
 
 
-class TwitterFeedCarousel:
+class TwitterFeedCarousel(Helper):
     widget = '//*[@id="post-266500"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Twitter Feed Carousel'
@@ -51,38 +49,27 @@ class TwitterFeedCarousel:
                             f'/div[10]/div/div[2]/a'
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(twitter_feed_carousel)
+        self.browser.get(self.twitter_feed_carousel)
 
     def check_post(self, img, icon, author, content, read_more):
         time.sleep(.5)
-        if self.browser.find_element(By.XPATH, img).is_displayed():
-            assert_that(display).is_equal_to(1)
-        else:
-            assert_that(display).is_equal_to("image is not visible")
-
-        if self.browser.find_element(By.XPATH, icon).is_displayed():
-            assert_that(display).is_equal_to(1)
-        else:
-            assert_that(display).is_equal_to("Icon is not visible")
+        self.check_visibility(img, "Image is not visible")
+        self.check_visibility(icon, "Icon is not visible")
 
         assert_that(self.browser.find_element(By.XPATH, author).text).is_equal_to("WPDeveloper")
 
-        if self.browser.find_element(By.XPATH, content).is_displayed():
-            assert_that(display).is_equal_to(1)
-        else:
-            assert_that(display).is_equal_to("Content is not visible")
-
+        self.check_visibility(content, "Content is not visible")
         assert_that(self.browser.find_element(By.XPATH, read_more).text).is_equal_to("Read More")
 
     def testcase(self):
-        c = CheckText(self.browser)
         with soft_assertions():
-            c.check_widget_name(self.widget, self.widget_name)
-            if check_doc:
-                c.check_doc(self.doc_link, self.doc_name)
+            self.check_widget_name(self.widget, self.widget_name)
+            if self.check_doc:
+                self.check_documents(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 904)")
             self.browser.find_element(*self.dot_3).click()

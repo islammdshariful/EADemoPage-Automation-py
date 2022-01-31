@@ -1,11 +1,9 @@
 from selenium.webdriver import ActionChains
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
 from utils.config import *
 
 
-class WooProductGrid:
+class WooProductGrid(Helper):
     widget = '//*[@id="post-1161"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Woo Product Grid'
@@ -70,10 +68,11 @@ class WooProductGrid:
     p_4_tag_2_text = "Men"
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(woo_product_grid)
+        self.browser.get(self.woo_product_grid)
 
     def check_product_info(self, title, title_text, price, price_text, ratings, ratings_text, cart_btn, link_btn,
                            img, vcart_btn):
@@ -97,11 +96,10 @@ class WooProductGrid:
         cursor.move_to_element(element).perform()
 
     def testcase(self):
-        c = CheckText(self.browser)
         with soft_assertions():
-            c.check_widget_name(self.widget, self.widget_name)
-            if check_doc:
-                c.check_doc(self.doc_link, self.doc_name)
+            self.check_widget_name(self.widget, self.widget_name)
+            if self.check_doc:
+                self.check_documents(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 1425)")
             time.sleep(.5)

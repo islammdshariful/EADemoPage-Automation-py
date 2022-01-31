@@ -1,9 +1,7 @@
-from selenium.webdriver import ActionChains
-
 from utils.config import *
 
 
-class InstagramFeed:
+class InstagramFeed(Helper):
     widget = '//*[@id="post-25"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Instagram Feed'
@@ -21,35 +19,24 @@ class InstagramFeed:
     img_2 = f'//*[@id="eael-instafeed-1db29dc0"]/div[8]/div/a/img'
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(instagram_feed)
+        self.browser.get(self.instagram_feed)
 
     def check_post(self, author, icon, image, name):
-        if self.browser.find_element(By.XPATH, author).is_displayed():
-            assert_that(display).is_equal_to(1)
-        else:
-            assert_that(display).is_equal_to("Author is not visible")
-
-        if self.browser.find_element(By.XPATH, icon).is_displayed():
-            assert_that(display).is_equal_to(1)
-        else:
-            assert_that(display).is_equal_to("Icon is not visible")
-
-        if self.browser.find_element(By.XPATH, image).is_displayed():
-            assert_that(display).is_equal_to(1)
-        else:
-            assert_that(display).is_equal_to("Image is not visible")
+        self.check_visibility(author, "Author is not visible")
+        self.check_visibility(icon, "Icon is not visible")
+        self.check_visibility(image, "Image is not visible")
 
         assert_that(self.browser.find_element(By.XPATH, name).text).is_equal_to("Essential Addons")
 
     def testcase(self):
-        c = CheckText(self.browser)
         with soft_assertions():
-            c.check_widget_name(self.widget, self.widget_name)
-            if check_doc:
-                c.check_doc(self.doc_link, self.doc_name)
+            self.check_widget_name(self.widget, self.widget_name)
+            if self.check_doc:
+                self.check_documents(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 905)")
             self.check_post(self.author_1, self.icon_1, self.img_1, self.name_1)

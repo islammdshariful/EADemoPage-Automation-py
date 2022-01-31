@@ -3,7 +3,7 @@ from selenium.webdriver import ActionChains
 from utils.config import *
 
 
-class PricingTable:
+class PricingTable(Helper):
     widget = '//*[@id="post-1639"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Pricing Table'
@@ -57,25 +57,21 @@ class PricingTable:
                                     f'/div/div/div[1]/div/div/div/div/div/div/div[4]/a')
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(pricing_table)
+        self.browser.get(self.pricing_table)
 
     def check_list(self, list_icon, table_list, table_list_text):
-        if self.browser.find_element(By.XPATH, list_icon).is_displayed():
-            assert_that(display).is_equal_to(1)
-        else:
-            assert_that(display).is_equal_to("Icon not visible")
-
+        self.check_visibility(list_icon, "Icon not visible.")
         assert_that(self.browser.find_element(By.XPATH, table_list).text).is_equal_to(table_list_text)
 
     def testcase(self):
-        c = CheckText(self.browser)
         with soft_assertions():
-            c.check_widget_name(self.widget, self.widget_name)
-            if check_doc:
-                c.check_doc(self.doc_link, self.doc_name)
+            self.check_widget_name(self.widget, self.widget_name)
+            if self.check_doc:
+                self.check_documents(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 962)")
             time.sleep(1)

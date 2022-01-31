@@ -3,7 +3,7 @@ from selenium.webdriver import ActionChains
 from utils.config import *
 
 
-class WooProductSlider:
+class WooProductSlider(Helper):
     widget = '//*[@id="post-266629"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Woo Product Slider'
@@ -80,10 +80,11 @@ class WooProductSlider:
     p_4_tag_2_text = "Men"
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(woo_product_slider)
+        self.browser.get(self.woo_product_slider)
 
     def check_product_info(self, title, title_text, price, price_text, tag_1, tag_1_text, tag_2, tag_2_text, ratings,
                            ratings_text, cart_btn, link_btn):
@@ -103,11 +104,10 @@ class WooProductSlider:
         cursor.move_to_element(link).perform()
 
     def testcase(self):
-        c = CheckText(self.browser)
         with soft_assertions():
-            c.check_widget_name(self.widget, self.widget_name)
-            if check_doc:
-                c.check_doc(self.doc_link, self.doc_name)
+            self.check_widget_name(self.widget, self.widget_name)
+            if self.check_doc:
+                self.check_documents(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 1070)")
             time.sleep(1)

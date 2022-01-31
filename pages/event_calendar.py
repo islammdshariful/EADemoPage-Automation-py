@@ -3,7 +3,7 @@ from selenium.webdriver import ActionChains
 from utils.config import *
 
 
-class EventCalendar:
+class EventCalendar(Helper):
     widget = '//*[@id="post-257828"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = "Event Calendar"
@@ -21,7 +21,7 @@ class EventCalendar:
 
     event_title = (By.XPATH, f'//*[@id="eaelecModal"]/div[2]/div[1]/h2')
     event_title_text = "Event Title Dec"
-    calendar_icon = (By.XPATH, f'//*[@id="eaelecModal"]/div[2]/div[1]/span[1]/i')
+    calendar_icon = f'//*[@id="eaelecModal"]/div[2]/div[1]/span[1]/i'
     event_start = (By.XPATH, f'//*[@id="eaelecModal"]/div[2]/div[1]/span[1]')
     event_start_text = "Dec 4th 7:00 AM"
     event_end = (By.XPATH, f'//*[@id="eaelecModal"]/div[2]/div[1]/span[2]')
@@ -36,17 +36,17 @@ class EventCalendar:
     modal_close = (By.XPATH, f'//*[@id="eaelecModal"]/div[2]/div[1]/div/span/i')
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(event_calendar)
+        self.browser.get(self.event_calendar)
 
     def testcase(self):
-        c = CheckText(self.browser)
         with soft_assertions():
-            c.check_widget_name(self.widget, self.widget_name)
-            if check_doc:
-                c.check_doc(self.doc_link, self.doc_name)
+            self.check_widget_name(self.widget, self.widget_name)
+            if self.check_doc:
+                self.check_documents(self.doc_link, self.doc_name)
 
         self.browser.execute_script("window.scrollTo(0, 1641)")
         time.sleep(1)
@@ -62,11 +62,7 @@ class EventCalendar:
                 assert_that(self.browser.find_element(*self.event_start).text).is_equal_to(self.event_start_text)
                 assert_that(self.browser.find_element(*self.event_end).text).is_equal_to(self.event_end_text)
                 assert_that(self.browser.find_element(*self.event_des).text).is_equal_to(self.event_des_text)
-                if self.browser.find_element(*self.calendar_icon).is_displayed():
-                    assert_that(display).is_equal_to(1)
-                else:
-                    assert_that(display).is_equal_to(0)
-
+                self.check_visibility(self.calendar_icon, "Calendar icon is not visible.")
                 self.browser.find_element(*self.modal_close).click()
                 break
             self.browser.find_element(*self.prev_button).click()

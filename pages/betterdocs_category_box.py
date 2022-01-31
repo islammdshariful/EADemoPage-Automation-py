@@ -1,9 +1,7 @@
-from selenium.webdriver import ActionChains
-
 from utils.config import *
 
 
-class BetterdocsCategoryBox:
+class BetterdocsCategoryBox(Helper):
     widget = '//*[@id="post-255913"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'BetterDocs Category Box'
@@ -28,16 +26,14 @@ class BetterdocsCategoryBox:
     count_2_text = "10articles"
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(betterdocs_category_box)
+        self.browser.get(self.betterdocs_category_box)
 
     def box_layout(self, icon, title, title_text, count, count_text):
-        if self.browser.find_element(By.XPATH, icon).is_displayed():
-            assert_that(display).is_equal_to(1)
-        else:
-            assert_that(display).is_equal_to("Icon is not visible")
+        self.check_visibility(icon, "Icon is not visible")
 
         assert_that(self.browser.find_element(By.XPATH, title).text).is_equal_to(title_text)
         assert_that(self.browser.find_element(By.XPATH, count).text).is_equal_to(count_text)
@@ -49,11 +45,10 @@ class BetterdocsCategoryBox:
         self.browser.execute_script("window.scrollTo(0, 856)")
 
     def testcase(self):
-        c = CheckText(self.browser)
         with soft_assertions():
-            c.check_widget_name(self.widget, self.widget_name)
-            if check_doc:
-                c.check_doc(self.doc_link, self.doc_name)
+            self.check_widget_name(self.widget, self.widget_name)
+            if self.check_doc:
+                self.check_documents(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 856)")
             self.box_layout(self.icon_1, self.title_1, self.title_1_text, self.count_1, self.count_1_text)

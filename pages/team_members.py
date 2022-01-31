@@ -3,7 +3,7 @@ from selenium.webdriver import ActionChains
 from utils.config import *
 
 
-class TeamMember:
+class TeamMember(Helper):
     widget = '//*[@id="post-1022"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Team Member'
@@ -11,7 +11,7 @@ class TeamMember:
                '/div/div/div[2]/div/div/div[3]/div/div/a/span/span'
     doc_name = "TEAM MEMBERS"
 
-    mem_1_img = (By.XPATH, f'//*[@id="eael-team-member-2bac67d3"]/div/div[1]/figure/img')
+    mem_1_img = f'//*[@id="eael-team-member-2bac67d3"]/div/div[1]/figure/img'
     mem_1_name = (By.XPATH, f'//*[@id="eael-team-member-2bac67d3"]/div/div[2]/h3')
     mem_1_name_text = "Jemes Barber"
     mem_1_pos = (By.XPATH, f'//*[@id="eael-team-member-2bac67d3"]/div/div[2]/h4')
@@ -21,29 +21,23 @@ class TeamMember:
     mem_1_in = (By.XPATH, f'//*[@id="eael-team-member-2bac67d3"]/div/div[2]/ul/li[3]/a/i')
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(team_members)
+        self.browser.get(self.team_members)
 
     def testcase(self):
-
         with soft_assertions():
             with soft_assertions():
-                c = CheckText(self.browser)
-
                 with soft_assertions():
-                    c.check_widget_name(self.widget, self.widget_name)
-                    if check_doc:
-                        c.check_doc(self.doc_link, self.doc_name)
+                    self.check_widget_name(self.widget, self.widget_name)
+                    if self.check_doc:
+                        self.check_documents(self.doc_link, self.doc_name)
 
                 self.browser.execute_script("window.scrollTo(0, 4204)")
                 time.sleep(1)
-
-                if self.browser.find_element(*self.mem_1_img).is_displayed():
-                    print("IMAGE IS VISIBLE")
-                else:
-                    print("IMAGE IS NOT VISIBLE")
+                self.check_visibility(self.mem_1_img, "Team Member 1 image is not visible.")
 
                 assert_that(self.browser.find_element(*self.mem_1_name).text).is_equal_to(self.mem_1_name_text)
                 assert_that(self.browser.find_element(*self.mem_1_pos).text).is_equal_to(self.mem_1_pos_text)

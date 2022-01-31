@@ -1,9 +1,7 @@
-from selenium.webdriver import ActionChains
-
 from utils.config import *
 
 
-class Duplicator:
+class Duplicator(Helper):
     widget = '//*[@id="page"]/div[1]/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Post Duplicator'
@@ -21,29 +19,23 @@ class Duplicator:
                        f'/div/div/div/div/img'
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(duplicator)
-
-    def check_visibility(self, img):
-        if self.browser.find_element(By.XPATH, img).is_displayed():
-            assert_that(display).is_equal_to(1)
-        else:
-            assert_that(display).is_equal_to("Image is not visible")
+        self.browser.get(self.duplicator)
 
     def testcase(self):
-        c = CheckText(self.browser)
         with soft_assertions():
-            c.check_widget_name(self.widget, self.widget_name)
-            if check_doc:
-                c.check_doc(self.doc_link, self.doc_name)
+            self.check_widget_name(self.widget, self.widget_name)
+            if self.check_doc:
+                self.check_documents(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 1003)")
             time.sleep(1)
 
-            self.check_visibility(self.img_1)
+            self.check_visibility(self.img_1, "Image 1 is not visible.")
             self.browser.execute_script("window.scrollTo(0, 1938)")
-            self.check_visibility(self.img_2)
+            self.check_visibility(self.img_2, "Image 2 is not visible.")
             self.browser.execute_script("window.scrollTo(0, 2958)")
-            self.check_visibility(self.img_3)
+            self.check_visibility(self.img_3, "Image 3 is not visible.")

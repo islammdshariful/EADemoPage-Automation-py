@@ -1,9 +1,7 @@
-from selenium.webdriver import ActionChains
-
 from utils.config import *
 
 
-class PriceMenu:
+class PriceMenu(Helper):
     widget = '//*[@id="post-2953"]/div/div/div/div/section[1]/div[4]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Price Menu'
@@ -11,7 +9,7 @@ class PriceMenu:
                '/div/div/div[2]/div/div/div[3]/div/div/a/span/span'
     doc_name = "PRICE MENU"
 
-    menu_img = (By.XPATH, f'//*[@id="post-2953"]/div/div/div/div/section[3]/div/div/div[1]/div/div/div[1]/div/div/img')
+    menu_img = f'//*[@id="post-2953"]/div/div/div/div/section[3]/div/div/div[1]/div/div/div[1]/div/div/img'
     menu_title = (By.XPATH, f'//*[@id="post-2953"]/div/div/div/div/section[3]/div/div/div[1]/div/div/div[2]/div/h3')
     menu_title_text = "Breakfast Menu"
 
@@ -51,25 +49,22 @@ class PriceMenu:
     menu_list_5_price_text = "$8"
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(price_menu)
+        self.browser.get(self.price_menu)
 
     def testcase(self):
-        c = CheckText(self.browser)
         with soft_assertions():
-            c.check_widget_name(self.widget, self.widget_name)
-            if check_doc:
-                c.check_doc(self.doc_link, self.doc_name)
+            self.check_widget_name(self.widget, self.widget_name)
+            if self.check_doc:
+                self.check_documents(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 965)")
             time.sleep(1)
 
-            if self.browser.find_element(*self.menu_img).is_displayed():
-                assert_that(display).is_equal_to(1)
-            else:
-                assert_that(display).is_equal_to("Image is not visible")
+            self.check_visibility(self.menu_img, "Menu image is not visible.")
 
             assert_that(self.browser.find_element(*self.menu_list_1_name).text).\
                 is_equal_to(self.menu_list_1_name_text)

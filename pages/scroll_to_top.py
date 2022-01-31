@@ -1,12 +1,7 @@
-from selenium.common.exceptions import WebDriverException
-from selenium.webdriver import ActionChains
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-
 from utils.config import *
 
 
-class ScrollToTop:
+class ScrollToTop(Helper):
     widget = '//*[@id="post-271396"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Scroll to Top'
@@ -17,24 +12,21 @@ class ScrollToTop:
     scroll_to_top_btn = (By.XPATH, f'/html/body/div[5]/span')
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(scroll_to_top)
+        self.browser.get(self.scroll_to_top)
 
     def testcase(self):
-        c = CheckText(self.browser)
         with soft_assertions():
-            c.check_widget_name(self.widget, self.widget_name)
-            if check_doc:
-                c.check_doc(self.doc_link, self.doc_name)
+            self.check_widget_name(self.widget, self.widget_name)
+            if self.check_doc:
+                self.check_documents(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, document.body.scrollHeight)")
             time.sleep(1)
 
             element = self.browser.find_element(*self.scroll_to_top_btn)
             self.browser.execute_script("arguments[0].click();", element)
-            if self.browser.find_element(By.XPATH, self.widget).is_displayed():
-                assert_that(display).is_equal_to(1)
-            else:
-                assert_that(display).is_equal_to("Scroll to top not working.")
+            self.check_visibility(self.widget, "Scroll to top not working.")

@@ -3,7 +3,7 @@ from selenium.webdriver import ActionChains
 from utils.config import *
 
 
-class BetterdocsCategoryGrid:
+class BetterdocsCategoryGrid(Helper):
     widget = '//*[@id="post-255888"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'BetterDocs Category Grid'
@@ -33,16 +33,14 @@ class BetterdocsCategoryGrid:
     explore_more_icon_2 = f'//*[@id="eael-bd-cat-grid-36d08f5"]/div[1]/article[5]/div/div[3]/a/i'
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(betterdocs_category_grid)
+        self.browser.get(self.betterdocs_category_grid)
 
     def check_grid(self, icon, title, title_text, count, count_text, list, explore_btn, btn_text, btn_icon):
-        if self.browser.find_element(By.XPATH, icon).is_displayed():
-            assert_that(display).is_equal_to(1)
-        else:
-            assert_that(display).is_equal_to("Icon is not visible")
+        self.check_visibility(icon, "Icon is not visible")
 
         assert_that(self.browser.find_element(By.XPATH, title).text).is_equal_to(title_text)
         assert_that(self.browser.find_element(By.XPATH, count).text).is_equal_to(count_text)
@@ -50,10 +48,7 @@ class BetterdocsCategoryGrid:
         btn = self.browser.find_element(By.XPATH, explore_btn)
         cursor.move_to_element(btn).perform()
         assert_that(btn.text).is_equal_to(btn_text)
-        if self.browser.find_element(By.XPATH, btn_icon).is_displayed():
-            assert_that(display).is_equal_to(1)
-        else:
-            assert_that(display).is_equal_to("Button icon not showing.")
+        self.check_visibility(btn_icon, "Button icon is not visible")
 
         lst_text = self.browser.find_element(By.XPATH, list).text
         self.browser.find_element(By.XPATH, list).click()
@@ -68,11 +63,10 @@ class BetterdocsCategoryGrid:
         self.browser.execute_script("window.scrollTo(0, 1014)")
 
     def testcase(self):
-        c = CheckText(self.browser)
         with soft_assertions():
-            c.check_widget_name(self.widget, self.widget_name)
-            if check_doc:
-                c.check_doc(self.doc_link, self.doc_name)
+            self.check_widget_name(self.widget, self.widget_name)
+            if self.check_doc:
+                self.check_documents(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 1014)")
             self.check_grid(self.icon_1, self.title_1, self.title_text_1, self.count_1, self.count_1_text,

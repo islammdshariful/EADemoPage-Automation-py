@@ -91,10 +91,10 @@ from pages.woocommerce_product_collections import WoocommerceProductCollections
 # CONTENT ELEMENTS
 # ------------------------------------------------------------------------------------------------
 
-# def test_content_toggle(browser):
-#     ct = ContentToggle(browser)
-#     ct.load()
-#     ct.testcase()
+def test_content_toggle(browser):
+    ct = ContentToggle(browser)
+    ct.load()
+    ct.testcase()
 
 
 def test_advanced_menu(browser):
@@ -103,16 +103,16 @@ def test_advanced_menu(browser):
     am.testcase()
 
 
-# def test_off_canvas(browser):
-#     oc = OffCanvas(browser)
-#     oc.load()
-#     oc.testcase()
+def test_off_canvas(browser):
+    oc = OffCanvas(browser)
+    oc.load()
+    oc.testcase()
 
 
-# def test_feature_list(browser):
-#     fl = FeatureList(browser)
-#     fl.load()
-#     fl.testcase()
+def test_feature_list(browser):
+    fl = FeatureList(browser)
+    fl.load()
+    fl.testcase()
 
 
 def testimonial(browser):
@@ -269,10 +269,10 @@ def test_content_timeline(browser):
     ct.testcase()
 
 
-def test_dynamic_gallery(browser):
-    dg = DynamicGallery(browser)
-    dg.load()
-    dg.testcase()
+# def test_dynamic_gallery(browser):
+#     dg = DynamicGallery(browser)
+#     dg.load()
+#     dg.testcase()
 
 
 def test_post_grid(browser):

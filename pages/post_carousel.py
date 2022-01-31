@@ -1,9 +1,7 @@
-from selenium.webdriver import ActionChains
-
 from utils.config import *
 
 
-class PostCarousel:
+class PostCarousel(Helper):
     widget = '//*[@id="post-2944"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Post Carousel'
@@ -44,10 +42,11 @@ class PostCarousel:
     article_author = (By.XPATH, f'//*[@id="content"]/div[1]/div/div/h2')
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(post_carousel)
+        self.browser.get(self.post_carousel)
 
     def check_post(self, title, date):
         assert_that(self.browser.find_element(*self.article_title).text).is_equal_to(title)
@@ -56,20 +55,11 @@ class PostCarousel:
     def check_author(self, author):
         assert_that(self.browser.find_element(*self.article_author).text).is_equal_to(author)
 
-    # def check_visibility(self, img):
-    #     if self.browser.find_element(By.XPATH, img).is_displayed():
-    #         assert_that(display).is_equal_to(1)
-    #     else:
-    #         assert_that(display).is_equal_to("Image is not visible.")
-    #     cursor = ActionChains(self.browser)
-    #     post_media_1 = self.browser.find_element(By.XPATH, img)
-    #     cursor.move_to_element(post_media_1).perform()
-
     def check_widget_post(self, post, author, date, img, dot):
         p_title = self.browser.find_element(By.XPATH, post).text
         p_author = self.browser.find_element(By.XPATH, author).text
         p_date = self.browser.find_element(By.XPATH, date).text
-        # self.check_visibility(img)
+
         self.browser.find_element(By.XPATH, post).click()
         self.check_post(p_title, p_date)
         self.browser.back()
@@ -85,11 +75,10 @@ class PostCarousel:
         time.sleep(1)
 
     def testcase(self):
-        c = CheckText(self.browser)
         with soft_assertions():
-            c.check_widget_name(self.widget, self.widget_name)
-            if check_doc:
-                c.check_doc(self.doc_link, self.doc_name)
+            self.check_widget_name(self.widget, self.widget_name)
+            if self.check_doc:
+                self.check_documents(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 957)")
             time.sleep(1)

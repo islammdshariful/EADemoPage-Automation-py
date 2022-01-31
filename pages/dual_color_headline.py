@@ -4,7 +4,7 @@ from utils.config import *
 from selenium.webdriver.support.color import Color
 
 
-class DualColorHeading:
+class DualColorHeading(Helper):
     widget = '//*[@id="post-1511"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = "Dual Color Heading"
@@ -13,8 +13,7 @@ class DualColorHeading:
                '/div/div/div[2]/div/div/div[3]/div/div/a/span/span'
     doc_name = "DUAL COLOR HEADING"
 
-    icon = (By.XPATH, f'//*[@id="post-1511"]/div/div/div/div/section[2]/'
-                      f'div/div/div/div/div/div/div/div/span[1]/i')
+    icon = f'//*[@id="post-1511"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/span[1]/i'
     first_color = (By.XPATH, f'//*[@id="post-1511"]/div/div/div/div/section[2]'
                              f'/div/div/div/div/div/div/div/div/h2/span[1]')
     first_color_code = "#4f6592"
@@ -27,26 +26,21 @@ class DualColorHeading:
     des_text = "Add Icon with dual headings"
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(dual_color_heading)
+        self.browser.get(self.dual_color_heading)
 
     def testcase(self):
-        c = CheckText(self.browser)
-
         with soft_assertions():
-            c.check_widget_name(self.widget, self.widget_name)
-            if check_doc:
-                c.check_doc(self.DOC_LINK, self.doc_name)
+            self.check_widget_name(self.widget, self.widget_name)
+            if self.check_doc:
+                self.check_documents(self.DOC_LINK, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 908)")
             time.sleep(1)
-
-            if self.browser.find_element(*self.icon).is_displayed():
-                print("ICON IS VISIBLE")
-            else:
-                print("ICON IS NOT VISIBLE")
+            self.check_visibility(self.icon, "Icon is not visible.")
 
             first_rgb = self.browser.find_element(*self.first_color).value_of_css_property('color')
             hex_1 = Color.from_string(first_rgb).hex

@@ -1,11 +1,7 @@
-from selenium.webdriver import ActionChains
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-
 from utils.config import *
 
 
-class FluentForms:
+class FluentForms(Helper):
     widget = '//*[@id="post-260959"]/div/div/div/div/section[1]/div[4]/div/div[2]/div/div/section/div/div/div[2]' \
              '/div/div/div[1]/div/h2'
     widget_name = 'Fluent Forms'
@@ -33,17 +29,17 @@ class FluentForms:
     message_label_text = "YOUR MESSAGE"
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(fluent_forms)
+        self.browser.get(self.fluent_forms)
 
     def testcase(self):
-        c = CheckText(self.browser)
         with soft_assertions():
-            c.check_widget_name(self.widget, self.widget_name)
-            if check_doc:
-                c.check_doc(self.doc_link, self.doc_name)
+            self.check_widget_name(self.widget, self.widget_name)
+            if self.check_doc:
+                self.check_documents(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 997)")
             time.sleep(1)

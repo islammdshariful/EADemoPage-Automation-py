@@ -3,7 +3,7 @@ from selenium.webdriver import ActionChains
 from utils.config import *
 
 
-class CallToAction:
+class CallToAction(Helper):
     widget = '//*[@id="post-1512"]/div/div/div/div/section[1]/div[4]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Call To Action'
@@ -20,17 +20,17 @@ class CallToAction:
     button = (By.XPATH, f'//*[@id="post-1512"]/div/div/div/div/section[3]/div/div/div[1]/div/div/div/div/div/a')
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(call_to_action)
+        self.browser.get(self.call_to_action)
 
     def testcase(self):
-        c = CheckText(self.browser)
         with soft_assertions():
-            c.check_widget_name(self.widget, self.widget_name)
-            if check_doc:
-                c.check_doc(self.doc_link, self.doc_name)
+            self.check_widget_name(self.widget, self.widget_name)
+            if self.check_doc:
+                self.check_documents(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 1020)")
             time.sleep(1)

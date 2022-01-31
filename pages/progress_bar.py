@@ -1,10 +1,8 @@
-from selenium.webdriver import ActionChains
-
 from utils.config import *
 from selenium.webdriver.support.color import Color
 
 
-class ProgressBar:
+class ProgressBar(Helper):
     widget = '//*[@id="post-3802"]/div/div/div/div/section[1]/div[4]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Progress Bar'
@@ -26,17 +24,17 @@ class ProgressBar:
     progress_bar_fill_color = "#6a61fb"
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(progress_bar)
+        self.browser.get(self.progress_bar)
 
     def testcase(self):
-        c = CheckText(self.browser)
         with soft_assertions():
-            c.check_widget_name(self.widget, self.widget_name)
-            if check_doc:
-                c.check_doc(self.doc_link, self.doc_name)
+            self.check_widget_name(self.widget, self.widget_name)
+            if self.check_doc:
+                self.check_documents(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 1037)")
             assert_that(self.browser.find_element(*self.name).text).is_equal_to(self.name_text)

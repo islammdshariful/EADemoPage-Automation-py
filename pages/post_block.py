@@ -3,7 +3,7 @@ from selenium.webdriver import ActionChains
 from utils.config import *
 
 
-class PostBlock:
+class PostBlock(Helper):
     widget = '//*[@id="post-1347"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Post Block'
@@ -34,10 +34,11 @@ class PostBlock:
     article_author = (By.XPATH, f'//*[@id="content"]/div[1]/div/div/h2')
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(post_block)
+        self.browser.get(self.post_block)
 
     def check_post(self, title, date):
         assert_that(self.browser.find_element(*self.article_title).text).is_equal_to(title)
@@ -46,22 +47,16 @@ class PostBlock:
     def check_author(self, author):
         assert_that(self.browser.find_element(*self.article_author).text).is_equal_to(author)
 
-    def check_visibility(self, des, media, icon):
-        if self.browser.find_element(By.XPATH, des).is_displayed():
-            assert_that(display).is_equal_to(1)
-        else:
-            assert_that(display).is_equal_to("Description is not visible.")
+    def check_visibility_of_blocks(self, des, media, icon):
+        self.check_visibility(des, "Description is not visible.")
         cursor = ActionChains(self.browser)
         post_media_1 = self.browser.find_element(By.XPATH, media)
         cursor.move_to_element(post_media_1).perform()
         time.sleep(.5)
-        if self.browser.find_element(By.XPATH, icon).is_displayed():
-            assert_that(display).is_equal_to(1)
-        else:
-            assert_that(display).is_equal_to("Icon is not visible.")
+        self.check_visibility(icon, "Description is not visible.")
 
     def check_widget_post(self, post, author, des, date, media, icon):
-        self.check_visibility(des, media, icon)
+        self.check_visibility_of_blocks(des, media, icon)
         p_title = self.browser.find_element(By.XPATH, post).text
         p_author = self.browser.find_element(By.XPATH, author).text
         p_date = self.browser.find_element(By.XPATH, date).text
@@ -79,11 +74,10 @@ class PostBlock:
         time.sleep(.5)
 
     def testcase(self):
-        c = CheckText(self.browser)
         with soft_assertions():
-            c.check_widget_name(self.widget, self.widget_name)
-            if check_doc:
-                c.check_doc(self.doc_link, self.doc_name)
+            self.check_widget_name(self.widget, self.widget_name)
+            if self.check_doc:
+                self.check_documents(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 1150)")
 

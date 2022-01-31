@@ -5,7 +5,7 @@ from selenium.webdriver import ActionChains
 from utils.config import *
 
 
-class OffCanvas:
+class OffCanvas(Helper):
     widget = '//*[@id="post-3926"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Offcanvas'
@@ -17,7 +17,7 @@ class OffCanvas:
                            f'/div/div/div/div/span[2]')
     right_side = (By.XPATH, f'//*[@id="post-3926"]/div/div/div/div/section[2]/div/div/div/div/div/div[3]'
                             f'/div/div/div/div/span[2]')
-    left_img = (By.XPATH, f'/html/body/div[10]/div/div/div/section/div/div/div/div/div/div[1]/div/div/img')
+    left_img = f'/html/body/div[10]/div/div/div/section/div/div/div/div/div/div[1]/div/div/img'
     left_home = (By.XPATH, f'/html/body/div[10]/div/div/div/section/div/div/div/div/div/div[2]/div/ul/li[1]/a/span')
     left_about = (By.XPATH, f'/html/body/div[10]/div/div/div/section/div/div/div/div/div/div[2]/div/ul/li[2]')
     left_service = (By.XPATH, f'/html/body/div[10]/div/div/div/section/div/div/div/div/div/div[2]/div/ul/li[3]')
@@ -27,7 +27,7 @@ class OffCanvas:
     left_button = (By.XPATH, f'/html/body/div[10]/div/div/div/section/div/div/div/div/div/div[3]/div/div/a/span/span')
     blank = (By.XPATH, f'/html/body/div[12]')
 
-    right_img = (By.XPATH, f'/html/body/div[9]/div/div/div/section/div/div/div/div/div/div[1]/div/div/img')
+    right_img = f'/html/body/div[9]/div/div/div/section/div/div/div/div/div/div[1]/div/div/img'
     right_home = (By.XPATH, f'/html/body/div[9]/div/div/div/section/div/div/div/div/div/div[2]/div/ul/li[1]/a/span')
     right_about = (By.XPATH, f'/html/body/div[9]/div/div/div/section/div/div/div/div/div/div[2]/div/ul/li[2]')
     right_service = (By.XPATH, f'/html/body/div[9]/div/div/div/section/div/div/div/div/div/div[2]/div/ul/li[3]')
@@ -37,88 +37,69 @@ class OffCanvas:
     right_button = (By.XPATH, f'/html/body/div[9]/div/div/div/section/div/div/div/div/div/div[3]/div/div/a/span/span')
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(offcanvas_content)
+        self.browser.get(self.offcanvas_content)
 
     def testcase(self):
-        c = CheckText(self.browser)
-        # with soft_assertions():
-        c.check_widget_name(self.widget, self.widget_name)
-        if check_doc:
-            c.check_doc(self.doc_link, self.doc_name)
+        with soft_assertions():
+            self.check_widget_name(self.widget, self.widget_name)
+            if self.check_doc:
+                self.check_documents(self.doc_link, self.doc_name)
 
-        self.browser.execute_script("window.scrollTo(0, 958)")
-        time.sleep(1)
+            self.browser.execute_script("window.scrollTo(0, 958)")
+            time.sleep(1)
 
-        # Left
-        self.browser.find_element(*self.left_side).click()
-        time.sleep(1)
-        cursor = ActionChains(self.browser)
-        l_home = self.browser.find_element(*self.left_home)
-        l_about = self.browser.find_element(*self.left_about)
-        l_service = self.browser.find_element(*self.left_service)
-        l_blog = self.browser.find_element(*self.left_blog)
-        l_faq = self.browser.find_element(*self.left_faq)
-        l_contact = self.browser.find_element(*self.left_contact)
-        l_button = self.browser.find_element(*self.left_button)
+            # Left
+            self.browser.find_element(*self.left_side).click()
+            time.sleep(1)
+            cursor = ActionChains(self.browser)
+            l_home = self.browser.find_element(*self.left_home)
+            l_about = self.browser.find_element(*self.left_about)
+            l_service = self.browser.find_element(*self.left_service)
+            l_blog = self.browser.find_element(*self.left_blog)
+            l_faq = self.browser.find_element(*self.left_faq)
+            l_contact = self.browser.find_element(*self.left_contact)
+            l_button = self.browser.find_element(*self.left_button)
 
-        cursor.move_to_element(l_home).perform()
-        # cursor.reset_actions()
-        cursor.move_to_element(l_about).perform()
-        # cursor.reset_actions()
-        cursor.move_to_element(l_service).perform()
-        # cursor.reset_actions()
-        cursor.move_to_element(l_blog).perform()
-        # cursor.reset_actions()
-        cursor.move_to_element(l_faq).perform()
-        # cursor.reset_actions()
-        cursor.move_to_element(l_contact).perform()
-        # cursor.reset_actions()
-        cursor.move_to_element(l_button).perform()
-        cursor.reset_actions()
+            cursor.move_to_element(l_home).perform()
+            cursor.move_to_element(l_about).perform()
+            cursor.move_to_element(l_service).perform()
+            cursor.move_to_element(l_blog).perform()
+            cursor.move_to_element(l_faq).perform()
+            cursor.move_to_element(l_contact).perform()
+            cursor.move_to_element(l_button).perform()
+            cursor.reset_actions()
 
-        if self.browser.find_element(*self.left_img).is_displayed():
-            assert_that(display).is_equal_to(1)
-        else:
-            assert_that(display).is_equal_to(0)
+            self.check_visibility(self.left_img, "Left Image is not visible.")
 
-        self.browser.find_element(*self.blank).click()
+            self.browser.find_element(*self.blank).click()
 
-        # Right
-        self.browser.find_element(*self.right_side).click()
-        time.sleep(1)
-        cursor = ActionChains(self.browser)
-        r_home = self.browser.find_element(*self.right_home)
-        r_about = self.browser.find_element(*self.right_about)
-        r_service = self.browser.find_element(*self.right_service)
-        r_blog = self.browser.find_element(*self.right_blog)
-        r_faq = self.browser.find_element(*self.right_faq)
-        r_contact = self.browser.find_element(*self.right_contact)
-        r_button = self.browser.find_element(*self.right_button)
+            # Right
+            self.browser.find_element(*self.right_side).click()
+            time.sleep(1)
+            cursor = ActionChains(self.browser)
+            r_home = self.browser.find_element(*self.right_home)
+            r_about = self.browser.find_element(*self.right_about)
+            r_service = self.browser.find_element(*self.right_service)
+            r_blog = self.browser.find_element(*self.right_blog)
+            r_faq = self.browser.find_element(*self.right_faq)
+            r_contact = self.browser.find_element(*self.right_contact)
+            r_button = self.browser.find_element(*self.right_button)
 
-        cursor.move_to_element(r_home).perform()
-        # cursor.reset_actions()
-        cursor.move_to_element(r_about).perform()
-        # cursor.reset_actions()
-        cursor.move_to_element(r_service).perform()
-        # cursor.reset_actions()
-        cursor.move_to_element(r_blog).perform()
-        # cursor.reset_actions()
-        cursor.move_to_element(r_faq).perform()
-        # cursor.reset_actions()
-        cursor.move_to_element(r_contact).perform()
-        # cursor.reset_actions()
-        cursor.move_to_element(r_button).perform()
-        cursor.reset_actions()
+            cursor.move_to_element(r_home).perform()
+            cursor.move_to_element(r_about).perform()
+            cursor.move_to_element(r_service).perform()
+            cursor.move_to_element(r_blog).perform()
+            cursor.move_to_element(r_faq).perform()
+            cursor.move_to_element(r_contact).perform()
+            cursor.move_to_element(r_button).perform()
 
-        if self.browser.find_element(*self.right_img).is_displayed():
-            assert_that(display).is_equal_to(1)
-        else:
-            assert_that(display).is_equal_to(0)
+            self.check_visibility(self.right_img, "Right image is not visible.")
 
-        self.browser.find_element(*self.blank).click()
+            self.browser.find_element(*self.blank).click()
 
 
 

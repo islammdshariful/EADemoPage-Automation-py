@@ -3,7 +3,7 @@ from selenium.webdriver import ActionChains
 from utils.config import *
 
 
-class ContentToggle:
+class ContentToggle(Helper):
     widget = '//*[@id="post-2605"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Content Toggle'
@@ -24,8 +24,8 @@ class ContentToggle:
     p_1_month = (By.XPATH, f'//*[@id="eael-toggle-container-6bee69bf"]/div[2]/div[1]/div/div/section'
                            f'/div/div/div/div/div/div/div/div/div/div[1]/span[2]')
     p_1_month_text = "Permonth"
-    p_1_item_1_icon = (By.XPATH, f'//*[@id="eael-toggle-container-6bee69bf"]/div[2]/div[1]/div/div/section'
-                                 f'/div/div/div/div/div/div/div/div/div/div[3]/ul/li[1]/span/i')
+    p_1_item_1_icon = f'//*[@id="eael-toggle-container-6bee69bf"]/div[2]/div[1]/div/div/section' \
+                                 f'/div/div/div/div/div/div/div/div/div/div[3]/ul/li[1]/span/i'
     p_1_item_1 = (By.XPATH, f'//*[@id="eael-toggle-container-6bee69bf"]/div[2]/div[1]/div/div/section/div/div/div/'
                             f'div/div/div/div/div/div/div[3]/ul/li[1]')
     p_1_item_1_text = "Unlimited calls"
@@ -58,8 +58,8 @@ class ContentToggle:
     s_1_month = (By.XPATH, f'//*[@id="eael-toggle-container-6bee69bf"]/div[2]/div[2]/div/div/section'
                            f'/div/div/div/div/div/div/div/div/div/div[1]/span[2]')
     s_1_month_text = "Permonth"
-    s_1_item_1_icon = (By.XPATH, f'//*[@id="eael-toggle-container-6bee69bf"]/div[2]/div[2]/div/div/section'
-                                 f'/div/div/div/div/div/div/div/div/div/div[3]/ul/li[1]/span/i')
+    s_1_item_1_icon = f'//*[@id="eael-toggle-container-6bee69bf"]/div[2]/div[2]/div/div/section' \
+                                 f'/div/div/div/div/div/div/div/div/div/div[3]/ul/li[1]/span/i'
     s_1_item_1 = (By.XPATH, f'//*[@id="eael-toggle-container-6bee69bf"]/div[2]/div[2]/div/div/section/div/div/div/'
                             f'div/div/div/div/div/div/div[3]/ul/li[1]')
     s_1_item_1_text = "Unlimited calls"
@@ -86,17 +86,17 @@ class ContentToggle:
     close_scrips_chat_btn = (By.XPATH, f'//*[@id="crisp-chatbox"]/div/a/span[1]/span/span[1]/span[1]/span')
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(content_toggle)
+        self.browser.get(self.content_toggle)
 
     def testcase(self):
-        c = CheckText(self.browser)
         with soft_assertions():
-            c.check_widget_name(self.widget, self.widget_name)
-            if check_doc:
-                c.check_doc(self.doc_link, self.doc_name)
+            self.check_widget_name(self.widget, self.widget_name)
+            if self.check_doc:
+                self.check_documents(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 1967)")
             time.sleep(1)
@@ -116,10 +116,7 @@ class ContentToggle:
             assert_that(self.browser.find_element(*self.p_1_price).text).is_equal_to(self.p_1_price_text)
             assert_that(self.browser.find_element(*self.p_1_month).text).is_equal_to(self.p_1_month_text)
 
-            if self.browser.find_element(*self.p_1_item_1_icon).is_displayed():
-                assert_that(display).is_equal_to(1)
-            else:
-                assert_that(display).is_equal_to(0)
+            self.check_visibility(self.p_1_item_1_icon, "Content Toggle page 1 is not visible.")
 
             assert_that(self.browser.find_element(*self.p_1_item_1).text).is_equal_to(self.p_1_item_1_text)
             assert_that(self.browser.find_element(*self.p_1_item_2).text).is_equal_to(self.p_1_item_2_text)
@@ -139,10 +136,7 @@ class ContentToggle:
             assert_that(self.browser.find_element(*self.s_1_price).text).is_equal_to(self.s_1_price_text)
             assert_that(self.browser.find_element(*self.s_1_month).text).is_equal_to(self.s_1_month_text)
 
-            if self.browser.find_element(*self.s_1_item_1_icon).is_displayed():
-                assert_that(display).is_equal_to(1)
-            else:
-                assert_that(display).is_equal_to(0)
+            self.check_visibility(self.s_1_item_1_icon, "Content Toggle page 2 is not visible.")
 
             assert_that(self.browser.find_element(*self.s_1_item_1).text).is_equal_to(self.s_1_item_1_text)
             assert_that(self.browser.find_element(*self.s_1_item_2).text).is_equal_to(self.s_1_item_2_text)
@@ -151,5 +145,6 @@ class ContentToggle:
             assert_that(self.browser.find_element(*self.s_1_item_5).text).is_equal_to(self.s_1_item_5_text)
 
             cursor.move_to_element(s_btn).perform()
+
 
 

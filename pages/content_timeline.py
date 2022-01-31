@@ -1,10 +1,8 @@
-from selenium.webdriver import ActionChains
-
 from utils.config import *
 from selenium.webdriver.support.color import Color
 
 
-class ContentTimeline:
+class ContentTimeline(Helper):
     widget = '//*[@id="post-1804"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Content Timeline'
@@ -47,48 +45,42 @@ class ContentTimeline:
     post_4_icon_background_code = "#7f41ff"
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(content_timeline)
+        self.browser.get(self.content_timeline)
 
     def check_post(self, title, title_text, post_des, des_text, date, date_text):
         assert_that(self.browser.find_element(By.XPATH, title).text).is_equal_to(title_text)
         assert_that(self.browser.find_element(By.XPATH, post_des).text).is_equal_to(des_text)
         assert_that(self.browser.find_element(By.XPATH, date).text).is_equal_to(date_text)
 
-    def check_visibility(self, icon):
-        if self.browser.find_element(By.XPATH, icon).is_displayed():
-            assert_that(display).is_equal_to(1)
-        else:
-            assert_that(display).is_equal_to("Post Image is not showing")
-
     def testcase(self):
-        c = CheckText(self.browser)
         with soft_assertions():
-            c.check_widget_name(self.widget, self.widget_name)
-            if check_doc:
-                c.check_doc(self.doc_link, self.doc_name)
+            self.check_widget_name(self.widget, self.widget_name)
+            if self.check_doc:
+                self.check_documents(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 1004)")
             time.sleep(1)
 
-            self.check_visibility(self.post_1_icon)
+            self.check_visibility(self.post_1_icon, "Post 1 icon not visible")
             self.check_post(self.post_1_title, self.post_1_title_text, self.post_1_des,
                             self.post_1_des_text, self.post_1_date, self.post_1_date_text)
 
-            self.check_visibility(self.post_2_icon)
+            self.check_visibility(self.post_2_icon, "Post 2 icon not visible")
             self.browser.execute_script("window.scrollTo(0, 1393)")
 
             self.check_post(self.post_2_title, self.post_2_title_text, self.post_2_des,
                             self.post_2_des_text, self.post_2_date, self.post_2_date_text)
 
-            self.check_visibility(self.post_3_icon)
+            self.check_visibility(self.post_3_icon, "Post 3 icon not visible")
             self.browser.execute_script("window.scrollTo(0, 1554)")
             self.check_post(self.post_3_title, self.post_3_title_text, self.post_3_des,
                             self.post_3_des_text, self.post_3_date, self.post_3_date_text)
 
-            self.check_visibility(self.post_4_icon)
+            self.check_visibility(self.post_4_icon, "Post 4 icon not visible")
             self.browser.execute_script("window.scrollTo(0, 1677)")
             self.check_post(self.post_4_title, self.post_4_title_text, self.post_4_des,
                             self.post_4_des_text, self.post_4_date, self.post_4_date_text)

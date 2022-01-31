@@ -3,7 +3,7 @@ from selenium.webdriver import ActionChains
 from utils.config import *
 
 
-class PostTimeline:
+class PostTimeline(Helper):
     widget = '//*[@id="post-27"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Post Timeline'
@@ -46,61 +46,44 @@ class PostTimeline:
     load_more_btn = (By.XPATH, f'//*[@id="eael-load-more-btn-3f78c0af"]/span')
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(post_timeline)
+        self.browser.get(self.post_timeline)
 
     def check_post(self, title, date):
         assert_that(self.browser.find_element(*self.article_title).text.upper()).is_equal_to(title)
         assert_that(self.browser.find_element(*self.article_date).text).is_equal_to(date)
 
-    def check_visibility(self, des, bullet):
-        if self.browser.find_element(By.XPATH, des).is_displayed():
-            assert_that(display).is_equal_to(1)
-        else:
-            assert_that(display).is_equal_to("Post description is not showing")
-
-        if self.browser.find_element(By.XPATH, bullet).is_displayed():
-            assert_that(display).is_equal_to(1)
-        else:
-            assert_that(display).is_equal_to("Post bullet is not showing")
+    def check_visibility_of_post(self, des, bullet):
+        self.check_visibility(des, "Post description is not visible.")
+        self.check_visibility(bullet, "Post bullet is not visible.")
 
     def check_widget_post(self, post, date, des, bullet):
         cursor = ActionChains(self.browser)
         post_title = self.browser.find_element(By.XPATH, post)
+        post_date = self.browser.find_element(By.XPATH, date)
 
         cursor.move_to_element(post_title).perform()
-        self.check_visibility(des, bullet)
+        self.check_visibility_of_post(des, bullet)
 
         p_title = post_title.text
-        p_date = ""
-        if self.browser.find_element(By.XPATH, date).is_displayed():
-            p_date = self.browser.find_element(By.XPATH, date).text
-        else:
-            assert_that(display).is_equal_to("Post date not showing")
-
+        p_date = post_date.text
+        self.check_visibility(date, "Post date is not visible.")
         post_title.click()
         self.check_post(p_title, p_date)
         self.browser.back()
         time.sleep(1)
 
     def testcase(self):
-        c = CheckText(self.browser)
         with soft_assertions():
-            c.check_widget_name(self.widget, self.widget_name)
-            if check_doc:
-                c.check_doc(self.doc_link, self.doc_name)
+            self.check_widget_name(self.widget, self.widget_name)
+            if self.check_doc:
+                self.check_documents(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 989)")
             time.sleep(1)
-
-            cursor = ActionChains(self.browser)
-
-            # post_1 = self.browser.find_element(*self.post_1_title)
-            # post_2 = self.browser.find_element(*self.post_2_title)
-            # post_3 = self.browser.find_element(*self.post_3_title)
-            # post_4 = self.browser.find_element(*self.post_4_title)
 
             self.check_widget_post(self.post_1_title, self.post_1_date, self.post_1_des, self.post_1_bullet)
             self.check_widget_post(self.post_2_title, self.post_2_date, self.post_2_des, self.post_2_bullet)

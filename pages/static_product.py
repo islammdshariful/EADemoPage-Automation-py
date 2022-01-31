@@ -3,11 +3,11 @@ from selenium.webdriver import ActionChains
 from utils.config import *
 
 
-class StaticProduct:
+class StaticProduct(Helper):
     widget = '//*[@id="post-1521"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = "Static Product"
-    DOC_LINK = '//*[@id="post-1521"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/' \
+    doc_link = '//*[@id="post-1521"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/' \
                'section/div/div/div[2]/div/div/div[3]/div/div/a/span/span'
     doc_name = "STATIC PRODUCT"
 
@@ -24,25 +24,25 @@ class StaticProduct:
     second_product_name = (By.XPATH, f'//*[@id="eael-static-product-43a6a972"]/div[2]/h2/a')
     second_product_name_text = "Creative Artist"
     second_product_des = (By.XPATH, f'//*[@id="eael-static-product-43a6a972"]/div[2]/p')
-    second_product_des_text = "Netflix has struck a deal set permanent production base Shepperton Studios from Alien Mary Poppins Returns"
+    second_product_des_text = "Netflix has struck a deal set permanent production base Shepperton Studios from Alien " \
+                              "Mary Poppins Returns"
     second_product_button = (By.XPATH, f'//*[@id="eael-static-product-43a6a972"]/div[2]/div/a/span')
     second_product_button_text = "Explore More"
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(static_product)
+        self.browser.get(self.static_product)
 
     def testcase(self):
 
         with soft_assertions():
-            c = CheckText(self.browser)
-
             with soft_assertions():
-                c.check_widget_name(self.widget, self.widget_name)
-                if check_doc:
-                    c.check_doc(self.DOC_LINK, self.doc_name)
+                self.check_widget_name(self.widget, self.widget_name)
+                if self.check_doc:
+                    self.check_documents(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 1126)")
             time.sleep(1)

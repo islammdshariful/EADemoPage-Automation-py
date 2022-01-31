@@ -3,7 +3,7 @@ from selenium.webdriver import ActionChains
 from utils.config import *
 
 
-class LearndashCourseList:
+class LearndashCourseList(Helper):
     widget = '//*[@id="post-255262"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'LearnDash Course List'
@@ -48,10 +48,11 @@ class LearndashCourseList:
     course_price_text_3 = "$65"
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(learndash_course_list)
+        self.browser.get(self.learndash_course_list)
 
     def course(self, title, title_text, des, des_text, price, price_text, img):
         cursor = ActionChains(self.browser)
@@ -61,17 +62,13 @@ class LearndashCourseList:
         assert_that(self.browser.find_element(By.XPATH, des).text).is_equal_to(des_text)
         assert_that(self.browser.find_element(By.XPATH, price).text).is_equal_to(price_text)
 
-        if self.browser.find_element(By.XPATH, img).is_displayed():
-            assert_that(display).is_equal_to(1)
-        else:
-            assert_that(display).is_equal_to("Image is not visible")
+        self.check_visibility(img, "Image is not visible")
 
     def testcase(self):
-        c = CheckText(self.browser)
         with soft_assertions():
-            c.check_widget_name(self.widget, self.widget_name)
-            if check_doc:
-                c.check_doc(self.doc_link, self.doc_name)
+            self.check_widget_name(self.widget, self.widget_name)
+            if self.check_doc:
+                self.check_documents(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 946)")
             self.course(self.course_title_1, self.course_title_text_1, self.course_des_1, self.course_des_text,

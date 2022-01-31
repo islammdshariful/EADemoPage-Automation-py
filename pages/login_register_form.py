@@ -1,9 +1,7 @@
-from selenium.webdriver import ActionChains
-
 from utils.config import *
 
 
-class LoginRegisterForm:
+class LoginRegisterForm(Helper):
     widget = '//*[@id="post-262414"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Login Register Form'
@@ -11,7 +9,7 @@ class LoginRegisterForm:
                '/div/div/div[2]/div/div/div[5]/div/div/a/span/span'
     doc_name = "LOGIN | REGISTER FORM"
 
-    reg_img = (By.XPATH, f'//*[@id="eael-register-form-wrapper"]/div/div[1]')
+    reg_img = f'//*[@id="eael-register-form-wrapper"]/div/div[1]'
     reg_title = (By.XPATH, f'//*[@id="eael-register-form-wrapper"]/div/div[2]/div/div/h4')
 
     reg_fname_field = (By.XPATH, f'//*[@id="form-field-first_name"]')
@@ -29,7 +27,7 @@ class LoginRegisterForm:
     create_acc_btn = (By.XPATH, f'//*[@id="eael-register-submit"]')
     reg_recaptcha_iframe = (By.XPATH, f'//*[@id="register-recaptcha-node-be27d56"]/div/div/iframe')
 
-    login_img = (By.XPATH, f'//*[@id="eael-login-form-wrapper"]/div/div/div/div/img')
+    login_img = f'//*[@id="eael-login-form-wrapper"]/div/div/div/div/img'
     login_username_label = (By.XPATH, f'//*[@id="eael-login-form"]/div[1]/label')
     login_username_field = (By.XPATH, f'//*[@id="eael-user-login"]')
     login_pass_label = (By.XPATH, f'//*[@id="eael-login-form"]/div[2]/label')
@@ -61,17 +59,17 @@ class LoginRegisterForm:
     login_forget_label_text = "Forgot password?"
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(login_register_form)
+        self.browser.get(self.login_register_form)
 
     def testcase(self):
-        c = CheckText(self.browser)
         with soft_assertions():
-            c.check_widget_name(self.widget, self.widget_name)
-            if check_doc:
-                c.check_doc(self.doc_link, self.doc_name)
+            self.check_widget_name(self.widget, self.widget_name)
+            if self.check_doc:
+                self.check_documents(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 1063)")
             time.sleep(1)
@@ -80,10 +78,8 @@ class LoginRegisterForm:
                 is_equal_to(self.reg_have_acc_label_text)
             self.browser.find_element(*self.reg_have_acc_label).click()
             time.sleep(1)
-            if self.browser.find_element(*self.login_img).is_displayed():
-                assert_that(display).is_equal_to(1)
-            else:
-                assert_that(display).is_equal_to("Image not visible.")
+            self.check_visibility(self.login_img, "Login Image not visible.")
+
             assert_that(self.browser.find_element(*self.reg_login_label).text).is_equal_to(self.reg_login_label_Text)
             assert_that(self.browser.find_element(*self.login_username_label).text).\
                 is_equal_to(self.login_username_label_text)
@@ -104,10 +100,7 @@ class LoginRegisterForm:
             assert_that(self.browser.find_element(*self.reg_con_pass_field).get_attribute("placeholder")).\
                 is_equal_to(self.reg_con_pass_placeholder_text)
 
-            if self.browser.find_element(*self.reg_img).is_displayed():
-                assert_that(display).is_equal_to(1)
-            else:
-                assert_that(display).is_equal_to("Image not visible.")
+            self.check_visibility(self.reg_img, " Registration Image not visible.")
 
             self.browser.find_element(*self.reg_fname_field).send_keys("Tester")
             self.browser.find_element(*self.reg_lname_field).send_keys("Bhaai")

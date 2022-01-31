@@ -1,11 +1,7 @@
-from selenium.webdriver import ActionChains
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-
 from utils.config import *
 
 
-class AdvancedSearch:
+class AdvancedSearch(Helper):
     widget = '//*[@id="post-271377"]/div/div/div/div/section[1]/div[4]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Advanced Search'
@@ -22,7 +18,7 @@ class AdvancedSearch:
     load_more = (By.XPATH, f'//*[@id="eael-advanced-search-widget-4ccceaa9"]/div/div[5]/a')
     search_title = (By.XPATH, f'//*[@id="eael-advanced-search-widget-4ccceaa9"]/div/div[3]/a[1]/div[2]/h4')
     search_result = f'//*[@id="eael-advanced-search-widget-4ccceaa9"]/div/div[3]/a[1]/div[2]/h4'
-    search_description = (By.XPATH, f'//*[@id="eael-advanced-search-widget-4ccceaa9"]/div/div[3]/a[1]/div[2]/p')
+    search_description = f'//*[@id="eael-advanced-search-widget-4ccceaa9"]/div/div[3]/a[1]/div[2]/p'
 
     # Article
     article_title = (By.XPATH, f'//*[@id="page"]/div[1]/div/section/div/div/div[1]/div/div/section[1]'
@@ -31,17 +27,17 @@ class AdvancedSearch:
                               f'/div/div/div/div/div/div[2]/div/ul/li[1]/a/span[2]')
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(advanced_search)
+        self.browser.get(self.advanced_search)
 
     def testcase(self):
-        c = CheckText(self.browser)
         with soft_assertions():
-            c.check_widget_name(self.widget, self.widget_name)
-            if check_doc:
-                c.check_doc(self.doc_link, self.doc_name)
+            self.check_widget_name(self.widget, self.widget_name)
+            if self.check_doc:
+                self.check_documents(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 1481)")
             time.sleep(1)
@@ -62,10 +58,7 @@ class AdvancedSearch:
             time.sleep(1)
             self.browser.find_element(*self.load_more).click()
             time.sleep(1)
-            if self.browser.find_element(*self.search_description).is_displayed():
-                assert_that(display).is_equal_to(1)
-            else:
-                assert_that(display).is_equal_to("Description not showing")
+            self.check_visibility(self.search_description, "Search description not visible.")
             title = self.browser.find_element(*self.search_title).text
             self.browser.find_element(*self.search_title).click()
             assert_that(self.browser.find_element(*self.article_title).text).is_equal_to(title)

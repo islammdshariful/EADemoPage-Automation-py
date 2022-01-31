@@ -3,7 +3,7 @@ from selenium.webdriver import ActionChains
 from utils.config import *
 
 
-class ImageHotspots:
+class ImageHotspots(Helper):
     widget = '//*[@id="post-2956"]/div/div/div/div/section[1]/div[4]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Image Hotspot'
@@ -20,10 +20,11 @@ class ImageHotspots:
     hotspot_2_title_text = "T-shirt"
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(image_hotspots)
+        self.browser.get(self.image_hotspots)
 
     def hotspot(self, hotspot, title, title_name):
         cursor = ActionChains(self.browser)
@@ -33,14 +34,13 @@ class ImageHotspots:
         if self.browser.find_element(By.XPATH, title).is_displayed():
             assert_that(self.browser.find_element(By.XPATH, title).text).is_equal_to(title_name)
         else:
-            assert_that(display).is_equal_to("Hotspot not working")
+            assert_that(1).is_equal_to("Hotspot not working")
 
     def testcase(self):
-        c = CheckText(self.browser)
         with soft_assertions():
-            c.check_widget_name(self.widget, self.widget_name)
-            if check_doc:
-                c.check_doc(self.doc_link, self.doc_name)
+            self.check_widget_name(self.widget, self.widget_name)
+            if self.check_doc:
+                self.check_documents(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 1077)")
             time.sleep(1)

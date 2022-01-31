@@ -3,7 +3,7 @@ from selenium.webdriver import ActionChains
 from utils.config import *
 
 
-class DataTable:
+class DataTable(Helper):
     widget = '//*[@id="post-1836"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section[1]' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Data Table'
@@ -155,10 +155,11 @@ class DataTable:
     tbody_tr10_td6_text = "$736"
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(data_table)
+        self.browser.get(self.data_table)
 
     def first_page_list(self):
         with soft_assertions():
@@ -251,11 +252,10 @@ class DataTable:
             assert_that(self.browser.find_element(*self.tbody_tr10_td6).text).is_equal_to(self.tbody_tr1_td6_text)
 
     def testcase(self):
-        c = CheckText(self.browser)
         with soft_assertions():
-            c.check_widget_name(self.widget, self.widget_name)
-            if check_doc:
-                c.check_doc(self.doc_link, self.doc_name)
+            self.check_widget_name(self.widget, self.widget_name)
+            if self.check_doc:
+                self.check_documents(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 3971)")
             time.sleep(1)

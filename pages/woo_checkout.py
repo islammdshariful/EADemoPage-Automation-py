@@ -1,9 +1,7 @@
-from selenium.webdriver import ActionChains
-
 from utils.config import *
 
 
-class WooCheckout:
+class WooCheckout(Helper):
     widget = '//*[@id="post-259772"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Woo Checkout'
@@ -92,7 +90,7 @@ class WooCheckout:
 
     shipping_label = (By.XPATH, f'//*[@id="customer_details"]/div[1]/div[1]/h3')
     shipping_fname_label = (By.XPATH, f'//*[@id="shipping_first_name_field"]/label')
-    shipping_fname_field = (By.XPATH, f'//*[@id="shipping_first_name"]')
+    shipping_fname_field = f'//*[@id="shipping_first_name"]'
     shipping_lname_label = (By.XPATH, f'//*[@id="shipping_last_name_field"]/label')
     shipping_lname_field = (By.XPATH, f'//*[@id="shipping_last_name"]')
     shipping_com_label = (By.XPATH, f'//*[@id="shipping_company_field"]/label')
@@ -257,25 +255,16 @@ class WooCheckout:
     shop_page_text = "Shop"
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(woo_checkout)
+        self.browser.get(self.woo_checkout)
 
     def check_cart_item(self, title, title_text, price, price_text, image):
         assert_that(self.browser.find_element(By.XPATH, title).text).is_equal_to(title_text)
         assert_that(self.browser.find_element(By.XPATH, price).text).is_equal_to(price_text)
-
-        if self.browser.find_element(By.XPATH, image).is_displayed():
-            assert_that(display).is_equal_to(1)
-        else:
-            assert_that(display).is_equal_to("Product Image is not visible.")
-
-    def check_visibility(self, icon):
-        if self.browser.find_element(By.XPATH, icon).is_displayed():
-            assert_that(display).is_equal_to(1)
-        else:
-            assert_that(display).is_equal_to("Icon not showing")
+        self.check_visibility(image, "Product Image is not visible.")
 
     def check_payment_gateway(self, gateway, gateway_text, gateway_des, gateway_des_text):
         assert_that(self.browser.find_element(By.XPATH, gateway).text).is_equal_to(gateway_text)
@@ -284,22 +273,23 @@ class WooCheckout:
         assert_that(self.browser.find_element(By.XPATH, gateway_des).text).is_equal_to(gateway_des_text)
 
     def testcase(self):
-        c = CheckText(self.browser)
         with soft_assertions():
-            c.check_widget_name(self.widget, self.widget_name)
-            if check_doc:
-                c.check_doc(self.doc_link, self.doc_name)
+            self.check_widget_name(self.widget, self.widget_name)
+            if self.check_doc:
+                self.check_documents(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 1514)")
             time.sleep(1)
 
             # Login Form
-            self.check_visibility(self.login_form_icon)
+            self.check_visibility(self.login_form_icon, "Login Form Icon is not visible.")
+
             assert_that(self.browser.find_element(*self.login_form).text).is_equal_to(self.login_form_text)
+
             if self.browser.find_element(*self.login_form_des).is_displayed():
-                assert_that(display).is_equal_to("Login field is visible which should be hidden")
+                assert_that(1).is_equal_to("Login field is visible which should be hidden")
             else:
-                assert_that(display).is_equal_to(1)
+                assert_that(1).is_equal_to(1)
 
             self.browser.find_element(*self.login_form_expand).click()
             time.sleep(1)
@@ -320,11 +310,11 @@ class WooCheckout:
                 is_equal_to(self.forget_pass_label_text)
 
             # Coupon Form
-            self.check_visibility(self.coupon_form_icon)
+            self.check_visibility(self.coupon_form_icon, "Coupon Icon is not visible.")
             if self.browser.find_element(*self.coupon_form_des).is_displayed():
-                assert_that(display).is_equal_to("Coupon field is visible which should be hidden")
+                assert_that(1).is_equal_to("Coupon field is visible which should be hidden")
             else:
-                assert_that(display).is_equal_to(1)
+                assert_that(1).is_equal_to(1)
             self.browser.find_element(*self.coupon_form_expand).click()
             time.sleep(.5)
             assert_that(self.browser.find_element(*self.coupon_form_des).text).is_equal_to(self.coupon_form_des_text)
@@ -339,18 +329,15 @@ class WooCheckout:
             assert_that(self.browser.find_element(*self.ship_diff_address_label).text). \
                 is_equal_to(self.ship_diff_address_label_text)
 
-            if self.browser.find_element(*self.shipping_fname_field).is_displayed():
-                assert_that(display).is_equal_to("Shipping details is visible which should be hidden.")
+            if self.browser.find_element(By.XPATH, self.shipping_fname_field).is_displayed():
+                assert_that(1).is_equal_to("Shipping details is visible which should be hidden.")
             else:
-                assert_that(display).is_equal_to(1)
+                assert_that(1).is_equal_to(1)
 
             time.sleep(.5)
             self.browser.find_element(*self.ship_diff_address_field).click()
             time.sleep(.5)
-            if self.browser.find_element(*self.shipping_fname_field).is_displayed():
-                assert_that(display).is_equal_to(1)
-            else:
-                assert_that(display).is_equal_to("Shipping details is hidden which should be visible.")
+            self.check_visibility(self.shipping_fname_field, "Shipping details is hidden which should be visible.")
 
             # Create an Account
             self.browser.execute_script("window.scrollTo(0, 2909)")
@@ -359,9 +346,9 @@ class WooCheckout:
                 is_equal_to(self.create_acc_field_label_text)
 
             if self.browser.find_element(*self.create_acc_pass_field).is_displayed():
-                assert_that(display).is_equal_to("Create account password is visible which should be hidden.")
+                assert_that(1).is_equal_to("Create account password is visible which should be hidden.")
             else:
-                assert_that(display).is_equal_to(1)
+                assert_that(1).is_equal_to(1)
 
             self.browser.execute_script("window.scrollTo(0, 2666)")
             time.sleep(1)
@@ -396,11 +383,11 @@ class WooCheckout:
             assert_that(self.browser.find_element(*self.payment_tab).text).is_equal_to(self.payment_tab_text)
 
             # Login Tab
-            self.check_visibility(self.multi_login_form_icon)
+            self.check_visibility(self.multi_login_form_icon, "Multi Login form icon is not visible.")
             assert_that(self.browser.find_element(*self.multi_login_form).text).is_equal_to(self.login_form_text)
             self.browser.find_element(*self.next_btn).click()
             # Coupon Tab
-            self.check_visibility(self.multi_coupon_form_icon)
+            self.check_visibility(self.multi_coupon_form_icon, "Multi coupon form icon is not visible.")
             assert_that(self.browser.find_element(*self.multi_coupon_form).text).is_equal_to(self.coupon_form_text)
             self.browser.find_element(*self.next_btn).click()
 
@@ -432,21 +419,24 @@ class WooCheckout:
             assert_that(self.browser.find_element(*self.billing_email_label).text).is_equal_to(self.email_label_text)
             self.browser.find_element(*self.billing_email_field).send_keys("testerbhaai@gmail.com")
             # Create an Account
+            self.browser.execute_script("window.scrollTo(0, 2093)")
             time.sleep(1)
             assert_that(self.browser.find_element(*self.create_acc_field_label).text). \
                 is_equal_to(self.create_acc_field_label_text)
             self.browser.find_element(*self.create_acc_field).click()
+            time.sleep(1)
             assert_that(self.browser.find_element(*self.create_acc_pass_label).text). \
                 is_equal_to(self.create_acc_pass_label_text)
             self.browser.find_element(*self.create_acc_pass_field).send_keys("123456")
             # Ship to Diff
             assert_that(self.browser.find_element(*self.ship_diff_address_label).text). \
                 is_equal_to(self.ship_diff_address_label_text)
-            # self.browser.find_element(*self.ship_diff_address_field).click()
+            self.browser.find_element(*self.ship_diff_address_field).click()
+            time.sleep(1)
             assert_that(self.browser.find_element(*self.shipping_fname_label).text).is_equal_to(self.fname_label_text)
-            self.browser.find_element(*self.shipping_fname_field).send_keys("Mr.")
+            self.browser.find_element(By.XPATH, self.shipping_fname_field).send_keys("Mr.")
             assert_that(self.browser.find_element(*self.shipping_lname_label).text).is_equal_to(self.lname_label_text)
-            self.browser.find_element(*self.shipping_fname_field).send_keys("Sabbir")
+            self.browser.find_element(*self.shipping_lname_field).send_keys("Sabbir")
             assert_that(self.browser.find_element(*self.shipping_com_label).text).is_equal_to(self.com_label_text)
             self.browser.find_element(*self.shipping_com_field).send_keys("WPDeveloper")
             assert_that(self.browser.find_element(*self.shipping_country_label).text).is_equal_to(self.country_label_text)
@@ -480,32 +470,35 @@ class WooCheckout:
                 is_equal_to(self.payment_method_label_text)
             assert_that(self.browser.find_element(By.XPATH, self.payment_method_bank).text). \
                 is_equal_to(self.payment_method_bank_text)
+            time.sleep(1.5)
             self.browser.find_element(By.XPATH, self.payment_method_bank).click()
             assert_that(self.browser.find_element(By.XPATH, self.payment_method_check).text). \
                 is_equal_to(self.payment_method_check_text)
+            time.sleep(1.5)
             self.browser.find_element(By.XPATH, self.payment_method_check).click()
             assert_that(self.browser.find_element(By.XPATH, self.payment_method_cash).text). \
                 is_equal_to(self.payment_method_cash_text)
+            time.sleep(1.5)
             self.browser.find_element(By.XPATH, self.payment_method_cash).click()
             assert_that(self.browser.find_element(*self.payment_method_des).text).is_equal_to(self.payment_method_des_text)
             self.browser.find_element(*self.prev_btn).click()
-            time.sleep(1)
+            time.sleep(1.5)
             self.browser.execute_script("window.scrollTo(0, document.body.scrollHeight)")
-            time.sleep(1)
+            time.sleep(1.5)
             self.browser.find_element(*self.prev_btn).click()
-            time.sleep(1)
+            time.sleep(1.5)
             self.browser.execute_script("window.scrollTo(0, 902)")
-            time.sleep(1)
+            time.sleep(1.5)
             self.browser.find_element(*self.prev_btn).click()
-            time.sleep(.5)
+            time.sleep(1.5)
             self.browser.find_element(*self.next_btn).click()
-            time.sleep(.5)
+            time.sleep(1.5)
             self.browser.find_element(*self.next_btn).click()
-            time.sleep(2)
+            time.sleep(1.5)
             self.browser.execute_script("window.scrollTo(0, document.body.scrollHeight)")
-            time.sleep(1)
+            time.sleep(1.5)
             self.browser.find_element(*self.next_btn).click()
-            time.sleep(.5)
+            time.sleep(1.5)
 
             self.check_cart_item(self.p_title_1, self.p_1_title_text, self.p_price_1, self.p_1_price_text, self.p_img_1)
             assert_that(self.browser.find_element(*self.t_sub_total_label).text).is_equal_to(self.t_sub_total_label_text)

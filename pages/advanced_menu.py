@@ -5,7 +5,7 @@ from selenium.webdriver import ActionChains
 from utils.config import *
 
 
-class AdvancedMenu:
+class AdvancedMenu(Helper):
     widget = '//*[@id="post-4584"]/div/div/div/div/section[1]/div[4]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Advanced Menu'
@@ -78,17 +78,17 @@ class AdvancedMenu:
     adv_acor_text = "Advanced Accordion"
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(advanced_menu)
+        self.browser.get(self.advanced_menu)
 
     def testcase(self):
-        c = CheckText(self.browser)
         with soft_assertions():
-            c.check_widget_name(self.widget, self.widget_name)
-            if check_doc:
-                c.check_doc(self.doc_link, self.doc_name)
+            self.check_widget_name(self.widget, self.widget_name)
+            if self.check_doc:
+                self.check_documents(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 934)")
             time.sleep(1)
@@ -98,7 +98,7 @@ class AdvancedMenu:
             assert_that(self.browser.find_element(*self.h_blog).text).is_equal_to(self.h_blog_text)
             assert_that(self.browser.find_element(*self.h_contact).text).is_equal_to(self.h_contact_text)
             self.browser.find_element(*self.h_home).click()
-            c.check_widget_name(self.ea_l_p, self.ea_l_p_text)
+            self.check_widget_name(self.ea_l_p, self.ea_l_p_text)
             self.browser.back()
             time.sleep(1)
             self.browser.execute_script("window.scrollTo(0, 934)")
@@ -129,7 +129,7 @@ class AdvancedMenu:
                 move_to_element(h_ele_calltoaction).move_to_element(h_ele_cf7).move_to_element(h_ele_ticker).perform()
 
             cursor.move_to_element(h_ele).move_to_element(h_ele_accor).click().perform()
-            c.check_widget_name(self.adv_acor, self.adv_acor_text)
+            self.check_widget_name(self.adv_acor, self.adv_acor_text)
             self.browser.back()
             time.sleep(1)
             h_sup = self.browser.find_element(*self.h_support)
@@ -147,7 +147,7 @@ class AdvancedMenu:
             assert_that(self.browser.find_element(*self.v_blog).text).is_equal_to(self.v_blog_text)
             assert_that(self.browser.find_element(*self.v_contact).text).is_equal_to(self.v_contact_text)
             self.browser.find_element(*self.v_home).click()
-            c.check_widget_name(self.ea_l_p, self.ea_l_p_text)
+            self.check_widget_name(self.ea_l_p, self.ea_l_p_text)
             self.browser.back()
             time.sleep(1)
             self.browser.execute_script("window.scrollTo(0, 3158)")
@@ -184,7 +184,7 @@ class AdvancedMenu:
 
             cursor.move_to_element(v_ele_accor).click().perform()
             time.sleep(.5)
-            c.check_widget_name(self.adv_acor, self.adv_acor_text)
+            self.check_widget_name(self.adv_acor, self.adv_acor_text)
             self.browser.back()
             time.sleep(1)
             v_sup = self.browser.find_element(*self.v_support)

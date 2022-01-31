@@ -7,7 +7,7 @@ from utils.config import *
 # This code won't run, the main site has some problem
 
 
-class StickyVideo:
+class StickyVideo(Helper):
     widget = '//*[@id="post-255935"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Sticky Video'
@@ -27,17 +27,18 @@ class StickyVideo:
     small_play_button = (By.XPATH, f'//*[@id="videobox"]/div/button')
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(sticky_video)
+        self.browser.get(self.sticky_video)
 
     def testcase(self):
-        c = CheckText(self.browser)
+        c = Helper(self.browser)
         with soft_assertions():
             c.check_widget_name(self.widget, self.widget_name)
-            if check_doc:
-                c.check_doc(self.doc_link, self.doc_name)
+            if self.check_doc:
+                c.check_documents(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 629)")
             time.sleep(1)

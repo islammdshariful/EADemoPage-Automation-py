@@ -3,7 +3,7 @@ from selenium.webdriver import ActionChains
 from utils.config import *
 
 
-class WooProductCompare:
+class WooProductCompare(Helper):
     widget = '//*[@id="post-264859"]/div/div/div/div/section[1]/div[4]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Woo Product Compare'
@@ -110,10 +110,11 @@ class WooProductCompare:
     add_to_cart_3_text = "Add to cart"
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(woo_product_compare)
+        self.browser.get(self.woo_product_compare)
 
     def check_table(self, title, title_text, price, price_text, availability, availability_text, weight, weight_text,
                     dimension, dimension_text, color, color_text, add_to_cart, add_to_cart_text):
@@ -129,17 +130,13 @@ class WooProductCompare:
         cursor.move_to_element(atc).perform()
 
     def check_image(self, img):
-        if self.browser.find_element(By.XPATH, img).is_displayed():
-            assert_that(display).is_equal_to(1)
-        else:
-            assert_that(display).is_equal_to("image is not visible")
+        self.check_visibility(img, "Image is not visible")
 
     def testcase(self):
-        c = CheckText(self.browser)
         with soft_assertions():
-            c.check_widget_name(self.widget, self.widget_name)
-            if check_doc:
-                c.check_doc(self.doc_link, self.doc_name)
+            self.check_widget_name(self.widget, self.widget_name)
+            if self.check_doc:
+                self.check_documents(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 1128)")
             time.sleep(.5)

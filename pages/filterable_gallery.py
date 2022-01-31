@@ -5,7 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from utils.config import *
 
 
-class FilterableGallery:
+class FilterableGallery(Helper):
     widget = '//*[@id="post-1925"]/div/div/div/div/section[1]/div[4]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Filterable Gallery'
@@ -70,10 +70,11 @@ class FilterableGallery:
     masonry_gallery_2_icon = f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[8]/div/div[2]/div[2]/div/a/span/i'
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(filterable_gallery)
+        self.browser.get(self.filterable_gallery)
 
     def open_gallery(self, gallery, title, title_text, icon):
         cursor = ActionChains(self.browser)
@@ -82,11 +83,7 @@ class FilterableGallery:
         cursor.reset_actions()
         time.sleep(1)
         assert_that(self.browser.find_element(By.XPATH, title).text).is_equal_to(title_text)
-        if self.browser.find_element(By.XPATH, icon).is_displayed():
-            assert_that(display).is_equal_to(1)
-        else:
-            assert_that(display).is_equal_to("Icon is not showing")
-
+        self.check_visibility(icon, "Icon is not visible.")
         self.browser.find_element(By.XPATH, icon).click()
         time.sleep(.5)
         self.browser.find_element(*self.next_btn).click()
@@ -96,11 +93,10 @@ class FilterableGallery:
         self.browser.find_element(*self.cross_btn).click()
 
     def testcase(self):
-        c = CheckText(self.browser)
         with soft_assertions():
-            c.check_widget_name(self.widget, self.widget_name)
-            if check_doc:
-                c.check_doc(self.doc_link, self.doc_name)
+            self.check_widget_name(self.widget, self.widget_name)
+            if self.check_doc:
+                self.check_documents(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 1061)")
             time.sleep(1)

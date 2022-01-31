@@ -5,7 +5,7 @@ from selenium.webdriver import ActionChains
 from utils.config import *
 
 
-class AdvancedAccordion:
+class AdvancedAccordion(Helper):
     widget = '//*[@id="post-2453"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Advanced Accordion'
@@ -34,17 +34,17 @@ class AdvancedAccordion:
                        "voluptatibus commodi numquam, error, est. Ea, consequatur."
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(advanced_accordion)
+        self.browser.get(self.advanced_accordion)
 
     def testcase(self):
-        c = CheckText(self.browser)
         with soft_assertions():
-            c.check_widget_name(self.widget, self.widget_name)
-            if check_doc:
-                c.check_doc(self.doc_link, self.doc_name)
+            self.check_widget_name(self.widget, self.widget_name)
+            if self.check_doc:
+                self.check_documents(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 1047)")
             time.sleep(1)

@@ -3,7 +3,7 @@ from selenium.webdriver import ActionChains
 from utils.config import *
 
 
-class WooProductCarousel:
+class WooProductCarousel(Helper):
     widget = '//*[@id="post-266120"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Woo Product Carousel'
@@ -68,10 +68,11 @@ class WooProductCarousel:
     p_4_price_text = "£45.00"
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(woo_product_carousel)
+        self.browser.get(self.woo_product_carousel)
 
     def check_product_info(self, img, title, title_text, price, price_text, ratings, ratings_text, cart_btn, link_btn, qv_btn):
         time.sleep(.5)
@@ -89,64 +90,63 @@ class WooProductCarousel:
         cursor.move_to_element(cart).move_to_element(qview).move_to_element(link).perform()
 
     def testcase(self):
-        c = CheckText(self.browser)
-        # with soft_assertions():
-        c.check_widget_name(self.widget, self.widget_name)
-        if check_doc:
-            c.check_doc(self.doc_link, self.doc_name)
+        with soft_assertions():
+            self.check_widget_name(self.widget, self.widget_name)
+            if self.check_doc:
+                self.check_documents(self.doc_link, self.doc_name)
 
-        self.browser.execute_script("window.scrollTo(0, 1103)")
-        time.sleep(2)
+            self.browser.execute_script("window.scrollTo(0, 1103)")
+            time.sleep(2)
 
-        self.browser.find_element(*self.dot_1).click()
+            self.browser.find_element(*self.dot_1).click()
 
-        self.check_product_info(self.p_1_img, self.p_1_title, self.p_1_title_text, self.p_1_price, self.p_1_price_text,
-                                self.p_1_ratings, self.p_1_ratings_text, self.p_1_cart_btn,
-                                self.p_1_link_btn, self.p_1_quickview_btn)
+            self.check_product_info(self.p_1_img, self.p_1_title, self.p_1_title_text, self.p_1_price, self.p_1_price_text,
+                                    self.p_1_ratings, self.p_1_ratings_text, self.p_1_cart_btn,
+                                    self.p_1_link_btn, self.p_1_quickview_btn)
 
-        self.browser.find_element(*self.dot_2).click()
-        self.check_product_info(self.p_2_img, self.p_2_title, self.p_2_title_text, self.p_2_price, self.p_2_price_text,
-                                self.p_2_ratings, self.p_2_ratings_text, self.p_2_cart_btn,
-                                self.p_2_link_btn, self.p_2_quickview_btn)
+            self.browser.find_element(*self.dot_2).click()
+            self.check_product_info(self.p_2_img, self.p_2_title, self.p_2_title_text, self.p_2_price, self.p_2_price_text,
+                                    self.p_2_ratings, self.p_2_ratings_text, self.p_2_cart_btn,
+                                    self.p_2_link_btn, self.p_2_quickview_btn)
 
-        self.browser.find_element(*self.dot_3).click()
-        self.check_product_info(self.p_3_img, self.p_3_title, self.p_3_title_text, self.p_3_price, self.p_3_price_text,
-                                self.p_3_ratings, self.p_3_ratings_text, self.p_3_cart_btn,
-                                self.p_3_link_btn, self.p_3_quickview_btn)
+            self.browser.find_element(*self.dot_3).click()
+            self.check_product_info(self.p_3_img, self.p_3_title, self.p_3_title_text, self.p_3_price, self.p_3_price_text,
+                                    self.p_3_ratings, self.p_3_ratings_text, self.p_3_cart_btn,
+                                    self.p_3_link_btn, self.p_3_quickview_btn)
 
-        self.browser.find_element(*self.dot_4).click()
-        self.check_product_info(self.p_4_img, self.p_4_title, self.p_4_title_text, self.p_4_price, self.p_4_price_text,
-                                self.p_4_ratings, self.p_4_ratings_text, self.p_4_cart_btn,
-                                self.p_4_link_btn, self.p_4_quickview_btn)
-        self.browser.find_element(*self.dot_4).click()
-        time.sleep(.5)
+            self.browser.find_element(*self.dot_4).click()
+            self.check_product_info(self.p_4_img, self.p_4_title, self.p_4_title_text, self.p_4_price, self.p_4_price_text,
+                                    self.p_4_ratings, self.p_4_ratings_text, self.p_4_cart_btn,
+                                    self.p_4_link_btn, self.p_4_quickview_btn)
+            self.browser.find_element(*self.dot_4).click()
+            time.sleep(.5)
 
-        self.browser.find_element(*self.prev_btn).click()
-        time.sleep(.5)
-        self.browser.find_element(*self.prev_btn).click()
-        time.sleep(.5)
-        self.browser.find_element(*self.prev_btn).click()
-        time.sleep(.5)
+            self.browser.find_element(*self.prev_btn).click()
+            time.sleep(.5)
+            self.browser.find_element(*self.prev_btn).click()
+            time.sleep(.5)
+            self.browser.find_element(*self.prev_btn).click()
+            time.sleep(.5)
 
-        self.browser.find_element(*self.next_btn).click()
-        time.sleep(.5)
-        self.browser.find_element(*self.next_btn).click()
-        time.sleep(.5)
-        cursor = ActionChains(self.browser)
-        p_3 = self.browser.find_element(By.XPATH, self.p_3_img)
-        cursor.move_to_element(p_3).perform()
-        self.browser.find_element(By.XPATH, self.p_3_link_btn).click()
-        assert_that(self.browser.find_element(By.XPATH, f'/html/body/div[1]/div/div/div/main/div[2]/div[2]/h1')
-                    .text).is_equal_to(self.p_3_title_text)
+            self.browser.find_element(*self.next_btn).click()
+            time.sleep(.5)
+            self.browser.find_element(*self.next_btn).click()
+            time.sleep(.5)
+            cursor = ActionChains(self.browser)
+            p_3 = self.browser.find_element(By.XPATH, self.p_3_img)
+            cursor.move_to_element(p_3).perform()
+            self.browser.find_element(By.XPATH, self.p_3_link_btn).click()
+            assert_that(self.browser.find_element(By.XPATH, f'/html/body/div[1]/div/div/div/main/div[2]/div[2]/h1')
+                        .text).is_equal_to(self.p_3_title_text)
 
-        self.browser.back()
-        self.browser.execute_script("window.scrollTo(0, 1103)")
-        time.sleep(1)
-        self.browser.find_element(*self.dot_3).click()
-        time.sleep(.5)
-        self.browser.find_element(*self.dot_1).click()
-        time.sleep(.5)
-        self.browser.find_element(*self.dot_2).click()
-        time.sleep(.5)
-        self.browser.find_element(*self.dot_4).click()
-        time.sleep(.5)
+            self.browser.back()
+            self.browser.execute_script("window.scrollTo(0, 1103)")
+            time.sleep(1)
+            self.browser.find_element(*self.dot_3).click()
+            time.sleep(.5)
+            self.browser.find_element(*self.dot_1).click()
+            time.sleep(.5)
+            self.browser.find_element(*self.dot_2).click()
+            time.sleep(.5)
+            self.browser.find_element(*self.dot_4).click()
+            time.sleep(.5)

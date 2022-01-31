@@ -3,7 +3,7 @@ from selenium.webdriver import ActionChains
 from utils.config import *
 
 
-class PostGrid:
+class PostGrid(Helper):
     widget = '//*[@id="post-1345"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Post Grid'
@@ -40,10 +40,11 @@ class PostGrid:
     article_author = (By.XPATH, f'//*[@id="content"]/div[1]/div/div/h2')
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(post_grid)
+        self.browser.get(self.post_grid)
 
     def check_post(self, title, date):
         assert_that(self.browser.find_element(*self.article_title).text).is_equal_to(title)
@@ -52,18 +53,16 @@ class PostGrid:
     def check_author(self, author):
         assert_that(self.browser.find_element(*self.article_author).text).is_equal_to(author)
 
-    def check_visibility(self, media, icon):
+    def check_visibility_of_post(self, media, icon):
         cursor = ActionChains(self.browser)
         post_media_1 = self.browser.find_element(By.XPATH, media)
         cursor.move_to_element(post_media_1).perform()
         time.sleep(.5)
-        if self.browser.find_element(By.XPATH, icon).is_displayed():
-            assert_that(display).is_equal_to(1)
-        else:
-            assert_that(display).is_equal_to("Icon Is Not Visible.")
+
+        self.check_visibility(icon, "Icon is not visible.")
 
     def check_widget_post(self, post, author, date, media, icon):
-        self.check_visibility(media, icon)
+        self.check_visibility_of_post(media, icon)
         p_title = self.browser.find_element(By.XPATH, post).text
         p_author = self.browser.find_element(By.XPATH, author).text
         p_date = self.browser.find_element(By.XPATH, date).text
@@ -81,11 +80,10 @@ class PostGrid:
         time.sleep(.5)
 
     def testcase(self):
-        c = CheckText(self.browser)
         with soft_assertions():
-            c.check_widget_name(self.widget, self.widget_name)
-            if check_doc:
-                c.check_doc(self.doc_link, self.doc_name)
+            self.check_widget_name(self.widget, self.widget_name)
+            if self.check_doc:
+                self.check_documents(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 1037)")
 

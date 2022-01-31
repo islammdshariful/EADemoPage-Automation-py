@@ -3,7 +3,7 @@ from selenium.webdriver import ActionChains
 from utils.config import *
 
 
-class WoocommerceProductCollections:
+class WoocommerceProductCollections(Helper):
     widget = '//*[@id="post-4588"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Woo Product Collection'
@@ -40,17 +40,15 @@ class WoocommerceProductCollections:
     shop_page = (By.XPATH, f'//*[@id="main"]/header/h1')
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
-        self.browser.get(woocommerce_product_collections)
+        self.browser.get(self.woocommerce_product_collections)
 
     def check_collections(self, img, title, title_text, cat, cat_text):
         cursor = ActionChains(self.browser)
-        if self.browser.find_element(By.XPATH, img).is_displayed():
-            assert_that(display).is_equal_to(1)
-        else:
-            assert_that(display).is_equal_to("Image is not visible.")
+        self.check_visibility(img, "Image is not visible.")
 
         img = self.browser.find_element(By.XPATH, img)
         cursor.move_to_element(img).perform()
@@ -58,11 +56,10 @@ class WoocommerceProductCollections:
         assert_that(self.browser.find_element(By.XPATH, cat).text).is_equal_to(cat_text)
 
     def testcase(self):
-        c = CheckText(self.browser)
         with soft_assertions():
-            c.check_widget_name(self.widget, self.widget_name)
-            if check_doc:
-                c.check_doc(self.doc_link, self.doc_name)
+            self.check_widget_name(self.widget, self.widget_name)
+            if self.check_doc:
+                self.check_documents(self.doc_link, self.doc_name)
 
             self.browser.execute_script("window.scrollTo(0, 895)")
             time.sleep(.5)
