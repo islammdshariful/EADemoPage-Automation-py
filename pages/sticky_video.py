@@ -1,6 +1,6 @@
 import time
 
-from selenium.webdriver import ActionChains
+from selenium.webdriver import ActionChains, Keys
 
 from utils.config import *
 
@@ -38,28 +38,29 @@ class StickyVideo(Helper):
         with soft_assertions():
             c.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
-                c.check_documents(self.doc_link, self.doc_name)
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
+                self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 629)")
+                time.sleep(1)
 
-            self.browser.execute_script("window.scrollTo(0, 629)")
-            time.sleep(1)
+                self.browser.find_element(*self.play_button).click()
+                # iframe = self.browser.find_element(*self.iframe_box)
+                # self.browser.switch_to.frame(iframe)
+                # cursor = ActionChains(self.browser)
+                # player = self.browser.find_element(*self.video_frame)
+                # cursor.move_to_element(player).perform()
+                # self.browser.find_element(*self.pause_btn).click()
+                # time.sleep(1)
+                # self.browser.find_element(*self.pause_btn).click()
+                # self.browser.switch_to.default_content()
+                for i in range(629, 1500, 2):
+                    self.browser.execute_script("window.scrollTo(0, " + str(i) + ")")
+                time.sleep(1)
 
-            self.browser.find_element(*self.play_button).click()
-            # iframe = self.browser.find_element(*self.iframe_box)
-            # self.browser.switch_to.frame(iframe)
-            # cursor = ActionChains(self.browser)
-            # player = self.browser.find_element(*self.video_frame)
-            # cursor.move_to_element(player).perform()
-            # self.browser.find_element(*self.pause_btn).click()
-            # time.sleep(1)
-            # self.browser.find_element(*self.pause_btn).click()
-            # self.browser.switch_to.default_content()
-            for i in range(629, 1500, 2):
-                self.browser.execute_script("window.scrollTo(0, " + str(i) + ")")
-            time.sleep(1)
+                # self.browser.find_element(*self.player).click()
+                # time.sleep(.5)
+                # self.browser.find_element(*self.small_play_button).click()
+                # time.sleep(.5)
 
-            # self.browser.find_element(*self.player).click()
-            # time.sleep(.5)
-            # self.browser.find_element(*self.small_play_button).click()
-            # time.sleep(.5)
-
-            self.browser.find_element(*self.cross).click()
+                self.browser.find_element(*self.cross).click()

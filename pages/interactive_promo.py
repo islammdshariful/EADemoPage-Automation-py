@@ -1,4 +1,4 @@
-from selenium.webdriver import ActionChains
+from selenium.webdriver import ActionChains, Keys
 
 from utils.config import *
 
@@ -29,15 +29,16 @@ class InteractivePromo(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 905)")
+                time.sleep(1)
 
-            self.browser.execute_script("window.scrollTo(0, 905)")
-            time.sleep(1)
-
-            cursor = ActionChains(self.browser)
-            promo = self.browser.find_element(*self.promo_1)
-            self.check_visibility(self.promo_1_img, "Image not visible.")
-            assert_that(self.browser.find_element(*self.promo_1_title).text).is_equal_to(self.promo_1_title_text)
-            cursor.move_to_element(promo).perform()
-            time.sleep(1)
-            self.check_visibility(self.promo_1_des, "Description not visible.")
+                cursor = ActionChains(self.browser)
+                promo = self.browser.find_element(*self.promo_1)
+                self.check_visibility(self.promo_1_img, "Image not visible.")
+                assert_that(self.browser.find_element(*self.promo_1_title).text).is_equal_to(self.promo_1_title_text)
+                cursor.move_to_element(promo).perform()
+                time.sleep(1)
+                self.check_visibility(self.promo_1_des, "Description not visible.")

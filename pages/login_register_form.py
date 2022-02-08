@@ -1,3 +1,5 @@
+from selenium.webdriver import Keys
+
 from utils.config import *
 
 
@@ -69,51 +71,52 @@ class LoginRegisterForm(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 1063)")
+                time.sleep(1)
 
-            self.browser.execute_script("window.scrollTo(0, 1063)")
-            time.sleep(1)
+                assert_that(self.browser.find_element(*self.reg_have_acc_label).text).\
+                    is_equal_to(self.reg_have_acc_label_text)
+                self.browser.find_element(*self.reg_have_acc_label).click()
+                time.sleep(1)
+                self.check_visibility(self.login_img, "Login Image not visible.")
 
-            assert_that(self.browser.find_element(*self.reg_have_acc_label).text).\
-                is_equal_to(self.reg_have_acc_label_text)
-            self.browser.find_element(*self.reg_have_acc_label).click()
-            time.sleep(1)
-            self.check_visibility(self.login_img, "Login Image not visible.")
+                assert_that(self.browser.find_element(*self.reg_login_label).text).is_equal_to(self.reg_login_label_Text)
+                assert_that(self.browser.find_element(*self.login_username_label).text).\
+                    is_equal_to(self.login_username_label_text)
+                assert_that(self.browser.find_element(*self.login_pass_label).text).is_equal_to(self.login_pass_label_text)
 
-            assert_that(self.browser.find_element(*self.reg_login_label).text).is_equal_to(self.reg_login_label_Text)
-            assert_that(self.browser.find_element(*self.login_username_label).text).\
-                is_equal_to(self.login_username_label_text)
-            assert_that(self.browser.find_element(*self.login_pass_label).text).is_equal_to(self.login_pass_label_text)
+                self.browser.find_element(*self.login_username_field).send_keys("testerbhaai@gmail.com")
+                self.browser.find_element(*self.login_pass_field).send_keys("123456")
+                self.browser.find_element(*self.reg_reg_now_label).click()
 
-            self.browser.find_element(*self.login_username_field).send_keys("testerbhaai@gmail.com")
-            self.browser.find_element(*self.login_pass_field).send_keys("123456")
-            self.browser.find_element(*self.reg_reg_now_label).click()
+                assert_that(self.browser.find_element(*self.reg_fname_field).get_attribute("placeholder")).\
+                    is_equal_to(self.reg_fname_placeholder_text)
+                assert_that(self.browser.find_element(*self.reg_lname_field).get_attribute("placeholder")).\
+                    is_equal_to(self.reg_lname_placeholder_text)
+                assert_that(self.browser.find_element(*self.reg_email_field).get_attribute("placeholder")).\
+                    is_equal_to(self.reg_email_placeholder_text)
+                assert_that(self.browser.find_element(*self.reg_pass_field).get_attribute("placeholder")).\
+                    is_equal_to(self.reg_pass_placeholder_text)
+                assert_that(self.browser.find_element(*self.reg_con_pass_field).get_attribute("placeholder")).\
+                    is_equal_to(self.reg_con_pass_placeholder_text)
 
-            assert_that(self.browser.find_element(*self.reg_fname_field).get_attribute("placeholder")).\
-                is_equal_to(self.reg_fname_placeholder_text)
-            assert_that(self.browser.find_element(*self.reg_lname_field).get_attribute("placeholder")).\
-                is_equal_to(self.reg_lname_placeholder_text)
-            assert_that(self.browser.find_element(*self.reg_email_field).get_attribute("placeholder")).\
-                is_equal_to(self.reg_email_placeholder_text)
-            assert_that(self.browser.find_element(*self.reg_pass_field).get_attribute("placeholder")).\
-                is_equal_to(self.reg_pass_placeholder_text)
-            assert_that(self.browser.find_element(*self.reg_con_pass_field).get_attribute("placeholder")).\
-                is_equal_to(self.reg_con_pass_placeholder_text)
+                self.check_visibility(self.reg_img, " Registration Image not visible.")
 
-            self.check_visibility(self.reg_img, " Registration Image not visible.")
+                self.browser.find_element(*self.reg_fname_field).send_keys("Tester")
+                self.browser.find_element(*self.reg_lname_field).send_keys("Bhaai")
+                self.browser.find_element(*self.reg_email_field).send_keys("testerbhaai@gmail.com")
+                self.browser.find_element(*self.reg_pass_field).send_keys("123456")
+                self.browser.find_element(*self.reg_con_pass_field).send_keys("123456")
 
-            self.browser.find_element(*self.reg_fname_field).send_keys("Tester")
-            self.browser.find_element(*self.reg_lname_field).send_keys("Bhaai")
-            self.browser.find_element(*self.reg_email_field).send_keys("testerbhaai@gmail.com")
-            self.browser.find_element(*self.reg_pass_field).send_keys("123456")
-            self.browser.find_element(*self.reg_con_pass_field).send_keys("123456")
-
-            self.browser.find_element(*self.reg_terms_toggle).click()
-            iframe = self.browser.find_element(*self.reg_recaptcha_iframe)
-            self.browser.switch_to.frame(iframe)
-            self.browser.find_element(*self.reg_recaptcha).click()
-            time.sleep(1)
-            self.browser.switch_to.default_content()
+                self.browser.find_element(*self.reg_terms_toggle).click()
+                iframe = self.browser.find_element(*self.reg_recaptcha_iframe)
+                self.browser.switch_to.frame(iframe)
+                self.browser.find_element(*self.reg_recaptcha).click()
+                time.sleep(1)
+                self.browser.switch_to.default_content()
 
 
 

@@ -1,3 +1,5 @@
+from selenium.webdriver import Keys
+
 from utils.config import *
 
 
@@ -156,58 +158,59 @@ class WooCart(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 1000)")
+                self.wait_for_bar_to_come()
 
-            self.browser.execute_script("window.scrollTo(0, 1000)")
-            self.wait_for_bar_to_come()
+                assert_that(self.browser.find_element(*self.p_title_header).text).is_equal_to(self.p_title_header_text)
+                assert_that(self.browser.find_element(*self.p_price_header).text).is_equal_to(self.p_price_header_text)
+                assert_that(self.browser.find_element(*self.p_quantity_header).text).is_equal_to(self.p_quantity_header_text)
+                assert_that(self.browser.find_element(*self.p_subtotal_header).text).is_equal_to(self.p_subtotal_header_text)
 
-            assert_that(self.browser.find_element(*self.p_title_header).text).is_equal_to(self.p_title_header_text)
-            assert_that(self.browser.find_element(*self.p_price_header).text).is_equal_to(self.p_price_header_text)
-            assert_that(self.browser.find_element(*self.p_quantity_header).text).is_equal_to(self.p_quantity_header_text)
-            assert_that(self.browser.find_element(*self.p_subtotal_header).text).is_equal_to(self.p_subtotal_header_text)
+                self.update_quantity(self.p_quantity_1_plus, self.p_quantity_1_minus, 4, 3)
+                self.update_quantity(self.p_quantity_2_plus, self.p_quantity_2_minus, 3, 2)
 
-            self.update_quantity(self.p_quantity_1_plus, self.p_quantity_1_minus, 4, 3)
-            self.update_quantity(self.p_quantity_2_plus, self.p_quantity_2_minus, 3, 2)
+                input_coupon = self.browser.find_element(*self.p_coupon_code)
+                assert_that(input_coupon.get_attribute('placeholder')).is_equal_to("Coupon code")
+                input_coupon.send_keys("FreeForLife")
 
-            input_coupon = self.browser.find_element(*self.p_coupon_code)
-            assert_that(input_coupon.get_attribute('placeholder')).is_equal_to("Coupon code")
-            input_coupon.send_keys("FreeForLife")
+                self.check_visibility_of_buttons(self.coupon_btn, self.coupon_btn_text)
+                self.check_visibility_of_buttons(self.update_cart_btn, self.update_cart_btn_text)
 
-            self.check_visibility_of_buttons(self.coupon_btn, self.coupon_btn_text)
-            self.check_visibility_of_buttons(self.update_cart_btn, self.update_cart_btn_text)
+                self.check_total_table(self.c_subtotal, self.c_subtotal_text)
+                self.check_total_table(self.c_subtotal_amount, self.c_subtotal_amount_text)
+                self.check_total_table(self.c_shipping, self.c_shipping_text)
+                self.check_total_table(self.c_shipping_flat, self.c_shipping_flat_text)
+                self.check_total_table(self.c_shipping_des, self.c_shipping_des_text)
+                self.check_total_table(self.c_shipping_cal, self.c_shipping_cal_text)
+                self.check_total_table(self.c_total, self.c_total_text)
+                self.check_total_table(self.c_total_amount, self.c_total_amount_text)
 
-            self.check_total_table(self.c_subtotal, self.c_subtotal_text)
-            self.check_total_table(self.c_subtotal_amount, self.c_subtotal_amount_text)
-            self.check_total_table(self.c_shipping, self.c_shipping_text)
-            self.check_total_table(self.c_shipping_flat, self.c_shipping_flat_text)
-            self.check_total_table(self.c_shipping_des, self.c_shipping_des_text)
-            self.check_total_table(self.c_shipping_cal, self.c_shipping_cal_text)
-            self.check_total_table(self.c_total, self.c_total_text)
-            self.check_total_table(self.c_total_amount, self.c_total_amount_text)
+                self.check_visibility(self.checkout_btn, "Checkout not visible")
+                assert_that(self.browser.find_element(By.XPATH, self.checkout_btn).text).is_equal_to(self.c_checkout_text)
 
-            self.check_visibility(self.checkout_btn, "Checkout not visible")
-            assert_that(self.browser.find_element(By.XPATH, self.checkout_btn).text).is_equal_to(self.c_checkout_text)
+                self.browser.find_element(By.XPATH, self.checkout_btn).click()
+                assert_that(self.browser.find_element(*self.checkout_page).text).is_equal_to(self.checkout_page_text)
+                self.browser.back()
+                self.browser.execute_script("window.scrollTo(0, 1000)")
+                time.sleep(1)
 
-            self.browser.find_element(By.XPATH, self.checkout_btn).click()
-            assert_that(self.browser.find_element(*self.checkout_page).text).is_equal_to(self.checkout_page_text)
-            self.browser.back()
-            self.browser.execute_script("window.scrollTo(0, 1000)")
-            time.sleep(1)
+                assert_that(self.browser.find_element(*self.shop_page_btn).text).is_equal_to(self.shop_page_btn_text)
+                self.browser.find_element(*self.shop_page_btn).click()
+                assert_that(self.browser.find_element(*self.shop_page).text).is_equal_to(self.shop_page_text)
+                self.browser.back()
+                self.browser.execute_script("window.scrollTo(0, 1000)")
+                time.sleep(1)
 
-            assert_that(self.browser.find_element(*self.shop_page_btn).text).is_equal_to(self.shop_page_btn_text)
-            self.browser.find_element(*self.shop_page_btn).click()
-            assert_that(self.browser.find_element(*self.shop_page).text).is_equal_to(self.shop_page_text)
-            self.browser.back()
-            self.browser.execute_script("window.scrollTo(0, 1000)")
-            time.sleep(1)
+                self.check_cart_item(self.p_title_1, self.p_title_1_text, self.p_price_1, self.p_price_1_text,
+                                     self.p_quantity_1, self.p_quantity_1_text, self.p_subtotal_1,
+                                     self.p_subtotal_1_text, self.p_img_1, self.p_cross_1)
 
-            self.check_cart_item(self.p_title_1, self.p_title_1_text, self.p_price_1, self.p_price_1_text,
-                                 self.p_quantity_1, self.p_quantity_1_text, self.p_subtotal_1,
-                                 self.p_subtotal_1_text, self.p_img_1, self.p_cross_1)
-
-            self.check_cart_item(self.p_title_2, self.p_title_2_text, self.p_price_2, self.p_price_2_text,
-                                 self.p_quantity_2, self.p_quantity_2_text, self.p_subtotal_2,
-                                 self.p_subtotal_2_text, self.p_img_2, self.p_cross_2)
+                self.check_cart_item(self.p_title_2, self.p_title_2_text, self.p_price_2, self.p_price_2_text,
+                                     self.p_quantity_2, self.p_quantity_2_text, self.p_subtotal_2,
+                                     self.p_subtotal_2_text, self.p_img_2, self.p_cross_2)
 
 
 

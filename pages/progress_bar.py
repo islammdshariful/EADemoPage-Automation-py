@@ -1,3 +1,5 @@
+from selenium.webdriver import Keys
+
 from utils.config import *
 from selenium.webdriver.support.color import Color
 
@@ -34,18 +36,19 @@ class ProgressBar(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 1037)")
+                assert_that(self.browser.find_element(*self.name).text).is_equal_to(self.name_text)
+                time.sleep(1)
 
-            self.browser.execute_script("window.scrollTo(0, 1037)")
-            assert_that(self.browser.find_element(*self.name).text).is_equal_to(self.name_text)
-            time.sleep(1)
+                full_rgb = self.browser.find_element(*self.progress_bar_full).value_of_css_property('background-color')
+                hex_1 = Color.from_string(full_rgb).hex
+                assert_that(hex_1).is_equal_to(self.progress_bar_full_color)
 
-            full_rgb = self.browser.find_element(*self.progress_bar_full).value_of_css_property('background-color')
-            hex_1 = Color.from_string(full_rgb).hex
-            assert_that(hex_1).is_equal_to(self.progress_bar_full_color)
-
-            fill_rgb = self.browser.find_element(*self.progress_bar_fill).value_of_css_property('background-color')
-            hex_2 = Color.from_string(fill_rgb).hex
-            assert_that(hex_2).is_equal_to(self.progress_bar_fill_color)
-            time.sleep(1)
-            assert_that(self.browser.find_element(*self.count).text).is_equal_to(self.count_text)
+                fill_rgb = self.browser.find_element(*self.progress_bar_fill).value_of_css_property('background-color')
+                hex_2 = Color.from_string(fill_rgb).hex
+                assert_that(hex_2).is_equal_to(self.progress_bar_fill_color)
+                time.sleep(1)
+                assert_that(self.browser.find_element(*self.count).text).is_equal_to(self.count_text)

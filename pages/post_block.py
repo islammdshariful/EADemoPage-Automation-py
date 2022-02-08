@@ -1,4 +1,4 @@
-from selenium.webdriver import ActionChains
+from selenium.webdriver import ActionChains, Keys
 
 from utils.config import *
 
@@ -77,12 +77,13 @@ class PostBlock(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 1150)")
 
-            self.browser.execute_script("window.scrollTo(0, 1150)")
-
-            self.check_widget_post(self.post_1_title, self.post_1_author, self.post_1_des,
-                                   self.post_1_date, self.post_1_media, self.post_1_overlay_icon)
-            self.check_widget_post(self.post_2_title, self.post_2_author, self.post_1_des,
-                                   self.post_2_date, self.post_2_media, self.post_2_overlay_icon)
+                self.check_widget_post(self.post_1_title, self.post_1_author, self.post_1_des,
+                                       self.post_1_date, self.post_1_media, self.post_1_overlay_icon)
+                self.check_widget_post(self.post_2_title, self.post_2_author, self.post_1_des,
+                                       self.post_2_date, self.post_2_media, self.post_2_overlay_icon)
 

@@ -1,3 +1,5 @@
+from selenium.webdriver import Keys
+
 from utils.config import *
 
 
@@ -7,7 +9,7 @@ class WooCheckout(Helper):
     widget_name = 'Woo Checkout'
     doc_link = '//*[@id="post-259772"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
                '/div/div/div[2]/div/div/div[3]/div/div/a/span/span'
-    doc_name = "WOO CHECKOUT "
+    doc_name = "WOO CHECKOUT"
 
     go_to_multi_step_checkout = (By.XPATH, f'//*[@id="post-259772"]/div/div/div/div/section[2]/div/div/div/div/div'
                                            f'/section[2]/div/div/div[1]/div/div/div/div/div/a/div/span[2]')
@@ -276,244 +278,245 @@ class WooCheckout(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
-
-            self.browser.execute_script("window.scrollTo(0, 1514)")
-            time.sleep(1)
-
-            # Login Form
-            self.check_visibility(self.login_form_icon, "Login Form Icon is not visible.")
-
-            assert_that(self.browser.find_element(*self.login_form).text).is_equal_to(self.login_form_text)
-
-            if self.browser.find_element(*self.login_form_des).is_displayed():
-                assert_that(1).is_equal_to("Login field is visible which should be hidden")
             else:
-                assert_that(1).is_equal_to(1)
+                self.browser.execute_script("window.scrollTo(0, 1514)")
+                time.sleep(1)
 
-            self.browser.find_element(*self.login_form_expand).click()
-            time.sleep(1)
-            assert_that(self.browser.find_element(*self.login_form_des).text).is_equal_to(self.login_form_des_text)
-            assert_that(self.browser.find_element(*self.login_username_label).text). \
-                is_equal_to(self.login_username_label_text)
-            assert_that(self.browser.find_element(*self.login_pass_label).text). \
-                is_equal_to(self.login_pass_label_text)
-            self.browser.find_element(*self.login_username_field).send_keys("admin")
-            self.browser.find_element(*self.login_pass_field).send_keys("123456")
+                # Login Form
+                self.check_visibility(self.login_form_icon, "Login Form Icon is not visible.")
 
-            self.browser.find_element(*self.remember_me_field).click()
-            assert_that(self.browser.find_element(*self.remember_me_label).text). \
-                is_equal_to(self.remember_me_label_text)
-            assert_that(self.browser.find_element(*self.login_btn).text).is_equal_to("Login")
+                assert_that(self.browser.find_element(*self.login_form).text).is_equal_to(self.login_form_text)
 
-            assert_that(self.browser.find_element(*self.forget_pass_label).text). \
-                is_equal_to(self.forget_pass_label_text)
+                if self.browser.find_element(*self.login_form_des).is_displayed():
+                    assert_that(1).is_equal_to("Login field is visible which should be hidden")
+                else:
+                    assert_that(1).is_equal_to(1)
 
-            # Coupon Form
-            self.check_visibility(self.coupon_form_icon, "Coupon Icon is not visible.")
-            if self.browser.find_element(*self.coupon_form_des).is_displayed():
-                assert_that(1).is_equal_to("Coupon field is visible which should be hidden")
-            else:
-                assert_that(1).is_equal_to(1)
-            self.browser.find_element(*self.coupon_form_expand).click()
-            time.sleep(.5)
-            assert_that(self.browser.find_element(*self.coupon_form_des).text).is_equal_to(self.coupon_form_des_text)
-            self.browser.find_element(*self.coupon_form_field).send_keys("Get50OffNow")
-            assert_that(self.browser.find_element(*self.coupon_btn).text).is_equal_to("Apply Coupon")
+                self.browser.find_element(*self.login_form_expand).click()
+                time.sleep(1)
+                assert_that(self.browser.find_element(*self.login_form_des).text).is_equal_to(self.login_form_des_text)
+                assert_that(self.browser.find_element(*self.login_username_label).text). \
+                    is_equal_to(self.login_username_label_text)
+                assert_that(self.browser.find_element(*self.login_pass_label).text). \
+                    is_equal_to(self.login_pass_label_text)
+                self.browser.find_element(*self.login_username_field).send_keys("admin")
+                self.browser.find_element(*self.login_pass_field).send_keys("123456")
 
-            self.browser.find_element(*self.login_form_expand).click()
-            time.sleep(1)
-            self.browser.find_element(*self.coupon_form_expand).click()
+                self.browser.find_element(*self.remember_me_field).click()
+                assert_that(self.browser.find_element(*self.remember_me_label).text). \
+                    is_equal_to(self.remember_me_label_text)
+                assert_that(self.browser.find_element(*self.login_btn).text).is_equal_to("Login")
 
-            # Ship to Diff
-            assert_that(self.browser.find_element(*self.ship_diff_address_label).text). \
-                is_equal_to(self.ship_diff_address_label_text)
+                assert_that(self.browser.find_element(*self.forget_pass_label).text). \
+                    is_equal_to(self.forget_pass_label_text)
 
-            if self.browser.find_element(By.XPATH, self.shipping_fname_field).is_displayed():
-                assert_that(1).is_equal_to("Shipping details is visible which should be hidden.")
-            else:
-                assert_that(1).is_equal_to(1)
+                # Coupon Form
+                self.check_visibility(self.coupon_form_icon, "Coupon Icon is not visible.")
+                if self.browser.find_element(*self.coupon_form_des).is_displayed():
+                    assert_that(1).is_equal_to("Coupon field is visible which should be hidden")
+                else:
+                    assert_that(1).is_equal_to(1)
+                self.browser.find_element(*self.coupon_form_expand).click()
+                time.sleep(.5)
+                assert_that(self.browser.find_element(*self.coupon_form_des).text).is_equal_to(self.coupon_form_des_text)
+                self.browser.find_element(*self.coupon_form_field).send_keys("Get50OffNow")
+                assert_that(self.browser.find_element(*self.coupon_btn).text).is_equal_to("Apply Coupon")
 
-            time.sleep(.5)
-            self.browser.find_element(*self.ship_diff_address_field).click()
-            time.sleep(.5)
-            self.check_visibility(self.shipping_fname_field, "Shipping details is hidden which should be visible.")
+                self.browser.find_element(*self.login_form_expand).click()
+                time.sleep(1)
+                self.browser.find_element(*self.coupon_form_expand).click()
 
-            # Create an Account
-            self.browser.execute_script("window.scrollTo(0, 2909)")
-            time.sleep(.5)
-            assert_that(self.browser.find_element(*self.create_acc_field_label).text). \
-                is_equal_to(self.create_acc_field_label_text)
+                # Ship to Diff
+                assert_that(self.browser.find_element(*self.ship_diff_address_label).text). \
+                    is_equal_to(self.ship_diff_address_label_text)
 
-            if self.browser.find_element(*self.create_acc_pass_field).is_displayed():
-                assert_that(1).is_equal_to("Create account password is visible which should be hidden.")
-            else:
-                assert_that(1).is_equal_to(1)
+                if self.browser.find_element(By.XPATH, self.shipping_fname_field).is_displayed():
+                    assert_that(1).is_equal_to("Shipping details is visible which should be hidden.")
+                else:
+                    assert_that(1).is_equal_to(1)
 
-            self.browser.execute_script("window.scrollTo(0, 2666)")
-            time.sleep(1)
-            self.browser.find_element(*self.create_acc_field).click()
-            time.sleep(.5)
-            assert_that(self.browser.find_element(*self.create_acc_pass_label).text). \
-                is_equal_to(self.create_acc_pass_label_text)
-            self.browser.find_element(*self.create_acc_pass_field).send_keys("123456")
+                time.sleep(.5)
+                self.browser.find_element(*self.ship_diff_address_field).click()
+                time.sleep(.5)
+                self.check_visibility(self.shipping_fname_field, "Shipping details is hidden which should be visible.")
 
-            # Payment Method
-            assert_that(self.browser.find_element(*self.payment_method_label).text). \
-                is_equal_to(self.payment_method_label_text)
-            self.check_payment_gateway(self.payment_method_bank, self.payment_method_bank_text,
-                                       self.payment_method_bank_des, self.payment_method_bank_des_text)
-            self.check_payment_gateway(self.payment_method_check, self.payment_method_check_text,
-                                       self.payment_method_check_des, self.payment_method_check_des_text)
-            self.check_payment_gateway(self.payment_method_cash, self.payment_method_cash_text,
-                                       self.payment_method_cash_des, self.payment_method_cash_des_text)
-            assert_that(self.browser.find_element(*self.payment_method_des).text).is_equal_to(self.payment_method_des_text)
+                # Create an Account
+                self.browser.execute_script("window.scrollTo(0, 2909)")
+                time.sleep(.5)
+                assert_that(self.browser.find_element(*self.create_acc_field_label).text). \
+                    is_equal_to(self.create_acc_field_label_text)
 
-            # Go to Multi Step
-            self.browser.execute_script("window.scrollTo(0, 642)")
-            time.sleep(1)
-            self.browser.find_element(*self.go_to_multi_step_checkout).click()
-            time.sleep(1)
-            self.browser.execute_script("window.scrollTo(0, 963)")
-            time.sleep(.5)
+                if self.browser.find_element(*self.create_acc_pass_field).is_displayed():
+                    assert_that(1).is_equal_to("Create account password is visible which should be hidden.")
+                else:
+                    assert_that(1).is_equal_to(1)
 
-            assert_that(self.browser.find_element(*self.login_tab).text).is_equal_to(self.login_tab_text)
-            assert_that(self.browser.find_element(*self.coupon_tab).text).is_equal_to(self.coupon_tab_text)
-            assert_that(self.browser.find_element(*self.billing_tab).text).is_equal_to(self.billing_tab_text)
-            assert_that(self.browser.find_element(*self.payment_tab).text).is_equal_to(self.payment_tab_text)
+                self.browser.execute_script("window.scrollTo(0, 2666)")
+                time.sleep(1)
+                self.browser.find_element(*self.create_acc_field).click()
+                time.sleep(.5)
+                assert_that(self.browser.find_element(*self.create_acc_pass_label).text). \
+                    is_equal_to(self.create_acc_pass_label_text)
+                self.browser.find_element(*self.create_acc_pass_field).send_keys("123456")
 
-            # Login Tab
-            self.check_visibility(self.multi_login_form_icon, "Multi Login form icon is not visible.")
-            assert_that(self.browser.find_element(*self.multi_login_form).text).is_equal_to(self.login_form_text)
-            self.browser.find_element(*self.next_btn).click()
-            # Coupon Tab
-            self.check_visibility(self.multi_coupon_form_icon, "Multi coupon form icon is not visible.")
-            assert_that(self.browser.find_element(*self.multi_coupon_form).text).is_equal_to(self.coupon_form_text)
-            self.browser.find_element(*self.next_btn).click()
+                # Payment Method
+                assert_that(self.browser.find_element(*self.payment_method_label).text). \
+                    is_equal_to(self.payment_method_label_text)
+                self.check_payment_gateway(self.payment_method_bank, self.payment_method_bank_text,
+                                           self.payment_method_bank_des, self.payment_method_bank_des_text)
+                self.check_payment_gateway(self.payment_method_check, self.payment_method_check_text,
+                                           self.payment_method_check_des, self.payment_method_check_des_text)
+                self.check_payment_gateway(self.payment_method_cash, self.payment_method_cash_text,
+                                           self.payment_method_cash_des, self.payment_method_cash_des_text)
+                assert_that(self.browser.find_element(*self.payment_method_des).text).is_equal_to(self.payment_method_des_text)
 
-            # Billing & Shipping Tab
-            assert_that(self.browser.find_element(*self.billing_label).text).is_equal_to(self.billing_label_text)
-            # Billing
-            assert_that(self.browser.find_element(*self.billing_fname_label).text).is_equal_to(self.fname_label_text)
-            self.browser.find_element(*self.billing_fname_field).send_keys("Mr.")
-            assert_that(self.browser.find_element(*self.billing_lname_label).text).is_equal_to(self.lname_label_text)
-            self.browser.find_element(*self.billing_lname_field).send_keys("Sabbir")
-            assert_that(self.browser.find_element(*self.billing_com_label).text).is_equal_to(self.com_label_text)
-            self.browser.find_element(*self.billing_com_field).send_keys("WPDeveloper")
-            assert_that(self.browser.find_element(*self.billing_country_label).text).is_equal_to(self.country_label_text)
-            self.browser.find_element(*self.billing_country_list).click()
-            time.sleep(.5)
-            self.browser.find_element(*self.billing_country_list).click()
-            assert_that(self.browser.find_element(*self.billing_address_label).text).is_equal_to(self.address_label_text)
-            self.browser.find_element(*self.billing_address_field_1).send_keys("New Street")
-            self.browser.find_element(*self.billing_address_field_2).send_keys("Boxy")
-            assert_that(self.browser.find_element(*self.billing_city_label).text).is_equal_to(self.city_label_text)
-            self.browser.find_element(*self.billing_city_field).send_keys("New Town")
-            assert_that(self.browser.find_element(*self.billing_district_label).text). \
-                is_equal_to(self.district_label_text)
-            self.browser.find_element(*self.billing_district_field).send_keys("Geodon")
-            assert_that(self.browser.find_element(*self.billing_zip_label).text).is_equal_to(self.zip_label_text)
-            self.browser.find_element(*self.billing_zip_field).send_keys("1206")
-            assert_that(self.browser.find_element(*self.billing_phone_label).text).is_equal_to(self.phone_label_text)
-            self.browser.find_element(*self.billing_phone_field).send_keys("0123456789")
-            assert_that(self.browser.find_element(*self.billing_email_label).text).is_equal_to(self.email_label_text)
-            self.browser.find_element(*self.billing_email_field).send_keys("testerbhaai@gmail.com")
-            # Create an Account
-            self.browser.execute_script("window.scrollTo(0, 2093)")
-            time.sleep(1)
-            assert_that(self.browser.find_element(*self.create_acc_field_label).text). \
-                is_equal_to(self.create_acc_field_label_text)
-            self.browser.find_element(*self.create_acc_field).click()
-            time.sleep(1)
-            assert_that(self.browser.find_element(*self.create_acc_pass_label).text). \
-                is_equal_to(self.create_acc_pass_label_text)
-            self.browser.find_element(*self.create_acc_pass_field).send_keys("123456")
-            # Ship to Diff
-            assert_that(self.browser.find_element(*self.ship_diff_address_label).text). \
-                is_equal_to(self.ship_diff_address_label_text)
-            self.browser.find_element(*self.ship_diff_address_field).click()
-            time.sleep(1)
-            assert_that(self.browser.find_element(*self.shipping_fname_label).text).is_equal_to(self.fname_label_text)
-            self.browser.find_element(By.XPATH, self.shipping_fname_field).send_keys("Mr.")
-            assert_that(self.browser.find_element(*self.shipping_lname_label).text).is_equal_to(self.lname_label_text)
-            self.browser.find_element(*self.shipping_lname_field).send_keys("Sabbir")
-            assert_that(self.browser.find_element(*self.shipping_com_label).text).is_equal_to(self.com_label_text)
-            self.browser.find_element(*self.shipping_com_field).send_keys("WPDeveloper")
-            assert_that(self.browser.find_element(*self.shipping_country_label).text).is_equal_to(self.country_label_text)
-            self.browser.execute_script("window.scrollTo(0, 2420)")
-            time.sleep(.5)
-            self.browser.find_element(*self.shipping_country_list).click()
-            time.sleep(.5)
-            self.browser.execute_script("window.scrollTo(0, 2420)")
-            self.browser.find_element(*self.shipping_country_list).click()
-            assert_that(self.browser.find_element(*self.shipping_address_label).text).is_equal_to(self.address_label_text)
-            self.browser.find_element(*self.shipping_address_field_1).send_keys("New Street")
-            self.browser.find_element(*self.shipping_address_field_2).send_keys("Boxy")
-            assert_that(self.browser.find_element(*self.shipping_city_label).text).is_equal_to(self.city_label_text)
-            self.browser.find_element(*self.shipping_city_field).send_keys("New Town")
-            assert_that(self.browser.find_element(*self.shipping_district_label).text). \
-                is_equal_to(self.district_label_text)
-            self.browser.find_element(*self.shipping_district_field).send_keys("Geodon")
-            self.browser.execute_script("window.scrollTo(0, 2902)")
-            time.sleep(.5)
-            assert_that(self.browser.find_element(*self.shipping_zip_label).text).is_equal_to(self.zip_label_text)
-            self.browser.find_element(*self.shipping_zip_field).send_keys("1206")
+                # Go to Multi Step
+                self.browser.execute_script("window.scrollTo(0, 642)")
+                time.sleep(1)
+                self.browser.find_element(*self.go_to_multi_step_checkout).click()
+                time.sleep(1)
+                self.browser.execute_script("window.scrollTo(0, 963)")
+                time.sleep(.5)
 
-            # Other notes
-            assert_that(self.browser.find_element(*self.other_note_label).text).is_equal_to(self.other_note_label_text)
-            self.browser.find_element(*self.other_note_field).send_keys("Lorem Ipsum is simply a dummy text.")
-            self.browser.find_element(*self.next_btn).click()
+                assert_that(self.browser.find_element(*self.login_tab).text).is_equal_to(self.login_tab_text)
+                assert_that(self.browser.find_element(*self.coupon_tab).text).is_equal_to(self.coupon_tab_text)
+                assert_that(self.browser.find_element(*self.billing_tab).text).is_equal_to(self.billing_tab_text)
+                assert_that(self.browser.find_element(*self.payment_tab).text).is_equal_to(self.payment_tab_text)
 
-            # payment Tab
-            time.sleep(2)
-            assert_that(self.browser.find_element(*self.payment_method_label).text). \
-                is_equal_to(self.payment_method_label_text)
-            assert_that(self.browser.find_element(By.XPATH, self.payment_method_bank).text). \
-                is_equal_to(self.payment_method_bank_text)
-            time.sleep(1.5)
-            self.browser.find_element(By.XPATH, self.payment_method_bank).click()
-            assert_that(self.browser.find_element(By.XPATH, self.payment_method_check).text). \
-                is_equal_to(self.payment_method_check_text)
-            time.sleep(1.5)
-            self.browser.find_element(By.XPATH, self.payment_method_check).click()
-            assert_that(self.browser.find_element(By.XPATH, self.payment_method_cash).text). \
-                is_equal_to(self.payment_method_cash_text)
-            time.sleep(1.5)
-            self.browser.find_element(By.XPATH, self.payment_method_cash).click()
-            assert_that(self.browser.find_element(*self.payment_method_des).text).is_equal_to(self.payment_method_des_text)
-            self.browser.find_element(*self.prev_btn).click()
-            time.sleep(1.5)
-            self.browser.execute_script("window.scrollTo(0, document.body.scrollHeight)")
-            time.sleep(1.5)
-            self.browser.find_element(*self.prev_btn).click()
-            time.sleep(1.5)
-            self.browser.execute_script("window.scrollTo(0, 902)")
-            time.sleep(1.5)
-            self.browser.find_element(*self.prev_btn).click()
-            time.sleep(1.5)
-            self.browser.find_element(*self.next_btn).click()
-            time.sleep(1.5)
-            self.browser.find_element(*self.next_btn).click()
-            time.sleep(1.5)
-            self.browser.execute_script("window.scrollTo(0, document.body.scrollHeight)")
-            time.sleep(1.5)
-            self.browser.find_element(*self.next_btn).click()
-            time.sleep(1.5)
+                # Login Tab
+                self.check_visibility(self.multi_login_form_icon, "Multi Login form icon is not visible.")
+                assert_that(self.browser.find_element(*self.multi_login_form).text).is_equal_to(self.login_form_text)
+                self.browser.find_element(*self.next_btn).click()
+                # Coupon Tab
+                self.check_visibility(self.multi_coupon_form_icon, "Multi coupon form icon is not visible.")
+                assert_that(self.browser.find_element(*self.multi_coupon_form).text).is_equal_to(self.coupon_form_text)
+                self.browser.find_element(*self.next_btn).click()
 
-            self.check_cart_item(self.p_title_1, self.p_1_title_text, self.p_price_1, self.p_1_price_text, self.p_img_1)
-            assert_that(self.browser.find_element(*self.t_sub_total_label).text).is_equal_to(self.t_sub_total_label_text)
-            assert_that(self.browser.find_element(*self.t_shipping_label).text).is_equal_to(self.t_shipping_label_text)
-            assert_that(self.browser.find_element(*self.t_total_label).text).is_equal_to(self.t_total_label_text)
+                # Billing & Shipping Tab
+                assert_that(self.browser.find_element(*self.billing_label).text).is_equal_to(self.billing_label_text)
+                # Billing
+                assert_that(self.browser.find_element(*self.billing_fname_label).text).is_equal_to(self.fname_label_text)
+                self.browser.find_element(*self.billing_fname_field).send_keys("Mr.")
+                assert_that(self.browser.find_element(*self.billing_lname_label).text).is_equal_to(self.lname_label_text)
+                self.browser.find_element(*self.billing_lname_field).send_keys("Sabbir")
+                assert_that(self.browser.find_element(*self.billing_com_label).text).is_equal_to(self.com_label_text)
+                self.browser.find_element(*self.billing_com_field).send_keys("WPDeveloper")
+                assert_that(self.browser.find_element(*self.billing_country_label).text).is_equal_to(self.country_label_text)
+                self.browser.find_element(*self.billing_country_list).click()
+                time.sleep(.5)
+                self.browser.find_element(*self.billing_country_list).click()
+                assert_that(self.browser.find_element(*self.billing_address_label).text).is_equal_to(self.address_label_text)
+                self.browser.find_element(*self.billing_address_field_1).send_keys("New Street")
+                self.browser.find_element(*self.billing_address_field_2).send_keys("Boxy")
+                assert_that(self.browser.find_element(*self.billing_city_label).text).is_equal_to(self.city_label_text)
+                self.browser.find_element(*self.billing_city_field).send_keys("New Town")
+                assert_that(self.browser.find_element(*self.billing_district_label).text). \
+                    is_equal_to(self.district_label_text)
+                self.browser.find_element(*self.billing_district_field).send_keys("Geodon")
+                assert_that(self.browser.find_element(*self.billing_zip_label).text).is_equal_to(self.zip_label_text)
+                self.browser.find_element(*self.billing_zip_field).send_keys("1206")
+                assert_that(self.browser.find_element(*self.billing_phone_label).text).is_equal_to(self.phone_label_text)
+                self.browser.find_element(*self.billing_phone_field).send_keys("0123456789")
+                assert_that(self.browser.find_element(*self.billing_email_label).text).is_equal_to(self.email_label_text)
+                self.browser.find_element(*self.billing_email_field).send_keys("testerbhaai@gmail.com")
+                # Create an Account
+                self.browser.execute_script("window.scrollTo(0, 2093)")
+                time.sleep(1)
+                assert_that(self.browser.find_element(*self.create_acc_field_label).text). \
+                    is_equal_to(self.create_acc_field_label_text)
+                self.browser.find_element(*self.create_acc_field).click()
+                time.sleep(1)
+                assert_that(self.browser.find_element(*self.create_acc_pass_label).text). \
+                    is_equal_to(self.create_acc_pass_label_text)
+                self.browser.find_element(*self.create_acc_pass_field).send_keys("123456")
+                # Ship to Diff
+                assert_that(self.browser.find_element(*self.ship_diff_address_label).text). \
+                    is_equal_to(self.ship_diff_address_label_text)
+                self.browser.find_element(*self.ship_diff_address_field).click()
+                time.sleep(1)
+                assert_that(self.browser.find_element(*self.shipping_fname_label).text).is_equal_to(self.fname_label_text)
+                self.browser.find_element(By.XPATH, self.shipping_fname_field).send_keys("Mr.")
+                assert_that(self.browser.find_element(*self.shipping_lname_label).text).is_equal_to(self.lname_label_text)
+                self.browser.find_element(*self.shipping_lname_field).send_keys("Sabbir")
+                assert_that(self.browser.find_element(*self.shipping_com_label).text).is_equal_to(self.com_label_text)
+                self.browser.find_element(*self.shipping_com_field).send_keys("WPDeveloper")
+                assert_that(self.browser.find_element(*self.shipping_country_label).text).is_equal_to(self.country_label_text)
+                self.browser.execute_script("window.scrollTo(0, 2420)")
+                time.sleep(.5)
+                self.browser.find_element(*self.shipping_country_list).click()
+                time.sleep(.5)
+                self.browser.execute_script("window.scrollTo(0, 2420)")
+                self.browser.find_element(*self.shipping_country_list).click()
+                assert_that(self.browser.find_element(*self.shipping_address_label).text).is_equal_to(self.address_label_text)
+                self.browser.find_element(*self.shipping_address_field_1).send_keys("New Street")
+                self.browser.find_element(*self.shipping_address_field_2).send_keys("Boxy")
+                assert_that(self.browser.find_element(*self.shipping_city_label).text).is_equal_to(self.city_label_text)
+                self.browser.find_element(*self.shipping_city_field).send_keys("New Town")
+                assert_that(self.browser.find_element(*self.shipping_district_label).text). \
+                    is_equal_to(self.district_label_text)
+                self.browser.find_element(*self.shipping_district_field).send_keys("Geodon")
+                self.browser.execute_script("window.scrollTo(0, 2902)")
+                time.sleep(.5)
+                assert_that(self.browser.find_element(*self.shipping_zip_label).text).is_equal_to(self.zip_label_text)
+                self.browser.find_element(*self.shipping_zip_field).send_keys("1206")
 
-            assert_that(self.browser.find_element(*self.t_sub_total_amount).text).is_equal_to(self.t_sub_total_amount_text)
-            # assert_that(self.browser.find_element(*self.t_shipping_amount).text).is_equal_to(self.t_shipping_amount_text)
-            assert_that(self.browser.find_element(*self.t_total_amount).text).is_equal_to(self.t_total_amount_text)
+                # Other notes
+                assert_that(self.browser.find_element(*self.other_note_label).text).is_equal_to(self.other_note_label_text)
+                self.browser.find_element(*self.other_note_field).send_keys("Lorem Ipsum is simply a dummy text.")
+                self.browser.find_element(*self.next_btn).click()
 
-            assert_that(self.browser.find_element(*self.place_order_btn).text).is_equal_to(self.place_order_btn_text)
+                # payment Tab
+                time.sleep(2)
+                assert_that(self.browser.find_element(*self.payment_method_label).text). \
+                    is_equal_to(self.payment_method_label_text)
+                assert_that(self.browser.find_element(By.XPATH, self.payment_method_bank).text). \
+                    is_equal_to(self.payment_method_bank_text)
+                time.sleep(1.5)
+                self.browser.find_element(By.XPATH, self.payment_method_bank).click()
+                assert_that(self.browser.find_element(By.XPATH, self.payment_method_check).text). \
+                    is_equal_to(self.payment_method_check_text)
+                time.sleep(1.5)
+                self.browser.find_element(By.XPATH, self.payment_method_check).click()
+                assert_that(self.browser.find_element(By.XPATH, self.payment_method_cash).text). \
+                    is_equal_to(self.payment_method_cash_text)
+                time.sleep(1.5)
+                self.browser.find_element(By.XPATH, self.payment_method_cash).click()
+                assert_that(self.browser.find_element(*self.payment_method_des).text).is_equal_to(self.payment_method_des_text)
+                self.browser.find_element(*self.prev_btn).click()
+                time.sleep(1.5)
+                self.browser.execute_script("window.scrollTo(0, document.body.scrollHeight)")
+                time.sleep(1.5)
+                self.browser.find_element(*self.prev_btn).click()
+                time.sleep(1.5)
+                self.browser.execute_script("window.scrollTo(0, 902)")
+                time.sleep(1.5)
+                self.browser.find_element(*self.prev_btn).click()
+                time.sleep(1.5)
+                self.browser.find_element(*self.next_btn).click()
+                time.sleep(1.5)
+                self.browser.find_element(*self.next_btn).click()
+                time.sleep(1.5)
+                self.browser.execute_script("window.scrollTo(0, document.body.scrollHeight)")
+                time.sleep(1.5)
+                self.browser.find_element(*self.next_btn).click()
+                time.sleep(1.5)
 
-            self.browser.find_element(*self.continue_shop).click()
-            assert_that(self.browser.find_element(*self.shop_page).text).is_equal_to(self.shop_page_text)
-            self.browser.back()
+                self.check_cart_item(self.p_title_1, self.p_1_title_text, self.p_price_1, self.p_1_price_text, self.p_img_1)
+                assert_that(self.browser.find_element(*self.t_sub_total_label).text).is_equal_to(self.t_sub_total_label_text)
+                assert_that(self.browser.find_element(*self.t_shipping_label).text).is_equal_to(self.t_shipping_label_text)
+                assert_that(self.browser.find_element(*self.t_total_label).text).is_equal_to(self.t_total_label_text)
+
+                assert_that(self.browser.find_element(*self.t_sub_total_amount).text).is_equal_to(self.t_sub_total_amount_text)
+                # assert_that(self.browser.find_element(*self.t_shipping_amount).text).is_equal_to(self.t_shipping_amount_text)
+                assert_that(self.browser.find_element(*self.t_total_amount).text).is_equal_to(self.t_total_amount_text)
+
+                assert_that(self.browser.find_element(*self.place_order_btn).text).is_equal_to(self.place_order_btn_text)
+
+                self.browser.find_element(*self.continue_shop).click()
+                assert_that(self.browser.find_element(*self.shop_page).text).is_equal_to(self.shop_page_text)
+                self.browser.back()
 
 
 

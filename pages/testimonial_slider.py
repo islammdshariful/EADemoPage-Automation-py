@@ -1,3 +1,5 @@
+from selenium.webdriver import Keys
+
 from utils.config import *
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -58,11 +60,13 @@ class TestimonialSlider(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
-            self.browser.execute_script("window.scrollTo(0, 2191)")
-            time.sleep(1)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 2191)")
+                time.sleep(1)
 
-            WebDriverWait(self.browser, 10).until(
-                EC.element_to_be_clickable((By.XPATH, self.slide_1_img)))
-            self.check_slider(self.slide_1_img, self.slide_1_quote, self.slide_1_des, self.slide_1_name,
-                              self.slide_1_com)
+                WebDriverWait(self.browser, 10).until(
+                    EC.element_to_be_clickable((By.XPATH, self.slide_1_img)))
+                self.check_slider(self.slide_1_img, self.slide_1_quote, self.slide_1_des, self.slide_1_name,
+                                  self.slide_1_com)

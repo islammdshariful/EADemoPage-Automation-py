@@ -1,3 +1,5 @@
+from selenium.webdriver import Keys
+
 from utils.config import *
 
 
@@ -331,35 +333,36 @@ class AdvancedDataTable(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 2811)")
+                time.sleep(1)
 
-            self.browser.execute_script("window.scrollTo(0, 2811)")
-            time.sleep(1)
-
-            assert_that(self.browser.find_element(*self.thaead_1).text).is_equal_to(self.thaead_1_text)
-            assert_that(self.browser.find_element(*self.thaead_2).text).is_equal_to(self.thaead_2_text)
-            assert_that(self.browser.find_element(*self.thaead_3).text).is_equal_to(self.thaead_3_text)
-            assert_that(self.browser.find_element(*self.thaead_4).text).is_equal_to(self.thaead_4_text)
-            assert_that(self.browser.find_element(*self.thaead_5).text).is_equal_to(self.thaead_5_text)
-            assert_that(self.browser.find_element(*self.thaead_6).text).is_equal_to(self.thaead_6_text)
-            self.first_page_list()
-            self.browser.find_element(*self.page_2).click()
-            time.sleep(.5)
-            self.second_page_list()
-            self.browser.find_element(*self.page_1).click()
-            time.sleep(.5)
-            self.first_page_list()
-            self.browser.find_element(*self.page_next).click()
-            time.sleep(.5)
-            self.second_page_list()
-            self.browser.find_element(*self.page_pre).click()
-            time.sleep(.5)
-            self.first_page_list()
-            time.sleep(.5)
-            self.browser.find_element(*self.thaead_1).click()
-            self.browser.find_element(*self.thaead_1).click()
-            time.sleep(.5)
-            self.after_sort()
+                assert_that(self.browser.find_element(*self.thaead_1).text).is_equal_to(self.thaead_1_text)
+                assert_that(self.browser.find_element(*self.thaead_2).text).is_equal_to(self.thaead_2_text)
+                assert_that(self.browser.find_element(*self.thaead_3).text).is_equal_to(self.thaead_3_text)
+                assert_that(self.browser.find_element(*self.thaead_4).text).is_equal_to(self.thaead_4_text)
+                assert_that(self.browser.find_element(*self.thaead_5).text).is_equal_to(self.thaead_5_text)
+                assert_that(self.browser.find_element(*self.thaead_6).text).is_equal_to(self.thaead_6_text)
+                self.first_page_list()
+                self.browser.find_element(*self.page_2).click()
+                time.sleep(.5)
+                self.second_page_list()
+                self.browser.find_element(*self.page_1).click()
+                time.sleep(.5)
+                self.first_page_list()
+                self.browser.find_element(*self.page_next).click()
+                time.sleep(.5)
+                self.second_page_list()
+                self.browser.find_element(*self.page_pre).click()
+                time.sleep(.5)
+                self.first_page_list()
+                time.sleep(.5)
+                self.browser.find_element(*self.thaead_1).click()
+                self.browser.find_element(*self.thaead_1).click()
+                time.sleep(.5)
+                self.after_sort()
 
 
 

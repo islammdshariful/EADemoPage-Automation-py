@@ -1,4 +1,4 @@
-from selenium.webdriver import ActionChains
+from selenium.webdriver import ActionChains, Keys
 
 from utils.config import *
 
@@ -47,24 +47,25 @@ class FeatureList(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 852)")
+                time.sleep(1)
 
-            self.browser.execute_script("window.scrollTo(0, 852)")
-            time.sleep(1)
+                assert_that(self.browser.find_element(*self.list_1_title).text).is_equal_to(self.list_1_title_text)
+                assert_that(self.browser.find_element(*self.list_1_des).text).is_equal_to(self.list_1_des_text)
 
-            assert_that(self.browser.find_element(*self.list_1_title).text).is_equal_to(self.list_1_title_text)
-            assert_that(self.browser.find_element(*self.list_1_des).text).is_equal_to(self.list_1_des_text)
+                assert_that(self.browser.find_element(*self.list_2_title).text).is_equal_to(self.list_2_title_text)
+                assert_that(self.browser.find_element(*self.list_2_des).text).is_equal_to(self.list_2_des_text)
 
-            assert_that(self.browser.find_element(*self.list_2_title).text).is_equal_to(self.list_2_title_text)
-            assert_that(self.browser.find_element(*self.list_2_des).text).is_equal_to(self.list_2_des_text)
+                assert_that(self.browser.find_element(*self.list_3_title).text).is_equal_to(self.list_3_title_text)
+                assert_that(self.browser.find_element(*self.list_3_des).text).is_equal_to(self.list_3_des_text)
 
-            assert_that(self.browser.find_element(*self.list_3_title).text).is_equal_to(self.list_3_title_text)
-            assert_that(self.browser.find_element(*self.list_3_des).text).is_equal_to(self.list_3_des_text)
+                assert_that(self.browser.find_element(*self.list_4_title).text).is_equal_to(self.list_4_title_text)
+                assert_that(self.browser.find_element(*self.list_4_des).text).is_equal_to(self.list_4_des_text)
 
-            assert_that(self.browser.find_element(*self.list_4_title).text).is_equal_to(self.list_4_title_text)
-            assert_that(self.browser.find_element(*self.list_4_des).text).is_equal_to(self.list_4_des_text)
-
-            self.check_visibility(self.list_1_icon, "List Icon 1 is not visible.")
-            self.check_visibility(self.list_2_icon, "List Icon 2 is not visible.")
-            self.check_visibility(self.list_3_icon, "List Icon 3 is not visible.")
-            self.check_visibility(self.list_4_icon, "List Icon 4 is not visible.")
+                self.check_visibility(self.list_1_icon, "List Icon 1 is not visible.")
+                self.check_visibility(self.list_2_icon, "List Icon 2 is not visible.")
+                self.check_visibility(self.list_3_icon, "List Icon 3 is not visible.")
+                self.check_visibility(self.list_4_icon, "List Icon 4 is not visible.")

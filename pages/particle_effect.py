@@ -1,4 +1,4 @@
-from selenium.webdriver import ActionChains
+from selenium.webdriver import ActionChains, Keys
 
 from utils.config import *
 
@@ -22,24 +22,25 @@ class ParticleEffect(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 1137)")
+                time.sleep(1)
+                self.wait_for_bar_to_come()
 
-            self.browser.execute_script("window.scrollTo(0, 1137)")
-            time.sleep(1)
-            self.wait_for_bar_to_come()
-
-            cursor = ActionChains(self.browser)
-            cursor.move_by_offset(10, 100).perform()
-            time.sleep(.5)
-            cursor.move_by_offset(200, 300).perform()
-            time.sleep(.5)
-            cursor.move_by_offset(10, 100).perform()
-            time.sleep(.5)
-            self.browser.execute_script("window.scrollTo(0, 2121)")
-            cursor.move_by_offset(10, 100).perform()
-            time.sleep(.5)
-            cursor.move_by_offset(200, 300).perform()
-            time.sleep(.5)
-            self.browser.execute_script("window.scrollTo(0, 3108)")
-            for i in range(3108, 5632, 100):
-                self.browser.execute_script("window.scrollTo(0, " + str(i) + ")")
+                cursor = ActionChains(self.browser)
+                cursor.move_by_offset(10, 100).perform()
+                time.sleep(.5)
+                cursor.move_by_offset(200, 300).perform()
+                time.sleep(.5)
+                cursor.move_by_offset(10, 100).perform()
+                time.sleep(.5)
+                self.browser.execute_script("window.scrollTo(0, 2121)")
+                cursor.move_by_offset(10, 100).perform()
+                time.sleep(.5)
+                cursor.move_by_offset(200, 300).perform()
+                time.sleep(.5)
+                self.browser.execute_script("window.scrollTo(0, 3108)")
+                for i in range(3108, 5632, 100):
+                    self.browser.execute_script("window.scrollTo(0, " + str(i) + ")")

@@ -1,3 +1,5 @@
+from selenium.webdriver import Keys
+
 from utils.config import *
 
 
@@ -37,31 +39,31 @@ class AdvancedSearch(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
-
-            self.browser.execute_script("window.scrollTo(0, 1481)")
-            time.sleep(1)
-
-            assert_that(self.browser.find_element(*self.input_field).get_attribute('placeholder')).\
-                is_equal_to(self.placeholder_text)
-            self.browser.find_element(*self.input_field).click()
-            self.browser.find_element(*self.input_field).send_keys(self.search_keyword)
-            time.sleep(1)
-            WebDriverWait(self.browser, 5).until(
-                EC.presence_of_element_located((By.XPATH, self.search_result))
-            )
-            self.browser.find_element(*self.clear_btn).click()
-            time.sleep(1)
-            self.browser.find_element(*self.input_field).click()
-            self.browser.find_element(*self.input_field).send_keys(self.search_keyword)
-            self.browser.find_element(*self.search_btn).click()
-            time.sleep(1)
-            self.browser.find_element(*self.load_more).click()
-            time.sleep(1)
-            self.check_visibility(self.search_description, "Search description not visible.")
-            title = self.browser.find_element(*self.search_title).text
-            self.browser.find_element(*self.search_title).click()
-            assert_that(self.browser.find_element(*self.article_title).text).is_equal_to(title)
-            self.browser.back()
+            else:
+                self.browser.execute_script("window.scrollTo(0, 1481)")
+                time.sleep(1)
+                assert_that(self.browser.find_element(*self.input_field).get_attribute('placeholder')).\
+                    is_equal_to(self.placeholder_text)
+                self.browser.find_element(*self.input_field).click()
+                self.browser.find_element(*self.input_field).send_keys(self.search_keyword)
+                time.sleep(1)
+                WebDriverWait(self.browser, 5).until(
+                    EC.presence_of_element_located((By.XPATH, self.search_result))
+                )
+                self.browser.find_element(*self.clear_btn).click()
+                time.sleep(1)
+                self.browser.find_element(*self.input_field).click()
+                self.browser.find_element(*self.input_field).send_keys(self.search_keyword)
+                self.browser.find_element(*self.search_btn).click()
+                time.sleep(1)
+                self.browser.find_element(*self.load_more).click()
+                time.sleep(1)
+                self.check_visibility(self.search_description, "Search description not visible.")
+                title = self.browser.find_element(*self.search_title).text
+                self.browser.find_element(*self.search_title).click()
+                assert_that(self.browser.find_element(*self.article_title).text).is_equal_to(title)
+                self.browser.back()
 
 

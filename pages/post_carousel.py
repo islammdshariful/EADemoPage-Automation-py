@@ -1,3 +1,5 @@
+from selenium.webdriver import Keys
+
 from utils.config import *
 
 
@@ -78,23 +80,24 @@ class PostCarousel(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 957)")
+                time.sleep(1)
+                self.browser.find_element(By.XPATH, self.dot_3).click()
+                time.sleep(.5)
+                self.browser.find_element(By.XPATH, self.dot_1).click()
+                time.sleep(.5)
+                self.check_widget_post(self.post_1_title, self.post_1_author, self.post_1_date,
+                                       self.post_1_img, self.dot_1)
 
-            self.browser.execute_script("window.scrollTo(0, 957)")
-            time.sleep(1)
-            self.browser.find_element(By.XPATH, self.dot_3).click()
-            time.sleep(.5)
-            self.browser.find_element(By.XPATH, self.dot_1).click()
-            time.sleep(.5)
-            self.check_widget_post(self.post_1_title, self.post_1_author, self.post_1_date,
-                                   self.post_1_img, self.dot_1)
+                self.browser.find_element(By.XPATH, self.dot_2).click()
+                time.sleep(.5)
+                self.browser.find_element(By.XPATH, self.dot_3).click()
+                time.sleep(.5)
 
-            self.browser.find_element(By.XPATH, self.dot_2).click()
-            time.sleep(.5)
-            self.browser.find_element(By.XPATH, self.dot_3).click()
-            time.sleep(.5)
-
-            self.browser.find_element(By.XPATH, self.dot_4).click()
-            time.sleep(.5)
-            self.check_widget_post(self.post_4_title, self.post_4_author, self.post_4_date,
-                                   self.post_4_img, self.dot_4)
+                self.browser.find_element(By.XPATH, self.dot_4).click()
+                time.sleep(.5)
+                self.check_widget_post(self.post_4_title, self.post_4_author, self.post_4_date,
+                                       self.post_4_img, self.dot_4)

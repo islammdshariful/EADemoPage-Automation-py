@@ -1,4 +1,4 @@
-from selenium.webdriver import ActionChains
+from selenium.webdriver import ActionChains, Keys
 
 from utils.config import *
 
@@ -80,46 +80,47 @@ class PostList(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 1133)")
+                time.sleep(1)
 
-            self.browser.execute_script("window.scrollTo(0, 1133)")
-            time.sleep(1)
+                # All
+                self.browser.find_element(*self.all).click()
+                time.sleep(1)
+                self.check_widget_post(self.post_1_title, self.post_1_date, self.post_1_img)
+                time.sleep(1)
+                self.check_widget_post(self.post_2_title, self.post_2_date, self.post_2_img)
+                # Elementor
+                self.browser.find_element(*self.elementor).click()
+                time.sleep(1)
+                self.check_widget_post(self.post_1_title, self.post_1_date, self.post_1_img)
+                self.browser.find_element(*self.elementor).click()
+                time.sleep(1)
+                self.check_widget_post(self.post_2_title, self.post_2_date, self.post_2_img)
+                # Essential Addons
+                self.browser.find_element(*self.essential_addons).click()
+                time.sleep(1.5)
+                self.check_widget_post(self.post_1_title, self.post_1_date, self.post_1_img)
+                self.browser.find_element(*self.essential_addons).click()
+                time.sleep(1.5)
+                self.check_widget_post(self.post_2_title, self.post_2_date, self.post_2_img)
+                # WordPress
+                self.browser.find_element(*self.wordpress).click()
+                time.sleep(1.5)
+                self.check_widget_post(self.post_1_title, self.post_1_date, self.post_1_img)
+                self.browser.find_element(*self.wordpress).click()
+                time.sleep(1.5)
+                self.check_widget_post(self.post_2_title, self.post_2_date, self.post_2_img)
 
-            # All
-            self.browser.find_element(*self.all).click()
-            time.sleep(1)
-            self.check_widget_post(self.post_1_title, self.post_1_date, self.post_1_img)
-            time.sleep(1)
-            self.check_widget_post(self.post_2_title, self.post_2_date, self.post_2_img)
-            # Elementor
-            self.browser.find_element(*self.elementor).click()
-            time.sleep(1)
-            self.check_widget_post(self.post_1_title, self.post_1_date, self.post_1_img)
-            self.browser.find_element(*self.elementor).click()
-            time.sleep(1)
-            self.check_widget_post(self.post_2_title, self.post_2_date, self.post_2_img)
-            # Essential Addons
-            self.browser.find_element(*self.essential_addons).click()
-            time.sleep(1.5)
-            self.check_widget_post(self.post_1_title, self.post_1_date, self.post_1_img)
-            self.browser.find_element(*self.essential_addons).click()
-            time.sleep(1.5)
-            self.check_widget_post(self.post_2_title, self.post_2_date, self.post_2_img)
-            # WordPress
-            self.browser.find_element(*self.wordpress).click()
-            time.sleep(1.5)
-            self.check_widget_post(self.post_1_title, self.post_1_date, self.post_1_img)
-            self.browser.find_element(*self.wordpress).click()
-            time.sleep(1.5)
-            self.check_widget_post(self.post_2_title, self.post_2_date, self.post_2_img)
-
-            # Search
-            self.check_visibility(self.search_icon, "Search Icon not Visible.")
-            self.browser.find_element(*self.search).send_keys("Essential Addons")
-            time.sleep(4)
-            title = self.browser.find_element(*self.search_result_title).text
-            self.browser.find_element(*self.search_result_title).click()
-            assert_that(self.browser.find_element(*self.article_title).text).is_equal_to(title)
-            self.browser.back()
+                # Search
+                self.check_visibility(self.search_icon, "Search Icon not Visible.")
+                self.browser.find_element(*self.search).send_keys("Essential Addons")
+                time.sleep(4)
+                title = self.browser.find_element(*self.search_result_title).text
+                self.browser.find_element(*self.search_result_title).click()
+                assert_that(self.browser.find_element(*self.article_title).text).is_equal_to(title)
+                self.browser.back()
 
 

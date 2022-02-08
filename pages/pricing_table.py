@@ -1,4 +1,4 @@
-from selenium.webdriver import ActionChains
+from selenium.webdriver import ActionChains, Keys
 
 from utils.config import *
 
@@ -71,28 +71,29 @@ class PricingTable(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 962)")
+                time.sleep(1)
 
-            self.browser.execute_script("window.scrollTo(0, 962)")
-            time.sleep(1)
+                cursor = ActionChains(self.browser)
+                table = self.browser.find_element(*self.basic_table)
+                button = self.browser.find_element(*self.basic_table_button)
+                cursor.move_to_element(table).perform()
+                assert_that(self.browser.find_element(*self.basic_table_title).text)\
+                    .is_equal_to(self.basic_table_title_text)
+                assert_that(self.browser.find_element(*self.basic_table_price).text)\
+                    .is_equal_to(self.basic_table_price_text)
+                assert_that(self.browser.find_element(*self.basic_table_month).text)\
+                    .is_equal_to(self.basic_table_month_text)
+                self.check_list(self.basic_table_list_1_icon, self.basic_table_list_1, self.basic_table_list_1_text)
+                self.check_list(self.basic_table_list_2_icon, self.basic_table_list_2, self.basic_table_list_2_text)
+                self.check_list(self.basic_table_list_3_icon, self.basic_table_list_3, self.basic_table_list_3_text)
+                self.check_list(self.basic_table_list_4_icon, self.basic_table_list_4, self.basic_table_list_4_text)
+                self.check_list(self.basic_table_list_5_icon, self.basic_table_list_5, self.basic_table_list_5_text)
 
-            cursor = ActionChains(self.browser)
-            table = self.browser.find_element(*self.basic_table)
-            button = self.browser.find_element(*self.basic_table_button)
-            cursor.move_to_element(table).perform()
-            assert_that(self.browser.find_element(*self.basic_table_title).text)\
-                .is_equal_to(self.basic_table_title_text)
-            assert_that(self.browser.find_element(*self.basic_table_price).text)\
-                .is_equal_to(self.basic_table_price_text)
-            assert_that(self.browser.find_element(*self.basic_table_month).text)\
-                .is_equal_to(self.basic_table_month_text)
-            self.check_list(self.basic_table_list_1_icon, self.basic_table_list_1, self.basic_table_list_1_text)
-            self.check_list(self.basic_table_list_2_icon, self.basic_table_list_2, self.basic_table_list_2_text)
-            self.check_list(self.basic_table_list_3_icon, self.basic_table_list_3, self.basic_table_list_3_text)
-            self.check_list(self.basic_table_list_4_icon, self.basic_table_list_4, self.basic_table_list_4_text)
-            self.check_list(self.basic_table_list_5_icon, self.basic_table_list_5, self.basic_table_list_5_text)
-
-            cursor.move_to_element(button).perform()
+                cursor.move_to_element(button).perform()
 
 
 

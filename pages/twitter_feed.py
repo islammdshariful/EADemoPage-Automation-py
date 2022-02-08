@@ -1,3 +1,5 @@
+from selenium.webdriver import Keys
+
 from utils.config import *
 
 
@@ -52,10 +54,11 @@ class TwitterFeed(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 1004)")
+                time.sleep(1)
 
-            self.browser.execute_script("window.scrollTo(0, 1004)")
-            time.sleep(1)
-
-            self.check_post(self.img_1, self.icon_1, self.author_1, self.content_1, self.read_more_1)
-            self.check_post(self.img_2, self.icon_2, self.author_2, self.content_2, self.read_more_2)
+                self.check_post(self.img_1, self.icon_1, self.author_1, self.content_1, self.read_more_1)
+                self.check_post(self.img_2, self.icon_2, self.author_2, self.content_2, self.read_more_2)

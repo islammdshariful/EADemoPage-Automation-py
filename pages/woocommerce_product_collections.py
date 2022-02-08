@@ -1,4 +1,4 @@
-from selenium.webdriver import ActionChains
+from selenium.webdriver import ActionChains, Keys
 
 from utils.config import *
 
@@ -9,7 +9,7 @@ class WoocommerceProductCollections(Helper):
     widget_name = 'Woo Product Collection'
     doc_link = '//*[@id="post-4588"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
                '/div/div/div[2]/div/div/div[3]/div/div/a/span/span'
-    doc_name = ""
+    doc_name = "EA WOO PRODUCT COLLECTIONS"
 
     img_1 = f'//*[@id="post-4588"]/div/div/div/div/section[2]/div/div/div/div/div/section[2]' \
             f'/div/div/div[1]/div/div/div/div/div/a/img'
@@ -59,17 +59,18 @@ class WoocommerceProductCollections(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 895)")
+                time.sleep(.5)
 
-            self.browser.execute_script("window.scrollTo(0, 895)")
-            time.sleep(.5)
+                self.check_collections(self.img_1, self.title_1, self.title_text, self.cat_1, self.cat_1_text)
+                self.check_collections(self.img_2, self.title_2, self.title_text, self.cat_2, self.cat_2_text)
+                self.check_collections(self.img_3, self.title_3, self.title_text, self.cat_3, self.cat_3_text)
 
-            self.check_collections(self.img_1, self.title_1, self.title_text, self.cat_1, self.cat_1_text)
-            self.check_collections(self.img_2, self.title_2, self.title_text, self.cat_2, self.cat_2_text)
-            self.check_collections(self.img_3, self.title_3, self.title_text, self.cat_3, self.cat_3_text)
-
-            cat = self.browser.find_element(By.XPATH, self.cat_3).text
-            self.browser.find_element(By.XPATH, self.cat_3).click()
-            assert_that(self.browser.find_element(*self.shop_page).text).is_equal_to(cat)
-            self.browser.back()
-            self.browser.execute_script("window.scrollTo(0, 895)")
+                cat = self.browser.find_element(By.XPATH, self.cat_3).text
+                self.browser.find_element(By.XPATH, self.cat_3).click()
+                assert_that(self.browser.find_element(*self.shop_page).text).is_equal_to(cat)
+                self.browser.back()
+                self.browser.execute_script("window.scrollTo(0, 895)")

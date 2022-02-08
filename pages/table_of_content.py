@@ -1,3 +1,5 @@
+from selenium.webdriver import Keys
+
 from utils.config import *
 
 
@@ -29,20 +31,21 @@ class TableOfContent(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 1504)")
+                time.sleep(1)
 
-            self.browser.execute_script("window.scrollTo(0, 1504)")
-            time.sleep(1)
+                self.browser.find_element(*self.toc).click()
+                time.sleep(.5)
 
-            self.browser.find_element(*self.toc).click()
-            time.sleep(.5)
+                assert_that(self.browser.find_element(By.XPATH, self.toc_cp).text).is_equal_to(self.toc_cp_text)
+                self.browser.find_element(By.XPATH, self.toc_cp).click()
+                time.sleep(1)
+                self.check_visibility(self.toc_cp_content, "Table of content is not working.")
 
-            assert_that(self.browser.find_element(By.XPATH, self.toc_cp).text).is_equal_to(self.toc_cp_text)
-            self.browser.find_element(By.XPATH, self.toc_cp).click()
-            time.sleep(1)
-            self.check_visibility(self.toc_cp_content, "Table of content is not working.")
-
-            assert_that(self.browser.find_element(By.XPATH, self.toc_ds).text).is_equal_to(self.toc_ds_text)
-            self.browser.find_element(By.XPATH, self.toc_ds).click()
-            time.sleep(1)
-            self.check_visibility(self.toc_ds_content, "Table of content is not working.")
+                assert_that(self.browser.find_element(By.XPATH, self.toc_ds).text).is_equal_to(self.toc_ds_text)
+                self.browser.find_element(By.XPATH, self.toc_ds).click()
+                time.sleep(1)
+                self.check_visibility(self.toc_ds_content, "Table of content is not working.")

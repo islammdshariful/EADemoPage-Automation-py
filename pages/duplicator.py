@@ -1,3 +1,5 @@
+from selenium.webdriver import Keys
+
 from utils.config import *
 
 
@@ -29,13 +31,14 @@ class Duplicator(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 1003)")
+                time.sleep(1)
 
-            self.browser.execute_script("window.scrollTo(0, 1003)")
-            time.sleep(1)
-
-            self.check_visibility(self.img_1, "Image 1 is not visible.")
-            self.browser.execute_script("window.scrollTo(0, 1938)")
-            self.check_visibility(self.img_2, "Image 2 is not visible.")
-            self.browser.execute_script("window.scrollTo(0, 2958)")
-            self.check_visibility(self.img_3, "Image 3 is not visible.")
+                self.check_visibility(self.img_1, "Image 1 is not visible.")
+                self.browser.execute_script("window.scrollTo(0, 1938)")
+                self.check_visibility(self.img_2, "Image 2 is not visible.")
+                self.browser.execute_script("window.scrollTo(0, 2958)")
+                self.check_visibility(self.img_3, "Image 3 is not visible.")

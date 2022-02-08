@@ -1,3 +1,5 @@
+from selenium.webdriver import Keys
+
 from utils.config import *
 
 
@@ -29,24 +31,25 @@ class ContentTicker(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
-
-            self.browser.execute_script("window.scrollTo(0, 982)")
-
-            assert_that(self.browser.find_element(*self.label).text).is_equal_to(self.label_text)
-            if self.browser.find_element(*self.content_1).is_displayed():
-                assert_that(self.browser.find_element(*self.content_1).text).is_equal_to(self.content_1_text)
-                self.browser.find_element(*self.next_btn).click()
-                time.sleep(.5)
-                assert_that(self.browser.find_element(*self.content_2).text).is_equal_to(self.content_2_text)
-                self.browser.find_element(*self.prev_btn).click()
-                time.sleep(.5)
-                assert_that(self.browser.find_element(*self.content_1).text).is_equal_to(self.content_1_text)
             else:
-                assert_that(self.browser.find_element(*self.content_2).text).is_equal_to(self.content_2_text)
-                self.browser.find_element(*self.next_btn).click()
-                time.sleep(.5)
-                assert_that(self.browser.find_element(*self.content_1).text).is_equal_to(self.content_1_text)
-                self.browser.find_element(*self.prev_btn).click()
-                time.sleep(.5)
-                assert_that(self.browser.find_element(*self.content_2).text).is_equal_to(self.content_2_text)
+                self.browser.execute_script("window.scrollTo(0, 982)")
+
+                assert_that(self.browser.find_element(*self.label).text).is_equal_to(self.label_text)
+                if self.browser.find_element(*self.content_1).is_displayed():
+                    assert_that(self.browser.find_element(*self.content_1).text).is_equal_to(self.content_1_text)
+                    self.browser.find_element(*self.next_btn).click()
+                    time.sleep(.5)
+                    assert_that(self.browser.find_element(*self.content_2).text).is_equal_to(self.content_2_text)
+                    self.browser.find_element(*self.prev_btn).click()
+                    time.sleep(.5)
+                    assert_that(self.browser.find_element(*self.content_1).text).is_equal_to(self.content_1_text)
+                else:
+                    assert_that(self.browser.find_element(*self.content_2).text).is_equal_to(self.content_2_text)
+                    self.browser.find_element(*self.next_btn).click()
+                    time.sleep(.5)
+                    assert_that(self.browser.find_element(*self.content_1).text).is_equal_to(self.content_1_text)
+                    self.browser.find_element(*self.prev_btn).click()
+                    time.sleep(.5)
+                    assert_that(self.browser.find_element(*self.content_2).text).is_equal_to(self.content_2_text)

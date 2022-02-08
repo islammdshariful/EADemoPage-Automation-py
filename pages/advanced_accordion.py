@@ -1,6 +1,6 @@
 import time
 
-from selenium.webdriver import ActionChains
+from selenium.webdriver import ActionChains, Keys
 
 from utils.config import *
 
@@ -44,67 +44,68 @@ class AdvancedAccordion(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
-
-            self.browser.execute_script("window.scrollTo(0, 1047)")
-            time.sleep(1)
-
-            accor_1 = self.browser.find_element(*self.accor_1_title)
-            accor_2 = self.browser.find_element(*self.accor_2_title)
-            accor_3 = self.browser.find_element(*self.accor_3_title)
-
-            assert_that(self.browser.find_element(*self.accor_1_title).text).is_equal_to(self.accor_1_title_text)
-            assert_that(self.browser.find_element(*self.accor_2_title).text).is_equal_to(self.accor_2_title_text)
-            assert_that(self.browser.find_element(*self.accor_3_title).text).is_equal_to(self.accor_3_title_text)
-            if self.browser.find_element(*self.accor_1_icon).is_displayed():
-                print("ACCORDION 1 ICON IS VISIBLE")
-                if self.browser.find_element(*self.accor_2_icon).is_displayed():
-                    print("ACCORDION 2 ICON IS VISIBLE")
-                    if self.browser.find_element(*self.accor_3_icon).is_displayed():
-                        print("ACCORDION 3 ICON IS VISIBLE")
-                    else:
-                        print("ACCORDION 3 ICON IS NOT VISIBLE")
-                else:
-                    print("ACCORDION 2 ICON IS NOT VISIBLE")
             else:
-                print("ACCORDION 1 ICON IS NOT VISIBLE")
+                self.browser.execute_script("window.scrollTo(0, 1047)")
+                time.sleep(1)
 
-            cursor_1 = ActionChains(self.browser)
-            cursor_2 = ActionChains(self.browser)
-            cursor_3 = ActionChains(self.browser)
+                accor_1 = self.browser.find_element(*self.accor_1_title)
+                accor_2 = self.browser.find_element(*self.accor_2_title)
+                accor_3 = self.browser.find_element(*self.accor_3_title)
 
-            cursor_1.move_to_element(accor_2).click().perform()
-            time.sleep(.5)
-            assert_that(self.browser.find_element(*self.accor_2_des).text).is_equal_to(self.accor_2_des_text)
-            if not self.browser.find_element(*self.accor_1_des).is_displayed():
-                if not self.browser.find_element(*self.accor_3_des).is_displayed():
-                    print("ACCORDION 2 PASSED")
+                assert_that(self.browser.find_element(*self.accor_1_title).text).is_equal_to(self.accor_1_title_text)
+                assert_that(self.browser.find_element(*self.accor_2_title).text).is_equal_to(self.accor_2_title_text)
+                assert_that(self.browser.find_element(*self.accor_3_title).text).is_equal_to(self.accor_3_title_text)
+                if self.browser.find_element(*self.accor_1_icon).is_displayed():
+                    print("ACCORDION 1 ICON IS VISIBLE")
+                    if self.browser.find_element(*self.accor_2_icon).is_displayed():
+                        print("ACCORDION 2 ICON IS VISIBLE")
+                        if self.browser.find_element(*self.accor_3_icon).is_displayed():
+                            print("ACCORDION 3 ICON IS VISIBLE")
+                        else:
+                            print("ACCORDION 3 ICON IS NOT VISIBLE")
+                    else:
+                        print("ACCORDION 2 ICON IS NOT VISIBLE")
+                else:
+                    print("ACCORDION 1 ICON IS NOT VISIBLE")
+
+                cursor_1 = ActionChains(self.browser)
+                cursor_2 = ActionChains(self.browser)
+                cursor_3 = ActionChains(self.browser)
+
+                cursor_1.move_to_element(accor_2).click().perform()
+                time.sleep(.5)
+                assert_that(self.browser.find_element(*self.accor_2_des).text).is_equal_to(self.accor_2_des_text)
+                if not self.browser.find_element(*self.accor_1_des).is_displayed():
+                    if not self.browser.find_element(*self.accor_3_des).is_displayed():
+                        print("ACCORDION 2 PASSED")
+                    else:
+                        print("ACCORDION 2 FAILED")
                 else:
                     print("ACCORDION 2 FAILED")
-            else:
-                print("ACCORDION 2 FAILED")
 
-            cursor_2.move_to_element(accor_3).click().perform()
-            time.sleep(.5)
-            assert_that(self.browser.find_element(*self.accor_3_des).text).is_equal_to(self.accor_3_des_text)
-            if not self.browser.find_element(*self.accor_1_des).is_displayed():
-                if not self.browser.find_element(*self.accor_2_des).is_displayed():
-                    print("ACCORDION 3 PASSED")
+                cursor_2.move_to_element(accor_3).click().perform()
+                time.sleep(.5)
+                assert_that(self.browser.find_element(*self.accor_3_des).text).is_equal_to(self.accor_3_des_text)
+                if not self.browser.find_element(*self.accor_1_des).is_displayed():
+                    if not self.browser.find_element(*self.accor_2_des).is_displayed():
+                        print("ACCORDION 3 PASSED")
+                    else:
+                        print("ACCORDION 3 FAILED")
                 else:
                     print("ACCORDION 3 FAILED")
-            else:
-                print("ACCORDION 3 FAILED")
 
-            cursor_3.move_to_element(accor_1).click().perform()
-            time.sleep(.5)
-            assert_that(self.browser.find_element(*self.accor_1_des).text).is_equal_to(self.accor_1_des_text)
-            if not self.browser.find_element(*self.accor_2_des).is_displayed():
-                if not self.browser.find_element(*self.accor_3_des).is_displayed():
-                    print("ACCORDION 1 PASSED")
+                cursor_3.move_to_element(accor_1).click().perform()
+                time.sleep(.5)
+                assert_that(self.browser.find_element(*self.accor_1_des).text).is_equal_to(self.accor_1_des_text)
+                if not self.browser.find_element(*self.accor_2_des).is_displayed():
+                    if not self.browser.find_element(*self.accor_3_des).is_displayed():
+                        print("ACCORDION 1 PASSED")
+                    else:
+                        print("ACCORDION 1 FAILED")
                 else:
                     print("ACCORDION 1 FAILED")
-            else:
-                print("ACCORDION 1 FAILED")
 
 
 

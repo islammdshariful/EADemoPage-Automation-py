@@ -1,4 +1,4 @@
-from selenium.webdriver import ActionChains
+from selenium.webdriver import ActionChains, Keys
 
 from utils.config import *
 
@@ -96,55 +96,56 @@ class ContentToggle(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 1967)")
+                time.sleep(1)
 
-            self.browser.execute_script("window.scrollTo(0, 1967)")
-            time.sleep(1)
+                assert_that(self.browser.find_element(*self.primary_btn).text).is_equal_to(self.primary_btn_text)
+                assert_that(self.browser.find_element(*self.secondary_btn).text).is_equal_to(self.secondary_btn_text)
 
-            assert_that(self.browser.find_element(*self.primary_btn).text).is_equal_to(self.primary_btn_text)
-            assert_that(self.browser.find_element(*self.secondary_btn).text).is_equal_to(self.secondary_btn_text)
+                cursor = ActionChains(self.browser)
+                p_title = self.browser.find_element(*self.p_1_title)
+                p_btn = self.browser.find_element(*self.p_1_button)
+                s_title = self.browser.find_element(*self.s_1_title)
+                s_btn = self.browser.find_element(*self.s_1_button)
+                cursor.move_to_element(p_title).perform()
+                time.sleep(1)
 
-            cursor = ActionChains(self.browser)
-            p_title = self.browser.find_element(*self.p_1_title)
-            p_btn = self.browser.find_element(*self.p_1_button)
-            s_title = self.browser.find_element(*self.s_1_title)
-            s_btn = self.browser.find_element(*self.s_1_button)
-            cursor.move_to_element(p_title).perform()
-            time.sleep(1)
+                assert_that(p_title.text).is_equal_to(self.p_1_title_text)
+                assert_that(self.browser.find_element(*self.p_1_price).text).is_equal_to(self.p_1_price_text)
+                assert_that(self.browser.find_element(*self.p_1_month).text).is_equal_to(self.p_1_month_text)
 
-            assert_that(p_title.text).is_equal_to(self.p_1_title_text)
-            assert_that(self.browser.find_element(*self.p_1_price).text).is_equal_to(self.p_1_price_text)
-            assert_that(self.browser.find_element(*self.p_1_month).text).is_equal_to(self.p_1_month_text)
+                self.check_visibility(self.p_1_item_1_icon, "Content Toggle page 1 is not visible.")
 
-            self.check_visibility(self.p_1_item_1_icon, "Content Toggle page 1 is not visible.")
+                assert_that(self.browser.find_element(*self.p_1_item_1).text).is_equal_to(self.p_1_item_1_text)
+                assert_that(self.browser.find_element(*self.p_1_item_2).text).is_equal_to(self.p_1_item_2_text)
+                assert_that(self.browser.find_element(*self.p_1_item_3).text).is_equal_to(self.p_1_item_3_text)
+                assert_that(self.browser.find_element(*self.p_1_item_4).text).is_equal_to(self.p_1_item_4_text)
+                assert_that(self.browser.find_element(*self.p_1_item_5).text).is_equal_to(self.p_1_item_5_text)
 
-            assert_that(self.browser.find_element(*self.p_1_item_1).text).is_equal_to(self.p_1_item_1_text)
-            assert_that(self.browser.find_element(*self.p_1_item_2).text).is_equal_to(self.p_1_item_2_text)
-            assert_that(self.browser.find_element(*self.p_1_item_3).text).is_equal_to(self.p_1_item_3_text)
-            assert_that(self.browser.find_element(*self.p_1_item_4).text).is_equal_to(self.p_1_item_4_text)
-            assert_that(self.browser.find_element(*self.p_1_item_5).text).is_equal_to(self.p_1_item_5_text)
+                cursor.move_to_element(p_btn).perform()
 
-            cursor.move_to_element(p_btn).perform()
+                self.browser.find_element(*self.toggle_button).click()
+                time.sleep(.5)
 
-            self.browser.find_element(*self.toggle_button).click()
-            time.sleep(.5)
+                cursor.move_to_element(s_title).perform()
+                # time.sleep(1)
 
-            cursor.move_to_element(s_title).perform()
-            # time.sleep(1)
+                assert_that(s_title.text).is_equal_to(self.s_1_title_text)
+                assert_that(self.browser.find_element(*self.s_1_price).text).is_equal_to(self.s_1_price_text)
+                assert_that(self.browser.find_element(*self.s_1_month).text).is_equal_to(self.s_1_month_text)
 
-            assert_that(s_title.text).is_equal_to(self.s_1_title_text)
-            assert_that(self.browser.find_element(*self.s_1_price).text).is_equal_to(self.s_1_price_text)
-            assert_that(self.browser.find_element(*self.s_1_month).text).is_equal_to(self.s_1_month_text)
+                self.check_visibility(self.s_1_item_1_icon, "Content Toggle page 2 is not visible.")
 
-            self.check_visibility(self.s_1_item_1_icon, "Content Toggle page 2 is not visible.")
+                assert_that(self.browser.find_element(*self.s_1_item_1).text).is_equal_to(self.s_1_item_1_text)
+                assert_that(self.browser.find_element(*self.s_1_item_2).text).is_equal_to(self.s_1_item_2_text)
+                assert_that(self.browser.find_element(*self.s_1_item_3).text).is_equal_to(self.s_1_item_3_text)
+                assert_that(self.browser.find_element(*self.s_1_item_4).text).is_equal_to(self.s_1_item_4_text)
+                assert_that(self.browser.find_element(*self.s_1_item_5).text).is_equal_to(self.s_1_item_5_text)
 
-            assert_that(self.browser.find_element(*self.s_1_item_1).text).is_equal_to(self.s_1_item_1_text)
-            assert_that(self.browser.find_element(*self.s_1_item_2).text).is_equal_to(self.s_1_item_2_text)
-            assert_that(self.browser.find_element(*self.s_1_item_3).text).is_equal_to(self.s_1_item_3_text)
-            assert_that(self.browser.find_element(*self.s_1_item_4).text).is_equal_to(self.s_1_item_4_text)
-            assert_that(self.browser.find_element(*self.s_1_item_5).text).is_equal_to(self.s_1_item_5_text)
-
-            cursor.move_to_element(s_btn).perform()
+                cursor.move_to_element(s_btn).perform()
 
 
 

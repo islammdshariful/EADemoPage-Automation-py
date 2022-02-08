@@ -1,4 +1,4 @@
-from selenium.webdriver import ActionChains
+from selenium.webdriver import ActionChains, Keys
 
 from utils.config import *
 
@@ -35,24 +35,25 @@ class Countdown(Helper):
         with soft_assertions():
             c.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
-                c.check_documents(self.doc_link, self.doc_name)
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
+                self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 914)")
+                assert_that(self.browser.find_element(*self.days_text).text).is_equal_to(self.days_text_text)
+                assert_that(self.browser.find_element(*self.hours_text).text).is_equal_to(self.hours_text_text)
+                assert_that(self.browser.find_element(*self.minutes_text).text).is_equal_to(self.minutes_text_text)
+                assert_that(self.browser.find_element(*self.seconds_text).text).is_equal_to(self.seconds_text_text)
 
-            self.browser.execute_script("window.scrollTo(0, 914)")
-            assert_that(self.browser.find_element(*self.days_text).text).is_equal_to(self.days_text_text)
-            assert_that(self.browser.find_element(*self.hours_text).text).is_equal_to(self.hours_text_text)
-            assert_that(self.browser.find_element(*self.minutes_text).text).is_equal_to(self.minutes_text_text)
-            assert_that(self.browser.find_element(*self.seconds_text).text).is_equal_to(self.seconds_text_text)
+                self.check_visibility(self.days, "Days not visible.")
+                self.check_visibility(self.hours, "Hours not visible.")
+                self.check_visibility(self.minutes, "Minutes not visible.")
+                self.check_visibility(self.seconds, "Seconds not visible.")
 
-            self.check_visibility(self.days, "Days not visible.")
-            self.check_visibility(self.hours, "Hours not visible.")
-            self.check_visibility(self.minutes, "Minutes not visible.")
-            self.check_visibility(self.seconds, "Seconds not visible.")
-
-            sec = self.browser.find_element(By.XPATH, self.seconds).text
-            time.sleep(1.5)
-            sec_1 = self.browser.find_element(By.XPATH, self.seconds).text
-            if sec == sec_1:
-                assert_that("").is_equal_to("Countdown not working")
+                sec = self.browser.find_element(By.XPATH, self.seconds).text
+                time.sleep(1.5)
+                sec_1 = self.browser.find_element(By.XPATH, self.seconds).text
+                if sec == sec_1:
+                    assert_that("").is_equal_to("Countdown not working")
 
 
 

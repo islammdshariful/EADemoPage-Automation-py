@@ -1,4 +1,4 @@
-from selenium.webdriver import ActionChains
+from selenium.webdriver import ActionChains, Keys
 
 from utils.config import *
 
@@ -136,25 +136,26 @@ class WooProductCompare(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 1128)")
+                time.sleep(.5)
 
-            self.browser.execute_script("window.scrollTo(0, 1128)")
-            time.sleep(.5)
+                self.check_table(self.title_1, self.title_1_text, self.price_1, self.price_1_text, self.availability_1,
+                                 self.availability_1_text, self.weight_1, self.weight_1_text, self.dimension_1,
+                                 self.dimension_1_text, self.color_1, self.color_1_text, self.add_to_cart_1,
+                                 self.add_to_cart_1_text)
+                self.check_image(self.img_1)
 
-            self.check_table(self.title_1, self.title_1_text, self.price_1, self.price_1_text, self.availability_1,
-                             self.availability_1_text, self.weight_1, self.weight_1_text, self.dimension_1,
-                             self.dimension_1_text, self.color_1, self.color_1_text, self.add_to_cart_1,
-                             self.add_to_cart_1_text)
-            self.check_image(self.img_1)
+                self.check_table(self.title_2, self.title_2_text, self.price_2, self.price_2_text, self.availability_2,
+                                 self.availability_2_text, self.weight_2, self.weight_2_text, self.dimension_2,
+                                 self.dimension_2_text, self.color_2, self.color_2_text, self.add_to_cart_2,
+                                 self.add_to_cart_2_text)
+                self.check_image(self.img_2)
 
-            self.check_table(self.title_2, self.title_2_text, self.price_2, self.price_2_text, self.availability_2,
-                             self.availability_2_text, self.weight_2, self.weight_2_text, self.dimension_2,
-                             self.dimension_2_text, self.color_2, self.color_2_text, self.add_to_cart_2,
-                             self.add_to_cart_2_text)
-            self.check_image(self.img_2)
-
-            self.check_table(self.title_3, self.title_3_text, self.price_3, self.price_3_text, self.availability_3,
-                             self.availability_3_text, self.weight_3, self.weight_3_text, self.dimension_3,
-                             self.dimension_3_text, self.color_3, self.color_3_text, self.add_to_cart_3,
-                             self.add_to_cart_3_text)
-            self.check_image(self.img_3)
+                self.check_table(self.title_3, self.title_3_text, self.price_3, self.price_3_text, self.availability_3,
+                                 self.availability_3_text, self.weight_3, self.weight_3_text, self.dimension_3,
+                                 self.dimension_3_text, self.color_3, self.color_3_text, self.add_to_cart_3,
+                                 self.add_to_cart_3_text)
+                self.check_image(self.img_3)

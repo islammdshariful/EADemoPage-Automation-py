@@ -1,3 +1,5 @@
+from selenium.webdriver import Keys
+
 from utils.config import *
 
 
@@ -48,9 +50,10 @@ class BetterdocsCategoryBox(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
-
-            self.browser.execute_script("window.scrollTo(0, 856)")
-            self.box_layout(self.icon_1, self.title_1, self.title_1_text, self.count_1, self.count_1_text)
-            self.box_layout(self.icon_2, self.title_2, self.title_2_text, self.count_2, self.count_2_text)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 856)")
+                self.box_layout(self.icon_1, self.title_1, self.title_1_text, self.count_1, self.count_1_text)
+                self.box_layout(self.icon_2, self.title_2, self.title_2_text, self.count_2, self.count_2_text)
 

@@ -1,3 +1,5 @@
+from selenium.webdriver import Keys
+
 from utils.config import *
 from selenium.webdriver.support.color import Color
 
@@ -60,31 +62,32 @@ class ContentTimeline(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 1004)")
+                time.sleep(1)
 
-            self.browser.execute_script("window.scrollTo(0, 1004)")
-            time.sleep(1)
+                self.check_visibility(self.post_1_icon, "Post 1 icon not visible")
+                self.check_post(self.post_1_title, self.post_1_title_text, self.post_1_des,
+                                self.post_1_des_text, self.post_1_date, self.post_1_date_text)
 
-            self.check_visibility(self.post_1_icon, "Post 1 icon not visible")
-            self.check_post(self.post_1_title, self.post_1_title_text, self.post_1_des,
-                            self.post_1_des_text, self.post_1_date, self.post_1_date_text)
+                self.check_visibility(self.post_2_icon, "Post 2 icon not visible")
+                self.browser.execute_script("window.scrollTo(0, 1393)")
 
-            self.check_visibility(self.post_2_icon, "Post 2 icon not visible")
-            self.browser.execute_script("window.scrollTo(0, 1393)")
+                self.check_post(self.post_2_title, self.post_2_title_text, self.post_2_des,
+                                self.post_2_des_text, self.post_2_date, self.post_2_date_text)
 
-            self.check_post(self.post_2_title, self.post_2_title_text, self.post_2_des,
-                            self.post_2_des_text, self.post_2_date, self.post_2_date_text)
+                self.check_visibility(self.post_3_icon, "Post 3 icon not visible")
+                self.browser.execute_script("window.scrollTo(0, 1554)")
+                self.check_post(self.post_3_title, self.post_3_title_text, self.post_3_des,
+                                self.post_3_des_text, self.post_3_date, self.post_3_date_text)
 
-            self.check_visibility(self.post_3_icon, "Post 3 icon not visible")
-            self.browser.execute_script("window.scrollTo(0, 1554)")
-            self.check_post(self.post_3_title, self.post_3_title_text, self.post_3_des,
-                            self.post_3_des_text, self.post_3_date, self.post_3_date_text)
-
-            self.check_visibility(self.post_4_icon, "Post 4 icon not visible")
-            self.browser.execute_script("window.scrollTo(0, 1677)")
-            self.check_post(self.post_4_title, self.post_4_title_text, self.post_4_des,
-                            self.post_4_des_text, self.post_4_date, self.post_4_date_text)
-            time.sleep(1)
-            bg_color = self.browser.find_element(*self.post_4_icon_background).value_of_css_property('background-color')
-            hex = Color.from_string(bg_color).hex
-            assert_that(hex).is_equal_to(self.post_4_icon_background_code)
+                self.check_visibility(self.post_4_icon, "Post 4 icon not visible")
+                self.browser.execute_script("window.scrollTo(0, 1677)")
+                self.check_post(self.post_4_title, self.post_4_title_text, self.post_4_des,
+                                self.post_4_des_text, self.post_4_date, self.post_4_date_text)
+                time.sleep(1)
+                bg_color = self.browser.find_element(*self.post_4_icon_background).value_of_css_property('background-color')
+                hex = Color.from_string(bg_color).hex
+                assert_that(hex).is_equal_to(self.post_4_icon_background_code)

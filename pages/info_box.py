@@ -1,4 +1,4 @@
-from selenium.webdriver import ActionChains
+from selenium.webdriver import ActionChains, Keys
 
 from utils.config import *
 
@@ -30,16 +30,17 @@ class InfoBox(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 1028)")
+                time.sleep(1)
 
-        self.browser.execute_script("window.scrollTo(0, 1028)")
-        time.sleep(1)
+                box_1 = self.browser.find_element(*self.info_box_icon_1)
+                box_2 = self.browser.find_element(*self.info_box_icon_2)
+                cursor = ActionChains(self.browser)
+                cursor.move_to_element(box_1).perform()
 
-        box_1 = self.browser.find_element(*self.info_box_icon_1)
-        box_2 = self.browser.find_element(*self.info_box_icon_2)
-        cursor = ActionChains(self.browser)
-        cursor.move_to_element(box_1).perform()
-
-        assert_that(self.browser.find_element(*self.info_box_1).text).is_equal_to(self.info_box_1_text)
-        cursor.move_to_element(box_2).perform()
+                assert_that(self.browser.find_element(*self.info_box_1).text).is_equal_to(self.info_box_1_text)
+                cursor.move_to_element(box_2).perform()
 

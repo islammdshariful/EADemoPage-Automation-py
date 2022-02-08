@@ -1,4 +1,4 @@
-from selenium.webdriver import ActionChains
+from selenium.webdriver import ActionChains, Keys
 
 from utils.config import *
 
@@ -115,69 +115,70 @@ class WooProductGallery(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 1002)")
+                time.sleep(1)
 
-            self.browser.execute_script("window.scrollTo(0, 1002)")
-            time.sleep(1)
+                cursor = ActionChains(self.browser)
+                all = self.browser.find_element(*self.all_tab)
+                fashion = self.browser.find_element(*self.fashion_tab)
+                men = self.browser.find_element(*self.men_tab)
+                women = self.browser.find_element(*self.women_tab)
 
-            cursor = ActionChains(self.browser)
-            all = self.browser.find_element(*self.all_tab)
-            fashion = self.browser.find_element(*self.fashion_tab)
-            men = self.browser.find_element(*self.men_tab)
-            women = self.browser.find_element(*self.women_tab)
-
-            cursor.move_to_element(all).click().perform()
-            self.browser.execute_script("window.scrollTo(0, 1002)")
-            self.check_tab_items(self.p_1_img, self.p_1_title, self.p_1_title_text, self.p_1_price, self.p_1_price_text,
-                                 self.p_1_cart_btn, self.p_1_qview_btn, self.p_2_img, self.p_2_title,
-                                 self.p_2_title_text, self.p_2_price, self.p_2_price_text, self.p_2_cart_btn,
-                                 self.p_2_qview_btn, self.p_3_img, self.p_3_title, self.p_3_title_text,
-                                 self.p_3_price, self.p_3_price_text, self.p_3_cart_btn, self.p_3_qview_btn)
-            self.browser.execute_script("window.scrollTo(0, 1002)")
-            self.browser.find_element(By.XPATH, self.p_2_qview_btn).click()
-            self.check_quick_view(self.q_title, self.p_2_title_text, self.q_price, self.p_2_price_text, self.q_cart_btn,
-                                  self.q_cat, self.p_2_cat_text, self.q_tag, self.p_2_tag_text, self.q_image,
-                                  self.q_zoom, self.q_cross)
-            self.browser.execute_script("window.scrollTo(0, 1002)")
-            cursor.move_to_element(fashion).click().perform()
-            self.browser.execute_script("window.scrollTo(0, 1002)")
-            self.check_tab_items(self.p_1_img, self.p_1_title, self.p_1_title_text, self.p_1_price, self.p_1_price_text,
-                                 self.p_1_cart_btn, self.p_1_qview_btn, self.p_2_img, self.p_2_title,
-                                 self.p_2_title_text, self.p_2_price, self.p_2_price_text, self.p_2_cart_btn,
-                                 self.p_2_qview_btn, self.p_3_img, self.p_3_title, self.p_3_title_text,
-                                 self.p_3_price, self.p_3_price_text, self.p_3_cart_btn, self.p_3_qview_btn)
-            self.browser.execute_script("window.scrollTo(0, 1002)")
-            cursor.move_to_element(men).click().perform()
-            self.browser.execute_script("window.scrollTo(0, 1002)")
-            self.check_tab_items(self.p_1_img, self.p_1_title, self.p_1_title_text, self.p_1_price, self.p_1_price_text,
-                                 self.p_1_cart_btn, self.p_1_qview_btn, self.p_2_img, self.p_2_title,
-                                 self.p_2_title_text, self.p_2_price, self.p_2_price_text, self.p_2_cart_btn,
-                                 self.p_2_qview_btn, self.p_3_img, self.p_3_title, self.p_3_title_text,
-                                 self.p_3_price, self.p_3_price_text, self.p_3_cart_btn, self.p_3_qview_btn)
-            self.browser.execute_script("window.scrollTo(0, 1002)")
-            cursor.move_to_element(women).click().perform()
-            self.browser.execute_script("window.scrollTo(0, 1002)")
-            self.check_tab_items(self.p_1_img, self.p_1_title, self.p_4_title_text, self.p_1_price, self.p_4_price_text,
-                                 self.p_1_cart_btn, self.p_1_qview_btn, self.p_2_img, self.p_2_title,
-                                 self.p_5_title_text, self.p_2_price, self.p_5_price_text, self.p_2_cart_btn,
-                                 self.p_2_qview_btn, self.p_3_img, self.p_3_title, self.p_6_title_text,
-                                 self.p_3_price, self.p_6_price_text, self.p_3_cart_btn, self.p_3_qview_btn)
-            time.sleep(.5)
-            self.browser.find_element(By.XPATH, self.p_3_qview_btn).click()
-            self.check_quick_view(self.q_title, self.p_6_title_text, self.q_price, self.p_6_price_text, self.q_cart_btn,
-                                  self.q_cat, self.p_6_cat_text, self.q_tag, self.p_6_tag_text, self.q_image,
-                                  self.q_zoom, self.q_cross)
-            self.browser.execute_script("window.scrollTo(0, 1002)")
-            p_title = self.browser.find_element(By.XPATH, self.p_2_title).text
-            self.browser.find_element(By.XPATH, self.p_2_title).click()
-            assert_that(self.browser.find_element(By.XPATH, f'/html/body/div[1]/div/div/div/main/div[2]/div[2]/h1')
-                        .text).is_equal_to(p_title)
-            self.browser.back()
-            self.browser.execute_script("window.scrollTo(0, 1002)")
-            time.sleep(1)
-            p_title = self.browser.find_element(By.XPATH, self.p_2_title).text
-            self.browser.find_element(By.XPATH, self.p_2_title).click()
-            assert_that(self.browser.find_element(By.XPATH, f'/html/body/div[1]/div/div/div/main/div[2]/div[2]/h1')
-                        .text).is_equal_to(p_title)
-            self.browser.back()
-            self.browser.execute_script("window.scrollTo(0, 1002)")
+                cursor.move_to_element(all).click().perform()
+                self.browser.execute_script("window.scrollTo(0, 1002)")
+                self.check_tab_items(self.p_1_img, self.p_1_title, self.p_1_title_text, self.p_1_price, self.p_1_price_text,
+                                     self.p_1_cart_btn, self.p_1_qview_btn, self.p_2_img, self.p_2_title,
+                                     self.p_2_title_text, self.p_2_price, self.p_2_price_text, self.p_2_cart_btn,
+                                     self.p_2_qview_btn, self.p_3_img, self.p_3_title, self.p_3_title_text,
+                                     self.p_3_price, self.p_3_price_text, self.p_3_cart_btn, self.p_3_qview_btn)
+                self.browser.execute_script("window.scrollTo(0, 1002)")
+                self.browser.find_element(By.XPATH, self.p_2_qview_btn).click()
+                self.check_quick_view(self.q_title, self.p_2_title_text, self.q_price, self.p_2_price_text, self.q_cart_btn,
+                                      self.q_cat, self.p_2_cat_text, self.q_tag, self.p_2_tag_text, self.q_image,
+                                      self.q_zoom, self.q_cross)
+                self.browser.execute_script("window.scrollTo(0, 1002)")
+                cursor.move_to_element(fashion).click().perform()
+                self.browser.execute_script("window.scrollTo(0, 1002)")
+                self.check_tab_items(self.p_1_img, self.p_1_title, self.p_1_title_text, self.p_1_price, self.p_1_price_text,
+                                     self.p_1_cart_btn, self.p_1_qview_btn, self.p_2_img, self.p_2_title,
+                                     self.p_2_title_text, self.p_2_price, self.p_2_price_text, self.p_2_cart_btn,
+                                     self.p_2_qview_btn, self.p_3_img, self.p_3_title, self.p_3_title_text,
+                                     self.p_3_price, self.p_3_price_text, self.p_3_cart_btn, self.p_3_qview_btn)
+                self.browser.execute_script("window.scrollTo(0, 1002)")
+                cursor.move_to_element(men).click().perform()
+                self.browser.execute_script("window.scrollTo(0, 1002)")
+                self.check_tab_items(self.p_1_img, self.p_1_title, self.p_1_title_text, self.p_1_price, self.p_1_price_text,
+                                     self.p_1_cart_btn, self.p_1_qview_btn, self.p_2_img, self.p_2_title,
+                                     self.p_2_title_text, self.p_2_price, self.p_2_price_text, self.p_2_cart_btn,
+                                     self.p_2_qview_btn, self.p_3_img, self.p_3_title, self.p_3_title_text,
+                                     self.p_3_price, self.p_3_price_text, self.p_3_cart_btn, self.p_3_qview_btn)
+                self.browser.execute_script("window.scrollTo(0, 1002)")
+                cursor.move_to_element(women).click().perform()
+                self.browser.execute_script("window.scrollTo(0, 1002)")
+                self.check_tab_items(self.p_1_img, self.p_1_title, self.p_4_title_text, self.p_1_price, self.p_4_price_text,
+                                     self.p_1_cart_btn, self.p_1_qview_btn, self.p_2_img, self.p_2_title,
+                                     self.p_5_title_text, self.p_2_price, self.p_5_price_text, self.p_2_cart_btn,
+                                     self.p_2_qview_btn, self.p_3_img, self.p_3_title, self.p_6_title_text,
+                                     self.p_3_price, self.p_6_price_text, self.p_3_cart_btn, self.p_3_qview_btn)
+                time.sleep(.5)
+                self.browser.find_element(By.XPATH, self.p_3_qview_btn).click()
+                self.check_quick_view(self.q_title, self.p_6_title_text, self.q_price, self.p_6_price_text, self.q_cart_btn,
+                                      self.q_cat, self.p_6_cat_text, self.q_tag, self.p_6_tag_text, self.q_image,
+                                      self.q_zoom, self.q_cross)
+                self.browser.execute_script("window.scrollTo(0, 1002)")
+                p_title = self.browser.find_element(By.XPATH, self.p_2_title).text
+                self.browser.find_element(By.XPATH, self.p_2_title).click()
+                assert_that(self.browser.find_element(By.XPATH, f'/html/body/div[1]/div/div/div/main/div[2]/div[2]/h1')
+                            .text).is_equal_to(p_title)
+                self.browser.back()
+                self.browser.execute_script("window.scrollTo(0, 1002)")
+                time.sleep(1)
+                p_title = self.browser.find_element(By.XPATH, self.p_2_title).text
+                self.browser.find_element(By.XPATH, self.p_2_title).click()
+                assert_that(self.browser.find_element(By.XPATH, f'/html/body/div[1]/div/div/div/main/div[2]/div[2]/h1')
+                            .text).is_equal_to(p_title)
+                self.browser.back()
+                self.browser.execute_script("window.scrollTo(0, 1002)")

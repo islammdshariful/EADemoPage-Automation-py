@@ -1,4 +1,4 @@
-from selenium.webdriver import ActionChains
+from selenium.webdriver import ActionChains, Keys
 
 from utils.config import *
 
@@ -26,13 +26,14 @@ class AdvancedTooltip(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 1002)")
+                time.sleep(1)
+                cursor = ActionChains(self.browser)
+                c = self.browser.find_element(*self.card)
+                cursor.move_to_element(c).perform()
+                self.check_visibility(self.tooltip, "Tooltip is not visible.")
 
-            self.browser.execute_script("window.scrollTo(0, 1002)")
-            time.sleep(1)
-            cursor = ActionChains(self.browser)
-            c = self.browser.find_element(*self.card)
-            cursor.move_to_element(c).perform()
-            self.check_visibility(self.tooltip, "Tooltip is not visible.")
-
-            assert_that(self.browser.find_element(By.XPATH, self.tooltip).text).is_equal_to(self.tooltip_text)
+                assert_that(self.browser.find_element(By.XPATH, self.tooltip).text).is_equal_to(self.tooltip_text)

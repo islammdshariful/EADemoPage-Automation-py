@@ -1,3 +1,5 @@
+from selenium.webdriver import Keys
+
 from utils.config import *
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -37,30 +39,31 @@ class GravityForms(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 1002)")
+                time.sleep(1)
 
-            self.browser.execute_script("window.scrollTo(0, 1002)")
-            time.sleep(1)
+                assert_that(self.browser.find_element(*self.fname_field).get_attribute("placeholder")).\
+                    is_equal_to(self.fname_label_text)
+                assert_that(self.browser.find_element(*self.lname_field).get_attribute("placeholder")).\
+                    is_equal_to(self.lname_label_text)
+                assert_that(self.browser.find_element(*self.email_field).get_attribute("placeholder")).\
+                    is_equal_to(self.email_label_text)
+                assert_that(self.browser.find_element(*self.message_field).get_attribute("placeholder")).\
+                    is_equal_to(self.message_label_text)
 
-            assert_that(self.browser.find_element(*self.fname_field).get_attribute("placeholder")).\
-                is_equal_to(self.fname_label_text)
-            assert_that(self.browser.find_element(*self.lname_field).get_attribute("placeholder")).\
-                is_equal_to(self.lname_label_text)
-            assert_that(self.browser.find_element(*self.email_field).get_attribute("placeholder")).\
-                is_equal_to(self.email_label_text)
-            assert_that(self.browser.find_element(*self.message_field).get_attribute("placeholder")).\
-                is_equal_to(self.message_label_text)
+                self.browser.find_element(*self.fname_field).send_keys("Tester")
+                self.browser.find_element(*self.lname_field).send_keys("Bhaai")
+                self.browser.find_element(*self.email_field).send_keys("testerbhaai@gmail.com")
+                self.browser.find_element(*self.message_field).send_keys("Automation Script is Running...\nHi, Don't reply"
+                                                                         " to this message. Have a good day.")
 
-            self.browser.find_element(*self.fname_field).send_keys("Tester")
-            self.browser.find_element(*self.lname_field).send_keys("Bhaai")
-            self.browser.find_element(*self.email_field).send_keys("testerbhaai@gmail.com")
-            self.browser.find_element(*self.message_field).send_keys("Automation Script is Running...\nHi, Don't reply"
-                                                                     " to this message. Have a good day.")
-
-            self.browser.find_element(*self.submit_btn).click()
-            time.sleep(1)
-            self.browser.execute_script("window.scrollTo(0, 1002)")
-            WebDriverWait(self.browser, 15).until(
-                EC.presence_of_element_located((By.XPATH, self.success_msg)))
-            WebDriverWait(self.browser, 15).until(EC.text_to_be_present_in_element((By.XPATH, self.success_msg),
-                                                                                   self.success_msg_text))
+                self.browser.find_element(*self.submit_btn).click()
+                time.sleep(1)
+                self.browser.execute_script("window.scrollTo(0, 1002)")
+                WebDriverWait(self.browser, 15).until(
+                    EC.presence_of_element_located((By.XPATH, self.success_msg)))
+                WebDriverWait(self.browser, 15).until(EC.text_to_be_present_in_element((By.XPATH, self.success_msg),
+                                                                                       self.success_msg_text))

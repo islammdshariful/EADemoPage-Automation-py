@@ -1,4 +1,4 @@
-from selenium.webdriver import ActionChains
+from selenium.webdriver import ActionChains, Keys
 
 from utils.config import *
 
@@ -40,10 +40,11 @@ class ImageHotspots(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 1077)")
+                time.sleep(1)
 
-            self.browser.execute_script("window.scrollTo(0, 1077)")
-            time.sleep(1)
-
-            self.hotspot(self.hotspot_1, self.hotspot_1_title, self.hotspot_1_title_text)
-            self.hotspot(self.hotspot_2, self.hotspot_2_title, self.hotspot_2_title_text)
+                self.hotspot(self.hotspot_1, self.hotspot_1_title, self.hotspot_1_title_text)
+                self.hotspot(self.hotspot_2, self.hotspot_2_title, self.hotspot_2_title_text)

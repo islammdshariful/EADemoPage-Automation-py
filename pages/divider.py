@@ -1,3 +1,5 @@
+from selenium.webdriver import Keys
+
 from utils.config import *
 from selenium.webdriver.support.color import Color
 
@@ -29,15 +31,16 @@ class Divider(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 971)")
 
-            self.browser.execute_script("window.scrollTo(0, 971)")
+                left = self.browser.find_element(*self.left_divider).value_of_css_property('border-color')
+                left_border = Color.from_string(left).hex
+                assert_that(left_border).is_equal_to(self.border_color)
+                right = self.browser.find_element(*self.right_divider).value_of_css_property('border-color')
+                right_border = Color.from_string(right).hex
+                assert_that(right_border).is_equal_to(self.border_color)
 
-            left = self.browser.find_element(*self.left_divider).value_of_css_property('border-color')
-            left_border = Color.from_string(left).hex
-            assert_that(left_border).is_equal_to(self.border_color)
-            right = self.browser.find_element(*self.right_divider).value_of_css_property('border-color')
-            right_border = Color.from_string(right).hex
-            assert_that(right_border).is_equal_to(self.border_color)
-
-            self.check_visibility(self.img_divider, "Image not visible.")
+                self.check_visibility(self.img_divider, "Image not visible.")

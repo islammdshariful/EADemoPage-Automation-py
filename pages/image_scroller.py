@@ -1,4 +1,4 @@
-from selenium.webdriver import ActionChains
+from selenium.webdriver import ActionChains, Keys
 
 from utils.config import *
 
@@ -27,20 +27,21 @@ class ImageScroller(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 818)")
+                time.sleep(1)
 
-            self.browser.execute_script("window.scrollTo(0, 818)")
-            time.sleep(1)
+                img_com = ImageComparison(self.browser)
+                cursor = ActionChains(self.browser)
+                image_1 = self.browser.find_element(*self.img_1)
+                image_2 = self.browser.find_element(*self.img_2)
 
-            img_com = ImageComparison(self.browser)
-            cursor = ActionChains(self.browser)
-            image_1 = self.browser.find_element(*self.img_1)
-            image_2 = self.browser.find_element(*self.img_2)
+                cursor.move_to_element(image_1).perform()
+                time.sleep(2)
+                # img_com.take_new_snap("ImageScroller")
+                # time.sleep(1)
+                img_com.image_comparison("ImageScroller")
 
-            cursor.move_to_element(image_1).perform()
-            time.sleep(2)
-            # img_com.take_new_snap("ImageScroller")
-            # time.sleep(1)
-            img_com.image_comparison("ImageScroller")
-
-            cursor.move_to_element(image_2).perform()
+                cursor.move_to_element(image_2).perform()

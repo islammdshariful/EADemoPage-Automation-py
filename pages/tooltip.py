@@ -1,6 +1,6 @@
 import time
 
-from selenium.webdriver import ActionChains
+from selenium.webdriver import ActionChains, Keys
 
 from utils.config import *
 
@@ -26,6 +26,7 @@ class ToolTip(Helper):
     tooltip_2_text = "Search Engine Optimization"
 
     def __init__(self, browser):
+        super().__init__(browser)
         self.browser = browser
 
     def load(self):
@@ -35,21 +36,22 @@ class ToolTip(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 1010)")
+                time.sleep(1)
 
-            self.browser.execute_script("window.scrollTo(0, 1010)")
-            time.sleep(1)
+                cursor_1 = ActionChains(self.browser)
+                cursor_2 = ActionChains(self.browser)
+                self.check_visibility(self.tooltip_1_img, "Tool Tip 1 image is not visible.")
+                self.check_visibility(self.tooltip_2_img, "Tool Tip 2 image is not visible.")
 
-            cursor_1 = ActionChains(self.browser)
-            cursor_2 = ActionChains(self.browser)
-            self.check_visibility(self.tooltip_1_img, "Tool Tip 1 image is not visible.")
-            self.check_visibility(self.tooltip_2_img, "Tool Tip 2 image is not visible.")
-
-            tip_1 = self.browser.find_element(By.XPATH, self.tooltip_1_img)
-            tip_2 = self.browser.find_element(By.XPATH, self.tooltip_2_img)
-            cursor_1.move_to_element(tip_1).perform()
-            assert_that(self.browser.find_element(*self.tooltip_1).text).is_equal_to(self.tooltip_1_text)
-            cursor_2.move_to_element(tip_2).perform()
-            assert_that(self.browser.find_element(*self.tooltip_2).text).is_equal_to(self.tooltip_2_text)
+                tip_1 = self.browser.find_element(By.XPATH, self.tooltip_1_img)
+                tip_2 = self.browser.find_element(By.XPATH, self.tooltip_2_img)
+                cursor_1.move_to_element(tip_1).perform()
+                assert_that(self.browser.find_element(*self.tooltip_1).text).is_equal_to(self.tooltip_1_text)
+                cursor_2.move_to_element(tip_2).perform()
+                assert_that(self.browser.find_element(*self.tooltip_2).text).is_equal_to(self.tooltip_2_text)
 
 

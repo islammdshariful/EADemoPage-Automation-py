@@ -1,4 +1,4 @@
-from selenium.webdriver import ActionChains
+from selenium.webdriver import ActionChains, Keys
 
 from utils.config import *
 
@@ -29,12 +29,11 @@ class TeamMember(Helper):
 
     def testcase(self):
         with soft_assertions():
-            with soft_assertions():
-                with soft_assertions():
-                    self.check_widget_name(self.widget, self.widget_name)
-                    if self.check_doc:
-                        self.check_documents(self.doc_link, self.doc_name)
-
+            self.check_widget_name(self.widget, self.widget_name)
+            if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
+                self.check_documents(self.doc_link, self.doc_name)
+            else:
                 self.browser.execute_script("window.scrollTo(0, 4204)")
                 time.sleep(1)
                 self.check_visibility(self.mem_1_img, "Team Member 1 image is not visible.")

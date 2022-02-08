@@ -1,4 +1,4 @@
-from selenium.webdriver import ActionChains
+from selenium.webdriver import ActionChains, Keys
 
 from utils.config import *
 
@@ -80,18 +80,19 @@ class PostTimeline(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 989)")
+                time.sleep(1)
 
-            self.browser.execute_script("window.scrollTo(0, 989)")
-            time.sleep(1)
-
-            self.check_widget_post(self.post_1_title, self.post_1_date, self.post_1_des, self.post_1_bullet)
-            self.check_widget_post(self.post_2_title, self.post_2_date, self.post_2_des, self.post_2_bullet)
-            self.check_widget_post(self.post_3_title, self.post_3_date, self.post_3_des, self.post_3_bullet)
-            self.check_widget_post(self.post_4_title, self.post_4_date, self.post_4_des, self.post_4_bullet)
-            self.browser.find_element(*self.load_more_btn).click()
-            time.sleep(1)
-            self.check_widget_post(self.post_5_title, self.post_5_date, self.post_5_des, self.post_5_bullet)
+                self.check_widget_post(self.post_1_title, self.post_1_date, self.post_1_des, self.post_1_bullet)
+                self.check_widget_post(self.post_2_title, self.post_2_date, self.post_2_des, self.post_2_bullet)
+                self.check_widget_post(self.post_3_title, self.post_3_date, self.post_3_des, self.post_3_bullet)
+                self.check_widget_post(self.post_4_title, self.post_4_date, self.post_4_des, self.post_4_bullet)
+                self.browser.find_element(*self.load_more_btn).click()
+                time.sleep(1)
+                self.check_widget_post(self.post_5_title, self.post_5_date, self.post_5_des, self.post_5_bullet)
 
 
 

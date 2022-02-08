@@ -1,4 +1,4 @@
-from selenium.webdriver import ActionChains
+from selenium.webdriver import ActionChains, Keys
 
 from utils.config import *
 
@@ -72,21 +72,22 @@ class ImageAccordion(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 974)")
+                self.check_accordion_by_hover(self.h_accor_1, self.h_accor_1_head, self.h_accor_1_des)
+                self.check_accordion_by_hover(self.h_accor_2, self.h_accor_2_head, self.h_accor_2_des)
+                self.check_accordion_by_hover(self.h_accor_3, self.h_accor_3_head, self.h_accor_3_des)
+                self.check_accordion_by_hover(self.h_accor_4, self.h_accor_4_head, self.h_accor_4_des)
+                self.check_accordion_by_hover(self.h_accor_5, self.h_accor_5_head, self.h_accor_5_des)
 
-            self.browser.execute_script("window.scrollTo(0, 974)")
-            self.check_accordion_by_hover(self.h_accor_1, self.h_accor_1_head, self.h_accor_1_des)
-            self.check_accordion_by_hover(self.h_accor_2, self.h_accor_2_head, self.h_accor_2_des)
-            self.check_accordion_by_hover(self.h_accor_3, self.h_accor_3_head, self.h_accor_3_des)
-            self.check_accordion_by_hover(self.h_accor_4, self.h_accor_4_head, self.h_accor_4_des)
-            self.check_accordion_by_hover(self.h_accor_5, self.h_accor_5_head, self.h_accor_5_des)
-
-            self.browser.execute_script("window.scrollTo(0, 2579)")
-            self.check_accordion_by_click(self.c_accor_1, self.c_accor_1_head, self.c_accor_1_des)
-            self.check_accordion_by_click(self.c_accor_2, self.c_accor_2_head, self.c_accor_2_des)
-            self.check_accordion_by_click(self.c_accor_3, self.c_accor_3_head, self.c_accor_3_des)
-            self.check_accordion_by_click(self.c_accor_4, self.c_accor_4_head, self.c_accor_4_des)
-            self.check_accordion_by_click(self.c_accor_5, self.c_accor_5_head, self.c_accor_5_des)
+                self.browser.execute_script("window.scrollTo(0, 2579)")
+                self.check_accordion_by_click(self.c_accor_1, self.c_accor_1_head, self.c_accor_1_des)
+                self.check_accordion_by_click(self.c_accor_2, self.c_accor_2_head, self.c_accor_2_des)
+                self.check_accordion_by_click(self.c_accor_3, self.c_accor_3_head, self.c_accor_3_des)
+                self.check_accordion_by_click(self.c_accor_4, self.c_accor_4_head, self.c_accor_4_des)
+                self.check_accordion_by_click(self.c_accor_5, self.c_accor_5_head, self.c_accor_5_des)
 
 
 

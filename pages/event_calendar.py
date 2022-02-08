@@ -1,4 +1,4 @@
-from selenium.webdriver import ActionChains
+from selenium.webdriver import ActionChains, Keys
 
 from utils.config import *
 
@@ -46,23 +46,24 @@ class EventCalendar(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
-
-        self.browser.execute_script("window.scrollTo(0, 1641)")
-        time.sleep(1)
-
-        for i in range(0, 12):
-            mnt = self.browser.find_element(*self.month).text
-            if mnt == self.month_text:
-                assert_that(self.browser.find_element(*self.event_info).text).is_equal_to(self.event_info_text)
-                self.browser.find_element(*self.event_info).click()
-
+            else:
+                self.browser.execute_script("window.scrollTo(0, 1641)")
                 time.sleep(1)
-                assert_that(self.browser.find_element(*self.event_title).text).is_equal_to(self.event_title_text)
-                assert_that(self.browser.find_element(*self.event_start).text).is_equal_to(self.event_start_text)
-                assert_that(self.browser.find_element(*self.event_end).text).is_equal_to(self.event_end_text)
-                assert_that(self.browser.find_element(*self.event_des).text).is_equal_to(self.event_des_text)
-                self.check_visibility(self.calendar_icon, "Calendar icon is not visible.")
-                self.browser.find_element(*self.modal_close).click()
-                break
-            self.browser.find_element(*self.prev_button).click()
+
+                for i in range(0, 12):
+                    mnt = self.browser.find_element(*self.month).text
+                    if mnt == self.month_text:
+                        assert_that(self.browser.find_element(*self.event_info).text).is_equal_to(self.event_info_text)
+                        self.browser.find_element(*self.event_info).click()
+
+                        time.sleep(1)
+                        assert_that(self.browser.find_element(*self.event_title).text).is_equal_to(self.event_title_text)
+                        assert_that(self.browser.find_element(*self.event_start).text).is_equal_to(self.event_start_text)
+                        assert_that(self.browser.find_element(*self.event_end).text).is_equal_to(self.event_end_text)
+                        assert_that(self.browser.find_element(*self.event_des).text).is_equal_to(self.event_des_text)
+                        self.check_visibility(self.calendar_icon, "Calendar icon is not visible.")
+                        self.browser.find_element(*self.modal_close).click()
+                        break
+                    self.browser.find_element(*self.prev_button).click()

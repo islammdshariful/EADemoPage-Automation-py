@@ -1,3 +1,5 @@
+from selenium.webdriver import Keys
+
 from utils.config import *
 
 
@@ -29,16 +31,17 @@ class FancyText(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 903)")
 
-            self.browser.execute_script("window.scrollTo(0, 903)")
+                assert_that(self.browser.find_element(*self.normal).text).is_equal_to(self.normal_text)
+                self.check_visibility(self.cursor, "Blink cursor is not visible.")
 
-            assert_that(self.browser.find_element(*self.normal).text).is_equal_to(self.normal_text)
-            self.check_visibility(self.cursor, "Blink cursor is not visible.")
-
-            WebDriverWait(self.browser, 5000).until(EC.text_to_be_present_in_element((By.XPATH, self.fancy_txt),
-                                                                                     self.fancy_1_text))
-            WebDriverWait(self.browser, 5000).until(EC.text_to_be_present_in_element((By.XPATH, self.fancy_txt),
-                                                                                     self.fancy_2_text))
-            WebDriverWait(self.browser, 5000).until(EC.text_to_be_present_in_element((By.XPATH, self.fancy_txt),
-                                                                                     self.fancy_3_text))
+                WebDriverWait(self.browser, 5000).until(EC.text_to_be_present_in_element((By.XPATH, self.fancy_txt),
+                                                                                         self.fancy_1_text))
+                WebDriverWait(self.browser, 5000).until(EC.text_to_be_present_in_element((By.XPATH, self.fancy_txt),
+                                                                                         self.fancy_2_text))
+                WebDriverWait(self.browser, 5000).until(EC.text_to_be_present_in_element((By.XPATH, self.fancy_txt),
+                                                                                         self.fancy_3_text))

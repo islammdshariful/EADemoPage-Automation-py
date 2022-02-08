@@ -1,3 +1,5 @@
+from selenium.webdriver import Keys
+
 from utils.config import *
 
 
@@ -36,9 +38,10 @@ class InstagramFeed(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
-
-            self.browser.execute_script("window.scrollTo(0, 905)")
-            self.check_post(self.author_1, self.icon_1, self.img_1, self.name_1)
-            time.sleep(.5)
-            self.check_post(self.author_2, self.icon_2, self.img_2, self.name_2)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 905)")
+                self.check_post(self.author_1, self.icon_1, self.img_1, self.name_1)
+                time.sleep(.5)
+                self.check_post(self.author_2, self.icon_2, self.img_2, self.name_2)

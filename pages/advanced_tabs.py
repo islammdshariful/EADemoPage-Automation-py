@@ -1,6 +1,6 @@
 import time
 
-from selenium.webdriver import ActionChains
+from selenium.webdriver import ActionChains, Keys
 
 from utils.config import *
 
@@ -119,72 +119,73 @@ class AdvancedTabs(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 2378)")
+                self.wait_for_bar_to_come()
 
-            self.browser.execute_script("window.scrollTo(0, 2378)")
-            self.wait_for_bar_to_come()
+                assert_that(self.browser.find_element(*self.tab_1).text).is_equal_to(self.tab_1_text)
+                self.browser.find_element(*self.tab_1).click()
+                time.sleep(.5)
+                assert_that(self.browser.find_element(*self.tab_1_des).text).is_equal_to(self.tab_des_text)
 
-            assert_that(self.browser.find_element(*self.tab_1).text).is_equal_to(self.tab_1_text)
-            self.browser.find_element(*self.tab_1).click()
-            time.sleep(.5)
-            assert_that(self.browser.find_element(*self.tab_1_des).text).is_equal_to(self.tab_des_text)
+                assert_that(self.browser.find_element(*self.tab_2).text).is_equal_to(self.tab_2_text)
+                time.sleep(.5)
+                self.browser.find_element(*self.tab_2).click()
+                time.sleep(.5)
+                assert_that(self.browser.find_element(*self.tab_2_1).text).is_equal_to(self.tab_2_1_text)
+                self.browser.find_element(*self.tab_2_1).click()
+                time.sleep(.5)
+                assert_that(self.browser.find_element(*self.tab_2_1_des).text).is_equal_to(self.tab_nested_ver_des_text)
 
-            assert_that(self.browser.find_element(*self.tab_2).text).is_equal_to(self.tab_2_text)
-            time.sleep(.5)
-            self.browser.find_element(*self.tab_2).click()
-            time.sleep(.5)
-            assert_that(self.browser.find_element(*self.tab_2_1).text).is_equal_to(self.tab_2_1_text)
-            self.browser.find_element(*self.tab_2_1).click()
-            time.sleep(.5)
-            assert_that(self.browser.find_element(*self.tab_2_1_des).text).is_equal_to(self.tab_nested_ver_des_text)
+                assert_that(self.browser.find_element(*self.tab_2_2).text).is_equal_to(self.tab_2_2_text)
+                self.browser.find_element(*self.tab_2_2).click()
+                time.sleep(.5)
+                assert_that(self.browser.find_element(*self.tab_2_2_des).text).is_equal_to(self.tab_nested_ver_des_text)
 
-            assert_that(self.browser.find_element(*self.tab_2_2).text).is_equal_to(self.tab_2_2_text)
-            self.browser.find_element(*self.tab_2_2).click()
-            time.sleep(.5)
-            assert_that(self.browser.find_element(*self.tab_2_2_des).text).is_equal_to(self.tab_nested_ver_des_text)
+                assert_that(self.browser.find_element(*self.tab_2_3).text).is_equal_to(self.tab_2_3_text)
+                self.browser.find_element(*self.tab_2_3).click()
+                time.sleep(.5)
+                assert_that(self.browser.find_element(*self.tab_2_3_des).text).is_equal_to(self.tab_nested_ver_des_text)
 
-            assert_that(self.browser.find_element(*self.tab_2_3).text).is_equal_to(self.tab_2_3_text)
-            self.browser.find_element(*self.tab_2_3).click()
-            time.sleep(.5)
-            assert_that(self.browser.find_element(*self.tab_2_3_des).text).is_equal_to(self.tab_nested_ver_des_text)
+                assert_that(self.browser.find_element(*self.tab_2_4).text).is_equal_to(self.tab_2_4_text)
+                self.browser.find_element(*self.tab_2_4).click()
+                time.sleep(.5)
+                assert_that(self.browser.find_element(*self.tab_2_4_des).text).is_equal_to(self.tab_nested_ver_des_text)
 
-            assert_that(self.browser.find_element(*self.tab_2_4).text).is_equal_to(self.tab_2_4_text)
-            self.browser.find_element(*self.tab_2_4).click()
-            time.sleep(.5)
-            assert_that(self.browser.find_element(*self.tab_2_4_des).text).is_equal_to(self.tab_nested_ver_des_text)
+                assert_that(self.browser.find_element(*self.tab_3).text).is_equal_to(self.tab_3_text)
+                self.browser.find_element(*self.tab_3).click()
+                time.sleep(.5)
+                assert_that(self.browser.find_element(*self.tab_3_1).text).is_equal_to(self.tab_2_1_text)
+                self.browser.find_element(*self.tab_3_1).click()
+                time.sleep(.5)
+                assert_that(self.browser.find_element(*self.tab_3_1_des).text).is_equal_to(self.tab_nested_hor_des_text)
 
-            assert_that(self.browser.find_element(*self.tab_3).text).is_equal_to(self.tab_3_text)
-            self.browser.find_element(*self.tab_3).click()
-            time.sleep(.5)
-            assert_that(self.browser.find_element(*self.tab_3_1).text).is_equal_to(self.tab_2_1_text)
-            self.browser.find_element(*self.tab_3_1).click()
-            time.sleep(.5)
-            assert_that(self.browser.find_element(*self.tab_3_1_des).text).is_equal_to(self.tab_nested_hor_des_text)
+                assert_that(self.browser.find_element(*self.tab_3_2).text).is_equal_to(self.tab_3_2_text)
+                self.browser.find_element(*self.tab_3_2).click()
+                time.sleep(.5)
+                assert_that(self.browser.find_element(*self.tab_3_2_des).text).is_equal_to(self.tab_nested_hor_des_text)
 
-            assert_that(self.browser.find_element(*self.tab_3_2).text).is_equal_to(self.tab_3_2_text)
-            self.browser.find_element(*self.tab_3_2).click()
-            time.sleep(.5)
-            assert_that(self.browser.find_element(*self.tab_3_2_des).text).is_equal_to(self.tab_nested_hor_des_text)
+                assert_that(self.browser.find_element(*self.tab_3_3).text).is_equal_to(self.tab_3_3_text)
+                self.browser.find_element(*self.tab_3_3).click()
+                time.sleep(.5)
+                assert_that(self.browser.find_element(*self.tab_3_3_des).text).is_equal_to(self.tab_nested_hor_des_text)
 
-            assert_that(self.browser.find_element(*self.tab_3_3).text).is_equal_to(self.tab_3_3_text)
-            self.browser.find_element(*self.tab_3_3).click()
-            time.sleep(.5)
-            assert_that(self.browser.find_element(*self.tab_3_3_des).text).is_equal_to(self.tab_nested_hor_des_text)
+                assert_that(self.browser.find_element(*self.tab_3_4).text).is_equal_to(self.tab_3_4_text)
+                self.browser.find_element(*self.tab_3_4).click()
+                time.sleep(.5)
+                assert_that(self.browser.find_element(*self.tab_3_4_des).text).is_equal_to(self.tab_nested_hor_des_text)
 
-            assert_that(self.browser.find_element(*self.tab_3_4).text).is_equal_to(self.tab_3_4_text)
-            self.browser.find_element(*self.tab_3_4).click()
-            time.sleep(.5)
-            assert_that(self.browser.find_element(*self.tab_3_4_des).text).is_equal_to(self.tab_nested_hor_des_text)
+                assert_that(self.browser.find_element(*self.tab_4).text).is_equal_to(self.tab_4_text)
+                self.browser.find_element(*self.tab_4).click()
+                time.sleep(.5)
+                assert_that(self.browser.find_element(*self.tab_4_des).text).is_equal_to(self.tab_des_text)
 
-            assert_that(self.browser.find_element(*self.tab_4).text).is_equal_to(self.tab_4_text)
-            self.browser.find_element(*self.tab_4).click()
-            time.sleep(.5)
-            assert_that(self.browser.find_element(*self.tab_4_des).text).is_equal_to(self.tab_des_text)
-
-            assert_that(self.browser.find_element(*self.tab_5).text).is_equal_to(self.tab_5_text)
-            self.browser.find_element(*self.tab_5).click()
-            time.sleep(.5)
-            assert_that(self.browser.find_element(*self.tab_5_des).text).is_equal_to(self.tab_des_text)
+                assert_that(self.browser.find_element(*self.tab_5).text).is_equal_to(self.tab_5_text)
+                self.browser.find_element(*self.tab_5).click()
+                time.sleep(.5)
+                assert_that(self.browser.find_element(*self.tab_5_des).text).is_equal_to(self.tab_des_text)
 
 
 

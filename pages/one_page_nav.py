@@ -1,4 +1,4 @@
-from selenium.webdriver import ActionChains
+from selenium.webdriver import ActionChains, Keys
 
 from utils.config import *
 
@@ -66,19 +66,20 @@ class OnePageNav(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 905)")
+                time.sleep(1)
 
-            self.browser.execute_script("window.scrollTo(0, 905)")
-            time.sleep(1)
-
-            self.check_navigation(self.nav_1, self.nav_1_title, self.nav_1_title_text, self.nav_1_content,
-                                  self.nav_1_content_text)
-            self.check_navigation(self.nav_2, self.nav_2_title, self.nav_2_title_text, self.nav_2_content,
-                                  self.nav_2_content_text)
-            self.check_navigation(self.nav_3, self.nav_3_title, self.nav_3_title_text, self.nav_3_content,
-                                  self.nav_3_content_text)
-            self.check_navigation(self.nav_4, self.nav_4_title, self.nav_4_title_text, self.nav_4_content,
-                                  self.nav_4_content_text)
-            self.check_navigation(self.nav_5, self.nav_5_title, self.nav_5_title_text, self.nav_5_content,
-                                  self.nav_5_content_text)
+                self.check_navigation(self.nav_1, self.nav_1_title, self.nav_1_title_text, self.nav_1_content,
+                                      self.nav_1_content_text)
+                self.check_navigation(self.nav_2, self.nav_2_title, self.nav_2_title_text, self.nav_2_content,
+                                      self.nav_2_content_text)
+                self.check_navigation(self.nav_3, self.nav_3_title, self.nav_3_title_text, self.nav_3_content,
+                                      self.nav_3_content_text)
+                self.check_navigation(self.nav_4, self.nav_4_title, self.nav_4_title_text, self.nav_4_content,
+                                      self.nav_4_content_text)
+                self.check_navigation(self.nav_5, self.nav_5_title, self.nav_5_title_text, self.nav_5_content,
+                                      self.nav_5_content_text)
 

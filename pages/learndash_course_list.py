@@ -1,4 +1,4 @@
-from selenium.webdriver import ActionChains
+from selenium.webdriver import ActionChains, Keys
 
 from utils.config import *
 
@@ -68,14 +68,15 @@ class LearndashCourseList(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 946)")
+                self.course(self.course_title_1, self.course_title_text_1, self.course_des_1, self.course_des_text,
+                            self.course_price_1, self.course_price_text_1, self.course_img_1)
 
-            self.browser.execute_script("window.scrollTo(0, 946)")
-            self.course(self.course_title_1, self.course_title_text_1, self.course_des_1, self.course_des_text,
-                        self.course_price_1, self.course_price_text_1, self.course_img_1)
+                self.course(self.course_title_2, self.course_title_text_2, self.course_des_2, self.course_des_text,
+                            self.course_price_2, self.course_price_text_2, self.course_img_2)
 
-            self.course(self.course_title_2, self.course_title_text_2, self.course_des_2, self.course_des_text,
-                        self.course_price_2, self.course_price_text_2, self.course_img_2)
-
-            self.course(self.course_title_3, self.course_title_text_3, self.course_des_3, self.course_des_text,
-                        self.course_price_3, self.course_price_text_3, self.course_img_3)
+                self.course(self.course_title_3, self.course_title_text_3, self.course_des_3, self.course_des_text,
+                            self.course_price_3, self.course_price_text_3, self.course_img_3)

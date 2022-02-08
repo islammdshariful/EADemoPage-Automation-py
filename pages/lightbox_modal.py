@@ -1,3 +1,5 @@
+from selenium.webdriver import Keys
+
 from utils.config import *
 
 
@@ -25,16 +27,17 @@ class LightboxModal(Helper, ImageComparison):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 903)")
+                self.browser.find_element(*self.button).click()
+                time.sleep(1)
+                self.check_visibility(self.img, "Image is not visible.")
 
-            self.browser.execute_script("window.scrollTo(0, 903)")
-            self.browser.find_element(*self.button).click()
-            time.sleep(1)
-            self.check_visibility(self.img, "Image is not visible.")
+                # this is for download image
+                # self.download_image(self.img, "LightboxModal")
 
-            # this is for download image
-            # self.download_image(self.img, "LightboxModal")
+                self.download_image_comparison(self.img, "LightboxModal")
 
-            self.download_image_comparison(self.img, "LightboxModal")
-
-            self.browser.find_element(*self.cross_btn).click()
+                self.browser.find_element(*self.cross_btn).click()

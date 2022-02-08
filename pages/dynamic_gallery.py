@@ -1,4 +1,4 @@
-from selenium.webdriver import ActionChains
+from selenium.webdriver import ActionChains, Keys
 
 from utils.config import *
 
@@ -90,44 +90,45 @@ class DynamicGallery(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 905)")
 
-            self.browser.execute_script("window.scrollTo(0, 905)")
-
-            # All
-            self.browser.find_element(*self.all).click()
-            time.sleep(1)
-            self.check_widget_post(self.all_post_1_title, self.all_post_1_des, self.all_post_1_img)
-            time.sleep(1)
-            self.check_widget_post(self.all_post_3_title, self.all_post_3_des, self.all_post_3_img)
-            self.browser.find_element(*self.load_more_btn).click()
-            time.sleep(1)
-            self.check_widget_post(self.all_post_4_title, self.all_post_4_des, self.all_post_4_img)
-            self.browser.execute_script("window.scrollTo(0, 905)")
-            # Elementor
-            self.browser.find_element(*self.elementor).click()
-            time.sleep(1)
-            self.check_widget_post(self.ele_post_1_title, self.ele_post_1_des, self.ele_post_1_img)
-            self.browser.find_element(*self.elementor).click()
-            time.sleep(1)
-            self.check_widget_post(self.ele_post_2_title, self.ele_post_2_des, self.ele_post_2_img)
-            # WordPress
-            self.browser.find_element(*self.wordpress).click()
-            time.sleep(1)
-            self.browser.find_element(*self.load_more_btn).click()
-            time.sleep(1)
-            # self.check_widget_post(self.wp_post_1_title, self.wp_post_1_des, self.wp_post_1_img)
-            # self.browser.find_element(*self.wordpress).click()
-            # time.sleep(1)
-            # self.check_widget_post(self.wp_post_2_title, self.wp_post_2_des, self.wp_post_2_img)
-            # Templates
-            self.browser.find_element(*self.templates).click()
-            time.sleep(1)
-            self.browser.find_element(*self.load_more_btn).click()
-            time.sleep(1)
-            # self.check_widget_post(self.tm_post_1_title, self.tm_post_1_des, self.tm_post_1_img)
-            # self.browser.find_element(*self.templates).click()
-            # time.sleep(1)
-            # self.browser.find_element(*self.load_more_btn).click()
-            # time.sleep(1)
-            # self.check_widget_post(self.tm_post_2_title, self.tm_post_2_des, self.tm_post_2_img)
+                # All
+                self.browser.find_element(*self.all).click()
+                time.sleep(1)
+                self.check_widget_post(self.all_post_1_title, self.all_post_1_des, self.all_post_1_img)
+                time.sleep(1)
+                self.check_widget_post(self.all_post_3_title, self.all_post_3_des, self.all_post_3_img)
+                self.browser.find_element(*self.load_more_btn).click()
+                time.sleep(1)
+                self.check_widget_post(self.all_post_4_title, self.all_post_4_des, self.all_post_4_img)
+                self.browser.execute_script("window.scrollTo(0, 905)")
+                # Elementor
+                self.browser.find_element(*self.elementor).click()
+                time.sleep(1)
+                self.check_widget_post(self.ele_post_1_title, self.ele_post_1_des, self.ele_post_1_img)
+                self.browser.find_element(*self.elementor).click()
+                time.sleep(1)
+                self.check_widget_post(self.ele_post_2_title, self.ele_post_2_des, self.ele_post_2_img)
+                # WordPress
+                self.browser.find_element(*self.wordpress).click()
+                time.sleep(1)
+                self.browser.find_element(*self.load_more_btn).click()
+                time.sleep(1)
+                # self.check_widget_post(self.wp_post_1_title, self.wp_post_1_des, self.wp_post_1_img)
+                # self.browser.find_element(*self.wordpress).click()
+                # time.sleep(1)
+                # self.check_widget_post(self.wp_post_2_title, self.wp_post_2_des, self.wp_post_2_img)
+                # Templates
+                self.browser.find_element(*self.templates).click()
+                time.sleep(1)
+                self.browser.find_element(*self.load_more_btn).click()
+                time.sleep(1)
+                # self.check_widget_post(self.tm_post_1_title, self.tm_post_1_des, self.tm_post_1_img)
+                # self.browser.find_element(*self.templates).click()
+                # time.sleep(1)
+                # self.browser.find_element(*self.load_more_btn).click()
+                # time.sleep(1)
+                # self.check_widget_post(self.tm_post_2_title, self.tm_post_2_des, self.tm_post_2_img)

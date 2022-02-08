@@ -1,4 +1,4 @@
-from selenium.webdriver import ActionChains
+from selenium.webdriver import ActionChains, Keys
 
 from utils.config import *
 
@@ -33,14 +33,15 @@ class Testimonial(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 1001)")
+                time.sleep(1)
 
-            self.browser.execute_script("window.scrollTo(0, 1001)")
-            time.sleep(1)
+                assert_that(self.browser.find_element(*self.des).text).is_equal_to(self.des_text)
+                assert_that(self.browser.find_element(*self.name).text).is_equal_to(self.name_text)
+                assert_that(self.browser.find_element(*self.com).text).is_equal_to(self.com_text)
 
-            assert_that(self.browser.find_element(*self.des).text).is_equal_to(self.des_text)
-            assert_that(self.browser.find_element(*self.name).text).is_equal_to(self.name_text)
-            assert_that(self.browser.find_element(*self.com).text).is_equal_to(self.com_text)
-
-            self.check_visibility(self.img, "Image is not visible")
-            self.check_visibility(self.rate, "Rate is not visible")
+                self.check_visibility(self.img, "Image is not visible")
+                self.check_visibility(self.rate, "Rate is not visible")

@@ -1,4 +1,4 @@
-from selenium.webdriver import ActionChains
+from selenium.webdriver import ActionChains, Keys
 
 from utils.config import *
 
@@ -66,13 +66,14 @@ class BetterdocsCategoryGrid(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 1014)")
+                self.check_grid(self.icon_1, self.title_1, self.title_text_1, self.count_1, self.count_1_text,
+                                self.list_title_1, self.explore_more_btn_1, self.explore_more_btn_text,
+                                self.explore_more_icon_1)
 
-            self.browser.execute_script("window.scrollTo(0, 1014)")
-            self.check_grid(self.icon_1, self.title_1, self.title_text_1, self.count_1, self.count_1_text,
-                            self.list_title_1, self.explore_more_btn_1, self.explore_more_btn_text,
-                            self.explore_more_icon_1)
-
-            self.check_grid(self.icon_2, self.title_2, self.title_text_2, self.count_2, self.count_2_text,
-                            self.list_title_2, self.explore_more_btn_2, self.explore_more_btn_text,
-                            self.explore_more_icon_2)
+                self.check_grid(self.icon_2, self.title_2, self.title_text_2, self.count_2, self.count_2_text,
+                                self.list_title_2, self.explore_more_btn_2, self.explore_more_btn_text,
+                                self.explore_more_icon_2)

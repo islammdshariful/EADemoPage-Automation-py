@@ -1,6 +1,6 @@
 import time
 
-from selenium.webdriver import ActionChains
+from selenium.webdriver import ActionChains, Keys
 
 from utils.config import *
 
@@ -40,23 +40,24 @@ class ProtectedContent(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 1007)")
+                time.sleep(1)
+                self.wait_for_bar_to_come()
 
-            self.browser.execute_script("window.scrollTo(0, 1007)")
-            time.sleep(1)
-            self.wait_for_bar_to_come()
+                assert_that(self.browser.find_element(*self.message).text).is_equal_to(self.message_text)
 
-            assert_that(self.browser.find_element(*self.message).text).is_equal_to(self.message_text)
+                self.browser.find_element(*self.password).click()
+                self.browser.find_element(*self.password).clear()
+                self.browser.find_element(*self.password).send_keys("1234")
+                self.browser.find_element(*self.button).click()
 
-            self.browser.find_element(*self.password).click()
-            self.browser.find_element(*self.password).clear()
-            self.browser.find_element(*self.password).send_keys("1234")
-            self.browser.find_element(*self.button).click()
+                time.sleep(2)
+                self.check_visibility(self.img, "Image is not visible.")
 
-            time.sleep(2)
-            self.check_visibility(self.img, "Image is not visible.")
-
-            assert_that(self.browser.find_element(*self.title).text).is_equal_to(self.title_text)
-            assert_that(self.browser.find_element(*self.des).text).is_equal_to(self.des_text)
+                assert_that(self.browser.find_element(*self.title).text).is_equal_to(self.title_text)
+                assert_that(self.browser.find_element(*self.des).text).is_equal_to(self.des_text)
 
 

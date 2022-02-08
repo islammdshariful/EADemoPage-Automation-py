@@ -1,3 +1,5 @@
+from selenium.webdriver import Keys
+
 from utils.config import *
 
 
@@ -37,19 +39,20 @@ class BetterdocsSearchForm(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 1005)")
 
-            self.browser.execute_script("window.scrollTo(0, 1005)")
-
-            ph = self.browser.find_element(*self.input)
-            assert_that(ph.get_attribute('placeholder')).is_equal_to(self.input_placeholder_name)
-            time.sleep(.5)
-            self.browser.find_element(*self.input).click()
-            self.browser.find_element(*self.input).send_keys("Interactive Circle")
-            time.sleep(1.5)
-            title = self.browser.find_element(*self.search_result_title).text
-            cat = self.browser.find_element(*self.search_result_cat).text
-            self.browser.find_element(*self.search_result_title).click()
-            assert_that(self.browser.find_element(*self.doc_title).text).is_equal_to(title.upper())
-            assert_that(self.browser.find_element(*self.doc_cat).text).is_equal_to(cat)
-            self.browser.back()
+                ph = self.browser.find_element(*self.input)
+                assert_that(ph.get_attribute('placeholder')).is_equal_to(self.input_placeholder_name)
+                time.sleep(.5)
+                self.browser.find_element(*self.input).click()
+                self.browser.find_element(*self.input).send_keys("Interactive Circle")
+                time.sleep(1.5)
+                title = self.browser.find_element(*self.search_result_title).text
+                cat = self.browser.find_element(*self.search_result_cat).text
+                self.browser.find_element(*self.search_result_title).click()
+                assert_that(self.browser.find_element(*self.doc_title).text).is_equal_to(title.upper())
+                assert_that(self.browser.find_element(*self.doc_cat).text).is_equal_to(cat)
+                self.browser.back()

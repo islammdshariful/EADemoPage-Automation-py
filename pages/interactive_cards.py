@@ -1,4 +1,4 @@
-from selenium.webdriver import ActionChains
+from selenium.webdriver import ActionChains, Keys
 
 from utils.config import *
 
@@ -31,17 +31,18 @@ class InteractiveCards(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 1031)")
+                time.sleep(1)
 
-            self.browser.execute_script("window.scrollTo(0, 1031)")
-            time.sleep(1)
-
-            self.browser.find_element(*self.promo).click()
-            time.sleep(1.5)
-            assert_that(self.browser.find_element(*self.title).text).is_equal_to(self.title_text)
-            assert_that(self.browser.find_element(*self.des).text).is_equal_to(self.des_text)
-            cursor = ActionChains(self.browser)
-            btn = self.browser.find_element(*self.button)
-            cursor.move_to_element(btn).perform()
-            time.sleep(1)
-            self.browser.find_element(*self.close_btn).click()
+                self.browser.find_element(*self.promo).click()
+                time.sleep(1.5)
+                assert_that(self.browser.find_element(*self.title).text).is_equal_to(self.title_text)
+                assert_that(self.browser.find_element(*self.des).text).is_equal_to(self.des_text)
+                cursor = ActionChains(self.browser)
+                btn = self.browser.find_element(*self.button)
+                cursor.move_to_element(btn).perform()
+                time.sleep(1)
+                self.browser.find_element(*self.close_btn).click()

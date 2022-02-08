@@ -1,4 +1,4 @@
-from selenium.webdriver import ActionChains
+from selenium.webdriver import ActionChains, Keys
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -24,28 +24,29 @@ class InteractiveCircle(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 986)")
+                time.sleep(1)
 
-            self.browser.execute_script("window.scrollTo(0, 986)")
-            time.sleep(1)
+                self.wait_for_bar_to_come()
 
-            self.wait_for_bar_to_come()
+                for i in range(1, 7):
+                    self.browser.find_element(By.XPATH, f'//*[@id="eael-circle-item-' + str(i) + '"]/div[2]').click()
+                    time.sleep(.5)
+                    if self.browser.find_element(By.XPATH, f'//*[@id="eael-circle-item-' + str(i) + '"]/div[2]/div/i').\
+                            is_displayed():
+                        assert_that(1).is_equal_to(1)
+                    else:
+                        assert_that(1).is_equal_to("Icon not displaying")
 
-            for i in range(1, 7):
-                self.browser.find_element(By.XPATH, f'//*[@id="eael-circle-item-' + str(i) + '"]/div[2]').click()
-                time.sleep(.5)
-                if self.browser.find_element(By.XPATH, f'//*[@id="eael-circle-item-' + str(i) + '"]/div[2]/div/i').\
-                        is_displayed():
-                    assert_that(1).is_equal_to(1)
-                else:
-                    assert_that(1).is_equal_to("Icon not displaying")
-
-                assert_that(self.browser.
-                            find_element(By.XPATH, f'//*[@id="eael-circle-item-' + str(i) + '"]/div[2]/div/span').
-                            text).is_equal_to("Item " + str(i))
-                assert_that(self.browser.
-                            find_element(By.XPATH, f'//*[@id="eael-interactive-circle-e0f5838"]/div/div/div/div[' +
-                                         str(i) + ']/div[2]/div').text).\
-                    is_equal_to("Present your content in an attractive Circle layout item " + str(i)
-                                + ". You can highlight key information with click or hover effects and style it as "
-                                  "per your preference.")
+                    assert_that(self.browser.
+                                find_element(By.XPATH, f'//*[@id="eael-circle-item-' + str(i) + '"]/div[2]/div/span').
+                                text).is_equal_to("Item " + str(i))
+                    assert_that(self.browser.
+                                find_element(By.XPATH, f'//*[@id="eael-interactive-circle-e0f5838"]/div/div/div/div[' +
+                                             str(i) + ']/div[2]/div').text).\
+                        is_equal_to("Present your content in an attractive Circle layout item " + str(i)
+                                    + ". You can highlight key information with click or hover effects and style it as "
+                                      "per your preference.")

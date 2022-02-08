@@ -1,4 +1,4 @@
-from selenium.webdriver import ActionChains
+from selenium.webdriver import ActionChains, Keys
 
 from utils.config import *
 
@@ -22,23 +22,24 @@ class ParallaxScrolling(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 1004)")
+                self.wait_for_bar_to_come()
 
-            self.browser.execute_script("window.scrollTo(0, 1004)")
-            self.wait_for_bar_to_come()
+                for i in range(1004, 2360, 3):
+                    self.browser.execute_script("window.scrollTo(0, " + str(i) + ")")
 
-            for i in range(1004, 2360, 3):
-                self.browser.execute_script("window.scrollTo(0, " + str(i) + ")")
+                cursor = ActionChains(self.browser)
+                cursor.move_by_offset(10, 100).perform()
+                time.sleep(.5)
+                cursor.move_by_offset(200, 300).perform()
+                time.sleep(.5)
+                # cursor.move_by_offset(10, 100).perform()
 
-            cursor = ActionChains(self.browser)
-            cursor.move_by_offset(10, 100).perform()
-            time.sleep(.5)
-            cursor.move_by_offset(200, 300).perform()
-            time.sleep(.5)
-            # cursor.move_by_offset(10, 100).perform()
-
-            self.browser.execute_script("window.scrollTo(0, 3468)")
-            for i in range(3468, 5481, 3):
-                self.browser.execute_script("window.scrollTo(0, " + str(i) + ")")
+                self.browser.execute_script("window.scrollTo(0, 3468)")
+                for i in range(3468, 5481, 3):
+                    self.browser.execute_script("window.scrollTo(0, " + str(i) + ")")
 
 

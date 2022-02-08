@@ -127,6 +127,7 @@ class Helper:
 
     def check_documents(self, link, name):
         self.browser.find_element(By.XPATH, link).click()
+        time.sleep(1)
         windows = self.browser.window_handles
         self.browser.switch_to.window(windows[1])
         ele = self.browser.find_element(*self.HEADING)

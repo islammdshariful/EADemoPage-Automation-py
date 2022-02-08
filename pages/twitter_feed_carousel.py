@@ -1,3 +1,5 @@
+from selenium.webdriver import Keys
+
 from utils.config import *
 
 
@@ -69,23 +71,24 @@ class TwitterFeedCarousel(Helper):
         with soft_assertions():
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
+                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
-
-            self.browser.execute_script("window.scrollTo(0, 904)")
-            self.browser.find_element(*self.dot_3).click()
-            time.sleep(.5)
-            self.browser.find_element(*self.dot_4).click()
-            time.sleep(.5)
-            self.browser.find_element(*self.dot_5).click()
-            time.sleep(.5)
-            self.browser.find_element(*self.dot_6).click()
-            time.sleep(.5)
-            self.browser.find_element(*self.dot_1).click()
-            self.check_post(self.img_1, self.icon_1, self.author_1, self.content_1, self.readmore_1)
-            self.browser.find_element(*self.dot_2).click()
-            time.sleep(.5)
-            self.browser.find_element(*self.dot_7).click()
-            time.sleep(.5)
-            self.browser.find_element(*self.dot_8).click()
-            self.browser.find_element(*self.dot_8).click()
-            self.check_post(self.img_2, self.icon_2, self.author_2, self.content_2, self.readmore_2)
+            else:
+                self.browser.execute_script("window.scrollTo(0, 904)")
+                self.browser.find_element(*self.dot_3).click()
+                time.sleep(.5)
+                self.browser.find_element(*self.dot_4).click()
+                time.sleep(.5)
+                self.browser.find_element(*self.dot_5).click()
+                time.sleep(.5)
+                self.browser.find_element(*self.dot_6).click()
+                time.sleep(.5)
+                self.browser.find_element(*self.dot_1).click()
+                self.check_post(self.img_1, self.icon_1, self.author_1, self.content_1, self.readmore_1)
+                self.browser.find_element(*self.dot_2).click()
+                time.sleep(.5)
+                self.browser.find_element(*self.dot_7).click()
+                time.sleep(.5)
+                self.browser.find_element(*self.dot_8).click()
+                self.browser.find_element(*self.dot_8).click()
+                self.check_post(self.img_2, self.icon_2, self.author_2, self.content_2, self.readmore_2)
