@@ -121,10 +121,10 @@ def testimonial(browser):
     t.testcase()
 
 
-# def test_sticky_video(browser):
-#     sv = StickyVideo(browser)
-#     sv.load()
-#     sv.testcase()
+def test_sticky_video(browser):
+    sv = StickyVideo(browser)
+    sv.load()
+    sv.testcase()
 
 
 def test_tooltip(browser):
@@ -269,10 +269,10 @@ def test_content_timeline(browser):
     ct.testcase()
 
 
-# def test_dynamic_gallery(browser):
-#     dg = DynamicGallery(browser)
-#     dg.load()
-#     dg.testcase()
+def test_dynamic_gallery(browser):
+    dg = DynamicGallery(browser)
+    dg.load()
+    dg.testcase()
 
 
 def test_post_grid(browser):

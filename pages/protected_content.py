@@ -48,6 +48,8 @@ class ProtectedContent(Helper):
 
             assert_that(self.browser.find_element(*self.message).text).is_equal_to(self.message_text)
 
+            self.browser.find_element(*self.password).click()
+            self.browser.find_element(*self.password).clear()
             self.browser.find_element(*self.password).send_keys("1234")
             self.browser.find_element(*self.button).click()
 

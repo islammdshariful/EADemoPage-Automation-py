@@ -67,8 +67,13 @@ class PostList(Helper):
         p_date = self.browser.find_element(By.XPATH, date).text
 
         post_title.click()
+
+        windows = self.browser.window_handles
+        self.browser.switch_to.window(windows[1])
         self.check_post(p_title, p_date)
-        self.browser.back()
+        self.browser.close()
+        self.browser.switch_to.window(windows[0])
+
         time.sleep(1)
 
     def testcase(self):
