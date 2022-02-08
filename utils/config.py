@@ -12,8 +12,9 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 class Helper:
+    # To check documentation make check_doc to True otherwise keep it false.
+    # When check_doc it True it'll only check the documentation not the widgets.
     check_doc = False
-    # check_doc = True
     display = 1
 
     demo_page = "https://essential-addons.com/elementor/demos/"
