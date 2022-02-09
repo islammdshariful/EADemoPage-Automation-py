@@ -32,6 +32,7 @@ class ReadingProgress(Helper):
                 self.check_documents(self.doc_link, self.doc_name)
             else:
                 self.browser.execute_script("window.scrollTo(0, 1004)")
+                time.sleep(1)
                 self.wait_for_bar_to_come()
 
                 bar = self.browser.find_element(*self.progress_bar)
@@ -40,10 +41,10 @@ class ReadingProgress(Helper):
                 hex = Color.from_string(rgb).hex
                 assert_that(hex).is_equal_to(self.color_fill)
                 self.browser.execute_script("window.scrollTo(0, 3560)")
-                time.sleep(1.5)
+                time.sleep(2)
                 assert_that(bar.get_attribute("style")).is_equal_to(self.width_2)
                 self.browser.execute_script("window.scrollTo(0, document.body.scrollHeight)")
-                time.sleep(1.5)
+                time.sleep(2)
                 assert_that(bar.get_attribute("style")).is_equal_to(self.width_3)
                 rgb = bar.value_of_css_property('background-color')
                 hex = Color.from_string(rgb).hex
