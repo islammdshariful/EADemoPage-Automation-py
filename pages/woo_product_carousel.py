@@ -121,7 +121,8 @@ class WooProductCarousel(Helper):
                                         self.p_4_link_btn, self.p_4_quickview_btn)
                 self.browser.find_element(*self.dot_4).click()
                 time.sleep(.5)
-
+                self.browser.execute_script("window.scrollTo(0, 1103)")
+                time.sleep(1)
                 self.browser.find_element(*self.prev_btn).click()
                 time.sleep(.5)
                 self.browser.find_element(*self.prev_btn).click()
@@ -130,9 +131,9 @@ class WooProductCarousel(Helper):
                 time.sleep(.5)
 
                 self.browser.find_element(*self.next_btn).click()
-                time.sleep(.5)
+                time.sleep(1)
                 self.browser.find_element(*self.next_btn).click()
-                time.sleep(.5)
+                time.sleep(1)
                 cursor = ActionChains(self.browser)
                 p_3 = self.browser.find_element(By.XPATH, self.p_3_img)
                 cursor.move_to_element(p_3).perform()

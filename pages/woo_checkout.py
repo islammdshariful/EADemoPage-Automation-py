@@ -301,7 +301,9 @@ class WooCheckout(Helper):
                     is_equal_to(self.login_username_label_text)
                 assert_that(self.browser.find_element(*self.login_pass_label).text). \
                     is_equal_to(self.login_pass_label_text)
+                self.browser.find_element(*self.login_username_field).clear()
                 self.browser.find_element(*self.login_username_field).send_keys("admin")
+                self.browser.find_element(*self.login_pass_field).clear()
                 self.browser.find_element(*self.login_pass_field).send_keys("123456")
 
                 self.browser.find_element(*self.remember_me_field).click()
@@ -321,6 +323,7 @@ class WooCheckout(Helper):
                 self.browser.find_element(*self.coupon_form_expand).click()
                 time.sleep(.5)
                 assert_that(self.browser.find_element(*self.coupon_form_des).text).is_equal_to(self.coupon_form_des_text)
+                self.browser.find_element(*self.coupon_form_field).clear()
                 self.browser.find_element(*self.coupon_form_field).send_keys("Get50OffNow")
                 assert_that(self.browser.find_element(*self.coupon_btn).text).is_equal_to("Apply Coupon")
 
@@ -359,9 +362,12 @@ class WooCheckout(Helper):
                 time.sleep(.5)
                 assert_that(self.browser.find_element(*self.create_acc_pass_label).text). \
                     is_equal_to(self.create_acc_pass_label_text)
+                self.browser.find_element(*self.create_acc_pass_field).clear()
                 self.browser.find_element(*self.create_acc_pass_field).send_keys("123456")
 
                 # Payment Method
+                self.browser.execute_script("window.scrollTo(0, 2984)")
+                time.sleep(1)
                 assert_that(self.browser.find_element(*self.payment_method_label).text). \
                     is_equal_to(self.payment_method_label_text)
                 self.check_payment_gateway(self.payment_method_bank, self.payment_method_bank_text,
@@ -398,28 +404,38 @@ class WooCheckout(Helper):
                 assert_that(self.browser.find_element(*self.billing_label).text).is_equal_to(self.billing_label_text)
                 # Billing
                 assert_that(self.browser.find_element(*self.billing_fname_label).text).is_equal_to(self.fname_label_text)
+                self.browser.find_element(*self.billing_fname_field).clear()
                 self.browser.find_element(*self.billing_fname_field).send_keys("Mr.")
                 assert_that(self.browser.find_element(*self.billing_lname_label).text).is_equal_to(self.lname_label_text)
+                self.browser.find_element(*self.billing_lname_field).clear()
                 self.browser.find_element(*self.billing_lname_field).send_keys("Sabbir")
                 assert_that(self.browser.find_element(*self.billing_com_label).text).is_equal_to(self.com_label_text)
+                self.browser.find_element(*self.billing_com_field).clear()
                 self.browser.find_element(*self.billing_com_field).send_keys("WPDeveloper")
                 assert_that(self.browser.find_element(*self.billing_country_label).text).is_equal_to(self.country_label_text)
                 self.browser.find_element(*self.billing_country_list).click()
                 time.sleep(.5)
                 self.browser.find_element(*self.billing_country_list).click()
                 assert_that(self.browser.find_element(*self.billing_address_label).text).is_equal_to(self.address_label_text)
+                self.browser.find_element(*self.billing_address_field_1).clear()
                 self.browser.find_element(*self.billing_address_field_1).send_keys("New Street")
+                self.browser.find_element(*self.billing_address_field_2).clear()
                 self.browser.find_element(*self.billing_address_field_2).send_keys("Boxy")
                 assert_that(self.browser.find_element(*self.billing_city_label).text).is_equal_to(self.city_label_text)
+                self.browser.find_element(*self.billing_city_field).clear()
                 self.browser.find_element(*self.billing_city_field).send_keys("New Town")
                 assert_that(self.browser.find_element(*self.billing_district_label).text). \
                     is_equal_to(self.district_label_text)
+                self.browser.find_element(*self.billing_district_field).clear()
                 self.browser.find_element(*self.billing_district_field).send_keys("Geodon")
                 assert_that(self.browser.find_element(*self.billing_zip_label).text).is_equal_to(self.zip_label_text)
+                self.browser.find_element(*self.billing_zip_field).clear()
                 self.browser.find_element(*self.billing_zip_field).send_keys("1206")
                 assert_that(self.browser.find_element(*self.billing_phone_label).text).is_equal_to(self.phone_label_text)
+                self.browser.find_element(*self.billing_phone_field).clear()
                 self.browser.find_element(*self.billing_phone_field).send_keys("0123456789")
                 assert_that(self.browser.find_element(*self.billing_email_label).text).is_equal_to(self.email_label_text)
+                self.browser.find_element(*self.billing_email_field).clear()
                 self.browser.find_element(*self.billing_email_field).send_keys("testerbhaai@gmail.com")
                 # Create an Account
                 self.browser.execute_script("window.scrollTo(0, 2093)")
@@ -430,6 +446,7 @@ class WooCheckout(Helper):
                 time.sleep(1)
                 assert_that(self.browser.find_element(*self.create_acc_pass_label).text). \
                     is_equal_to(self.create_acc_pass_label_text)
+                self.browser.find_element(*self.create_acc_pass_field).clear()
                 self.browser.find_element(*self.create_acc_pass_field).send_keys("123456")
                 # Ship to Diff
                 assert_that(self.browser.find_element(*self.ship_diff_address_label).text). \
@@ -437,10 +454,13 @@ class WooCheckout(Helper):
                 self.browser.find_element(*self.ship_diff_address_field).click()
                 time.sleep(1)
                 assert_that(self.browser.find_element(*self.shipping_fname_label).text).is_equal_to(self.fname_label_text)
+                self.browser.find_element(By.XPATH, self.shipping_fname_field).clear()
                 self.browser.find_element(By.XPATH, self.shipping_fname_field).send_keys("Mr.")
                 assert_that(self.browser.find_element(*self.shipping_lname_label).text).is_equal_to(self.lname_label_text)
+                self.browser.find_element(*self.shipping_lname_field).clear()
                 self.browser.find_element(*self.shipping_lname_field).send_keys("Sabbir")
                 assert_that(self.browser.find_element(*self.shipping_com_label).text).is_equal_to(self.com_label_text)
+                self.browser.find_element(*self.shipping_com_field).clear()
                 self.browser.find_element(*self.shipping_com_field).send_keys("WPDeveloper")
                 assert_that(self.browser.find_element(*self.shipping_country_label).text).is_equal_to(self.country_label_text)
                 self.browser.execute_script("window.scrollTo(0, 2420)")
@@ -450,24 +470,31 @@ class WooCheckout(Helper):
                 self.browser.execute_script("window.scrollTo(0, 2420)")
                 self.browser.find_element(*self.shipping_country_list).click()
                 assert_that(self.browser.find_element(*self.shipping_address_label).text).is_equal_to(self.address_label_text)
+                self.browser.find_element(*self.shipping_address_field_1).clear()
                 self.browser.find_element(*self.shipping_address_field_1).send_keys("New Street")
+                self.browser.find_element(*self.shipping_address_field_2).clear()
                 self.browser.find_element(*self.shipping_address_field_2).send_keys("Boxy")
                 assert_that(self.browser.find_element(*self.shipping_city_label).text).is_equal_to(self.city_label_text)
+                self.browser.find_element(*self.shipping_city_field).clear()
                 self.browser.find_element(*self.shipping_city_field).send_keys("New Town")
                 assert_that(self.browser.find_element(*self.shipping_district_label).text). \
                     is_equal_to(self.district_label_text)
+                self.browser.find_element(*self.shipping_district_field).clear()
                 self.browser.find_element(*self.shipping_district_field).send_keys("Geodon")
                 self.browser.execute_script("window.scrollTo(0, 2902)")
                 time.sleep(.5)
                 assert_that(self.browser.find_element(*self.shipping_zip_label).text).is_equal_to(self.zip_label_text)
+                self.browser.find_element(*self.shipping_zip_field).clear()
                 self.browser.find_element(*self.shipping_zip_field).send_keys("1206")
 
                 # Other notes
                 assert_that(self.browser.find_element(*self.other_note_label).text).is_equal_to(self.other_note_label_text)
+                self.browser.find_element(*self.other_note_field).clear()
                 self.browser.find_element(*self.other_note_field).send_keys("Lorem Ipsum is simply a dummy text.")
                 self.browser.find_element(*self.next_btn).click()
 
                 # payment Tab
+                self.browser.execute_script("window.scrollTo(0, 976)")
                 time.sleep(2)
                 assert_that(self.browser.find_element(*self.payment_method_label).text). \
                     is_equal_to(self.payment_method_label_text)

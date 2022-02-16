@@ -103,7 +103,7 @@ class FilterableGallery(Helper):
                 time.sleep(1)
 
                 WebDriverWait(self.browser, 15).until(
-                    EC.presence_of_element_located((By.XPATH, "//p[normalize-space()='Happy New Year! Save']")))
+                    EC.presence_of_element_located((By.XPATH, "//div[@class='nx-bar-inner']")))
 
                 self.browser.find_element(*self.all).click()
                 time.sleep(.5)
