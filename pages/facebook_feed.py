@@ -65,6 +65,7 @@ class FacebookFeed(Helper):
                 self.check_documents(self.doc_link, self.doc_name)
             else:
                 self.browser.execute_script("window.scrollTo(0, 982)")
+                time.sleep(1)
                 self.check_post(self.avatar_1, self.name_1, self.date_1, self.des_1, self.img_1, self.des_url_1,
                                 self.des_title_1, self.des_bottom_content_1, self.like_icon_1, self.comment_icon_1)
                 time.sleep(.5)

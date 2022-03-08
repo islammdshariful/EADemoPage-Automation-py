@@ -88,9 +88,13 @@ class PostTimeline(Helper):
 
                 self.check_widget_post(self.post_1_title, self.post_1_date, self.post_1_des, self.post_1_bullet)
                 self.check_widget_post(self.post_2_title, self.post_2_date, self.post_2_des, self.post_2_bullet)
+                self.browser.execute_script("window.scrollTo(0, 1679)")
+                time.sleep(1)
                 self.check_widget_post(self.post_3_title, self.post_3_date, self.post_3_des, self.post_3_bullet)
                 self.check_widget_post(self.post_4_title, self.post_4_date, self.post_4_des, self.post_4_bullet)
                 self.browser.find_element(*self.load_more_btn).click()
+                time.sleep(1)
+                self.browser.execute_script("window.scrollTo(0, 2813)")
                 time.sleep(1)
                 self.check_widget_post(self.post_5_title, self.post_5_date, self.post_5_des, self.post_5_bullet)
 

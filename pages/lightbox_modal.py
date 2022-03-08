@@ -31,6 +31,7 @@ class LightboxModal(Helper, ImageComparison):
                 self.check_documents(self.doc_link, self.doc_name)
             else:
                 self.browser.execute_script("window.scrollTo(0, 903)")
+                time.sleep(1)
                 self.browser.find_element(*self.button).click()
                 time.sleep(1)
                 self.check_visibility(self.img, "Image is not visible.")

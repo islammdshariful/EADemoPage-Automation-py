@@ -88,11 +88,13 @@ class SimpleMenu(Helper):
                 self.check_widget_name(self.ea_p_s, self.ea_p_s_text)
                 self.browser.back()
 
-                self.browser.execute_script("window.scrollTo(0, 3971)")
+                self.browser.execute_script("window.scrollTo(0, 4061)")
+                time.sleep(1)
                 self.browser.find_element(*self.v_home).click()
                 self.browser.back()
 
-                self.browser.execute_script("window.scrollTo(0, 3971)")
+                self.browser.execute_script("window.scrollTo(0, 4061)")
+                time.sleep(1)
                 cursor = ActionChains(self.browser)
 
                 v_ele_ele = self.browser.find_element(*self.v_elementor)

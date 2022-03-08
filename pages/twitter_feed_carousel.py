@@ -75,6 +75,7 @@ class TwitterFeedCarousel(Helper):
                 self.check_documents(self.doc_link, self.doc_name)
             else:
                 self.browser.execute_script("window.scrollTo(0, 904)")
+                time.sleep(1)
                 self.browser.find_element(*self.dot_3).click()
                 time.sleep(.5)
                 self.browser.find_element(*self.dot_4).click()

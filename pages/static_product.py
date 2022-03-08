@@ -63,7 +63,8 @@ class StaticProduct(Helper):
             assert_that(self.browser.find_element(*self.first_product_button).text).\
                 is_equal_to(self.first_product_button_text)
 
-            self.browser.execute_script("window.scrollTo(0, 2762)")
+            self.browser.execute_script("window.scrollTo(0, 2759)")
+            time.sleep(1)
             cursor.move_to_element(second_product).perform()
 
             if self.browser.find_element(*self.second_product_thumb).is_displayed():

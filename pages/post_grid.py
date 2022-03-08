@@ -1,6 +1,8 @@
 from selenium.webdriver import ActionChains, Keys
 
 from utils.config import *
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class PostGrid(Helper):
@@ -87,9 +89,25 @@ class PostGrid(Helper):
                 self.check_documents(self.doc_link, self.doc_name)
             else:
                 self.browser.execute_script("window.scrollTo(0, 1037)")
+                time.sleep(1)
 
                 self.check_widget_post(self.post_1_title, self.post_1_author, self.post_1_date, self.post_1_media,
                                        self.post_1_overlay_icon)
                 self.check_widget_post(self.post_2_title, self.post_2_author, self.post_2_date, self.post_2_media,
                                        self.post_2_overlay_icon)
                 self.browser.find_element(*self.load_more_btn).click()
+
+                WebDriverWait(self.browser, 10).until(
+                    EC.presence_of_element_located((By.XPATH, self.post_3_title)))
+
+                self.browser.execute_script("window.scrollTo(0, 2142)")
+                time.sleep(1)
+
+                self.check_visibility_of_post(self.post_3_media, self.post_3_overlay_icon)
+                p_title = self.browser.find_element(By.XPATH, self.post_3_title).text
+                p_date = self.browser.find_element(By.XPATH, self.post_3_date).text
+
+                self.browser.find_element(By.XPATH, self.post_3_title).click()
+                self.check_post(p_title, p_date)
+                self.browser.back()
+                time.sleep(1)

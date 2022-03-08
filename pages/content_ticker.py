@@ -1,6 +1,8 @@
 from selenium.webdriver import Keys
 
 from utils.config import *
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class ContentTicker(Helper):
@@ -13,9 +15,9 @@ class ContentTicker(Helper):
 
     label = (By.XPATH, f'//*[@id="eael-ticker-wrap-5107a1de"]/div[1]/span')
     label_text = "Trending Today"
-    content_1 = (By.XPATH, f'//*[@id="eael-ticker-wrap-5107a1de"]/div[2]/div[1]/div/div[2]/div/a')
+    content_1 = f'//*[@id="eael-ticker-wrap-5107a1de"]/div[2]/div[1]/div/div[4]/div/a'
     content_1_text = "How to Include Elementor Template using a Shortcode"
-    content_2 = (By.XPATH, f'//*[@id="eael-ticker-wrap-5107a1de"]/div[2]/div[1]/div/div[3]/div/a')
+    content_2 = f'//*[@id="eael-ticker-wrap-5107a1de"]/div[2]/div[1]/div/div[3]/div/a'
     content_2_text = "How to Include Elementor Template"
     prev_btn = (By.XPATH, f'//*[@id="eael-ticker-wrap-5107a1de"]/div[2]/div[2]/div[2]/i')
     next_btn = (By.XPATH, f'//*[@id="eael-ticker-wrap-5107a1de"]/div[2]/div[2]/div[1]/i')
@@ -28,28 +30,48 @@ class ContentTicker(Helper):
         self.browser.get(self.content_ticker)
 
     def testcase(self):
-        with soft_assertions():
-            self.check_widget_name(self.widget, self.widget_name)
-            if self.check_doc:
-                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
-                self.check_documents(self.doc_link, self.doc_name)
-            else:
-                self.browser.execute_script("window.scrollTo(0, 982)")
+        # with soft_assertions():
+        self.check_widget_name(self.widget, self.widget_name)
+        if self.check_doc:
+            self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
+            self.check_documents(self.doc_link, self.doc_name)
+        else:
+            self.browser.execute_script("window.scrollTo(0, 982)")
+            time.sleep(1)
 
-                assert_that(self.browser.find_element(*self.label).text).is_equal_to(self.label_text)
-                if self.browser.find_element(*self.content_1).is_displayed():
-                    assert_that(self.browser.find_element(*self.content_1).text).is_equal_to(self.content_1_text)
-                    self.browser.find_element(*self.next_btn).click()
-                    time.sleep(.5)
-                    assert_that(self.browser.find_element(*self.content_2).text).is_equal_to(self.content_2_text)
-                    self.browser.find_element(*self.prev_btn).click()
-                    time.sleep(.5)
-                    assert_that(self.browser.find_element(*self.content_1).text).is_equal_to(self.content_1_text)
-                else:
-                    assert_that(self.browser.find_element(*self.content_2).text).is_equal_to(self.content_2_text)
-                    self.browser.find_element(*self.next_btn).click()
-                    time.sleep(.5)
-                    assert_that(self.browser.find_element(*self.content_1).text).is_equal_to(self.content_1_text)
-                    self.browser.find_element(*self.prev_btn).click()
-                    time.sleep(.5)
-                    assert_that(self.browser.find_element(*self.content_2).text).is_equal_to(self.content_2_text)
+            assert_that(self.browser.find_element(*self.label).text).is_equal_to(self.label_text)
+            if self.browser.find_element(By.XPATH, self.content_1).is_displayed():
+                WebDriverWait(self.browser, 10).until(
+                    EC.text_to_be_present_in_element((By.XPATH, self.content_1), self.content_1_text))
+
+                assert_that(self.browser.find_element(By.XPATH, self.content_1).text).is_equal_to(self.content_1_text)
+                self.browser.find_element(*self.next_btn).click()
+
+                WebDriverWait(self.browser, 10).until(
+                    EC.text_to_be_present_in_element((By.XPATH, self.content_2), self.content_2_text))
+
+                assert_that(self.browser.find_element(By.XPATH, self.content_2).text).is_equal_to(self.content_2_text)
+                self.browser.find_element(*self.prev_btn).click()
+
+                WebDriverWait(self.browser, 10).until(
+                    EC.text_to_be_present_in_element((By.XPATH, self.content_1), self.content_1_text))
+
+                assert_that(self.browser.find_element(By.XPATH, self.content_1).text).is_equal_to(self.content_1_text)
+            else:
+
+                WebDriverWait(self.browser, 10).until(
+                    EC.text_to_be_present_in_element((By.XPATH, self.content_2), self.content_2_text))
+
+                assert_that(self.browser.find_element(By.XPATH, self.content_2).text).is_equal_to(self.content_2_text)
+                self.browser.find_element(*self.next_btn).click()
+
+                WebDriverWait(self.browser, 10).until(
+                    EC.text_to_be_present_in_element((By.XPATH, self.content_1), self.content_1_text))
+
+                assert_that(self.browser.find_element(By.XPATH, self.content_1).text).is_equal_to(self.content_1_text)
+                self.browser.find_element(*self.prev_btn).click()
+
+                WebDriverWait(self.browser, 10).until(
+                    EC.text_to_be_present_in_element((By.XPATH, self.content_2), self.content_2_text))
+
+                assert_that(self.browser.find_element(By.XPATH, self.content_2).text).is_equal_to(self.content_2_text)

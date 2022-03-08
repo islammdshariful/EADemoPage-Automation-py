@@ -81,6 +81,7 @@ class PostBlock(Helper):
                 self.check_documents(self.doc_link, self.doc_name)
             else:
                 self.browser.execute_script("window.scrollTo(0, 1150)")
+                time.sleep(1)
 
                 self.check_widget_post(self.post_1_title, self.post_1_author, self.post_1_des,
                                        self.post_1_date, self.post_1_media, self.post_1_overlay_icon)

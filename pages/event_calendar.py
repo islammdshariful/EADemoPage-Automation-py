@@ -13,17 +13,17 @@ class EventCalendar(Helper):
     prev_button = (By.XPATH, f'//*[@id="eael-event-calendar-22bed70e"]/div[1]/div[1]/div/button[1]')
     next_button = (By.XPATH, f'//*[@id="eael-event-calendar-22bed70e"]/div[1]/div[1]/div/button[2]')
     month = (By.XPATH, f'//*[@id="eael-event-calendar-22bed70e"]/div[1]/div[2]/h2')
-    month_text = "December 2021"
+    month_text = "March 2022"
 
-    event_info = (By.XPATH, f'//*[@id="eael-event-calendar-22bed70e"]/div[2]/div/table/tbody/tr/td/div/div/div[1]'
-                            f'/div[2]/table/tbody/tr/td[6]')
-    event_info_text = "07:00 AM Event Title Dec"
+    event_info = (By.XPATH, f'//*[@id="eael-event-calendar-22bed70e"]/div[2]/div/table/tbody/tr/td/div/div/div[1]/'
+                            f'div[2]/table/tbody/tr/td[5]')
+    event_info_text = "07:00 AM Event Title Mar"
 
     event_title = (By.XPATH, f'//*[@id="eaelecModal"]/div[2]/div[1]/h2')
-    event_title_text = "Event Title Dec"
+    event_title_text = "Event Title Mar"
     calendar_icon = f'//*[@id="eaelecModal"]/div[2]/div[1]/span[1]/i'
     event_start = (By.XPATH, f'//*[@id="eaelecModal"]/div[2]/div[1]/span[1]')
-    event_start_text = "Dec 4th 7:00 AM"
+    event_start_text = "Mar 4th 7:00 AM"
     event_end = (By.XPATH, f'//*[@id="eaelecModal"]/div[2]/div[1]/span[2]')
     event_end_text = "- 7:00 AM"
 
