@@ -12,11 +12,11 @@ class ImageHotspots(Helper):
     doc_name = "IMAGE HOTSPOTS"
 
     hotspot_1 = f'//*[@id="post-2956"]/div/div/div/div/section[3]/div/div/div/div/div/div/div/div/div/span[1]/span/span'
-    hotspot_1_title = f'/html/body/div[6]/div[2]/span'
+    hotspot_1_title = f'/html/body/div[5]/div[2]/span'
     hotspot_1_title_text = "Bag"
 
     hotspot_2 = f'//*[@id="post-2956"]/div/div/div/div/section[3]/div/div/div/div/div/div/div/div/div/span[5]/span'
-    hotspot_2_title = f'/html/body/div[6]/div[2]/span'
+    hotspot_2_title = f'/html/body/div[5]/div[2]/span'
     hotspot_2_title_text = "T-shirt"
 
     def __init__(self, browser):
@@ -45,6 +45,6 @@ class ImageHotspots(Helper):
             else:
                 self.browser.execute_script("window.scrollTo(0, 1077)")
                 time.sleep(1)
-
+                self.wait_for_bar_to_come()
                 self.hotspot(self.hotspot_1, self.hotspot_1_title, self.hotspot_1_title_text)
                 self.hotspot(self.hotspot_2, self.hotspot_2_title, self.hotspot_2_title_text)

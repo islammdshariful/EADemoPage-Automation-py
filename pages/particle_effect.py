@@ -30,7 +30,7 @@ class ParticleEffect(Helper):
                 self.wait_for_bar_to_come()
 
                 cursor = ActionChains(self.browser)
-                cursor.move_by_offset(10, 100).perform()
+                cursor.move_by_offset(80, 100).perform()
                 time.sleep(.5)
                 cursor.move_by_offset(200, 300).perform()
                 time.sleep(.5)

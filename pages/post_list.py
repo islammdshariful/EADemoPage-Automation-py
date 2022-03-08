@@ -68,12 +68,12 @@ class PostList(Helper):
 
         post_title.click()
 
-        windows = self.browser.window_handles
-        self.browser.switch_to.window(windows[1])
+        # windows = self.browser.window_handles
+        # self.browser.switch_to.window(windows[1])
         self.check_post(p_title, p_date)
-        self.browser.close()
-        self.browser.switch_to.window(windows[0])
-
+        # self.browser.close()
+        # self.browser.switch_to.window(windows[0])
+        self.browser.back()
         time.sleep(1)
 
     def testcase(self):
