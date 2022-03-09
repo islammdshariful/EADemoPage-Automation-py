@@ -45,7 +45,6 @@ class ProtectedContent(Helper):
             else:
                 self.browser.execute_script("window.scrollTo(0, 1007)")
                 time.sleep(1)
-                self.wait_for_bar_to_come()
 
                 assert_that(self.browser.find_element(*self.message).text).is_equal_to(self.message_text)
 
