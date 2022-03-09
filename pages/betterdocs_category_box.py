@@ -54,6 +54,7 @@ class BetterdocsCategoryBox(Helper):
                 self.check_documents(self.doc_link, self.doc_name)
             else:
                 self.browser.execute_script("window.scrollTo(0, 856)")
+                time.sleep(1)
                 self.box_layout(self.icon_1, self.title_1, self.title_1_text, self.count_1, self.count_1_text)
                 self.box_layout(self.icon_2, self.title_2, self.title_2_text, self.count_2, self.count_2_text)
 

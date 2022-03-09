@@ -72,6 +72,7 @@ class LearndashCourseList(Helper):
                 self.check_documents(self.doc_link, self.doc_name)
             else:
                 self.browser.execute_script("window.scrollTo(0, 946)")
+                time.sleep(1)
                 self.course(self.course_title_1, self.course_title_text_1, self.course_des_1, self.course_des_text,
                             self.course_price_1, self.course_price_text_1, self.course_img_1)
 

@@ -11,37 +11,59 @@ class WooProductGrid(Helper):
                '/div/div/div[2]/div/div/div[3]/div/div/a/span/span'
     doc_name = "WOOCOMMERCE PRODUCT GRID"
 
-    p_1_title = f'//*[@id="eael-product-grid"]/div/ul/li[1]/div[2]/a/h2'
-    p_1_ratings = f'//*[@id="eael-product-grid"]/div/ul/li[1]/div[3]'
-    p_1_price = f'//*[@id="eael-product-grid"]/div/ul/li[1]/div[4]/span'
-    p_1_cart_btn = f'//*[@id="eael-product-grid"]/div/ul/li[1]/div[1]/div/a[2]'
-    p_1_vcart_btn = f'//*[@id="eael-product-grid"]/div/ul/li[1]/div[1]/div/a[3]'
-    p_1_link_btn = f'//*[@id="eael-product-grid"]/div/ul/li[1]/div[1]/div/a[1]'
-    p_1_img = f'//*[@id="eael-product-grid"]/div/ul/li[1]/div[1]/img'
+    p_1_title = f"//div[@class='elementor-element elementor-element-7c9d163 eael-product-grid-column-4 elementor-widget" \
+                f" elementor-widget-eicon-woocommerce']//h2[@class='woocommerce-loop-product__title']" \
+                f"[normalize-space()='Mens Trendy T Shirt']"
+    p_1_ratings = f"//div[@class='elementor-element elementor-element-7c9d163 eael-product-grid-column-4 elementor-" \
+                  f"widget elementor-widget-eicon-woocommerce']//div[@aria-label='Rated 4.00 out of 5']"
+    p_1_price = f"//li[1]//div[4]"
+    p_1_cart_btn = f"//div[@class='button-wrap clearfix']//a[@aria-label='Add “Mens Trendy T Shirt” to your cart']" \
+                   f"[normalize-space()='Add to cart']"
+    p_1_vcart_btn = f"//a[normalize-space()='View cart']"
+    p_1_link_btn = f"//section[@class='elementor-section elementor-top-section elementor-element elementor-element-" \
+                   f"2a8ceca elementor-section-boxed elementor-section-height-default elementor-section-height-" \
+                   f"default']//li[1]//div[1]//div[1]//a[1]"
+    p_1_img = f"//div[@class='overlay']//img[@title='Woo Product Grid for Elementor 85']"
 
-    p_2_title = f'//*[@id="eael-product-grid"]/div/ul/li[2]/div[2]/a/h2'
-    p_2_ratings = f'//*[@id="eael-product-grid"]/div/ul/li[2]/div[3]'
-    p_2_price = f'//*[@id="eael-product-grid"]/div/ul/li[2]/div[4]/span'
-    p_2_cart_btn = f'//*[@id="eael-product-grid"]/div/ul/li[2]/div[1]/div/a[2]'
-    p_2_vcart_btn = f'//*[@id="eael-product-grid"]/div/ul/li[2]/div[1]/div/a[3]'
-    p_2_link_btn = f'//*[@id="eael-product-grid"]/div/ul/li[2]/div[1]/div/a[1]'
-    p_2_img = f'//*[@id="eael-product-grid"]/div/ul/li[2]/div[1]/img'
+    p_2_title = f"//div[@class='elementor-element elementor-element-7c9d163 eael-product-grid-column-4 elementor-widget" \
+                f" elementor-widget-eicon-woocommerce']//h2[@class='woocommerce-loop-product__title']" \
+                f"[normalize-space()='Mens Stylish Shirt']"
+    p_2_ratings = f"//div[@class='elementor-element elementor-element-7c9d163 eael-product-grid-column-4 elementor-" \
+                  f"widget elementor-widget-eicon-woocommerce']//div[@aria-label='Rated 3.50 out of 5']"
+    p_2_price = f"//li[2]//div[4]//span[1]//bdi[1]"
+    p_2_cart_btn = f"//div[@class='button-wrap clearfix']//a[@aria-label='Add “Mens Stylish Shirt” to your cart']" \
+                   f"[normalize-space()='Add to cart']"
+    p_2_vcart_btn = f"//li[2]//div[1]//div[1]//a[3]"
+    p_2_link_btn = f"//a[@href='https://essential-addons.com/elementor/product/mens-stylish-shirt/']" \
+                   f"//span[@class='fas fa-link']"
+    p_2_img = f"//div[@class='overlay']//img[@title='Woo Product Grid for Elementor 86']"
 
-    p_3_title = f'//*[@id="eael-product-grid"]/div/ul/li[3]/div[2]/a/h2'
-    p_3_ratings = f'//*[@id="eael-product-grid"]/div/ul/li[3]/div[3]'
-    p_3_price = f'//*[@id="eael-product-grid"]/div/ul/li[3]/div[4]/span'
-    p_3_cart_btn = f'//*[@id="eael-product-grid"]/div/ul/li[3]/div[1]/div/a[2]'
-    p_3_vcart_btn = f'//*[@id="eael-product-grid"]/div/ul/li[3]/div[1]/div/a[3]'
-    p_3_link_btn = f'//*[@id="eael-product-grid"]/div/ul/li[3]/div[1]/div/a[1]'
-    p_3_img = f'//*[@id="eael-product-grid"]/div/ul/li[3]/div[1]/img'
+    p_3_title = f"//div[@class='elementor-element elementor-element-7c9d163 eael-product-grid-column-4 elementor-widget" \
+                f" elementor-widget-eicon-woocommerce']//h2[@class='woocommerce-loop-product__title']" \
+                f"[normalize-space()='Mens Comfy T Shirt']"
+    p_3_ratings = f"//div[@class='elementor-element elementor-element-7c9d163 eael-product-grid-column-4 elementor-" \
+                  f"widget elementor-widget-eicon-woocommerce']//div[@aria-label='Rated 3.00 out of 5']"
+    p_3_price = f"//li[3]//div[4]//span[1]//bdi[1]"
+    p_3_cart_btn = f"//div[@class='button-wrap clearfix']//a[@aria-label='Add “Mens Comfy T Shirt” to your cart']" \
+                   f"[normalize-space()='Add to cart']"
+    p_3_vcart_btn = f"//li[3]//div[1]//div[1]//a[3]"
+    p_3_link_btn = f"//a[@href='https://essential-addons.com/elementor/product/mens-comfy-t-shirt/']" \
+                   f"//span[@class='fas fa-link']"
+    p_3_img = f"//div[@class='overlay']//img[@title='Woo Product Grid for Elementor 87']"
 
-    p_4_title = f'//*[@id="eael-product-grid"]/div/ul/li[4]/div[2]/a/h2'
-    p_4_ratings = f'//*[@id="eael-product-grid"]/div/ul/li[4]/div[3]'
-    p_4_price = f'//*[@id="eael-product-grid"]/div/ul/li[4]/div[4]/span'
-    p_4_cart_btn = f'//*[@id="eael-product-grid"]/div/ul/li[4]/div[1]/div/a[2]'
-    p_4_vcart_btn = f'//*[@id="eael-product-grid"]/div/ul/li[4]/div[1]/div/a[3]'
-    p_4_link_btn = f'//*[@id="eael-product-grid"]/div/ul/li[4]/div[1]/div/a[1]'
-    p_4_img = f'//*[@id="eael-product-grid"]/div/ul/li[4]/div[1]/img'
+    p_4_title = f"//div[@class='elementor-element elementor-element-7c9d163 eael-product-grid-column-4 elementor-widget" \
+                f" elementor-widget-eicon-woocommerce']//h2[@class='woocommerce-loop-product__title']" \
+                f"[normalize-space()='Mens Black Shirt']"
+    p_4_ratings = f"//div[@class='elementor-element elementor-element-7c9d163 eael-product-grid-column-4 elementor-" \
+                  f"widget elementor-widget-eicon-woocommerce']//div[@aria-label='Rated 5.00 out of 5']"
+    p_4_price = f"//li[4]//div[4]//span[1]//bdi[1]"
+    p_4_cart_btn = f"//div[@class='button-wrap clearfix']//a[@aria-label='Add “Mens Black Shirt” to your cart']" \
+                   f"[normalize-space()='Add to cart']"
+    p_4_vcart_btn = f"//li[4]//div[1]//div[1]//a[3]"
+    p_4_link_btn = f"//section[@class='elementor-section elementor-top-section elementor-element elementor-element-" \
+                   f"2a8ceca elementor-section-boxed elementor-section-height-default elementor-section-height-" \
+                   f"default']//li[4]//div[1]//div[1]//a[1]"
+    p_4_img = f"//div[@class='overlay']//img[@title='Woo Product Grid for Elementor 88']"
 
     p_1_title_text = "Mens Trendy T Shirt"
     p_1_ratings_text = "Rated 4.00 out of 5"
@@ -102,8 +124,8 @@ class WooProductGrid(Helper):
                 self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
             else:
-                self.browser.execute_script("window.scrollTo(0, 1425)")
-                time.sleep(.5)
+                self.browser.execute_script("window.scrollTo(0, 1607)")
+                time.sleep(1)
 
                 self.check_product_info(self.p_1_title, self.p_1_title_text, self.p_1_price, self.p_1_price_text,
                                         self.p_1_ratings, self.p_1_ratings_text, self.p_1_cart_btn, self.p_1_link_btn,
@@ -126,6 +148,4 @@ class WooProductGrid(Helper):
                 assert_that(self.browser.find_element(By.XPATH, f'/html/body/div[1]/div/div/div/main/div[2]/div[2]/h1')
                             .text.upper()).is_equal_to(p_title)
                 self.browser.back()
-                self.browser.execute_script("window.scrollTo(0, 1425)")
-
-
+                # self.browser.execute_script("window.scrollTo(0, 1537)")

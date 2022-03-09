@@ -1,6 +1,8 @@
 from selenium.webdriver import ActionChains, Keys
 
 from utils.config import *
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class PostTimeline(Helper):
@@ -62,6 +64,7 @@ class PostTimeline(Helper):
 
     def check_widget_post(self, post, date, des, bullet):
         cursor = ActionChains(self.browser)
+        WebDriverWait(self.browser, 10).until(EC.element_to_be_clickable((By.XPATH, post)))
         post_title = self.browser.find_element(By.XPATH, post)
         post_date = self.browser.find_element(By.XPATH, date)
 

@@ -43,6 +43,7 @@ class BetterdocsSearchForm(Helper):
                 self.check_documents(self.doc_link, self.doc_name)
             else:
                 self.browser.execute_script("window.scrollTo(0, 1005)")
+                time.sleep(1)
 
                 ph = self.browser.find_element(*self.input)
                 assert_that(ph.get_attribute('placeholder')).is_equal_to(self.input_placeholder_name)

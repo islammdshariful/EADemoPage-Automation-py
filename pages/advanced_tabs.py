@@ -115,6 +115,7 @@ class AdvancedTabs(Helper):
                 self.check_documents(self.doc_link, self.doc_name)
             else:
                 self.browser.execute_script("window.scrollTo(0, 2378)")
+                time.sleep(1)
                 # self.wait_for_bar_to_come()
 
                 assert_that(self.browser.find_element(*self.tab_1).text).is_equal_to(self.tab_1_text)

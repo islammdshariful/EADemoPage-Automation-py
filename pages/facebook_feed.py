@@ -51,9 +51,9 @@ class FacebookFeed(Helper):
         assert_that(self.browser.find_element(By.XPATH, name).text).is_equal_to("WPDeveloper")
         self.check_visibility(des, "Description is not visible")
         self.check_visibility(img, "Image is not visible")
-        self.check_visibility(url, "URL is not visible")
-        self.check_visibility(title, "Title is not visible")
-        self.check_visibility(des_bottom, "Bottom is not visible")
+        # self.check_visibility(url, "URL is not visible")
+        # self.check_visibility(title, "Title is not visible")
+        # self.check_visibility(des_bottom, "Bottom is not visible")
         self.check_visibility(like, "Like is not visible")
         self.check_visibility(comment, "Comment is not visible")
 

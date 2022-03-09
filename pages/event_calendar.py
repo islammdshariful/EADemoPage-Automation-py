@@ -17,10 +17,10 @@ class EventCalendar(Helper):
 
     event_info = (By.XPATH, f'//*[@id="eael-event-calendar-22bed70e"]/div[2]/div/table/tbody/tr/td/div/div/div[1]/'
                             f'div[2]/table/tbody/tr/td[5]')
-    event_info_text = "07:00 AM Event Title Mar"
+    event_info_text = "07:00 AM Event Title March"
 
     event_title = (By.XPATH, f'//*[@id="eaelecModal"]/div[2]/div[1]/h2')
-    event_title_text = "Event Title Mar"
+    event_title_text = "Event Title March"
     calendar_icon = f'//*[@id="eaelecModal"]/div[2]/div[1]/span[1]/i'
     event_start = (By.XPATH, f'//*[@id="eaelecModal"]/div[2]/div[1]/span[1]')
     event_start_text = "Mar 4th 7:00 AM"

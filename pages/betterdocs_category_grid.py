@@ -70,6 +70,7 @@ class BetterdocsCategoryGrid(Helper):
                 self.check_documents(self.doc_link, self.doc_name)
             else:
                 self.browser.execute_script("window.scrollTo(0, 1014)")
+                time.sleep(1)
                 self.check_grid(self.icon_1, self.title_1, self.title_text_1, self.count_1, self.count_1_text,
                                 self.list_title_1, self.explore_more_btn_1, self.explore_more_btn_text,
                                 self.explore_more_icon_1)
