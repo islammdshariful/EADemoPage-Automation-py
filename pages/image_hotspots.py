@@ -11,16 +11,25 @@ class ImageHotspots(Helper):
                '/div/div/div[2]/div/div/div[3]/div/div/a/span/span'
     doc_name = "IMAGE HOTSPOTS"
 
+    # hotspot_1 = f"//div[@class='elementor-element elementor-element-1a3dd460 eael-image-hotspot-align-centered " \
+    #             f"elementor-widget elementor-widget-eael-image-hotspots']//span[@class='eael-hot-spot-wrap elementor-" \
+    #             f"repeater-item-9af7382 eael-hot-spot-tooptip tipso_style']"
     hotspot_1 = f"//div[@class='elementor-element elementor-element-1a3dd460 eael-image-hotspot-align-centered " \
-                f"elementor-widget elementor-widget-eael-image-hotspots']//span[@class='eael-hot-spot-wrap elementor-" \
-                f"repeater-item-9af7382 eael-hot-spot-tooptip tipso_style']"
-    hotspot_1_title = f'/html/body/div[6]/div[2]/span'
+                f"elementor-widget elementor-widget-eael-image-hotspots']//a[@class='eael-hot-spot-wrap elementor-" \
+                f"repeater-item-9af7382 eael-hot-spot-tooptip tipso_style']//span[@class='eael-hotspot-icon eael-" \
+                f"hotspot-tooltip fas fa-plus']"
+    hotspot_1_title = f'/html/body/div[5]/div[2]/span'
     hotspot_1_title_text = "Bag"
 
+    # hotspot_2 = f"//div[@class='elementor-element elementor-element-1a3dd460 eael-image-hotspot-align-centered " \
+    #             f"elementor-widget elementor-widget-eael-image-hotspots']//span[@class='eael-hot-spot-wrap elementor" \
+    #             f"-repeater-item-da20b6d eael-hot-spot-tooptip tipso_style']"
+
     hotspot_2 = f"//div[@class='elementor-element elementor-element-1a3dd460 eael-image-hotspot-align-centered " \
-                f"elementor-widget elementor-widget-eael-image-hotspots']//span[@class='eael-hot-spot-wrap elementor" \
-                f"-repeater-item-da20b6d eael-hot-spot-tooptip tipso_style']"
-    hotspot_2_title = f'/html/body/div[6]/div[2]/span'
+                f"elementor-widget elementor-widget-eael-image-hotspots']//a[@class='eael-hot-spot-wrap elementor-" \
+                f"repeater-item-da20b6d eael-hot-spot-tooptip tipso_style']//span[@class='eael-hotspot-icon eael-" \
+                f"hotspot-tooltip fas fa-plus']"
+    hotspot_2_title = f'/html/body/div[5]/div[2]/span'
     hotspot_2_title_text = "T-shirt"
 
     def __init__(self, browser):
