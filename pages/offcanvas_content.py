@@ -17,24 +17,32 @@ class OffCanvas(Helper):
                            f'/div/div/div/div/span[2]')
     right_side = (By.XPATH, f'//*[@id="post-3926"]/div/div/div/div/section[2]/div/div/div/div/div/div[3]'
                             f'/div/div/div/div/span[2]')
-    left_img = f'/html/body/div[10]/div/div/div/section/div/div/div/div/div/div[1]/div/div/img'
-    left_home = (By.XPATH, f'/html/body/div[10]/div/div/div/section/div/div/div/div/div/div[2]/div/ul/li[1]/a/span')
-    left_about = (By.XPATH, f'/html/body/div[10]/div/div/div/section/div/div/div/div/div/div[2]/div/ul/li[2]')
-    left_service = (By.XPATH, f'/html/body/div[10]/div/div/div/section/div/div/div/div/div/div[2]/div/ul/li[3]')
-    left_blog = (By.XPATH, f'/html/body/div[10]/div/div/div/section/div/div/div/div/div/div[2]/div/ul/li[4]')
-    left_faq = (By.XPATH, f'/html/body/div[10]/div/div/div/section/div/div/div/div/div/div[2]/div/ul/li[5]')
-    left_contact = (By.XPATH, f'/html/body/div[10]/div/div/div/section/div/div/div/div/div/div[2]/div/ul/li[6]')
-    left_button = (By.XPATH, f'/html/body/div[10]/div/div/div/section/div/div/div/div/div/div[3]/div/div/a/span/span')
-    blank = (By.XPATH, f'/html/body/div[12]')
+    left_img = f"//div[starts-with(@class, 'elementor-element elementor-element-7fa94fd2 elementor-widget elementor-" \
+               f"widget-image')]//div//div//img"
+    left = f"//div[starts-with(@class, 'elementor-element elementor-element-379af5cf elementor-icon-list--layout-" \
+           f"traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list')]//div//ul"
+    left_home = (By.XPATH, left + f"//li[1]/a/span")
+    left_about = (By.XPATH, left + f"//li[2]/a/span")
+    left_service = (By.XPATH, left + f"//li[3]/a/span")
+    left_blog = (By.XPATH, left + f"//li[4]/a/span")
+    left_faq = (By.XPATH, left + f"//li[5]/a/span")
+    left_contact = (By.XPATH, left + f"//li[6]/a/span")
+    left_button = (By.XPATH, f"//div[starts-with(@class, 'elementor-element elementor-element-3e177b12 elementor-widget"
+                             f" elementor-widget-button')]//div//div//a//span")
+    blank = (By.XPATH, f"//div[starts-with(@class, 'eael-offcanvas-container eael-offcanvas-container-70ec7ef')]")
 
-    right_img = f'/html/body/div[9]/div/div/div/section/div/div/div/div/div/div[1]/div/div/img'
-    right_home = (By.XPATH, f'/html/body/div[9]/div/div/div/section/div/div/div/div/div/div[2]/div/ul/li[1]/a/span')
-    right_about = (By.XPATH, f'/html/body/div[9]/div/div/div/section/div/div/div/div/div/div[2]/div/ul/li[2]')
-    right_service = (By.XPATH, f'/html/body/div[9]/div/div/div/section/div/div/div/div/div/div[2]/div/ul/li[3]')
-    right_blog = (By.XPATH, f'/html/body/div[9]/div/div/div/section/div/div/div/div/div/div[2]/div/ul/li[4]')
-    right_faq = (By.XPATH, f'/html/body/div[9]/div/div/div/section/div/div/div/div/div/div[2]/div/ul/li[5]')
-    right_contact = (By.XPATH, f'/html/body/div[9]/div/div/div/section/div/div/div/div/div/div[2]/div/ul/li[6]')
-    right_button = (By.XPATH, f'/html/body/div[9]/div/div/div/section/div/div/div/div/div/div[3]/div/div/a/span/span')
+    right_img = f"//div[starts-with(@class, 'elementor-element elementor-element-4f7933bf elementor-widget elementor-" \
+               f"widget-image')]//div//div//img"
+    right = f"//div[starts-with(@class, 'elementor-element elementor-element-56c183dc elementor-icon-list--layout-" \
+           f"traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list')]//div//ul"
+    right_home = (By.XPATH, right + f"//li[1]/a/span")
+    right_about = (By.XPATH, right + f"//li[2]/a/span")
+    right_service = (By.XPATH, right + f"//li[3]/a/span")
+    right_blog = (By.XPATH, right + f"//li[4]/a/span")
+    right_faq = (By.XPATH, right + f"//li[5]/a/span")
+    right_contact = (By.XPATH, right + f"//li[6]/a/span")
+    right_button = (By.XPATH, f"//div[starts-with(@class, 'elementor-element elementor-element-31ac75f elementor-"
+                              f"widget elementor-widget-button')]//div//div//a//span")
 
     def __init__(self, browser):
         super().__init__(browser)

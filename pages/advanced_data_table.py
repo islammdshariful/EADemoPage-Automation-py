@@ -315,19 +315,19 @@ class AdvancedDataTable(Helper):
     def after_sort(self):
         with soft_assertions():
             # 1
-            assert_that(self.browser.find_element(*self.tbody_tr1_td1).text).is_equal_to(self.tbody_tr7_td1_text)
-            assert_that(self.browser.find_element(*self.tbody_tr1_td2).text).is_equal_to(self.tbody_tr7_td2_text)
-            assert_that(self.browser.find_element(*self.tbody_tr1_td3).text).is_equal_to(self.tbody_tr7_td3_text)
-            assert_that(self.browser.find_element(*self.tbody_tr1_td4).text).is_equal_to(self.tbody_tr7_td4_text)
-            assert_that(self.browser.find_element(*self.tbody_tr1_td5).text).is_equal_to(self.tbody_tr7_td5_text)
-            assert_that(self.browser.find_element(*self.tbody_tr1_td6).text).is_equal_to(self.tbody_tr7_td6_text)
-            # 7
-            assert_that(self.browser.find_element(*self.tbody_tr7_td1).text).is_equal_to(self.tbody_tr1_td1_text)
-            assert_that(self.browser.find_element(*self.tbody_tr7_td2).text).is_equal_to(self.tbody_tr1_td2_text)
-            assert_that(self.browser.find_element(*self.tbody_tr7_td3).text).is_equal_to(self.tbody_tr1_td3_text)
-            assert_that(self.browser.find_element(*self.tbody_tr7_td4).text).is_equal_to(self.tbody_tr1_td4_text)
-            assert_that(self.browser.find_element(*self.tbody_tr7_td5).text).is_equal_to(self.tbody_tr1_td5_text)
-            assert_that(self.browser.find_element(*self.tbody_tr7_td6).text).is_equal_to(self.tbody_tr1_td6_text)
+            assert_that(self.browser.find_element(*self.tbody_tr1_td1).text).is_equal_to(self.tbody_tr10_td1_text)
+            assert_that(self.browser.find_element(*self.tbody_tr1_td2).text).is_equal_to(self.tbody_tr10_td2_text)
+            assert_that(self.browser.find_element(*self.tbody_tr1_td3).text).is_equal_to(self.tbody_tr10_td3_text)
+            assert_that(self.browser.find_element(*self.tbody_tr1_td4).text).is_equal_to(self.tbody_tr10_td4_text)
+            assert_that(self.browser.find_element(*self.tbody_tr1_td5).text).is_equal_to(self.tbody_tr10_td5_text)
+            assert_that(self.browser.find_element(*self.tbody_tr1_td6).text).is_equal_to(self.tbody_tr10_td6_text)
+            # 10
+            assert_that(self.browser.find_element(*self.tbody_tr10_td1).text).is_equal_to(self.tbody_tr1_td1_text)
+            assert_that(self.browser.find_element(*self.tbody_tr10_td2).text).is_equal_to(self.tbody_tr1_td2_text)
+            assert_that(self.browser.find_element(*self.tbody_tr10_td3).text).is_equal_to(self.tbody_tr1_td3_text)
+            assert_that(self.browser.find_element(*self.tbody_tr10_td4).text).is_equal_to(self.tbody_tr1_td4_text)
+            assert_that(self.browser.find_element(*self.tbody_tr10_td5).text).is_equal_to(self.tbody_tr1_td5_text)
+            assert_that(self.browser.find_element(*self.tbody_tr10_td6).text).is_equal_to(self.tbody_tr1_td6_text)
 
     def testcase(self):
         with soft_assertions():
