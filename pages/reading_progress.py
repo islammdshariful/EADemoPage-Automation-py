@@ -11,10 +11,10 @@ class ReadingProgress(Helper):
                '/div/div/div[3]/div/div/a/span/span'
     doc_name = "EA READING PROGRESS BAR"
 
-    progress_bar = (By.XPATH, f'/html/body/div[4]/div[3]/div/div')
+    progress_bar = (By.XPATH, f"//div[@class='eael-reading-progress-fill']")
     color_fill = "#1fd18e"
-    width_1 = "width: 22.8026%;"
-    width_2 = "width: 79.6421%;"
+    width_1 = "width: 22.6381%;"
+    width_2 = "width: 80.2706%;"
     width_3 = "width: 100%;"
 
     def __init__(self, browser):
@@ -33,7 +33,7 @@ class ReadingProgress(Helper):
             else:
                 self.browser.execute_script("window.scrollTo(0, 1004)")
                 time.sleep(2)
-                self.wait_for_bar_to_come()
+                # self.wait_for_bar_to_come()
 
                 bar = self.browser.find_element(*self.progress_bar)
                 assert_that(bar.get_attribute("style")).is_equal_to(self.width_1)

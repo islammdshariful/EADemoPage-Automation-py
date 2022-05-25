@@ -3,7 +3,7 @@ from selenium.webdriver import ActionChains, Keys
 from utils.config import *
 
 
-class ImageScroller(Helper):
+class ImageScroller(Helper, ImageComparison):
     widget = '//*[@id="post-4586"]/div/div/div/div/section[1]/div[4]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Image Scroller'
@@ -11,10 +11,10 @@ class ImageScroller(Helper):
                '/div/div/div[2]/div/div/div[3]/div/div/a/span/span'
     doc_name = "EA IMAGE SCROLLER"
 
-    img_1 = (By.XPATH, f'//*[@id="post-4586"]/div/div/div/div/section[2]/div/div/div/div/div/section/div/div'
-                       f'/div[2]/div/div/div/div/div/img')
-    img_2 = (By.XPATH, f'//*[@id="post-4586"]/div/div/div/div/section[2]/div/div/div/div/div/section/div/div'
-                       f'/div[3]/div/div/div/div/div/img')
+    img_1 = f'//*[@id="post-4586"]/div/div/div/div/section[2]/div/div/div/div/div/section/div/div/div[2]/div/div/div' \
+            f'/div/div/img'
+    img_2 = f'//*[@id="post-4586"]/div/div/div/div/section[2]/div/div/div/div/div/section/div/div/div[3]/div/div/div' \
+            f'/div/div/img'
 
     def __init__(self, browser):
         super().__init__(browser)
@@ -33,15 +33,18 @@ class ImageScroller(Helper):
                 self.browser.execute_script("window.scrollTo(0, 818)")
                 time.sleep(1)
 
-                img_com = ImageComparison(self.browser)
                 cursor = ActionChains(self.browser)
-                image_1 = self.browser.find_element(*self.img_1)
-                image_2 = self.browser.find_element(*self.img_2)
+                image_1 = self.browser.find_element(By.XPATH, self.img_1)
+                image_2 = self.browser.find_element(By.XPATH, self.img_2)
+
+                # For Download The Image
+                # self.download_image(self.img_1, "ImageScroller")
 
                 cursor.move_to_element(image_1).perform()
-                time.sleep(2)
-                # img_com.take_new_snap("ImageScroller")
-                # time.sleep(1)
-                img_com.image_comparison("ImageScroller")
-
+                time.sleep(3)
+                assert_that(image_1.get_attribute("style")).is_equal_to("transform: translateY(-133.75px);")
+                # For Comparison iamges
+                self.download_image_comparison(self.img_1, "ImageScroller")
                 cursor.move_to_element(image_2).perform()
+                time.sleep(2)
+                assert_that(image_1.get_attribute("style")).is_equal_to("transform: translate(0px);")

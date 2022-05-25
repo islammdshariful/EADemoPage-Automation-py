@@ -11,7 +11,7 @@ class ScrollToTop(Helper):
                '/div/div/div[2]/div/div/div[3]/div/div/a/span/span'
     doc_name = "EA SCROLL TO TOP"
 
-    scroll_to_top_btn = (By.XPATH, f'/html/body/div[5]/span')
+    scroll_to_top_btn = (By.XPATH, f"//span[@class='eael-ext-scroll-to-top-button']")
 
     def __init__(self, browser):
         super().__init__(browser)

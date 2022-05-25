@@ -19,9 +19,9 @@ class FilterableGallery(Helper):
     events = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[1]/ul/li[4]')
     masonry = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[1]/ul/li[5]')
 
-    prev_btn = (By.XPATH, f'/html/body/div[2]/div/button[1]')
-    next_btn = (By.XPATH, f'/html/body/div[2]/div/button[2]')
-    cross_btn = (By.XPATH, f'/html/body/div[2]/div/div[1]/div/button')
+    prev_btn = (By.XPATH, f"//button[@title='Previous (Left arrow key)']")
+    next_btn = (By.XPATH, f"//button[@title='Next (Right arrow key)']")
+    cross_btn = (By.XPATH, f"//button[normalize-space()='×']")
 
     gallery_title_text = "HIGHLY DELIGHTED PRESENT"
 
@@ -101,9 +101,6 @@ class FilterableGallery(Helper):
             else:
                 self.browser.execute_script("window.scrollTo(0, 1061)")
                 time.sleep(1)
-
-                WebDriverWait(self.browser, 15).until(
-                    EC.presence_of_element_located((By.XPATH, "//div[@class='nx-bar-inner']")))
 
                 self.browser.find_element(*self.all).click()
                 time.sleep(.5)

@@ -34,14 +34,15 @@ class WooProductGallery(Helper):
     p_3_qview_btn = f'//*[@id="eael-product-gallery"]/div/ul/li[3]/div/div[1]/div[2]/ul/li[2]'
     p_3_img = f'//*[@id="eael-product-gallery"]/div/ul/li[3]/div/div[1]/div[1]/img'
 
-    q_title = f'/html/body/div[3]/div[2]/div/div/div[2]/h1'
-    q_price = f'/html/body/div[3]/div[2]/div/div/div[2]/p/span'
-    q_cat = f'/html/body/div[3]/div[2]/div/div/div[2]/div/span[1]'
-    q_tag = f'/html/body/div[3]/div[2]/div/div/div[2]/div/span[2]'
-    q_image = f'/html/body/div[3]/div[2]/div/div/div[1]/div/figure/div/a'
-    q_cart_btn = f'/html/body/div[3]/div[2]/div/div/div[2]/form/button'
-    q_cross = f'/html/body/div[3]/div[2]/div/button'
-    q_zoom = f'/html/body/div[3]/div[2]/div/div/div[1]/div/a'
+    quick_view = f"//div[@class='eael-popup-details-render eael-woo-slider-popup elementor-269692']//div//div//"
+    q_title = quick_view + f"div[2]//h1"
+    q_price = quick_view + f"div[2]//p//span"
+    q_cat = quick_view + f"div[2]//div//span[1]"
+    q_tag = quick_view + f"div[2]//div//span[2]"
+    q_image = quick_view + f"div[1]//div//img"
+    q_cart_btn = quick_view + f"div[2]//form//button"
+    q_cross = f"//button[@class='eael-product-popup-close']"
+    q_zoom = quick_view + f"div[1]//div//a"
 
     p_1_title_text = "Mens Trendy T Shirt"
     p_1_price_text = "£35.00"
@@ -97,17 +98,16 @@ class WooProductGallery(Helper):
 
     def check_quick_view(self, title, title_text, price, price_text, cart_btn, cat, cat_text, tag, tag_text,
                          img, zoom, cross):
-        time.sleep(.5)
+        time.sleep(1)
         assert_that(self.browser.find_element(By.XPATH, title).text).is_equal_to(title_text)
         assert_that(self.browser.find_element(By.XPATH, price).text).is_equal_to(price_text)
-        self.check_visibility(cart_btn, "Add to Cart button not visible.")
-
         assert_that(self.browser.find_element(By.XPATH, cat).text).is_equal_to(cat_text)
         assert_that(self.browser.find_element(By.XPATH, tag).text).is_equal_to(tag_text)
-        time.sleep(1)
-        self.check_visibility(zoom, "Zoom button not visible")
+
         time.sleep(3)
-        self.check_visibility(img, "Quick View Image not visible")
+        self.check_visibility(img, title_text + "Quick View Image not visible")
+        self.check_visibility(cart_btn, title_text + "Add to Cart button not visible.")
+        self.check_visibility(zoom, title_text + "Zoom button not visible")
 
         self.browser.find_element(By.XPATH, cross).click()
 
@@ -135,6 +135,7 @@ class WooProductGallery(Helper):
                                      self.p_2_qview_btn, self.p_3_img, self.p_3_title, self.p_3_title_text,
                                      self.p_3_price, self.p_3_price_text, self.p_3_cart_btn, self.p_3_qview_btn)
                 self.browser.execute_script("window.scrollTo(0, 1002)")
+                time.sleep(1)
                 self.browser.find_element(By.XPATH, self.p_2_qview_btn).click()
                 self.check_quick_view(self.q_title, self.p_2_title_text, self.q_price, self.p_2_price_text, self.q_cart_btn,
                                       self.q_cat, self.p_2_cat_text, self.q_tag, self.p_2_tag_text, self.q_image,

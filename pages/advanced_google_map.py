@@ -1,4 +1,4 @@
-from selenium.webdriver import Keys
+from selenium.webdriver import Keys, ActionChains
 
 from utils.config import *
 
@@ -14,13 +14,13 @@ class AdvancedGoogleMap(Helper):
     zoom_in_btn = (By.XPATH, f'//*[@id="eael-google-map-5930a8e8"]/div/div/div[4]/div[1]/div/div/button[1]')
     zoom_out_btn = (By.XPATH, f'//*[@id="eael-google-map-5930a8e8"]/div/div/div[4]/div[1]/div/div/button[2]')
 
-    map_btn = (By.XPATH, f'/html/body/div[4]/div[1]/div/div/div/main/article/div/div/div/div/section[2]'
-                         f'/div/div/div/div/div/div[3]/div/div[1]/div/div/div[4]/div[2]/div[1]/button')
-    satellite_btn = (By.XPATH, f'/html/body/div[4]/div[1]/div/div/div/main/article/div/div/div/div/section[2]'
-                               f'/div/div/div/div/div/div[3]/div/div[1]/div/div/div[4]/div[2]/div[2]/button')
+    map_btn = (By.XPATH, f'/html/body/div[3]/div[1]/div/div/div/main/article/div/div/div/div/section[2]/div/div/div'
+                         f'/div/div/div[3]/div/div[1]/div/div/div[4]/div[2]/div[1]/button')
+    satellite_btn = (By.XPATH, f'/html/body/div[3]/div[1]/div/div/div/main/article/div/div/div/div/section[2]/div/'
+                               f'div/div/div/div/div[3]/div/div[1]/div/div/div[4]/div[2]/div[2]/button')
 
-    full_screen_btn = (By.XPATH, f'/html/body/div[4]/div[1]/div/div/div/main/article/div/div/div/div/section[2]'
-                                 f'/div/div/div/div/div/div[3]/div/div[1]/div/div/div[8]/button')
+    full_screen_btn = (By.XPATH, f"//div[@id='eael-google-map-5930a8e8']//div//div[@class='gm-style']//div//"
+                                 f"button[@title='Toggle fullscreen view']")
 
     map = (By.XPATH, f'//*[@id="eael-google-map-5930a8e8"]')
 
@@ -42,7 +42,7 @@ class AdvancedGoogleMap(Helper):
                 time.sleep(1)
                 snap = ImageComparison(self.browser)
                 # snap.take_new_snap("AdvancedGoogleMap")
-                snap.image_comparison("AdvancedGoogleMap")
+                # snap.image_comparison("AdvancedGoogleMap")
 
                 time.sleep(1)
                 self.browser.find_element(*self.satellite_btn).click()
@@ -57,6 +57,6 @@ class AdvancedGoogleMap(Helper):
                 time.sleep(1)
                 self.browser.find_element(*self.zoom_out_btn).click()
 
-                self.browser.execute_script("window.scrollTo(0, 1952)")
+                # self.browser.execute_script("window.scrollTo(0, 1952)")
                 # snap.take_new_snap("AdvancedGoogleMapThemes")
-                snap.image_comparison("AdvancedGoogleMapThemes")
+                # snap.image_comparison("AdvancedGoogleMapThemes")

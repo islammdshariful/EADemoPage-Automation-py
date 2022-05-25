@@ -254,7 +254,6 @@ def test_smart_post_list(browser):
 def test_google_map(browser):
     gm = AdvancedGoogleMap(browser)
     gm.load()
-    gm.load()
     gm.testcase()
 
 

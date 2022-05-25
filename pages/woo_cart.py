@@ -25,8 +25,7 @@ class WooCart(Helper):
                 f'/div/div/div/div/div/div/form/div[1]/div[2]/div[1]/div[1]/div[2]/a'
     p_price_1 = f'//*[@id="post-271400"]/div/div/div/div/section[2]/div/div/div/div/div/section[2]/div/div' \
                 f'/div/div/div/div/div/div/form/div[1]/div[2]/div[1]/div[2]/div[1]/span'
-    p_quantity_1 = f'/html/body/div[3]/div/div/div/main/article/div/div/div/div/section[2]/div/div/div/div/div/' \
-                   f'section[2]/div/div/div/div/div/div/div/div/form/div[1]/div[2]/div[1]/div[2]/div[2]/div/input'
+    p_quantity_1 = f"//input[@id='quantity_628de7d1a4ce6']"
     p_quantity_1_minus = f'//*[@id="post-271400"]/div/div/div/div/section[2]/div/div/div/div/div' \
                          f'/section[2]/div/div/div/div/div/div/div/div/form/div[1]/div[2]/div[1]' \
                          f'/div[2]/div[2]/div/span[1]'
@@ -44,8 +43,7 @@ class WooCart(Helper):
                 f'/div/div/div/div/div/div/div/form/div[1]/div[2]/div[2]/div[1]/div[2]/a'
     p_price_2 = f'//*[@id="post-271400"]/div/div/div/div/section[2]/div/div/div/div/div/section[2]/div' \
                 f'/div/div/div/div/div/div/div/form/div[1]/div[2]/div[2]/div[2]/div[1]/span'
-    p_quantity_2 = f'/html/body/div[3]/div/div/div/main/article/div/div/div/div/section[2]/div/div/div/div/div' \
-                   f'/section[2]/div/div/div/div/div/div/div/div/form/div[1]/div[2]/div[2]/div[2]/div[2]/div/input'
+    p_quantity_2 = f"//input[@id='quantity_628de7d1a525e']"
     p_quantity_2_minus = f'//*[@id="post-271400"]/div/div/div/div/section[2]/div/div/div/div/div/section[2]' \
                          f'/div/div/div/div/div/div/div/div/form/div[1]/div[2]/div[2]/div[2]' \
                          f'/div[2]/div/span[1]'
@@ -162,7 +160,8 @@ class WooCart(Helper):
                 self.check_documents(self.doc_link, self.doc_name)
             else:
                 self.browser.execute_script("window.scrollTo(0, 1000)")
-                self.wait_for_bar_to_come()
+                time.sleep(1)
+                # self.wait_for_bar_to_come()
 
                 assert_that(self.browser.find_element(*self.p_title_header).text).is_equal_to(self.p_title_header_text)
                 assert_that(self.browser.find_element(*self.p_price_header).text).is_equal_to(self.p_price_header_text)
@@ -191,6 +190,8 @@ class WooCart(Helper):
                 self.check_visibility(self.checkout_btn, "Checkout not visible")
                 assert_that(self.browser.find_element(By.XPATH, self.checkout_btn).text).is_equal_to(self.c_checkout_text)
 
+                self.browser.execute_script("window.scrollTo(0, 1644)")
+                time.sleep(1)
                 self.browser.find_element(By.XPATH, self.checkout_btn).click()
                 assert_that(self.browser.find_element(*self.checkout_page).text).is_equal_to(self.checkout_page_text)
                 self.browser.back()

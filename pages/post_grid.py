@@ -59,7 +59,7 @@ class PostGrid(Helper):
         cursor = ActionChains(self.browser)
         post_media_1 = self.browser.find_element(By.XPATH, media)
         cursor.move_to_element(post_media_1).perform()
-        time.sleep(.5)
+        time.sleep(1)
 
         self.check_visibility(icon, "Icon is not visible.")
 
@@ -103,7 +103,7 @@ class PostGrid(Helper):
                 self.browser.execute_script("window.scrollTo(0, 2142)")
                 time.sleep(1)
 
-                self.check_visibility_of_post(self.post_3_media, self.post_3_overlay_icon)
+                # self.check_visibility_of_post(self.post_3_media, self.post_3_overlay_icon)
                 p_title = self.browser.find_element(By.XPATH, self.post_3_title).text
                 p_date = self.browser.find_element(By.XPATH, self.post_3_date).text
 

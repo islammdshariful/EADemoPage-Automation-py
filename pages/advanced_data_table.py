@@ -1,3 +1,5 @@
+import time
+
 from selenium.webdriver import Keys
 
 from utils.config import *
@@ -237,97 +239,96 @@ class AdvancedDataTable(Helper):
         self.browser.get(self.advanced_data_table)
 
     def first_page_list(self):
-        with soft_assertions():
-            # 1
-            assert_that(self.browser.find_element(*self.tbody_tr1_td1).text).is_equal_to(self.tbody_tr1_td1_text)
-            assert_that(self.browser.find_element(*self.tbody_tr1_td2).text).is_equal_to(self.tbody_tr1_td2_text)
-            assert_that(self.browser.find_element(*self.tbody_tr1_td3).text).is_equal_to(self.tbody_tr1_td3_text)
-            assert_that(self.browser.find_element(*self.tbody_tr1_td4).text).is_equal_to(self.tbody_tr1_td4_text)
-            assert_that(self.browser.find_element(*self.tbody_tr1_td5).text).is_equal_to(self.tbody_tr1_td5_text)
-            assert_that(self.browser.find_element(*self.tbody_tr1_td6).text).is_equal_to(self.tbody_tr1_td6_text)
-            # 2
-            assert_that(self.browser.find_element(*self.tbody_tr2_td1).text).is_equal_to(self.tbody_tr2_td1_text)
-            assert_that(self.browser.find_element(*self.tbody_tr2_td2).text).is_equal_to(self.tbody_tr2_td2_text)
-            assert_that(self.browser.find_element(*self.tbody_tr2_td3).text).is_equal_to(self.tbody_tr2_td3_text)
-            assert_that(self.browser.find_element(*self.tbody_tr2_td4).text).is_equal_to(self.tbody_tr2_td4_text)
-            assert_that(self.browser.find_element(*self.tbody_tr2_td5).text).is_equal_to(self.tbody_tr2_td5_text)
-            assert_that(self.browser.find_element(*self.tbody_tr2_td6).text).is_equal_to(self.tbody_tr2_td6_text)
-            # 3
-            assert_that(self.browser.find_element(*self.tbody_tr3_td1).text).is_equal_to(self.tbody_tr3_td1_text)
-            assert_that(self.browser.find_element(*self.tbody_tr3_td2).text).is_equal_to(self.tbody_tr3_td2_text)
-            assert_that(self.browser.find_element(*self.tbody_tr3_td3).text).is_equal_to(self.tbody_tr3_td3_text)
-            assert_that(self.browser.find_element(*self.tbody_tr3_td4).text).is_equal_to(self.tbody_tr3_td4_text)
-            assert_that(self.browser.find_element(*self.tbody_tr3_td5).text).is_equal_to(self.tbody_tr3_td5_text)
-            assert_that(self.browser.find_element(*self.tbody_tr3_td6).text).is_equal_to(self.tbody_tr3_td6_text)
-            # 4
-            assert_that(self.browser.find_element(*self.tbody_tr4_td1).text).is_equal_to(self.tbody_tr4_td1_text)
-            assert_that(self.browser.find_element(*self.tbody_tr4_td2).text).is_equal_to(self.tbody_tr4_td2_text)
-            assert_that(self.browser.find_element(*self.tbody_tr4_td3).text).is_equal_to(self.tbody_tr4_td3_text)
-            assert_that(self.browser.find_element(*self.tbody_tr4_td4).text).is_equal_to(self.tbody_tr4_td4_text)
-            assert_that(self.browser.find_element(*self.tbody_tr4_td5).text).is_equal_to(self.tbody_tr4_td5_text)
-            assert_that(self.browser.find_element(*self.tbody_tr4_td6).text).is_equal_to(self.tbody_tr4_td6_text)
-            # 5
-            assert_that(self.browser.find_element(*self.tbody_tr5_td1).text).is_equal_to(self.tbody_tr5_td1_text)
-            assert_that(self.browser.find_element(*self.tbody_tr5_td2).text).is_equal_to(self.tbody_tr5_td2_text)
-            assert_that(self.browser.find_element(*self.tbody_tr5_td3).text).is_equal_to(self.tbody_tr5_td3_text)
-            assert_that(self.browser.find_element(*self.tbody_tr5_td4).text).is_equal_to(self.tbody_tr5_td4_text)
-            assert_that(self.browser.find_element(*self.tbody_tr5_td5).text).is_equal_to(self.tbody_tr5_td5_text)
-            assert_that(self.browser.find_element(*self.tbody_tr5_td6).text).is_equal_to(self.tbody_tr5_td6_text)
-            # 6
-            assert_that(self.browser.find_element(*self.tbody_tr6_td1).text).is_equal_to(self.tbody_tr6_td1_text)
-            assert_that(self.browser.find_element(*self.tbody_tr6_td2).text).is_equal_to(self.tbody_tr6_td2_text)
-            assert_that(self.browser.find_element(*self.tbody_tr6_td3).text).is_equal_to(self.tbody_tr6_td3_text)
-            assert_that(self.browser.find_element(*self.tbody_tr6_td4).text).is_equal_to(self.tbody_tr6_td4_text)
-            assert_that(self.browser.find_element(*self.tbody_tr6_td5).text).is_equal_to(self.tbody_tr6_td5_text)
-            assert_that(self.browser.find_element(*self.tbody_tr6_td6).text).is_equal_to(self.tbody_tr6_td6_text)
-            # 7
-            assert_that(self.browser.find_element(*self.tbody_tr7_td1).text).is_equal_to(self.tbody_tr7_td1_text)
-            assert_that(self.browser.find_element(*self.tbody_tr7_td2).text).is_equal_to(self.tbody_tr7_td2_text)
-            assert_that(self.browser.find_element(*self.tbody_tr7_td3).text).is_equal_to(self.tbody_tr7_td3_text)
-            assert_that(self.browser.find_element(*self.tbody_tr7_td4).text).is_equal_to(self.tbody_tr7_td4_text)
-            assert_that(self.browser.find_element(*self.tbody_tr7_td5).text).is_equal_to(self.tbody_tr7_td5_text)
-            assert_that(self.browser.find_element(*self.tbody_tr7_td6).text).is_equal_to(self.tbody_tr7_td6_text)
+        # 1
+        assert_that(self.browser.find_element(*self.tbody_tr1_td1).text).is_equal_to(self.tbody_tr1_td1_text)
+        assert_that(self.browser.find_element(*self.tbody_tr1_td2).text).is_equal_to(self.tbody_tr1_td2_text)
+        assert_that(self.browser.find_element(*self.tbody_tr1_td3).text).is_equal_to(self.tbody_tr1_td3_text)
+        assert_that(self.browser.find_element(*self.tbody_tr1_td4).text).is_equal_to(self.tbody_tr1_td4_text)
+        assert_that(self.browser.find_element(*self.tbody_tr1_td5).text).is_equal_to(self.tbody_tr1_td5_text)
+        assert_that(self.browser.find_element(*self.tbody_tr1_td6).text).is_equal_to(self.tbody_tr1_td6_text)
+        # 2
+        assert_that(self.browser.find_element(*self.tbody_tr2_td1).text).is_equal_to(self.tbody_tr2_td1_text)
+        assert_that(self.browser.find_element(*self.tbody_tr2_td2).text).is_equal_to(self.tbody_tr2_td2_text)
+        assert_that(self.browser.find_element(*self.tbody_tr2_td3).text).is_equal_to(self.tbody_tr2_td3_text)
+        assert_that(self.browser.find_element(*self.tbody_tr2_td4).text).is_equal_to(self.tbody_tr2_td4_text)
+        assert_that(self.browser.find_element(*self.tbody_tr2_td5).text).is_equal_to(self.tbody_tr2_td5_text)
+        assert_that(self.browser.find_element(*self.tbody_tr2_td6).text).is_equal_to(self.tbody_tr2_td6_text)
+        # 3
+        assert_that(self.browser.find_element(*self.tbody_tr3_td1).text).is_equal_to(self.tbody_tr3_td1_text)
+        assert_that(self.browser.find_element(*self.tbody_tr3_td2).text).is_equal_to(self.tbody_tr3_td2_text)
+        assert_that(self.browser.find_element(*self.tbody_tr3_td3).text).is_equal_to(self.tbody_tr3_td3_text)
+        assert_that(self.browser.find_element(*self.tbody_tr3_td4).text).is_equal_to(self.tbody_tr3_td4_text)
+        assert_that(self.browser.find_element(*self.tbody_tr3_td5).text).is_equal_to(self.tbody_tr3_td5_text)
+        assert_that(self.browser.find_element(*self.tbody_tr3_td6).text).is_equal_to(self.tbody_tr3_td6_text)
+        # 4
+        assert_that(self.browser.find_element(*self.tbody_tr4_td1).text).is_equal_to(self.tbody_tr4_td1_text)
+        assert_that(self.browser.find_element(*self.tbody_tr4_td2).text).is_equal_to(self.tbody_tr4_td2_text)
+        assert_that(self.browser.find_element(*self.tbody_tr4_td3).text).is_equal_to(self.tbody_tr4_td3_text)
+        assert_that(self.browser.find_element(*self.tbody_tr4_td4).text).is_equal_to(self.tbody_tr4_td4_text)
+        assert_that(self.browser.find_element(*self.tbody_tr4_td5).text).is_equal_to(self.tbody_tr4_td5_text)
+        assert_that(self.browser.find_element(*self.tbody_tr4_td6).text).is_equal_to(self.tbody_tr4_td6_text)
+        # 5
+        assert_that(self.browser.find_element(*self.tbody_tr5_td1).text).is_equal_to(self.tbody_tr5_td1_text)
+        assert_that(self.browser.find_element(*self.tbody_tr5_td2).text).is_equal_to(self.tbody_tr5_td2_text)
+        assert_that(self.browser.find_element(*self.tbody_tr5_td3).text).is_equal_to(self.tbody_tr5_td3_text)
+        assert_that(self.browser.find_element(*self.tbody_tr5_td4).text).is_equal_to(self.tbody_tr5_td4_text)
+        assert_that(self.browser.find_element(*self.tbody_tr5_td5).text).is_equal_to(self.tbody_tr5_td5_text)
+        assert_that(self.browser.find_element(*self.tbody_tr5_td6).text).is_equal_to(self.tbody_tr5_td6_text)
+        # 6
+        assert_that(self.browser.find_element(*self.tbody_tr6_td1).text).is_equal_to(self.tbody_tr6_td1_text)
+        assert_that(self.browser.find_element(*self.tbody_tr6_td2).text).is_equal_to(self.tbody_tr6_td2_text)
+        assert_that(self.browser.find_element(*self.tbody_tr6_td3).text).is_equal_to(self.tbody_tr6_td3_text)
+        assert_that(self.browser.find_element(*self.tbody_tr6_td4).text).is_equal_to(self.tbody_tr6_td4_text)
+        assert_that(self.browser.find_element(*self.tbody_tr6_td5).text).is_equal_to(self.tbody_tr6_td5_text)
+        assert_that(self.browser.find_element(*self.tbody_tr6_td6).text).is_equal_to(self.tbody_tr6_td6_text)
+        # 7
+        assert_that(self.browser.find_element(*self.tbody_tr7_td1).text).is_equal_to(self.tbody_tr7_td1_text)
+        assert_that(self.browser.find_element(*self.tbody_tr7_td2).text).is_equal_to(self.tbody_tr7_td2_text)
+        assert_that(self.browser.find_element(*self.tbody_tr7_td3).text).is_equal_to(self.tbody_tr7_td3_text)
+        assert_that(self.browser.find_element(*self.tbody_tr7_td4).text).is_equal_to(self.tbody_tr7_td4_text)
+        assert_that(self.browser.find_element(*self.tbody_tr7_td5).text).is_equal_to(self.tbody_tr7_td5_text)
+        assert_that(self.browser.find_element(*self.tbody_tr7_td6).text).is_equal_to(self.tbody_tr7_td6_text)
 
     def second_page_list(self):
-        with soft_assertions():
-            # 8
-            assert_that(self.browser.find_element(*self.tbody_tr8_td1).text).is_equal_to(self.tbody_tr8_td1_text)
-            assert_that(self.browser.find_element(*self.tbody_tr8_td2).text).is_equal_to(self.tbody_tr8_td2_text)
-            assert_that(self.browser.find_element(*self.tbody_tr8_td3).text).is_equal_to(self.tbody_tr8_td3_text)
-            assert_that(self.browser.find_element(*self.tbody_tr8_td4).text).is_equal_to(self.tbody_tr8_td4_text)
-            assert_that(self.browser.find_element(*self.tbody_tr8_td5).text).is_equal_to(self.tbody_tr8_td5_text)
-            assert_that(self.browser.find_element(*self.tbody_tr8_td6).text).is_equal_to(self.tbody_tr8_td6_text)
-            # 9
-            assert_that(self.browser.find_element(*self.tbody_tr9_td1).text).is_equal_to(self.tbody_tr9_td1_text)
-            assert_that(self.browser.find_element(*self.tbody_tr9_td2).text).is_equal_to(self.tbody_tr9_td2_text)
-            assert_that(self.browser.find_element(*self.tbody_tr9_td3).text).is_equal_to(self.tbody_tr9_td3_text)
-            assert_that(self.browser.find_element(*self.tbody_tr9_td4).text).is_equal_to(self.tbody_tr9_td4_text)
-            assert_that(self.browser.find_element(*self.tbody_tr9_td5).text).is_equal_to(self.tbody_tr9_td5_text)
-            assert_that(self.browser.find_element(*self.tbody_tr9_td6).text).is_equal_to(self.tbody_tr9_td6_text)
-            # 10
-            assert_that(self.browser.find_element(*self.tbody_tr10_td1).text).is_equal_to(self.tbody_tr10_td1_text)
-            assert_that(self.browser.find_element(*self.tbody_tr10_td2).text).is_equal_to(self.tbody_tr10_td2_text)
-            assert_that(self.browser.find_element(*self.tbody_tr10_td3).text).is_equal_to(self.tbody_tr10_td3_text)
-            assert_that(self.browser.find_element(*self.tbody_tr10_td4).text).is_equal_to(self.tbody_tr10_td4_text)
-            assert_that(self.browser.find_element(*self.tbody_tr10_td5).text).is_equal_to(self.tbody_tr10_td5_text)
-            assert_that(self.browser.find_element(*self.tbody_tr10_td6).text).is_equal_to(self.tbody_tr10_td6_text)
+        # 8
+        assert_that(self.browser.find_element(*self.tbody_tr8_td1).text).is_equal_to(self.tbody_tr8_td1_text)
+        assert_that(self.browser.find_element(*self.tbody_tr8_td2).text).is_equal_to(self.tbody_tr8_td2_text)
+        assert_that(self.browser.find_element(*self.tbody_tr8_td3).text).is_equal_to(self.tbody_tr8_td3_text)
+        assert_that(self.browser.find_element(*self.tbody_tr8_td4).text).is_equal_to(self.tbody_tr8_td4_text)
+        assert_that(self.browser.find_element(*self.tbody_tr8_td5).text).is_equal_to(self.tbody_tr8_td5_text)
+        assert_that(self.browser.find_element(*self.tbody_tr8_td6).text).is_equal_to(self.tbody_tr8_td6_text)
+        # 9
+        assert_that(self.browser.find_element(*self.tbody_tr9_td1).text).is_equal_to(self.tbody_tr9_td1_text)
+        assert_that(self.browser.find_element(*self.tbody_tr9_td2).text).is_equal_to(self.tbody_tr9_td2_text)
+        assert_that(self.browser.find_element(*self.tbody_tr9_td3).text).is_equal_to(self.tbody_tr9_td3_text)
+        assert_that(self.browser.find_element(*self.tbody_tr9_td4).text).is_equal_to(self.tbody_tr9_td4_text)
+        assert_that(self.browser.find_element(*self.tbody_tr9_td5).text).is_equal_to(self.tbody_tr9_td5_text)
+        assert_that(self.browser.find_element(*self.tbody_tr9_td6).text).is_equal_to(self.tbody_tr9_td6_text)
+        # 10
+        assert_that(self.browser.find_element(*self.tbody_tr10_td1).text).is_equal_to(self.tbody_tr10_td1_text)
+        assert_that(self.browser.find_element(*self.tbody_tr10_td2).text).is_equal_to(self.tbody_tr10_td2_text)
+        assert_that(self.browser.find_element(*self.tbody_tr10_td3).text).is_equal_to(self.tbody_tr10_td3_text)
+        assert_that(self.browser.find_element(*self.tbody_tr10_td4).text).is_equal_to(self.tbody_tr10_td4_text)
+        assert_that(self.browser.find_element(*self.tbody_tr10_td5).text).is_equal_to(self.tbody_tr10_td5_text)
+        assert_that(self.browser.find_element(*self.tbody_tr10_td6).text).is_equal_to(self.tbody_tr10_td6_text)
 
     def after_sort(self):
-        with soft_assertions():
-            # 1
-            assert_that(self.browser.find_element(*self.tbody_tr1_td1).text).is_equal_to(self.tbody_tr10_td1_text)
-            assert_that(self.browser.find_element(*self.tbody_tr1_td2).text).is_equal_to(self.tbody_tr10_td2_text)
-            assert_that(self.browser.find_element(*self.tbody_tr1_td3).text).is_equal_to(self.tbody_tr10_td3_text)
-            assert_that(self.browser.find_element(*self.tbody_tr1_td4).text).is_equal_to(self.tbody_tr10_td4_text)
-            assert_that(self.browser.find_element(*self.tbody_tr1_td5).text).is_equal_to(self.tbody_tr10_td5_text)
-            assert_that(self.browser.find_element(*self.tbody_tr1_td6).text).is_equal_to(self.tbody_tr10_td6_text)
-            # 10
-            assert_that(self.browser.find_element(*self.tbody_tr10_td1).text).is_equal_to(self.tbody_tr1_td1_text)
-            assert_that(self.browser.find_element(*self.tbody_tr10_td2).text).is_equal_to(self.tbody_tr1_td2_text)
-            assert_that(self.browser.find_element(*self.tbody_tr10_td3).text).is_equal_to(self.tbody_tr1_td3_text)
-            assert_that(self.browser.find_element(*self.tbody_tr10_td4).text).is_equal_to(self.tbody_tr1_td4_text)
-            assert_that(self.browser.find_element(*self.tbody_tr10_td5).text).is_equal_to(self.tbody_tr1_td5_text)
-            assert_that(self.browser.find_element(*self.tbody_tr10_td6).text).is_equal_to(self.tbody_tr1_td6_text)
+        # 1
+        assert_that(self.browser.find_element(*self.tbody_tr1_td1).text).is_equal_to(self.tbody_tr10_td1_text)
+        assert_that(self.browser.find_element(*self.tbody_tr1_td2).text).is_equal_to(self.tbody_tr10_td2_text)
+        assert_that(self.browser.find_element(*self.tbody_tr1_td3).text).is_equal_to(self.tbody_tr10_td3_text)
+        assert_that(self.browser.find_element(*self.tbody_tr1_td4).text).is_equal_to(self.tbody_tr10_td4_text)
+        assert_that(self.browser.find_element(*self.tbody_tr1_td5).text).is_equal_to(self.tbody_tr10_td5_text)
+        assert_that(self.browser.find_element(*self.tbody_tr1_td6).text).is_equal_to(self.tbody_tr10_td6_text)
+        self.browser.find_element(*self.page_next).click()
+        time.sleep(.5)
+        # 10
+        assert_that(self.browser.find_element(*self.tbody_tr10_td1).text).is_equal_to(self.tbody_tr1_td1_text)
+        assert_that(self.browser.find_element(*self.tbody_tr10_td2).text).is_equal_to(self.tbody_tr1_td2_text)
+        assert_that(self.browser.find_element(*self.tbody_tr10_td3).text).is_equal_to(self.tbody_tr1_td3_text)
+        assert_that(self.browser.find_element(*self.tbody_tr10_td4).text).is_equal_to(self.tbody_tr1_td4_text)
+        assert_that(self.browser.find_element(*self.tbody_tr10_td5).text).is_equal_to(self.tbody_tr1_td5_text)
+        assert_that(self.browser.find_element(*self.tbody_tr10_td6).text).is_equal_to(self.tbody_tr1_td6_text)
 
     def testcase(self):
         with soft_assertions():
