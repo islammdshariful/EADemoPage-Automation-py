@@ -1,3 +1,5 @@
+import time
+
 from selenium.webdriver import ActionChains, Keys
 
 from utils.config import *
@@ -37,6 +39,7 @@ class ParticleEffect(Helper):
                 cursor.move_by_offset(10, 100).perform()
                 time.sleep(.5)
                 self.browser.execute_script("window.scrollTo(0, 2121)")
+                time.sleep(1)
                 cursor.move_by_offset(10, 100).perform()
                 time.sleep(.5)
                 cursor.move_by_offset(200, 300).perform()
