@@ -94,17 +94,24 @@ class DynamicGallery(Helper):
                 self.check_documents(self.doc_link, self.doc_name)
             else:
                 self.browser.execute_script("window.scrollTo(0, 905)")
+                time.sleep(1)
 
                 # All
                 self.browser.find_element(*self.all).click()
                 time.sleep(1)
                 self.check_widget_post(self.all_post_1_title, self.all_post_1_des, self.all_post_1_img)
+                self.browser.execute_script("window.scrollTo(0, 1439)")
                 time.sleep(1)
                 self.check_widget_post(self.all_post_3_title, self.all_post_3_des, self.all_post_3_img)
+                self.browser.execute_script("window.scrollTo(0, 1439)")
+                time.sleep(1)
                 self.browser.find_element(*self.load_more_btn).click()
+                time.sleep(1)
+                self.browser.execute_script("window.scrollTo(0, 2018)")
                 time.sleep(1)
                 self.check_widget_post(self.all_post_4_title, self.all_post_4_des, self.all_post_4_img)
                 self.browser.execute_script("window.scrollTo(0, 905)")
+                time.sleep(1)
                 # Elementor
                 self.browser.find_element(*self.elementor).click()
                 time.sleep(1)
@@ -115,6 +122,8 @@ class DynamicGallery(Helper):
                 # WordPress
                 self.browser.find_element(*self.wordpress).click()
                 time.sleep(1)
+                self.browser.execute_script("window.scrollTo(0, 1439)")
+                time.sleep(1)
                 self.browser.find_element(*self.load_more_btn).click()
                 time.sleep(1)
                 # self.check_widget_post(self.wp_post_1_title, self.wp_post_1_des, self.wp_post_1_img)
@@ -122,7 +131,11 @@ class DynamicGallery(Helper):
                 # time.sleep(1)
                 # self.check_widget_post(self.wp_post_2_title, self.wp_post_2_des, self.wp_post_2_img)
                 # Templates
+                self.browser.execute_script("window.scrollTo(0, 905)")
+                time.sleep(1)
                 self.browser.find_element(*self.templates).click()
+                time.sleep(1)
+                self.browser.execute_script("window.scrollTo(0, 1439)")
                 time.sleep(1)
                 self.browser.find_element(*self.load_more_btn).click()
                 time.sleep(1)

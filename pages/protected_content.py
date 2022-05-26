@@ -43,7 +43,7 @@ class ProtectedContent(Helper):
                 self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
                 self.check_documents(self.doc_link, self.doc_name)
             else:
-                self.browser.execute_script("window.scrollTo(0, 1007)")
+                self.browser.execute_script("window.scrollTo(0, 603)")
                 time.sleep(1)
 
                 assert_that(self.browser.find_element(*self.message).text).is_equal_to(self.message_text)
