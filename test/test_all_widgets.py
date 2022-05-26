@@ -419,58 +419,58 @@ def test_image_accordion(browser):
 # FORM STYLER ELEMENTS
 # ------------------------------------------------------------------------------------------------
 
-# def test_contact_form_7(browser):
-#     cf7 = ContactForm7(browser)
-#     cf7.load()
-#     cf7.testcase()
-#
-#
-# def test_wpforms(browser):
-#     wpf = Wpforms(browser)
-#     wpf.load()
-#     wpf.testcase()
-#
-#
-# def test_ninja_forms(browser):
-#     nf = NinjaForms(browser)
-#     nf.load()
-#     nf.testcase()
-#
-#
-# def test_mailchimp(browser):
-#     mc = Mailchimp(browser)
-#     mc.load()
-#     mc.testcase()
-#
-#
-# def test_caldera_forms(browser):
-#     cf = CalderaForms(browser)
-#     cf.load()
-#     cf.testcase()
-#
-#
-# def test_fluent_forms(browser):
-#     ff = FluentForms(browser)
-#     ff.load()
-#     ff.testcase()
-#
-#
-# def test_weforms(browser):
-#     wf = Weforms(browser)
-#     wf.load()
-#     wf.testcase()
-#
-#
-# def test_formstack(browser):
-#     fs = Formstack(browser)
-#     fs.load()
-#     fs.testcase()
-#
-#
-# def test_gravity_forms(browser):
-#     gf = GravityForms(browser)
-#     gf.load()
-#     gf.testcase()
+def test_contact_form_7(browser):
+    cf7 = ContactForm7(browser)
+    cf7.load()
+    cf7.testcase()
+
+
+def test_wpforms(browser):
+    wpf = Wpforms(browser)
+    wpf.load()
+    wpf.testcase()
+
+
+def test_ninja_forms(browser):
+    nf = NinjaForms(browser)
+    nf.load()
+    nf.testcase()
+
+
+def test_mailchimp(browser):
+    mc = Mailchimp(browser)
+    mc.load()
+    mc.testcase()
+
+
+def test_caldera_forms(browser):
+    cf = CalderaForms(browser)
+    cf.load()
+    cf.testcase()
+
+
+def test_fluent_forms(browser):
+    ff = FluentForms(browser)
+    ff.load()
+    ff.testcase()
+
+
+def test_weforms(browser):
+    wf = Weforms(browser)
+    wf.load()
+    wf.testcase()
+
+
+def test_formstack(browser):
+    fs = Formstack(browser)
+    fs.load()
+    fs.testcase()
+
+
+def test_gravity_forms(browser):
+    gf = GravityForms(browser)
+    gf.load()
+    gf.testcase()
 
 
 def test_login_register_form(browser):
