@@ -1,2 +1,0 @@
-class SimpleMenu:
-    pass
