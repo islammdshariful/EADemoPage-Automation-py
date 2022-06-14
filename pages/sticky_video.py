@@ -45,6 +45,7 @@ class StickyVideo(Helper):
                 time.sleep(1)
 
                 self.browser.find_element(*self.play_button).click()
+                time.sleep(1)
                 # iframe = self.browser.find_element(*self.iframe_box)
                 # self.browser.switch_to.frame(iframe)
                 # cursor = ActionChains(self.browser)
@@ -54,6 +55,10 @@ class StickyVideo(Helper):
                 # time.sleep(1)
                 # self.browser.find_element(*self.pause_btn).click()
                 # self.browser.switch_to.default_content()
+                self.browser.execute_script("window.scrollTo(0, 2101)")
+                time.sleep(1)
+                self.browser.execute_script("window.scrollTo(0, 629)")
+                time.sleep(1)
                 for i in range(629, 1500, 1):
                     self.browser.execute_script("window.scrollTo(0, " + str(i) + ")")
                 time.sleep(1)

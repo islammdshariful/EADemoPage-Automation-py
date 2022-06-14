@@ -4,6 +4,7 @@ import os
 import os.path
 import sys
 import time
+from pathlib import Path
 
 from assertpy import soft_assertions, assert_that
 from selenium.webdriver.common.by import By
@@ -159,18 +160,18 @@ class ImageComparison:
             return hasher.hexdigest()
 
     def download_image(self, element_xpth, widget):
-        if not os.path.exists(str(sys.path[1]) + '/images/' + widget):
-            os.makedirs(str(sys.path[1]) + '/images/' + widget)
+        if not os.path.exists(str(Path(__file__).parent.parent) + '/images/' + widget):
+            os.makedirs(str(Path(__file__).parent.parent) + '/images/' + widget)
         time.sleep(1)
         img_element = self.browser.find_element(By.XPATH, element_xpth).get_attribute("src")
-        save_img_path = str(sys.path[1]) + '/images/' + widget + '/local.png'
+        save_img_path = str(Path(__file__).parent.parent) + '/images/' + widget + '/local.png'
         urllib.request.urlretrieve(img_element, save_img_path)
         time.sleep(1)
 
     def download_image_comparison(self, element_xpth, widget):
         time.sleep(1)
-        local_img = str(sys.path[1]) + '/images/' + widget + '/local.png'
-        remote_img_path = str(sys.path[1]) + '/images/' + widget + '/remote.png'
+        local_img = str(Path(__file__).parent.parent) + '/images/' + widget + '/local.png'
+        remote_img_path = str(Path(__file__).parent.parent) + '/images/' + widget + '/remote.png'
 
         img_element = self.browser.find_element(By.XPATH, element_xpth).get_attribute("src")
         urllib.request.urlretrieve(img_element, remote_img_path)
@@ -181,18 +182,18 @@ class ImageComparison:
             assert_that(local_img_hash).is_equal_to(remote_img_hash)
 
     def download_gif(self, element_xpth, widget):
-        if not os.path.exists(str(sys.path[1]) + '/images/' + widget):
-            os.makedirs(str(sys.path[1]) + '/images/' + widget)
+        if not os.path.exists(str(Path(__file__).parent.parent) + '/images/' + widget):
+            os.makedirs(str(Path(__file__).parent.parent) + '/images/' + widget)
         time.sleep(1)
         img_element = self.browser.find_element(By.XPATH, element_xpth).get_attribute("src")
-        save_img_path = str(sys.path[1]) + '/images/' + widget + '/local.gif'
+        save_img_path = str(Path(__file__).parent.parent) + '/images/' + widget + '/local.gif'
         urllib.request.urlretrieve(img_element, save_img_path)
         time.sleep(1)
 
     def download_gif_comparison(self, element_xpth, widget):
         time.sleep(1)
-        local_img = str(sys.path[1]) + '/images/' + widget + '/local.gif'
-        remote_img_path = str(sys.path[1]) + '/images/' + widget + '/remote.gif'
+        local_img = str(Path(__file__).parent.parent) +  '/images/' + widget + '/local.gif'
+        remote_img_path = str(Path(__file__).parent.parent) +  '/images/' + widget + '/remote.gif'
 
         img_element = self.browser.find_element(By.XPATH, element_xpth).get_attribute("src")
         urllib.request.urlretrieve(img_element, remote_img_path)
@@ -203,17 +204,17 @@ class ImageComparison:
             assert_that(local_img_hash).is_equal_to(remote_img_hash)
 
     def take_new_snap(self, widget):
-        if not os.path.exists(str(sys.path[1]) + '/images/' + widget):
-            os.makedirs(str(sys.path[1]) + '/images/' + widget)
+        if not os.path.exists(str(Path(__file__).parent.parent) + '/images/' + widget):
+            os.makedirs(str(Path(__file__).parent.parent) + '/images/' + widget)
         time.sleep(1)
-        self.browser.save_screenshot(str(sys.path[1]) + '/images/' + widget + '/local.png')
+        self.browser.save_screenshot(str(Path(__file__).parent.parent) + '/images/' + widget + '/local.png')
 
     def image_comparison(self, widget):
         time.sleep(1)
-        local_img_path = str(sys.path[1]) + '/images/' + widget + '/local.png'
-        remote_img_path = str(sys.path[1]) + '/images/' + widget + '/remote.png'
+        local_img_path = str(Path(__file__).parent.parent) + '/images/' + widget + '/local.png'
+        remote_img_path = str(Path(__file__).parent.parent) + '/images/' + widget + '/remote.png'
 
-        self.browser.save_screenshot(str(sys.path[1]) + '/images/' + widget + '/remote.png')
+        self.browser.save_screenshot(str(Path(__file__).parent.parent) + '/images/' + widget + '/remote.png')
 
         local_img_hash = self.hash_it(local_img_path)
         remote_img_hash = self.hash_it(remote_img_path)

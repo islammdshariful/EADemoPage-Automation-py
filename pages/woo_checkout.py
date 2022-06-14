@@ -320,14 +320,24 @@ class WooCheckout(Helper):
                     assert_that(1).is_equal_to("Coupon field is visible which should be hidden")
                 else:
                     assert_that(1).is_equal_to(1)
+                pos_0 = self.browser.find_element(By.XPATH, "//p[@class='lost_password']")
+                self.browser.execute_script("arguments[0].scrollIntoView();", pos_0)
+                time.sleep(1)
                 self.browser.find_element(*self.coupon_form_expand).click()
                 time.sleep(.5)
                 assert_that(self.browser.find_element(*self.coupon_form_des).text).is_equal_to(self.coupon_form_des_text)
                 self.browser.find_element(*self.coupon_form_field).clear()
                 self.browser.find_element(*self.coupon_form_field).send_keys("Get50OffNow")
                 assert_that(self.browser.find_element(*self.coupon_btn).text).is_equal_to("Apply Coupon")
-
+                pos_1 = self.browser.find_element(By.XPATH, '//*[@id="post-259772"]/div/div/div/div/section[2]/div/div'
+                                                            '/div/div/div/div/div/div/div/div[2]/div/div/div[1]')
+                self.browser.execute_script("arguments[0].scrollIntoView();", pos_1)
+                time.sleep(1)
                 self.browser.find_element(*self.login_form_expand).click()
+                time.sleep(1)
+                pos_2 = self.browser.find_element(By.XPATH, f'//*[@id="post-259772"]/div/div/div/div/section[2]/div/div'
+                                                            f'/div/div/div/div/div/div/div/div[4]/div[2]/div/a')
+                self.browser.execute_script("arguments[0].scrollIntoView();", pos_2)
                 time.sleep(1)
                 self.browser.find_element(*self.coupon_form_expand).click()
 
@@ -511,13 +521,22 @@ class WooCheckout(Helper):
                 time.sleep(1.5)
                 self.browser.find_element(By.XPATH, self.payment_method_cash).click()
                 assert_that(self.browser.find_element(*self.payment_method_des).text).is_equal_to(self.payment_method_des_text)
+                pos_3 = self.browser.find_element(By.XPATH, self.payment_method_cash)
+                self.browser.execute_script("arguments[0].scrollIntoView();", pos_3)
+                time.sleep(1)
                 self.browser.find_element(*self.prev_btn).click()
                 time.sleep(1.5)
-                self.browser.execute_script("window.scrollTo(0, document.body.scrollHeight)")
+                # self.browser.execute_script("window.scrollTo(0, document.body.scrollHeight)")
+                # time.sleep(1.5)
+                pos_4 = self.browser.find_element(By.XPATH, "//label[@for='order_comments']")
+                self.browser.execute_script("arguments[0].scrollIntoView();", pos_4)
                 time.sleep(1.5)
                 self.browser.find_element(*self.prev_btn).click()
                 time.sleep(1.5)
-                self.browser.execute_script("window.scrollTo(0, 902)")
+                # self.browser.execute_script("window.scrollTo(0, 902)")
+                # time.sleep(1.5)
+                pos_5 = self.browser.find_element(By.XPATH, "//span[normalize-space()='Split']")
+                self.browser.execute_script("arguments[0].scrollIntoView();", pos_5)
                 time.sleep(1.5)
                 self.browser.find_element(*self.prev_btn).click()
                 time.sleep(1.5)
@@ -525,7 +544,7 @@ class WooCheckout(Helper):
                 time.sleep(1.5)
                 self.browser.find_element(*self.next_btn).click()
                 time.sleep(1.5)
-                self.browser.execute_script("window.scrollTo(0, document.body.scrollHeight)")
+                self.browser.execute_script("arguments[0].scrollIntoView();", pos_4)
                 time.sleep(1.5)
                 self.browser.find_element(*self.next_btn).click()
                 time.sleep(1.5)
@@ -541,10 +560,9 @@ class WooCheckout(Helper):
 
                 assert_that(self.browser.find_element(*self.place_order_btn).text).is_equal_to(self.place_order_btn_text)
 
+                pos_6 = self.browser.find_element(By.XPATH, "//div[@class='shipping-area']")
+                self.browser.execute_script("arguments[0].scrollIntoView();", pos_6)
+                time.sleep(1)
                 self.browser.find_element(*self.continue_shop).click()
                 assert_that(self.browser.find_element(*self.shop_page).text).is_equal_to(self.shop_page_text)
                 self.browser.back()
-
-
-
-

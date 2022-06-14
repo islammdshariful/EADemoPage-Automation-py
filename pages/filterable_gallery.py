@@ -93,42 +93,55 @@ class FilterableGallery(Helper):
         self.browser.find_element(*self.cross_btn).click()
 
     def testcase(self):
-        with soft_assertions():
-            self.check_widget_name(self.widget, self.widget_name)
-            if self.check_doc:
-                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
-                self.check_documents(self.doc_link, self.doc_name)
-            else:
-                self.browser.execute_script("window.scrollTo(0, 1061)")
-                time.sleep(1)
+        # with soft_assertions():
+        self.check_widget_name(self.widget, self.widget_name)
+        if self.check_doc:
+            self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
+            self.check_documents(self.doc_link, self.doc_name)
+        else:
+            self.browser.execute_script("window.scrollTo(0, 1061)")
+            time.sleep(1)
 
-                self.browser.find_element(*self.all).click()
-                time.sleep(.5)
-                self.open_gallery(self.all_gallery_1, self.all_gallery_1_title, self.gallery_title_text, self.all_gallery_1_icon)
-                time.sleep(.5)
-                self.open_gallery(self.all_gallery_3, self.all_gallery_3_title, self.gallery_title_text, self.all_gallery_3_icon)
+            self.browser.find_element(*self.all).click()
+            time.sleep(.5)
+            self.open_gallery(self.all_gallery_1, self.all_gallery_1_title, self.gallery_title_text, self.all_gallery_1_icon)
+            time.sleep(.5)
+            self.open_gallery(self.all_gallery_3, self.all_gallery_3_title, self.gallery_title_text, self.all_gallery_3_icon)
+            pos_1 = self.browser.find_element(By.XPATH, "//div[@class='elementor-element elementor-element-1d43b1f "
+                                                        "elementor-widget elementor-widget-heading']"
+                                                        "//div[@class='elementor-widget-container']")
+            self.browser.execute_script("arguments[0].scrollIntoView();", pos_1)
+            time.sleep(1)
 
-                self.browser.find_element(*self.news).click()
-                time.sleep(.5)
-                self.open_gallery(self.news_gallery_1, self.news_gallery_1_title, self.gallery_title_text, self.news_gallery_1_icon)
-                time.sleep(.5)
-                self.open_gallery(self.news_gallery_2, self.news_gallery_2_title, self.gallery_title_text, self.news_gallery_2_icon)
+            self.browser.find_element(*self.news).click()
+            time.sleep(.5)
+            self.open_gallery(self.news_gallery_1, self.news_gallery_1_title, self.gallery_title_text, self.news_gallery_1_icon)
+            time.sleep(.5)
+            self.open_gallery(self.news_gallery_2, self.news_gallery_2_title, self.gallery_title_text, self.news_gallery_2_icon)
+            self.browser.execute_script("arguments[0].scrollIntoView();", pos_1)
+            time.sleep(1)
 
-                self.browser.find_element(*self.updates).click()
-                time.sleep(.5)
-                self.open_gallery(self.updates_gallery_1, self.updates_gallery_1_title, self.gallery_title_text, self.updates_gallery_1_icon)
-                time.sleep(.5)
-                self.open_gallery(self.updates_gallery_2, self.updates_gallery_2_title, self.gallery_title_text, self.updates_gallery_2_icon)
+            self.browser.find_element(*self.updates).click()
+            time.sleep(.5)
+            self.open_gallery(self.updates_gallery_1, self.updates_gallery_1_title, self.gallery_title_text, self.updates_gallery_1_icon)
+            time.sleep(.5)
+            self.open_gallery(self.updates_gallery_2, self.updates_gallery_2_title, self.gallery_title_text, self.updates_gallery_2_icon)
+            self.browser.execute_script("arguments[0].scrollIntoView();", pos_1)
+            time.sleep(1)
 
-                self.browser.find_element(*self.events).click()
-                time.sleep(.5)
-                self.open_gallery(self.events_gallery_1, self.events_gallery_1_title, self.gallery_title_text, self.events_gallery_1_icon)
-                time.sleep(.5)
-                self.open_gallery(self.events_gallery_2, self.events_gallery_2_title, self.gallery_title_text, self.events_gallery_2_icon)
+            self.browser.find_element(*self.events).click()
+            time.sleep(.5)
+            self.open_gallery(self.events_gallery_1, self.events_gallery_1_title, self.gallery_title_text, self.events_gallery_1_icon)
+            time.sleep(.5)
+            self.open_gallery(self.events_gallery_2, self.events_gallery_2_title, self.gallery_title_text, self.events_gallery_2_icon)
+            self.browser.execute_script("arguments[0].scrollIntoView();", pos_1)
+            time.sleep(1)
 
-                self.browser.find_element(*self.masonry).click()
-                time.sleep(.5)
-                self.open_gallery(self.masonry_gallery_1, self.masonry_gallery_1_title, self.gallery_title_text, self.masonry_gallery_1_icon)
-                time.sleep(.5)
-                self.open_gallery(self.masonry_gallery_2, self.masonry_gallery_2_title, self.gallery_title_text, self.masonry_gallery_2_icon)
+            self.browser.find_element(*self.masonry).click()
+            time.sleep(.5)
+            self.open_gallery(self.masonry_gallery_1, self.masonry_gallery_1_title, self.gallery_title_text,
+                              self.masonry_gallery_1_icon)
+            time.sleep(.5)
+            self.open_gallery(self.masonry_gallery_2, self.masonry_gallery_2_title, self.gallery_title_text,
+                              self.masonry_gallery_2_icon)
 

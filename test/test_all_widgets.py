@@ -638,10 +638,10 @@ def test_reading_progress(browser):
     rpb.testcase()
 
 
-def test_particle_effect(browser):
-    pe = ParticleEffect(browser)
-    pe.load()
-    pe.testcase()
+# def test_particle_effect(browser):
+#     pe = ParticleEffect(browser)
+#     pe.load()
+#     pe.testcase()
 
 
 def test_advanced_tooltip(browser):

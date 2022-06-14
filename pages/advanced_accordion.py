@@ -13,20 +13,23 @@ class AdvancedAccordion(Helper):
                '/div/div/div[2]/div/div/div[3]/div/div/a/span/span'
     doc_name = "ADVANCED ACCORDION"
     accor_1_icon = (By.XPATH, f'//*[@id="font-awesome-icons-used"]/i[1]')
-    accor_1_title = (By.XPATH, f'//*[@id="font-awesome-icons-used"]/span')
+    accor_1_title = (By.XPATH, f"//div[@id='eael-adv-accordion-73d0d346']//span[@class='eael-accordion-tab-title']"
+                               f"[normalize-space()='Font Awesome Icons Used']")
     accor_1_title_text = "Font Awesome Icons Used"
     accor_1_des = (By.XPATH, f'//*[@id="elementor-tab-content-1941"]/p')
     accor_1_des_text = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio, neque qui velit." \
                        " Magni dolorum quidem ipsam eligendi, totam, facilis laudantium cum accusamus ullam " \
                        "voluptatibus commodi numquam, error, est. Ea, consequatur."
     accor_2_icon = (By.XPATH, f'//*[@id="free-demo-content-installations"]/i[1]')
-    accor_2_title = (By.XPATH, f'//*[@id="free-demo-content-installations"]/span')
+    accor_2_title = (By.XPATH, f"//div[@id='eael-adv-accordion-73d0d346']//span[@class='eael-accordion-tab-title']"
+                               f"[normalize-space()='Free Demo Content Installations']")
     accor_2_title_text = "Free Demo Content Installations"
     accor_2_des = (By.XPATH, f'//*[@id="elementor-tab-content-1942"]/p[2]')
     accor_2_des_text = "Netflix has struck a deal set up a permanent production base at Shepperton Studios, " \
                        "home to films from Alien to Mary Poppins Returns."
     accor_3_icon = (By.XPATH, f'//*[@id="visual-page-builder"]/i[1]')
-    accor_3_title = (By.XPATH, f'//*[@id="visual-page-builder"]/span')
+    accor_3_title = (By.XPATH, f"//div[@id='eael-adv-accordion-73d0d346']//span[@class='eael-accordion-tab-title']"
+                               f"[normalize-space()='Visual Page Builder']")
     accor_3_title_text = "Visual Page Builder"
     accor_3_des = (By.XPATH, f'//*[@id="elementor-tab-content-1943"]/p[2]')
     accor_3_des_text = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio, neque qui velit. " \

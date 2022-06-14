@@ -88,18 +88,28 @@ class PostList(Helper):
 
                 # All
                 self.browser.find_element(*self.all).click()
-                time.sleep(1)
+                time.sleep(1.5)
                 self.check_widget_post(self.post_1_title, self.post_1_date, self.post_1_img)
                 time.sleep(1)
                 self.check_widget_post(self.post_2_title, self.post_2_date, self.post_2_img)
                 # Elementor
-                self.browser.find_element(*self.elementor).click()
+                pos_1 = self.browser.find_element(By.XPATH, "//div[@class='elementor-element elementor-element-1220b3b1"
+                                                            " elementor-widget elementor-widget-heading']"
+                                                            "//div[@class='elementor-widget-container']")
+                self.browser.execute_script("arguments[0].scrollIntoView();", pos_1)
                 time.sleep(1)
+                self.browser.find_element(*self.elementor).click()
+                time.sleep(1.5)
                 self.check_widget_post(self.post_1_title, self.post_1_date, self.post_1_img)
                 self.browser.find_element(*self.elementor).click()
-                time.sleep(1)
+                time.sleep(1.5)
                 self.check_widget_post(self.post_2_title, self.post_2_date, self.post_2_img)
                 # Essential Addons
+                pos_1 = self.browser.find_element(By.XPATH, "//div[@class='elementor-element elementor-element-1220b3b1"
+                                                            " elementor-widget elementor-widget-heading']"
+                                                            "//div[@class='elementor-widget-container']")
+                self.browser.execute_script("arguments[0].scrollIntoView();", pos_1)
+                time.sleep(1)
                 self.browser.find_element(*self.essential_addons).click()
                 time.sleep(1.5)
                 self.check_widget_post(self.post_1_title, self.post_1_date, self.post_1_img)
@@ -107,6 +117,11 @@ class PostList(Helper):
                 time.sleep(1.5)
                 self.check_widget_post(self.post_2_title, self.post_2_date, self.post_2_img)
                 # WordPress
+                pos_1 = self.browser.find_element(By.XPATH, "//div[@class='elementor-element elementor-element-1220b3b1"
+                                                            " elementor-widget elementor-widget-heading']"
+                                                            "//div[@class='elementor-widget-container']")
+                self.browser.execute_script("arguments[0].scrollIntoView();", pos_1)
+                time.sleep(1)
                 self.browser.find_element(*self.wordpress).click()
                 time.sleep(1.5)
                 self.check_widget_post(self.post_1_title, self.post_1_date, self.post_1_img)
@@ -115,6 +130,11 @@ class PostList(Helper):
                 self.check_widget_post(self.post_2_title, self.post_2_date, self.post_2_img)
 
                 # Search
+                pos_1 = self.browser.find_element(By.XPATH, "//div[@class='elementor-element elementor-element-1220b3b1"
+                                                            " elementor-widget elementor-widget-heading']"
+                                                            "//div[@class='elementor-widget-container']")
+                self.browser.execute_script("arguments[0].scrollIntoView();", pos_1)
+                time.sleep(1)
                 self.check_visibility(self.search_icon, "Search Icon not Visible.")
                 self.browser.find_element(*self.search).send_keys("Essential Addons")
                 time.sleep(4)
