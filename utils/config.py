@@ -128,6 +128,8 @@ class Helper:
             assert_that(1).is_equal_to(msg)
 
     def check_documents(self, link, name):
+        self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
+        time.sleep(1)
         self.browser.find_element(By.XPATH, link).click()
         time.sleep(1)
         windows = self.browser.window_handles

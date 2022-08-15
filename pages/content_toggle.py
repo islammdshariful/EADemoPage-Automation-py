@@ -1,9 +1,8 @@
-from selenium.webdriver import ActionChains, Keys
-
+from pages.basepage import BasePage
 from utils.config import *
 
 
-class ContentToggle(Helper):
+class ContentToggle(BasePage, Helper):
     widget = '//*[@id="post-2605"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Content Toggle'
@@ -24,8 +23,8 @@ class ContentToggle(Helper):
     p_1_month = (By.XPATH, f'//*[@id="eael-toggle-container-6bee69bf"]/div[2]/div[1]/div/div/section'
                            f'/div/div/div/div/div/div/div/div/div/div[1]/span[2]')
     p_1_month_text = "Permonth"
-    p_1_item_1_icon = f'//*[@id="eael-toggle-container-6bee69bf"]/div[2]/div[1]/div/div/section' \
-                                 f'/div/div/div/div/div/div/div/div/div/div[3]/ul/li[1]/span/i'
+    p_1_item_1_icon = (By.XPATH, f'//*[@id="eael-toggle-container-6bee69bf"]/div[2]/div['
+                                 f'1]/div/div/section/div/div/div/div/div/div/div/div/div/div[3]/ul/li[1]/span/i')
     p_1_item_1 = (By.XPATH, f'//*[@id="eael-toggle-container-6bee69bf"]/div[2]/div[1]/div/div/section/div/div/div/'
                             f'div/div/div/div/div/div/div[3]/ul/li[1]')
     p_1_item_1_text = "Unlimited calls"
@@ -58,8 +57,8 @@ class ContentToggle(Helper):
     s_1_month = (By.XPATH, f'//*[@id="eael-toggle-container-6bee69bf"]/div[2]/div[2]/div/div/section'
                            f'/div/div/div/div/div/div/div/div/div/div[1]/span[2]')
     s_1_month_text = "Permonth"
-    s_1_item_1_icon = f'//*[@id="eael-toggle-container-6bee69bf"]/div[2]/div[2]/div/div/section' \
-                                 f'/div/div/div/div/div/div/div/div/div/div[3]/ul/li[1]/span/i'
+    s_1_item_1_icon = (By.XPATH, f'//*[@id="eael-toggle-container-6bee69bf"]/div[2]/div['
+                                 f'2]/div/div/section/div/div/div/div/div/div/div/div/div/div[3]/ul/li[1]/span/i')
     s_1_item_1 = (By.XPATH, f'//*[@id="eael-toggle-container-6bee69bf"]/div[2]/div[2]/div/div/section/div/div/div/'
                             f'div/div/div/div/div/div/div[3]/ul/li[1]')
     s_1_item_1_text = "Unlimited calls"
@@ -92,60 +91,76 @@ class ContentToggle(Helper):
     def load(self):
         self.browser.get(self.content_toggle)
 
+    def toggle_page_one(self):
+        """Toggle page one"""
+
+        """Check page heading"""
+        self.move_to(self.p_1_title)
+
+        """Check page heading"""
+        self.check_text_matches_with(self.p_1_title, self.p_1_title_text)
+        self.check_text_matches_with(self.p_1_price, self.p_1_price_text)
+        self.check_text_matches_with(self.p_1_month, self.p_1_month_text)
+
+        """Check icon"""
+        self.is_visible(self.p_1_item_1_icon, "Content Toggle page 1 is not visible.")
+
+        """Check page info lists"""
+        self.check_text_matches_with(self.p_1_item_1, self.p_1_item_1_text)
+        self.check_text_matches_with(self.p_1_item_2, self.p_1_item_2_text)
+        self.check_text_matches_with(self.p_1_item_3, self.p_1_item_3_text)
+        self.check_text_matches_with(self.p_1_item_4, self.p_1_item_4_text)
+        self.check_text_matches_with(self.p_1_item_5, self.p_1_item_5_text)
+
+        """Moves to button"""
+        self.move_to(self.p_1_button)
+
+    def toggle_page_two(self):
+        """Toggle page two"""
+
+        """Check page heading"""
+        self.move_to(self.s_1_title)
+
+        """Check page heading"""
+        self.check_text_matches_with(self.s_1_title, self.s_1_title_text)
+        self.check_text_matches_with(self.s_1_price, self.s_1_price_text)
+        self.check_text_matches_with(self.s_1_month, self.s_1_month_text)
+
+        """Check icon"""
+        self.is_visible(self.s_1_item_1_icon, "Content Toggle page 2 is not visible.")
+
+        """Check page info lists"""
+        self.check_text_matches_with(self.s_1_item_1, self.s_1_item_1_text)
+        self.check_text_matches_with(self.s_1_item_2, self.s_1_item_2_text)
+        self.check_text_matches_with(self.s_1_item_3, self.s_1_item_3_text)
+        self.check_text_matches_with(self.s_1_item_4, self.s_1_item_4_text)
+        self.check_text_matches_with(self.s_1_item_5, self.s_1_item_5_text)
+
+        """Moves to button"""
+        self.move_to(self.s_1_button)
+
     def testcase(self):
         with soft_assertions():
+            """Go to page"""
+            self.load()
+            """Checking widget name"""
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
-                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
+                """Checking widget's documentation"""
                 self.check_documents(self.doc_link, self.doc_name)
             else:
                 self.browser.execute_script("window.scrollTo(0, 1967)")
                 time.sleep(1)
+                """Checking button labels"""
+                self.check_text_matches_with(self.primary_btn, self.primary_btn_text)
+                self.check_text_matches_with(self.secondary_btn, self.secondary_btn_text)
 
-                assert_that(self.browser.find_element(*self.primary_btn).text).is_equal_to(self.primary_btn_text)
-                assert_that(self.browser.find_element(*self.secondary_btn).text).is_equal_to(self.secondary_btn_text)
+                """Checking Toggle Page one"""
+                self.toggle_page_one()
 
-                cursor = ActionChains(self.browser)
-                p_title = self.browser.find_element(*self.p_1_title)
-                p_btn = self.browser.find_element(*self.p_1_button)
-                s_title = self.browser.find_element(*self.s_1_title)
-                s_btn = self.browser.find_element(*self.s_1_button)
-                cursor.move_to_element(p_title).perform()
-                time.sleep(1)
-
-                assert_that(p_title.text).is_equal_to(self.p_1_title_text)
-                assert_that(self.browser.find_element(*self.p_1_price).text).is_equal_to(self.p_1_price_text)
-                assert_that(self.browser.find_element(*self.p_1_month).text).is_equal_to(self.p_1_month_text)
-
-                self.check_visibility(self.p_1_item_1_icon, "Content Toggle page 1 is not visible.")
-
-                assert_that(self.browser.find_element(*self.p_1_item_1).text).is_equal_to(self.p_1_item_1_text)
-                assert_that(self.browser.find_element(*self.p_1_item_2).text).is_equal_to(self.p_1_item_2_text)
-                assert_that(self.browser.find_element(*self.p_1_item_3).text).is_equal_to(self.p_1_item_3_text)
-                assert_that(self.browser.find_element(*self.p_1_item_4).text).is_equal_to(self.p_1_item_4_text)
-                assert_that(self.browser.find_element(*self.p_1_item_5).text).is_equal_to(self.p_1_item_5_text)
-
-                cursor.move_to_element(p_btn).perform()
-
-                self.browser.find_element(*self.toggle_button).click()
+                """Click Toggle button"""
+                self.do_click(self.toggle_button)
                 time.sleep(.5)
 
-                cursor.move_to_element(s_title).perform()
-                # time.sleep(1)
-
-                assert_that(s_title.text).is_equal_to(self.s_1_title_text)
-                assert_that(self.browser.find_element(*self.s_1_price).text).is_equal_to(self.s_1_price_text)
-                assert_that(self.browser.find_element(*self.s_1_month).text).is_equal_to(self.s_1_month_text)
-
-                self.check_visibility(self.s_1_item_1_icon, "Content Toggle page 2 is not visible.")
-
-                assert_that(self.browser.find_element(*self.s_1_item_1).text).is_equal_to(self.s_1_item_1_text)
-                assert_that(self.browser.find_element(*self.s_1_item_2).text).is_equal_to(self.s_1_item_2_text)
-                assert_that(self.browser.find_element(*self.s_1_item_3).text).is_equal_to(self.s_1_item_3_text)
-                assert_that(self.browser.find_element(*self.s_1_item_4).text).is_equal_to(self.s_1_item_4_text)
-                assert_that(self.browser.find_element(*self.s_1_item_5).text).is_equal_to(self.s_1_item_5_text)
-
-                cursor.move_to_element(s_btn).perform()
-
-
-
+                """Checking Toggle Page two"""
+                self.toggle_page_two()

@@ -1,0 +1,25 @@
+1660562211920	geckodriver	INFO	Listening on 127.0.0.1:1298
+1660562214990	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "1299" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\shari\\AppData\\Local\\Temp\\rust_mozprofileAapgql"
+1660562477024	geckodriver	INFO	Listening on 127.0.0.1:1367
+1660562480099	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "1368" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\shari\\AppData\\Local\\Temp\\rust_mozprofilezjR5kd"
+1660562481023	Marionette	INFO	Marionette enabled
+1660562481032	Marionette	INFO	Listening on port 1377
+WebDriver BiDi listening on ws://localhost:1368
+Read port: 1377
+1660562481291	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\shari\\AppData\\Local\\Temp\\rust_mozprofilezjR5kd\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:1368/devtools/browser/7800a28e-70b0-461a-8890-f8202d040d22
+1660562484784	Marionette	INFO	Stopped listening on port 1377
+console.error: services.settings: 
+  main/query-stripping Signature failed  TypeError: NetworkError: Network request failed
+1660577333505	geckodriver	INFO	Listening on 127.0.0.1:1693
+1660577336528	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "1694" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\shari\\AppData\\Local\\Temp\\rust_mozprofiledXgbkk"
+1660577338270	Marionette	INFO	Marionette enabled
+1660577338276	Marionette	INFO	Listening on port 1703
+Read port: 1703
+WebDriver BiDi listening on ws://localhost:1694
+1660577338433	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\shari\\AppData\\Local\\Temp\\rust_mozprofiledXgbkk\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:1694/devtools/browser/2a72f8d7-a73b-4259-91a7-a6b5bef8d7f4
+1660577354556	Marionette	INFO	Stopped listening on port 1703
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.

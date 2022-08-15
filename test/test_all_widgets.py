@@ -92,10 +92,12 @@ from pages.woocommerce_product_collections import WoocommerceProductCollections
 # ------------------------------------------------------------------------------------------------
 # CONTENT ELEMENTS
 # ------------------------------------------------------------------------------------------------
+def test_new(init_driver):
+    print("hello")
 
-def test_content_toggle(browser):
-    ct = ContentToggle(browser)
-    ct.load()
+
+def test_content_toggle(init_driver):
+    ct = ContentToggle(init_driver)
     ct.testcase()
 
 
