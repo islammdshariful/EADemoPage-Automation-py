@@ -92,19 +92,14 @@ from pages.woocommerce_product_collections import WoocommerceProductCollections
 # ------------------------------------------------------------------------------------------------
 # CONTENT ELEMENTS
 # ------------------------------------------------------------------------------------------------
-def test_new(init_driver):
-    print("hello")
-
-
 def test_content_toggle(init_driver):
-    ct = ContentToggle(init_driver)
-    ct.testcase()
+    content_toggle = ContentToggle(init_driver)
+    content_toggle.run()
 
 
-def test_advanced_menu(browser):
-    am = AdvancedMenu(browser)
-    am.load()
-    am.testcase()
+def test_advanced_menu(init_driver):
+    advanced_menu = AdvancedMenu(init_driver)
+    advanced_menu.run()
 
 
 def test_off_canvas(browser):

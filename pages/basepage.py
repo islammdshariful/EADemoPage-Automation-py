@@ -47,4 +47,8 @@ class BasePage:
         cursor.move_to_element(element).perform()
         time.sleep(1)
 
+    def go_back(self):
+        self.browser.back()
+        time.sleep(1)
+
 

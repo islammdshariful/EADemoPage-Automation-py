@@ -2,7 +2,6 @@ import hashlib
 import urllib.request
 import os
 import os.path
-import sys
 import time
 from pathlib import Path
 
@@ -10,6 +9,7 @@ from assertpy import soft_assertions, assert_that
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver import Keys
 
 
 class Helper:

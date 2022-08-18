@@ -86,7 +86,6 @@ class ContentToggle(BasePage, Helper):
 
     def __init__(self, browser):
         super().__init__(browser)
-        self.browser = browser
 
     def load(self):
         self.browser.get(self.content_toggle)
@@ -139,7 +138,7 @@ class ContentToggle(BasePage, Helper):
         """Moves to button"""
         self.move_to(self.s_1_button)
 
-    def testcase(self):
+    def run(self):
         with soft_assertions():
             """Go to page"""
             self.load()
