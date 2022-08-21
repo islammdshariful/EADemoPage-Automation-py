@@ -1,9 +1,10 @@
 from selenium.webdriver import ActionChains, Keys
 
+from pages.basepage import BasePage
 from utils.config import *
 
 
-class Testimonial(Helper):
+class Testimonial(BasePage, Helper):
     widget = '//*[@id="post-1020"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section[1]' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Testimonials'
@@ -15,33 +16,31 @@ class Testimonial(Helper):
     des_text = "GEMs are robotics algorithm for modules that built and optimized for NVIDIA AGX Data should " \
                "underlie every business decision. Data should underlie every business Yet too often some very" \
                " human cultural artifacts really lead the business down the certain routes."
-    img = f'//*[@id="eael-testimonial-5799b0f7"]/div/div[2]/figure/img'
+    img = (By.XPATH, f'//*[@id="eael-testimonial-5799b0f7"]/div/div[2]/figure/img')
     name = (By.XPATH, f'//*[@id="eael-testimonial-5799b0f7"]/div/div[3]/p[1]')
     name_text = "Alison Burgas"
     com = (By.XPATH, f'//*[@id="eael-testimonial-5799b0f7"]/div/div[3]/p[2]')
     com_text = "Product Designer @microsoft"
-    rate = f'//*[@id="eael-testimonial-5799b0f7"]/div/ul'
+    rate = (By.XPATH, f'//*[@id="eael-testimonial-5799b0f7"]/div/ul')
 
     def __init__(self, browser):
         super().__init__(browser)
-        self.browser = browser
 
-    def load(self):
-        self.browser.get(self.testimonials)
-
-    def testcase(self):
+    def run(self):
         with soft_assertions():
+            """Go to page"""
+            self.go_to(self.testimonials)
+            """Checking widget name"""
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
-                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
+                """Checking widget's documentation"""
                 self.check_documents(self.doc_link, self.doc_name)
             else:
-                self.browser.execute_script("window.scrollTo(0, 1001)")
-                time.sleep(1)
+                self.scroll_to(852)
 
-                assert_that(self.browser.find_element(*self.des).text).is_equal_to(self.des_text)
-                assert_that(self.browser.find_element(*self.name).text).is_equal_to(self.name_text)
-                assert_that(self.browser.find_element(*self.com).text).is_equal_to(self.com_text)
-
-                self.check_visibility(self.img, "Image is not visible")
-                self.check_visibility(self.rate, "Rate is not visible")
+                """Testimonial info"""
+                self.check_text_matches_with(self.des, self.des_text)
+                self.check_text_matches_with(self.name, self.name_text)
+                self.check_text_matches_with(self.com, self.com_text)
+                self.is_visible(self.img, "Image is not visible")
+                self.is_visible(self.rate, "Rate is not visible")

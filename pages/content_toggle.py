@@ -87,14 +87,11 @@ class ContentToggle(BasePage, Helper):
     def __init__(self, browser):
         super().__init__(browser)
 
-    def load(self):
-        self.browser.get(self.content_toggle)
-
     def toggle_page_one(self):
         """Toggle page one"""
 
         """Check page heading"""
-        self.move_to(self.p_1_title)
+        self.move_cursor_to(self.p_1_title)
 
         """Check page heading"""
         self.check_text_matches_with(self.p_1_title, self.p_1_title_text)
@@ -112,13 +109,13 @@ class ContentToggle(BasePage, Helper):
         self.check_text_matches_with(self.p_1_item_5, self.p_1_item_5_text)
 
         """Moves to button"""
-        self.move_to(self.p_1_button)
+        self.move_cursor_to(self.p_1_button)
 
     def toggle_page_two(self):
         """Toggle page two"""
 
         """Check page heading"""
-        self.move_to(self.s_1_title)
+        self.move_cursor_to(self.s_1_title)
 
         """Check page heading"""
         self.check_text_matches_with(self.s_1_title, self.s_1_title_text)
@@ -136,20 +133,20 @@ class ContentToggle(BasePage, Helper):
         self.check_text_matches_with(self.s_1_item_5, self.s_1_item_5_text)
 
         """Moves to button"""
-        self.move_to(self.s_1_button)
+        self.move_cursor_to(self.s_1_button)
 
     def run(self):
         with soft_assertions():
             """Go to page"""
-            self.load()
+            self.go_to(self.content_toggle)
             """Checking widget name"""
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
                 """Checking widget's documentation"""
                 self.check_documents(self.doc_link, self.doc_name)
             else:
-                self.browser.execute_script("window.scrollTo(0, 1967)")
-                time.sleep(1)
+                self.scroll_to(1967)
+
                 """Checking button labels"""
                 self.check_text_matches_with(self.primary_btn, self.primary_btn_text)
                 self.check_text_matches_with(self.secondary_btn, self.secondary_btn_text)

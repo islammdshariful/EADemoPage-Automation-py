@@ -102,28 +102,24 @@ def test_advanced_menu(init_driver):
     advanced_menu.run()
 
 
-def test_off_canvas(browser):
-    oc = OffCanvas(browser)
-    oc.load()
-    oc.testcase()
+def test_off_canvas(init_driver):
+    off_canvas = OffCanvas(init_driver)
+    off_canvas.run()
 
 
-def test_feature_list(browser):
-    fl = FeatureList(browser)
-    fl.load()
-    fl.testcase()
+def test_feature_list(init_driver):
+    feature_list = FeatureList(init_driver)
+    feature_list.run()
 
 
-def testimonial(browser):
-    t = Testimonial(browser)
-    t.load()
-    t.testcase()
+def test_testimonial(init_driver):
+    testimonial = Testimonial(init_driver)
+    testimonial.run()
 
 
-def test_sticky_video(browser):
-    sv = StickyVideo(browser)
-    sv.load()
-    sv.testcase()
+def test_sticky_video(init_driver):
+    sticky_video = StickyVideo(init_driver)
+    sticky_video.run()
 
 
 def test_tooltip(browser):

@@ -80,10 +80,6 @@ class AdvancedMenu(BasePage, Helper):
 
     def __init__(self, browser):
         super().__init__(browser)
-        self.cursor = ActionChains(browser)
-
-    def load(self):
-        self.browser.get(self.advanced_menu)
 
     def horizontal_menu(self):
         """Checking Horizontal Menu"""
@@ -101,7 +97,7 @@ class AdvancedMenu(BasePage, Helper):
         self.browser.execute_script("window.scrollTo(0, 934)")
         time.sleep(1)
         """Move cursor to Element item"""
-        self.move_to(self.h_elementor)
+        self.move_cursor_to(self.h_elementor)
         """Checking all sub menu items name"""
         self.check_text_matches_with(self.h_elementor_accor, self.h_elementor_accor_text)
         self.check_text_matches_with(self.h_elementor_map, self.h_elementor_map_text)
@@ -189,15 +185,14 @@ class AdvancedMenu(BasePage, Helper):
     def run(self):
         with soft_assertions():
             """Go to page"""
-            self.load()
+            self.go_to(self.advanced_menu)
             """Checking widget name"""
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
                 """Checking widget's documentation"""
                 self.check_documents(self.doc_link, self.doc_name)
             else:
-                self.browser.execute_script("window.scrollTo(0, 934)")
-                time.sleep(1)
+                self.scroll_to(934)
 
                 """Check horizontal menu"""
                 self.horizontal_menu()

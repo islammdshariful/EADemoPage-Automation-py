@@ -9,6 +9,10 @@ from selenium.webdriver.support import expected_conditions as EC
 class BasePage:
     def __init__(self, browser):
         self.browser = browser
+        self.cursor = ActionChains(self.browser)
+
+    def go_to(self, url):
+        self.browser.get(url)
 
     def do_click(self, by_locator):
         WebDriverWait(self.browser, 10).until(EC.visibility_of_element_located(by_locator)).click()
@@ -41,14 +45,24 @@ class BasePage:
         WebDriverWait(self.browser, 10).until(EC.title_is(title))
         return self.browser.title
 
-    def move_to(self, by_locator):
-        cursor = ActionChains(self.browser)
-        element = self.get_element(by_locator)
-        cursor.move_to_element(element).perform()
+    def move_cursor_to(self, by_locator):
+        self.cursor.move_to_element(self.get_element(by_locator)).perform()
         time.sleep(1)
 
     def go_back(self):
         self.browser.back()
+        time.sleep(1)
+
+    def switch_to_frame(self, by_locator):
+        self.browser.switch_to.frame(self.get_element(by_locator))
+        time.sleep(1)
+
+    def switch_frame_to_default(self):
+        self.browser.switch_to.default_content()
+        time.sleep(1)
+
+    def scroll_to(self, Y):
+        self.browser.execute_script("window.scrollTo(0, " + str(Y) + ")")
         time.sleep(1)
 
 
