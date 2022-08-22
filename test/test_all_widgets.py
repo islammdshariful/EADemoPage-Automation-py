@@ -132,10 +132,9 @@ def test_protected_content(init_driver):
     protected_content.run()
 
 
-def test_testimonial_slide(browser):
-    ts = TestimonialSlider(browser)
-    ts.load()
-    ts.testcase()
+def test_testimonial_slide(init_driver):
+    testimonial_slide = TestimonialSlider(init_driver)
+    testimonial_slide.run()
 
 
 def test_advanced_tab(browser):
