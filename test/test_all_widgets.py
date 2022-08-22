@@ -122,10 +122,9 @@ def test_sticky_video(init_driver):
     sticky_video.run()
 
 
-def test_tooltip(browser):
-    tt = ToolTip(browser)
-    tt.load()
-    tt.testcase()
+def test_tooltip(init_driver):
+    tool_tip = ToolTip(init_driver)
+    tool_tip.run()
 
 
 def test_protected_content(browser):
