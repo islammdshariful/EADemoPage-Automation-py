@@ -1,11 +1,8 @@
-import time
-
-from selenium.webdriver import ActionChains, Keys
-
+from pages.basepage import BasePage
 from utils.config import *
 
 
-class ProtectedContent(Helper):
+class ProtectedContent(BasePage, Helper):
     widget = '//*[@id="post-3712"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Protected Content'
@@ -18,8 +15,8 @@ class ProtectedContent(Helper):
     message_text = "This section is password protected. So use 1234 to access the content."
     password = (By.XPATH, f'//*[@id="eael_protected_content_form_3d01145b"]/input[1]')
     button = (By.XPATH, f'//*[@id="eael_protected_content_form_3d01145b"]/input[3]')
-    img = f'//*[@id="eael-protected-content-render-3d01145b"]/div/div/div/section/div/div/div/div/div/div[1]' \
-          f'/div/div/img'
+    img = (By.XPATH, f'//*[@id="eael-protected-content-render-3d01145b"]/div/div/div/section/div/div/div/div/div/'
+                     f'div[1]/div/div/img')
     title = (By.XPATH, f'//*[@id="eael-protected-content-render-3d01145b"]/div/div/div/section'
                        f'/div/div/div/div/div/div[2]/div/h2')
     title_text = "Ya! You Have Typed The Right Password"
@@ -31,32 +28,27 @@ class ProtectedContent(Helper):
 
     def __init__(self, browser):
         super().__init__(browser)
-        self.browser = browser
 
-    def load(self):
-        self.browser.get(self.protected_content)
-
-    def testcase(self):
+    def run(self):
         with soft_assertions():
+            """Go to page"""
+            self.go_to(self.protected_content)
+            """Checking widget name"""
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
-                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
+                """Checking widget's documentation"""
                 self.check_documents(self.doc_link, self.doc_name)
             else:
-                self.browser.execute_script("window.scrollTo(0, 603)")
-                time.sleep(1)
-
-                assert_that(self.browser.find_element(*self.message).text).is_equal_to(self.message_text)
-
+                self.scroll_to(603)
+                """Help text"""
+                self.check_text_matches_with(self.message, self.message_text)
+                """Enter credentials"""
                 self.browser.find_element(*self.password).click()
-                self.browser.find_element(*self.password).clear()
-                self.browser.find_element(*self.password).send_keys("1234")
-                self.browser.find_element(*self.button).click()
-
-                time.sleep(2)
-                self.check_visibility(self.img, "Image is not visible.")
-
-                assert_that(self.browser.find_element(*self.title).text).is_equal_to(self.title_text)
-                assert_that(self.browser.find_element(*self.des).text).is_equal_to(self.des_text)
-
-
+                self.do_click(self.password)
+                self.clear_field(self.password)
+                self.do_send_keys(self.password, "1234")
+                self.do_click(self.button)
+                """Checking protected contents"""
+                self.is_visible(self.img, "Image is not visible.")
+                self.check_text_matches_with(self.title, self.title_text)
+                self.check_text_matches_with(self.des, self.des_text)

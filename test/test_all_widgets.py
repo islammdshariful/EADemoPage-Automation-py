@@ -127,10 +127,9 @@ def test_tooltip(init_driver):
     tool_tip.run()
 
 
-def test_protected_content(browser):
-    pc = ProtectedContent(browser)
-    pc.load()
-    pc.testcase()
+def test_protected_content(init_driver):
+    protected_content = ProtectedContent(init_driver)
+    protected_content.run()
 
 
 def test_testimonial_slide(browser):

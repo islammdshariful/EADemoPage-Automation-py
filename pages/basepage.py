@@ -1,7 +1,7 @@
 import time
 
 from assertpy import assert_that
-from selenium.webdriver import ActionChains
+from selenium.webdriver import ActionChains, Keys
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -17,8 +17,11 @@ class BasePage:
     def do_click(self, by_locator):
         WebDriverWait(self.browser, 10).until(EC.visibility_of_element_located(by_locator)).click()
 
+    def clear_field(self, by_locator):
+        WebDriverWait(self.browser, 10).until(EC.visibility_of_element_located(by_locator)).clear()
+
     def do_send_keys(self, by_locator, text):
-        WebDriverWait(self.browser, 10).until(EC.visibility_of_element_located(by_locator)).send_keys()
+        WebDriverWait(self.browser, 10).until(EC.visibility_of_element_located(by_locator)).send_keys(text)
 
     def get_element(self, by_locator):
         element = WebDriverWait(self.browser, 10).until(EC.visibility_of_element_located(by_locator))
@@ -65,4 +68,15 @@ class BasePage:
         self.browser.execute_script("window.scrollTo(0, " + str(Y) + ")")
         time.sleep(1)
 
+    def scroll_to_top(self):
+        self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
+        time.sleep(1)
+
+    def scroll_to_bottom(self):
+        self.browser.execute_script("window.scrollTo(0,document.body.scrollHeight);")
+        time.sleep(1)
+
+    def scroll_to_element(self, by_locator):
+        self.browser.execute_script("arguments[0].scrollIntoView();", self.get_element(by_locator))
+        time.sleep(1)
 
