@@ -137,10 +137,9 @@ def test_testimonial_slide(init_driver):
     testimonial_slide.run()
 
 
-def test_advanced_tab(browser):
-    at = AdvancedTabs(browser)
-    at.load()
-    at.testcase()
+def test_advanced_tab(init_driver):
+    advanced_tab = AdvancedTabs(init_driver)
+    advanced_tab.run()
 
 
 def test_advanced_accordion(browser):
