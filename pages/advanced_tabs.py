@@ -1,5 +1,6 @@
 from pages.basepage import BasePage
 from utils.config import *
+import allure
 
 
 class AdvancedTabs(BasePage, Helper):
@@ -108,7 +109,7 @@ class AdvancedTabs(BasePage, Helper):
     def run(self):
         with soft_assertions():
             """Go to page"""
-            # self.go_to(self.advanced_tabs)
+            self.go_to(self.advanced_tabs)
             """Checking widget name"""
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
@@ -116,49 +117,34 @@ class AdvancedTabs(BasePage, Helper):
                 self.check_documents(self.doc_link, self.doc_name)
             else:
                 self.scroll_to(2378)
-
-                # Tab 1
+                """Click on Tab 1"""
                 self.tab_checker(self.tab_1, self.tab_1_text, self.tab_1_des, self.tab_des_text)
-
-                # Tab 2
-                # assert_that(self.browser.find_element(By.XPATH, self.tab_2).text).is_equal_to(self.tab_2_text)
+                """Click on Tab 2"""
                 self.check_text_matches_with(self.tab_2, self.tab_2_text)
                 time.sleep(.5)
-                # self.browser.find_element(By.XPATH, self.tab_2).click()
                 self.do_click(self.tab_2)
                 time.sleep(.5)
-                # Tav 2 1
+                """Click on Tab 2-1"""
                 self.tab_checker(self.tab_2_1, self.tab_2_1_text, self.tab_2_1_des, self.tab_nested_ver_des_text)
-
-                # Tav 2 2
+                """Click on Tab 2-2"""
                 self.tab_checker(self.tab_2_2, self.tab_2_2_text, self.tab_2_2_des, self.tab_nested_ver_des_text)
-
-                # Tav 2 3
+                """Click on Tab 2-3"""
                 self.tab_checker(self.tab_2_3, self.tab_2_3_text, self.tab_2_3_des, self.tab_nested_ver_des_text)
-
-                # Tav 2 4
+                """Click on Tab 2-4"""
                 self.tab_checker(self.tab_2_4, self.tab_2_4_text, self.tab_2_4_des, self.tab_nested_ver_des_text)
-
-                # Tab 3
-                # assert_that(self.browser.find_element(By.XPATH, self.tab_3).text).is_equal_to(self.tab_3_text)
+                """Click on Tab 3"""
                 self.check_text_matches_with(self.tab_3, self.tab_3_text)
-                # self.browser.find_element(By.XPATH, self.tab_3).click()
                 self.do_click(self.tab_3)
                 time.sleep(.5)
-                # Tav 3 1
+                """Click on Tab 3-1"""
                 self.tab_checker(self.tab_3_1, self.tab_3_1_text, self.tab_3_1_des, self.tab_nested_hor_des_text)
-
-                # Tav 3 2
+                """Click on Tab 3-2"""
                 self.tab_checker(self.tab_3_2, self.tab_3_2_text, self.tab_3_2_des, self.tab_nested_hor_des_text)
-
-                # Tav 3 3
+                """Click on Tab 3-3"""
                 self.tab_checker(self.tab_3_3, self.tab_3_3_text, self.tab_3_3_des, self.tab_nested_hor_des_text)
-
-                # Tav 3 4
+                """Click on Tab 3-4"""
                 self.tab_checker(self.tab_3_4, self.tab_3_4_text, self.tab_3_4_des, self.tab_nested_hor_des_text)
-
-                # Tav 4
+                """Click on Tab 4"""
                 self.tab_checker(self.tab_4, self.tab_4_text, self.tab_4_des, self.tab_des_text)
-
-                # Tav 5
+                """Click on Tab 5"""
                 self.tab_checker(self.tab_5, self.tab_5_text, self.tab_5_des, self.tab_des_text)
