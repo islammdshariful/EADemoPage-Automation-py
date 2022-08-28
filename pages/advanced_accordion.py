@@ -1,11 +1,8 @@
-import time
-
-from selenium.webdriver import ActionChains, Keys
-
+from pages.basepage import BasePage
 from utils.config import *
 
 
-class AdvancedAccordion(Helper):
+class AdvancedAccordion(BasePage, Helper):
     widget = '//*[@id="post-2453"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Advanced Accordion'
@@ -38,77 +35,63 @@ class AdvancedAccordion(Helper):
 
     def __init__(self, browser):
         super().__init__(browser)
-        self.browser = browser
 
-    def load(self):
-        self.browser.get(self.advanced_accordion)
-
-    def testcase(self):
+    def run(self):
         with soft_assertions():
+            """Go to page"""
+            self.go_to(self.advanced_accordion)
+            """Checking widget name"""
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
-                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
+                """Checking widget's documentation"""
                 self.check_documents(self.doc_link, self.doc_name)
             else:
-                self.browser.execute_script("window.scrollTo(0, 1047)")
-                time.sleep(1)
-
-                accor_1 = self.browser.find_element(*self.accor_1_title)
-                accor_2 = self.browser.find_element(*self.accor_2_title)
-                accor_3 = self.browser.find_element(*self.accor_3_title)
-
-                assert_that(self.browser.find_element(*self.accor_1_title).text).is_equal_to(self.accor_1_title_text)
-                assert_that(self.browser.find_element(*self.accor_2_title).text).is_equal_to(self.accor_2_title_text)
-                assert_that(self.browser.find_element(*self.accor_3_title).text).is_equal_to(self.accor_3_title_text)
-                if self.browser.find_element(*self.accor_1_icon).is_displayed():
-                    print("ACCORDION 1 ICON IS VISIBLE")
-                    if self.browser.find_element(*self.accor_2_icon).is_displayed():
-                        print("ACCORDION 2 ICON IS VISIBLE")
-                        if self.browser.find_element(*self.accor_3_icon).is_displayed():
-                            print("ACCORDION 3 ICON IS VISIBLE")
-                        else:
-                            print("ACCORDION 3 ICON IS NOT VISIBLE")
+                self.scroll_to(1047)
+                """Check accordion title"""
+                self.check_text_matches_with(self.accor_1_title, self.accor_1_title_text)
+                self.check_text_matches_with(self.accor_2_title, self.accor_2_title_text)
+                self.check_text_matches_with(self.accor_3_title, self.accor_3_title_text)
+                """Check accordion icon"""
+                self.is_visible(self.accor_1_icon, "Accordion 1 icon is not visible")
+                self.is_visible(self.accor_2_icon, "Accordion 2 icon is not visible")
+                self.is_visible(self.accor_3_icon, "Accordion 3 icon is not visible")
+                """Click on accordion tab 2"""
+                self.move_cursor_to_and_click(self.accor_2_title)
+                """Check accordion tab 2's description"""
+                self.check_text_matches_with(self.accor_2_des, self.accor_2_des_text)
+                """Checking if other tabs are closed"""
+                if not self.is_displaying(*self.accor_1_des):
+                    if not self.is_displaying(*self.accor_3_des):
+                        pass
                     else:
-                        print("ACCORDION 2 ICON IS NOT VISIBLE")
+                        assert_that(1).is_equal_to("Tab three open, FAILED")
                 else:
-                    print("ACCORDION 1 ICON IS NOT VISIBLE")
-
-                cursor_1 = ActionChains(self.browser)
-                cursor_2 = ActionChains(self.browser)
-                cursor_3 = ActionChains(self.browser)
-
-                cursor_1.move_to_element(accor_2).click().perform()
-                time.sleep(.5)
-                assert_that(self.browser.find_element(*self.accor_2_des).text).is_equal_to(self.accor_2_des_text)
-                if not self.browser.find_element(*self.accor_1_des).is_displayed():
-                    if not self.browser.find_element(*self.accor_3_des).is_displayed():
-                        print("ACCORDION 2 PASSED")
+                    assert_that(1).is_equal_to("Tab one open, FAILED")
+                """Click on accordion tab 3"""
+                self.move_cursor_to_and_click(self.accor_3_title)
+                """Check accordion tab 3's description"""
+                self.check_text_matches_with(self.accor_3_des, self.accor_3_des_text)
+                """Checking if other tabs are closed"""
+                if not self.is_displaying(*self.accor_1_des):
+                    if not self.is_displaying(*self.accor_2_des):
+                        pass
                     else:
-                        print("ACCORDION 2 FAILED")
-                else:
-                    print("ACCORDION 2 FAILED")
+                        assert_that(1).is_equal_to("Tab two open, FAILED")
 
-                cursor_2.move_to_element(accor_3).click().perform()
-                time.sleep(.5)
-                assert_that(self.browser.find_element(*self.accor_3_des).text).is_equal_to(self.accor_3_des_text)
-                if not self.browser.find_element(*self.accor_1_des).is_displayed():
-                    if not self.browser.find_element(*self.accor_2_des).is_displayed():
-                        print("ACCORDION 3 PASSED")
-                    else:
-                        print("ACCORDION 3 FAILED")
                 else:
-                    print("ACCORDION 3 FAILED")
-
-                cursor_3.move_to_element(accor_1).click().perform()
-                time.sleep(.5)
-                assert_that(self.browser.find_element(*self.accor_1_des).text).is_equal_to(self.accor_1_des_text)
-                if not self.browser.find_element(*self.accor_2_des).is_displayed():
-                    if not self.browser.find_element(*self.accor_3_des).is_displayed():
-                        print("ACCORDION 1 PASSED")
+                    assert_that(1).is_equal_to("Tab one open, FAILED")
+                """Click on accordion tab 2"""
+                self.move_cursor_to_and_click(self.accor_1_title)
+                """Check accordion tab 2's description"""
+                self.check_text_matches_with(self.accor_1_des, self.accor_1_des_text)
+                """Checking if other tabs are closed"""
+                if not self.is_displaying(*self.accor_2_des):
+                    if not self.is_displaying(*self.accor_3_des):
+                        pass
                     else:
-                        print("ACCORDION 1 FAILED")
+                        assert_that(1).is_equal_to("Tab three open, FAILED")
                 else:
-                    print("ACCORDION 1 FAILED")
+                    assert_that(1).is_equal_to("Tab two open, FAILED")
 
 
 

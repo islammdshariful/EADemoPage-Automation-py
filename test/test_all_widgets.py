@@ -142,10 +142,9 @@ def test_advanced_tab(init_driver):
     advanced_tab.run()
 
 
-def test_advanced_accordion(browser):
-    adva = AdvancedAccordion(browser)
-    adva.load()
-    adva.testcase()
+def test_advanced_accordion(init_driver):
+    advanced_accordion = AdvancedAccordion(init_driver)
+    advanced_accordion.run()
 
 
 def test_team_member(browser):
