@@ -34,6 +34,9 @@ class BasePage:
     def check_text_matches_with(self, by_locator, text):
         assert_that(self.check_element_text(by_locator)).is_equal_to(text)
 
+    def string_match(self, str_1, str_2):
+        assert_that(str_1).is_equal_to(str_2)
+
     def check_existence(self, by_locator):
         element = WebDriverWait(self.browser, 10).until(EC.visibility_of_element_located(by_locator))
         return bool(element)

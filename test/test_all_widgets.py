@@ -156,10 +156,9 @@ def test_infobox(init_driver):
     infobox.run()
 
 
-def test_dual_color_heading(browser):
-    dc = DualColorHeading(browser)
-    dc.load()
-    dc.testcase()
+def test_dual_color_heading(init_driver):
+    dual_color_heading = DualColorHeading(init_driver)
+    dual_color_heading.run()
 
 
 def test_logo_carousel(browser):
