@@ -44,14 +44,14 @@ class DualColorHeading(BasePage, Helper):
                 first_rgb = self.get_element(self.first_color).value_of_css_property('color')
                 hex_code = Color.from_string(first_rgb).hex
                 """Color code check"""
-                self.string_match(hex_code, self.first_color_code)
+                assert_that(hex_code).is_equal_to(self.first_color_code)
                 """First string text"""
                 assert_that(self.browser.find_element(*self.first_color).text).is_equal_to(self.first_color_text)
                 """Second string color"""
                 second_rgb = self.get_element(self.second_color).value_of_css_property('color')
                 hex_code = Color.from_string(second_rgb).hex
                 """Color code check"""
-                self.string_match(hex_code, self.second_color_code)
+                assert_that(hex_code).is_equal_to(self.second_color_code)
                 """Second string color"""
                 self.check_text_matches_with(self.second_color, self.second_color_text)
                 """Description"""
