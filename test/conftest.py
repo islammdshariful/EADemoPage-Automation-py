@@ -11,8 +11,8 @@ from pathlib import Path
 @pytest.fixture(scope='class')
 def init_driver(request):
     opts = Options()
-    # opts.add_experimental_option("detach", True)
-    opts.add_experimental_option('debuggerAddress', 'localhost:9250')
+    opts.add_experimental_option("detach", True)
+    # opts.add_experimental_option('debuggerAddress', 'localhost:9250')
     if platform.system().__eq__("Windows"):
         # For Windows
         path = str(Path(__file__).parent.parent) + "/venv/Lib/site-packages/seleniumbase/drivers/chromedriver.exe"

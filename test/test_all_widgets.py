@@ -1,5 +1,3 @@
-import sys
-
 from pages.Wpforms import Wpforms
 from pages.advanced_accordion import AdvancedAccordion
 from pages.advanced_data_table import AdvancedDataTable
@@ -148,10 +146,9 @@ def test_advanced_accordion(browser):
     adva.testcase()
 
 
-def test_team_member(browser):
-    tc = TeamMember(browser)
-    tc.load()
-    tc.testcase()
+def test_team_member(init_driver):
+    team_member = TeamMember(init_driver)
+    team_member.run()
 
 
 def test_infobox(browser):
