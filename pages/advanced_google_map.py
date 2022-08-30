@@ -14,7 +14,7 @@ class AdvancedGoogleMap(Helper):
     zoom_in_btn = (By.XPATH, f'//*[@id="eael-google-map-5930a8e8"]/div/div/div[4]/div[1]/div/div/button[1]')
     zoom_out_btn = (By.XPATH, f'//*[@id="eael-google-map-5930a8e8"]/div/div/div[4]/div[1]/div/div/button[2]')
 
-    map_btn = (By.XPATH, f'/html/body/div[4div[1]/div/div/div/main/article/div/div/div/div/section[2]/div/div/div'
+    map_btn = (By.XPATH, f'/html/body/div[4]/div[1]/div/div/div/main/article/div/div/div/div/section[2]/div/div/div'
                          f'/div/div/div[3]/div/div[1]/div/div/div[4]/div[2]/div[1]/button')
     satellite_btn = (By.XPATH, f'/html/body/div[4]/div[1]/div/div/div/main/article/div/div/div/div/section[2]/div/'
                                f'div/div/div/div/div[3]/div/div[1]/div/div/div[4]/div[2]/div[2]/button')

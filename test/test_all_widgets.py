@@ -1,5 +1,3 @@
-import sys
-
 from pages.Wpforms import Wpforms
 from pages.advanced_accordion import AdvancedAccordion
 from pages.advanced_data_table import AdvancedDataTable
