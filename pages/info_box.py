@@ -1,9 +1,10 @@
-from selenium.webdriver import ActionChains, Keys
+from selenium.webdriver import ActionChains
 
+from pages.basepage import BasePage
 from utils.config import *
 
 
-class InfoBox(Helper):
+class InfoBox(BasePage, Helper):
     widget = '//*[@id="post-1509"]/div/div/div/div/section[1]/div[4]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Info Box'
@@ -21,26 +22,21 @@ class InfoBox(Helper):
 
     def __init__(self, browser):
         super().__init__(browser)
-        self.browser = browser
 
-    def load(self):
-        self.browser.get(self.info_box)
-
-    def testcase(self):
+    def run(self):
         with soft_assertions():
+            """Go to page"""
+            self.go_to(self.info_box)
+            """Checking widget name"""
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
-                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
+                """Checking widget's documentation"""
                 self.check_documents(self.doc_link, self.doc_name)
             else:
-                self.browser.execute_script("window.scrollTo(0, 1028)")
-                time.sleep(1)
-
-                box_1 = self.browser.find_element(*self.info_box_icon_1)
-                box_2 = self.browser.find_element(*self.info_box_icon_2)
-                cursor = ActionChains(self.browser)
-                cursor.move_to_element(box_1).perform()
-
-                assert_that(self.browser.find_element(*self.info_box_1).text).is_equal_to(self.info_box_1_text)
-                cursor.move_to_element(box_2).perform()
-
+                self.scroll_to(1028)
+                """Move cursor to icon 1"""
+                self.move_cursor_to(self.info_box_icon_1)
+                """Check infobox title"""
+                self.check_text_matches_with(self.info_box_1, self.info_box_1_text)
+                """Move cursor to icon 1"""
+                self.move_cursor_to(self.info_box_icon_2)

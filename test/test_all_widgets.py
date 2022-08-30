@@ -151,10 +151,9 @@ def test_team_member(init_driver):
     team_member.run()
 
 
-def test_infobox(browser):
-    ib = InfoBox(browser)
-    ib.load()
-    ib.testcase()
+def test_infobox(init_driver):
+    infobox = InfoBox(init_driver)
+    infobox.run()
 
 
 def test_dual_color_heading(browser):
