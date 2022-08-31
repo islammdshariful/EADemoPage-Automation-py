@@ -44,6 +44,9 @@ class BasePage:
         else:
             assert_that(1).is_equal_to(error_message)
 
+    def is_displaying(self, *by_locator):
+        return self.browser.find_element(*by_locator).is_displayed()
+
     def get_title(self, title):
         WebDriverWait(self.browser, 10).until(EC.title_is(title))
         return self.browser.title
@@ -51,6 +54,10 @@ class BasePage:
     def move_cursor_to(self, by_locator):
         self.cursor.move_to_element(self.get_element(by_locator)).perform()
         time.sleep(1)
+
+    def move_cursor_to_and_click(self, by_locator):
+        self.cursor.move_to_element(self.get_element(by_locator)).click().perform()
+        time.sleep(.5)
 
     def go_back(self):
         self.browser.back()
