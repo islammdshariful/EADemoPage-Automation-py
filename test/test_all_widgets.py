@@ -170,10 +170,9 @@ def test_team_member_carousel(init_driver):
     team_member_carousel.run()
 
 
-def test_simple_menu(browser):
-    smp = SimpleMenu(browser)
-    smp.load()
-    smp.testcase()
+def test_simple_menu(init_driver):
+    simple_menu = SimpleMenu(init_driver)
+    simple_menu.run()
 
 
 def test_flip_box(browser):

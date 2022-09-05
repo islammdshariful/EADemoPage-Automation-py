@@ -63,6 +63,9 @@ class BasePage:
         self.browser.back()
         time.sleep(1)
 
+    def reload_page(self):
+        self.browser.refresh()
+
     def switch_to_frame(self, by_locator):
         self.browser.switch_to.frame(self.get_element(by_locator))
         time.sleep(1)

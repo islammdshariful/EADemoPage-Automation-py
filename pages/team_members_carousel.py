@@ -79,7 +79,7 @@ class TeamMemberCarousel(BasePage, Helper):
 
     def member_card(self, img_locator, social_fb_locator, social_tw_locator, social_li_locator, name_locator, name_txt,
                     pos_locator, pos_txt):
-
+        """Check member information"""
         self.check_text_matches_with(name_locator, name_txt)
         self.check_text_matches_with(pos_locator, pos_txt)
 
@@ -100,34 +100,34 @@ class TeamMemberCarousel(BasePage, Helper):
                 self.check_documents(self.doc_link, self.doc_name)
             else:
                 self.scroll_to_element(self.scroll_to_1)
-
+                """Check carousel 1"""
                 self.member_card(self.mem_1_img, self.mem_1_soc_fb,
                                  self.mem_1_soc_tw, self.mem_1_soc_lk,
                                  self.mem_1_name, self.mem_name_text,
                                  self.mem_1_pos, self.mem_pos_text)
-
+                """Clicking navigation arrows"""
                 self.do_click(self.prev_button)
                 self.do_click(self.prev_button)
                 self.do_click(self.next_button)
                 self.do_click(self.next_button)
-
+                """Check carousel 2"""
                 self.member_card(self.mem_2_img, self.mem_2_soc_fb,
                                  self.mem_2_soc_tw, self.mem_2_soc_lk,
                                  self.mem_2_name, self.mem_name_text,
                                  self.mem_2_pos, self.mem_pos_text)
-
+                """Go to next carousel"""
                 self.scroll_to_element(self.scroll_to_2)
-
+                """Click on navigation dot"""
                 self.do_click(self.dot_1)
                 time.sleep(1)
-
                 self.member_card(self.mem_3_img, self.mem_3_soc_fb,
                                  self.mem_3_soc_tw, self.mem_3_soc_lk,
                                  self.mem_3_name, self.mem_3_name_text,
                                  self.mem_3_pos, self.mem_3_pos_text)
-
+                """Click on navigation dot"""
                 self.do_click(self.dot_2)
                 time.sleep(1)
+                """Click on navigation dot"""
                 self.do_click(self.dot_3)
                 time.sleep(1)
                 self.member_card(self.mem_4_img, self.mem_4_soc_fb,
