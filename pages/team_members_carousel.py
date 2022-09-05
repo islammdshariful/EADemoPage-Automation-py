@@ -1,11 +1,8 @@
-import time
-
-from selenium.webdriver import ActionChains, Keys
-
+from pages.basepage import BasePage
 from utils.config import *
 
 
-class TeamMemberCarousel(Helper):
+class TeamMemberCarousel(BasePage, Helper):
     widget = '//*[@id="post-2946"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = "Team Members Carousel"
@@ -52,7 +49,7 @@ class TeamMemberCarousel(Helper):
     mem_3_name_text = "Jemes Barber"
     mem_3_pos = (By.XPATH, f'//*[@id="swiper-container-60695a44"]/div/div[4]/div/div[2]/div[1]')
     mem_3_pos_text = "Beard Trimmer"
-    mem_3_img = f'//*[@id="swiper-container-60695a44"]/div/div[4]/div/div[1]/img'
+    mem_3_img = (By.XPATH, f'//*[@id="swiper-container-60695a44"]/div/div[4]/div/div[1]/img')
     mem_3_soc_fb = (By.XPATH, f'//*[@id="swiper-container-60695a44"]/div/div[4]/div/div[2]/div[2]'
                               f'/ul/li[1]/a/span/span')
     mem_3_soc_tw = (By.XPATH, f'//*[@id="swiper-container-60695a44"]/div/div[4]/div/div[2]/div[2]'
@@ -64,7 +61,7 @@ class TeamMemberCarousel(Helper):
     mem_4_name_text = "Deen Mustachio"
     mem_4_pos = (By.XPATH, f'//*[@id="swiper-container-60695a44"]/div/div[8]/div/div[2]/div[1]')
     mem_4_pos_text = "Mustache Experts"
-    mem_4_img = f'//*[@id="swiper-container-60695a44"]/div/div[8]/div/div[1]/img'
+    mem_4_img = (By.XPATH, f'//*[@id="swiper-container-60695a44"]/div/div[8]/div/div[1]/img')
     mem_4_soc_fb = (By.XPATH, f'//*[@id="swiper-container-60695a44"]/div/div[8]/div/div[2]/div[2]'
                               f'/ul/li[1]/a/span/span')
     mem_4_soc_tw = (By.XPATH, f'//*[@id="swiper-container-60695a44"]/div/div[8]/div/div[2]/div[2]'
@@ -72,105 +69,68 @@ class TeamMemberCarousel(Helper):
     mem_4_soc_lk = (By.XPATH, f'//*[@id="swiper-container-60695a44"]/div/div[8]/div/div[2]/div[2]'
                               f'/ul/li[3]/a/span/span')
 
+    scroll_to_1 = (By.XPATH, '//*[@id="post-2946"]/div/div/div/div/section[2]/div/div/div/div/div/section'
+                             '/div/div/div[2]/div/div/div[1]/div/h3')
+    scroll_to_2 = (By.XPATH, '//*[@id="post-2946"]/div/div/div/div/section[5]/div/div/div/div/div/section'
+                             '/div/div/div[2]/div/div/div[1]/div/h3')
+
     def __init__(self, browser):
         super().__init__(browser)
-        self.browser = browser
 
-    def load(self):
-        self.browser.get(self.team_members_carousel)
+    def member_card(self, img_locator, social_fb_locator, social_tw_locator, social_li_locator, name_locator, name_txt,
+                    pos_locator, pos_txt):
 
-    def testcase(self):
+        self.check_text_matches_with(name_locator, name_txt)
+        self.check_text_matches_with(pos_locator, pos_txt)
+
+        self.move_cursor_to(img_locator)
+
+        self.cursor.move_to_element(self.get_element(social_fb_locator)).\
+            move_to_element(self.get_element(social_tw_locator)). \
+            move_to_element(self.get_element(social_li_locator)).perform()
+
+    def run(self):
         with soft_assertions():
+            """Go to page"""
+            self.go_to(self.team_members_carousel)
+            """Checking widget name"""
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
-                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
+                """Checking widget's documentation"""
                 self.check_documents(self.doc_link, self.doc_name)
             else:
-                cursor = ActionChains(self.browser)
-                scrol_ele = self.browser.find_element(By.XPATH, '//*[@id="post-2946"]/div/div/div/div/section[2]/div/div/'
-                                                                'div/div/div/section/div/div/div[2]/div/div/div[1]/div/h3')
-                self.browser.execute_script("arguments[0].scrollIntoView();", scrol_ele)
+                self.scroll_to_element(self.scroll_to_1)
+
+                self.member_card(self.mem_1_img, self.mem_1_soc_fb,
+                                 self.mem_1_soc_tw, self.mem_1_soc_lk,
+                                 self.mem_1_name, self.mem_name_text,
+                                 self.mem_1_pos, self.mem_pos_text)
+
+                self.do_click(self.prev_button)
+                self.do_click(self.prev_button)
+                self.do_click(self.next_button)
+                self.do_click(self.next_button)
+
+                self.member_card(self.mem_2_img, self.mem_2_soc_fb,
+                                 self.mem_2_soc_tw, self.mem_2_soc_lk,
+                                 self.mem_2_name, self.mem_name_text,
+                                 self.mem_2_pos, self.mem_pos_text)
+
+                self.scroll_to_element(self.scroll_to_2)
+
+                self.do_click(self.dot_1)
                 time.sleep(1)
 
-                mem_1 = self.browser.find_element(*self.mem_1_img)
-                mem_2 = self.browser.find_element(*self.mem_2_img)
+                self.member_card(self.mem_3_img, self.mem_3_soc_fb,
+                                 self.mem_3_soc_tw, self.mem_3_soc_lk,
+                                 self.mem_3_name, self.mem_3_name_text,
+                                 self.mem_3_pos, self.mem_3_pos_text)
 
-                cursor.move_to_element(mem_1).perform()
+                self.do_click(self.dot_2)
                 time.sleep(1)
-                if self.browser.find_element(*self.mem_1_soc_fb).is_displayed():
-                    print("MEMBER 1 FACEBOOK ICON IS VISIBLE")
-                    if self.browser.find_element(*self.mem_1_soc_tw).is_displayed():
-                        print("MEMBER 1 TWITTER ICON IS VISIBLE")
-                        if self.browser.find_element(*self.mem_1_soc_lk).is_displayed():
-                            print("MEMBER 1 LINKEDIN ICON IS VISIBLE")
-                        else:
-                            print("MEMBER 1 LINKEDINICON IS NOT VISIBLE")
-                    else:
-                        print("MEMBER 1 FACEBOOK ICON IS NOT VISIBLE")
-                else:
-                    print("MEMBER 1 FACEBOOK ICON IS NOT VISIBLE")
-
-                assert_that(self.browser.find_element(*self.mem_1_name).text).is_equal_to(self.mem_name_text)
-                assert_that(self.browser.find_element(*self.mem_1_pos).text).is_equal_to(self.mem_pos_text)
-
-                self.browser.find_element(*self.prev_button).click()
-                self.browser.find_element(*self.prev_button).click()
-                self.browser.find_element(*self.next_button).click()
-                self.browser.find_element(*self.next_button).click()
-
-                cursor.move_to_element(mem_2).perform()
+                self.do_click(self.dot_3)
                 time.sleep(1)
-                if self.browser.find_element(*self.mem_2_soc_fb).is_displayed():
-                    print("MEMBER 2 FACEBOOK ICON IS VISIBLE")
-                    if self.browser.find_element(*self.mem_2_soc_tw).is_displayed():
-                        print("MEMBER 2 TWITTER ICON IS VISIBLE")
-                        if self.browser.find_element(*self.mem_2_soc_lk).is_displayed():
-                            print("MEMBER 2 LINKEDIN ICON IS VISIBLE")
-                        else:
-                            print("MEMBER 2 LINKEDINICON IS NOT VISIBLE")
-                    else:
-                        print("MEMBER 2 FACEBOOK ICON IS NOT VISIBLE")
-                else:
-                    print("MEMBER 2 FACEBOOK ICON IS NOT VISIBLE")
-
-                assert_that(self.browser.find_element(*self.mem_2_name).text).is_equal_to(self.mem_name_text)
-                assert_that(self.browser.find_element(*self.mem_2_pos).text).is_equal_to(self.mem_pos_text)
-
-                scrol_ele_1 = self.browser.find_element(By.XPATH, '//*[@id="post-2946"]/div/div/div/div/section[5]/div/div'
-                                                                '/div/div/div/section/div/div/div[2]/div/div/div[1]/div/h3')
-                self.browser.execute_script("arguments[0].scrollIntoView();", scrol_ele_1)
-                time.sleep(1)
-                self.browser.find_element(*self.dot_1).click()
-                time.sleep(1)
-                self.check_visibility(self.mem_3_img, "Member 3 image is not visible.")
-
-                assert_that(self.browser.find_element(*self.mem_3_name).text).is_equal_to(self.mem_3_name_text)
-                assert_that(self.browser.find_element(*self.mem_3_pos).text).is_equal_to(self.mem_3_pos_text)
-                mem_3_fb = self.browser.find_element(*self.mem_3_soc_fb)
-                mem_3_tw = self.browser.find_element(*self.mem_3_soc_tw)
-                mem_3_lk = self.browser.find_element(*self.mem_3_soc_lk)
-                cursor.move_to_element(mem_3_fb).move_to_element(mem_3_tw).move_to_element(mem_3_lk).perform()
-                self.browser.find_element(*self.dot_2).click()
-                time.sleep(.5)
-                self.browser.find_element(*self.dot_3).click()
-                time.sleep(.5)
-                self.check_visibility(self.mem_4_img, "Member 4 image is not visible.")
-
-                assert_that(self.browser.find_element(*self.mem_4_name).text).is_equal_to(self.mem_4_name_text)
-                assert_that(self.browser.find_element(*self.mem_4_pos).text).is_equal_to(self.mem_4_pos_text)
-                mem_4_fb = self.browser.find_element(*self.mem_4_soc_fb)
-                mem_4_tw = self.browser.find_element(*self.mem_4_soc_tw)
-                mem_4_lk = self.browser.find_element(*self.mem_4_soc_lk)
-
-                self.browser.execute_script("arguments[0].scrollIntoView();", scrol_ele_1)
-                self.browser.find_element(*self.dot_3).click()
-                time.sleep(1)
-                cursor.move_to_element(mem_4_fb).move_to_element(mem_4_tw).move_to_element(mem_4_lk).perform()
-            
-
-
-
-
-
-
-
+                self.member_card(self.mem_4_img, self.mem_4_soc_fb,
+                                 self.mem_4_soc_tw, self.mem_4_soc_lk,
+                                 self.mem_4_name, self.mem_4_name_text,
+                                 self.mem_4_pos, self.mem_4_pos_text)

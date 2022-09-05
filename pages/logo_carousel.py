@@ -1,11 +1,8 @@
-import time
-
-from selenium.webdriver import ActionChains, Keys
-
+from pages.basepage import BasePage
 from utils.config import *
 
 
-class LogoCarousel(Helper):
+class LogoCarousel(BasePage, Helper):
     widget = '//*[@id="post-2942"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = "Logo Carousel"
@@ -26,32 +23,27 @@ class LogoCarousel(Helper):
 
     def __init__(self, browser):
         super().__init__(browser)
-        self.browser = browser
 
-    def load(self):
-        self.browser.get(self.logo_carousel)
-
-    def testcase(self):
+    def run(self):
         with soft_assertions():
+            """Go to page"""
+            self.go_to(self.logo_carousel)
+            """Checking widget name"""
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
-                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
+                """Checking widget's documentation"""
                 self.check_documents(self.doc_link, self.doc_name)
             else:
-                self.browser.execute_script("window.scrollTo(0, 943)")
+                self.scroll_to(943)
+                """Click on navigation dot 1"""
+                self.do_click(self.dot_1)
+                """move cursor to logo 1"""
+                self.move_cursor_to(self.img_1)
+                """Click on navigation dot 2"""
+                self.do_click(self.dot_2)
                 time.sleep(1)
-
-                self.browser.find_element(*self.dot_1).click()
-
-                cursor = ActionChains(self.browser)
-                logo_1 = self.browser.find_element(*self.img_1)
-                logo_2 = self.browser.find_element(*self.img_2)
-
-                cursor.move_to_element(logo_1).perform()
-
-                self.browser.find_element(*self.dot_2).click()
-                time.sleep(1)
-                cursor.move_to_element(logo_2).perform()
+                """move cursor to logo 2"""
+                self.move_cursor_to(self.img_2)
 
 
 

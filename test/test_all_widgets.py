@@ -160,16 +160,14 @@ def test_dual_color_heading(init_driver):
     dual_color_heading.run()
 
 
-def test_logo_carousel(browser):
-    lc = LogoCarousel(browser)
-    lc.load()
-    lc.testcase()
+def test_logo_carousel(init_driver):
+    logo_carousel = LogoCarousel(init_driver)
+    logo_carousel.run()
 
 
-def test_team_member_carousle(browser):
-    tmc = TeamMemberCarousel(browser)
-    tmc.load()
-    tmc.testcase()
+def test_team_member_carousel(init_driver):
+    team_member_carousel = TeamMemberCarousel(init_driver)
+    team_member_carousel.run()
 
 
 def test_simple_menu(browser):

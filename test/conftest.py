@@ -22,7 +22,7 @@ def init_driver(request):
 
     browser = webdriver.Chrome(executable_path=path, chrome_options=opts)
     request.driver = browser
-    # browser.maximize_window()
+    browser.maximize_window()
     browser.implicitly_wait('10')
 
     yield browser
