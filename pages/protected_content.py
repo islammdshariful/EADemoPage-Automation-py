@@ -45,7 +45,7 @@ class ProtectedContent(BasePage, Helper):
                 """Enter credentials"""
                 self.browser.find_element(*self.password).click()
                 self.do_click(self.password)
-                self.clear_field(self.password)
+                self.do_clear_field(self.password)
                 self.do_send_keys(self.password, "1234")
                 self.do_click(self.button)
                 """Checking protected contents"""

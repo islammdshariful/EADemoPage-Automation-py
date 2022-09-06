@@ -175,16 +175,14 @@ def test_simple_menu(init_driver):
     simple_menu.run()
 
 
-def test_flip_box(browser):
-    fpb = FlipBox(browser)
-    fpb.load()
-    fpb.testcase()
+def test_flip_box(init_driver):
+    flip_box = FlipBox(init_driver)
+    flip_box.run()
 
 
-def test_creative_button(browser):
-    cb = CreativeButton(browser)
-    cb.load()
-    cb.testcase()
+def test_creative_button(init_driver):
+    creative_button = CreativeButton(init_driver)
+    creative_button.run()
 
 
 def test_static_product(browser):

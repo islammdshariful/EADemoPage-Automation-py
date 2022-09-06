@@ -1,9 +1,8 @@
-from selenium.webdriver import ActionChains, Keys
-
+from pages.basepage import BasePage
 from utils.config import *
 
 
-class CreativeButton(Helper):
+class CreativeButton(BasePage, Helper):
     widget = '//*[@id="post-21"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = "Creative Buttons"
@@ -23,32 +22,28 @@ class CreativeButton(Helper):
 
     def __init__(self, browser):
         super().__init__(browser)
-        self.browser = browser
 
-    def load(self):
-        self.browser.get(self.create_button)
-
-    def testcase(self):
+    def run(self):
         with soft_assertions():
+            """Go to page"""
+            self.go_to(self.create_button)
+            """Checking widget name"""
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
-                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
+                """Checking widget's documentation"""
                 self.check_documents(self.doc_link, self.doc_name)
             else:
-                self.browser.execute_script("window.scrollTo(0, 1023)")
-                time.sleep(1)
-
-                cursor = ActionChains(self.browser)
-
-                first_button_ele = self.browser.find_element(*self.FIRST_BUTTON)
-                last_button_ele = self.browser.find_element(*self.LAST_BUTTON)
-                last_button_attribute = self.browser.find_element(*self.LAST_BUTTON_ATTRIBUTE).get_attribute("data-text")
-
-                cursor.move_to_element(first_button_ele).perform()
-                assert_that(first_button_ele.text).is_equal_to(self.FIRST_BUTTON_TEXT)
-
-                cursor.move_to_element(last_button_ele).perform()
-                assert_that(last_button_ele.text).is_equal_to(self.LAST_BUTTON_TEXT)
-                assert_that(last_button_attribute).is_equal_to(self.LAST_BUTTON_ATTRIBUTE_TEXT)
+                self.scroll_to(1023)
+                """move cursor to a button"""
+                self.move_cursor_to(self.FIRST_BUTTON)
+                """check button text"""
+                self.check_text_matches_with(self.FIRST_BUTTON, self.FIRST_BUTTON_TEXT)
+                """move another button"""
+                self.move_cursor_to(self.LAST_BUTTON)
+                """check button text"""
+                self.check_text_matches_with(self.LAST_BUTTON, self.LAST_BUTTON_TEXT)
+                """check button attribute"""
+                assert_that(self.get_element(self.LAST_BUTTON_ATTRIBUTE).get_attribute("data-text")).\
+                    is_equal_to(self.LAST_BUTTON_ATTRIBUTE_TEXT)
 
 
