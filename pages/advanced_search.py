@@ -1,9 +1,8 @@
-from selenium.webdriver import Keys
-
+from pages.basepage import BasePage
 from utils.config import *
 
 
-class AdvancedSearch(Helper):
+class AdvancedSearch(BasePage, Helper):
     widget = '//*[@id="post-271377"]/div/div/div/div/section[1]/div[4]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Advanced Search'
@@ -19,8 +18,8 @@ class AdvancedSearch(Helper):
     clear_btn = (By.XPATH, f'//*[@id="eael-advanced-search-widget-4ccceaa9"]/form/div/span[2]')
     load_more = (By.XPATH, f'//*[@id="eael-advanced-search-widget-4ccceaa9"]/div/div[5]/a')
     search_title = (By.XPATH, f'//*[@id="eael-advanced-search-widget-4ccceaa9"]/div/div[3]/a[1]/div[2]/h4')
-    search_result = f'//*[@id="eael-advanced-search-widget-4ccceaa9"]/div/div[3]/a[1]/div[2]/h4'
-    search_description = f'//*[@id="eael-advanced-search-widget-4ccceaa9"]/div/div[3]/a[1]/div[2]/p'
+    search_result = (By.XPATH, f'//*[@id="eael-advanced-search-widget-4ccceaa9"]/div/div[3]/a[1]/div[2]/h4')
+    search_description = (By.XPATH, f'//*[@id="eael-advanced-search-widget-4ccceaa9"]/div/div[3]/a[1]/div[2]/p')
 
     # Article
     article_title = (By.XPATH, f'//*[@id="page"]/div[1]/div/section/div/div/div[1]/div/div/section[1]'
@@ -30,40 +29,35 @@ class AdvancedSearch(Helper):
 
     def __init__(self, browser):
         super().__init__(browser)
-        self.browser = browser
 
-    def load(self):
-        self.browser.get(self.advanced_search)
-
-    def testcase(self):
+    def run(self):
         with soft_assertions():
+            """Go to page"""
+            self.go_to(self.advanced_search)
+            """Checking widget name"""
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
-                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
+                """Checking widget's documentation"""
                 self.check_documents(self.doc_link, self.doc_name)
             else:
-                self.browser.execute_script("window.scrollTo(0, 1481)")
-                time.sleep(1)
-                assert_that(self.browser.find_element(*self.input_field).get_attribute('placeholder')).\
+                self.scroll_to(1481)
+                assert_that(self.get_element(self.input_field).get_attribute("placeholder")).\
                     is_equal_to(self.placeholder_text)
-                self.browser.find_element(*self.input_field).click()
-                self.browser.find_element(*self.input_field).send_keys(self.search_keyword)
-                time.sleep(1)
-                WebDriverWait(self.browser, 5).until(
-                    EC.presence_of_element_located((By.XPATH, self.search_result))
-                )
-                self.browser.find_element(*self.clear_btn).click()
-                time.sleep(1)
-                self.browser.find_element(*self.input_field).click()
-                self.browser.find_element(*self.input_field).send_keys(self.search_keyword)
-                self.browser.find_element(*self.search_btn).click()
-                time.sleep(1)
-                self.browser.find_element(*self.load_more).click()
-                time.sleep(1)
-                self.check_visibility(self.search_description, "Search description not visible.")
-                title = self.browser.find_element(*self.search_title).text
-                self.browser.find_element(*self.search_title).click()
-                assert_that(self.browser.find_element(*self.article_title).text).is_equal_to(title)
-                self.browser.back()
+                """Search a query"""
+                self.do_click(self.input_field)
+                self.do_send_keys(self.input_field, self.search_keyword)
+                if self.check_element_present(self.search_result):
+                    """Clear the field"""
+                    self.do_click(self.clear_btn)
+                """Search a query and check it's result"""
+                self.do_click(self.input_field)
+                self.do_send_keys(self.input_field, self.search_keyword)
+                self.do_click(self.search_btn)
+                self.do_click(self.load_more)
+                self.is_visible(self.search_description, "Search description not visible.")
+                title = self.get_element_text(self.search_title)
+                self.do_click(self.search_title)
+                self.check_text_matches_with(self.article_title, title)
+                self.go_back()
 
 

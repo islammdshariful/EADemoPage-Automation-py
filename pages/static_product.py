@@ -62,5 +62,3 @@ class StaticProduct(BasePage, Helper):
                 """product button"""
                 self.move_cursor_to(self.second_product_button)
                 self.check_text_matches_with(self.second_product_button, self.second_product_button_text)
-
-

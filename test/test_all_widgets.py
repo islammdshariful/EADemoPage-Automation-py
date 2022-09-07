@@ -190,16 +190,14 @@ def test_static_product(init_driver):
     static_product.run()
 
 
-def test_event_calender(browser):
-    evc = EventCalendar(browser)
-    evc.load()
-    evc.testcase()
+def test_event_calender(init_driver):
+    event_calender = EventCalendar(init_driver)
+    event_calender.run()
 
 
-def test_advanced_search(browser):
-    ads = AdvancedSearch(browser)
-    ads.load()
-    ads.testcase()
+def test_advanced_search(init_driver):
+    advanced_search = AdvancedSearch(init_driver)
+    advanced_search.run()
 
 
 # ------------------------------------------------------------------------------------------------

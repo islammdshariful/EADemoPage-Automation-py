@@ -19,24 +19,22 @@ class BasePage:
         return element
 
     def do_click(self, by_locator):
-        WebDriverWait(self.browser, 10).until(EC.visibility_of_element_located(by_locator)).click()
+        self.get_element(by_locator).click()
 
     def do_clear_field(self, by_locator):
-        WebDriverWait(self.browser, 10).until(EC.visibility_of_element_located(by_locator)).clear()
+        self.get_element(by_locator).clear()
 
     def do_send_keys(self, by_locator, text):
         WebDriverWait(self.browser, 10).until(EC.visibility_of_element_located(by_locator)).send_keys(text)
 
-    def check_element_text(self, by_locator):
-        element = WebDriverWait(self.browser, 10).until(EC.visibility_of_element_located(by_locator))
-        return element.text
+    def get_element_text(self, by_locator):
+        return self.get_element(by_locator).text
 
     def check_text_matches_with(self, by_locator, text):
-        assert_that(self.check_element_text(by_locator)).is_equal_to(text)
+        assert_that(self.get_element_text(by_locator)).is_equal_to(text)
 
-    def check_existence(self, by_locator):
-        element = WebDriverWait(self.browser, 10).until(EC.visibility_of_element_located(by_locator))
-        return bool(element)
+    def check_element_present(self, by_locator):
+        return bool(self.get_element(by_locator))
 
     def is_visible(self, by_locator, error_message):
         if WebDriverWait(self.browser, 10).until(EC.visibility_of_element_located(by_locator)).is_displayed():
