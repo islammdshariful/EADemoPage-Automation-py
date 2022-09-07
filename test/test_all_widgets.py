@@ -185,10 +185,9 @@ def test_creative_button(init_driver):
     creative_button.run()
 
 
-def test_static_product(browser):
-    sp = StaticProduct(browser)
-    sp.load()
-    sp.testcase()
+def test_static_product(init_driver):
+    static_product = StaticProduct(init_driver)
+    static_product.run()
 
 
 def test_event_calender(browser):
