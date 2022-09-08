@@ -1,11 +1,8 @@
-import time
-
-from selenium.webdriver import Keys
-
+from pages.basepage import BasePage
 from utils.config import *
 
 
-class AdvancedDataTable(Helper):
+class AdvancedDataTable(BasePage, Helper):
     widget = '//*[@id="post-256377"]/div/div/div/div/section[1]/div[4]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Advanced Data Table'
@@ -204,22 +201,22 @@ class AdvancedDataTable(Helper):
     tbody_tr9_td6_text = "$2,483.85"
     # ---------------------------------------------
     tbody_tr10_td1 = (By.XPATH, f'//*[@id="post-256377"]/div/div/div/div/section[4]/div/div/div/div/div/div/div/'
-                               f'div/div[1]/table/tbody/tr[10]/td[1]')
+                                f'div/div[1]/table/tbody/tr[10]/td[1]')
     tbody_tr10_td1_text = "10"
     tbody_tr10_td2 = (By.XPATH, f'//*[@id="post-256377"]/div/div/div/div/section[4]/div/div/div/div/div/div/div/'
-                               f'div/div[1]/table/tbody/tr[10]/td[2]')
+                                f'div/div[1]/table/tbody/tr[10]/td[2]')
     tbody_tr10_td2_text = "Garrett Winters"
     tbody_tr10_td3 = (By.XPATH, f'//*[@id="post-256377"]/div/div/div/div/section[4]/div/div/div/div/div/div/div/'
-                               f'div/div[1]/table/tbody/tr[10]/td[3]')
+                                f'div/div[1]/table/tbody/tr[10]/td[3]')
     tbody_tr10_td3_text = "1 Day Absent"
     tbody_tr10_td4 = (By.XPATH, f'//*[@id="post-256377"]/div/div/div/div/section[4]/div/div/div/div/div/div/div/'
-                               f'div/div[1]/table/tbody/tr[10]/td[4]')
+                                f'div/div[1]/table/tbody/tr[10]/td[4]')
     tbody_tr10_td4_text = "7:59:00"
     tbody_tr10_td5 = (By.XPATH, f'//*[@id="post-256377"]/div/div/div/div/section[4]/div/div/div/div/div/div/div/'
-                               f'div/div[1]/table/tbody/tr[10]/td[5]')
+                                f'div/div[1]/table/tbody/tr[10]/td[5]')
     tbody_tr10_td5_text = "$25.15"
     tbody_tr10_td6 = (By.XPATH, f'//*[@id="post-256377"]/div/div/div/div/section[4]/div/div/div/div/div/div/div/'
-                               f'div/div[1]/table/tbody/tr[10]/td[6]')
+                                f'div/div[1]/table/tbody/tr[10]/td[6]')
     tbody_tr10_td6_text = "$1,483.85"
     # ---------------------------------------------
     page_1 = (By.XPATH, f'//*[@id="post-256377"]/div/div/div/div/section[4]/div/div/div/div/div/div/div/div'
@@ -233,138 +230,132 @@ class AdvancedDataTable(Helper):
 
     def __init__(self, browser):
         super().__init__(browser)
-        self.browser = browser
-
-    def load(self):
-        self.browser.get(self.advanced_data_table)
 
     def first_page_list(self):
         # 1
-        assert_that(self.browser.find_element(*self.tbody_tr1_td1).text).is_equal_to(self.tbody_tr1_td1_text)
-        assert_that(self.browser.find_element(*self.tbody_tr1_td2).text).is_equal_to(self.tbody_tr1_td2_text)
-        assert_that(self.browser.find_element(*self.tbody_tr1_td3).text).is_equal_to(self.tbody_tr1_td3_text)
-        assert_that(self.browser.find_element(*self.tbody_tr1_td4).text).is_equal_to(self.tbody_tr1_td4_text)
-        assert_that(self.browser.find_element(*self.tbody_tr1_td5).text).is_equal_to(self.tbody_tr1_td5_text)
-        assert_that(self.browser.find_element(*self.tbody_tr1_td6).text).is_equal_to(self.tbody_tr1_td6_text)
+        self.check_text_matches_with(self.tbody_tr1_td1, self.tbody_tr1_td1_text)
+        self.check_text_matches_with(self.tbody_tr1_td2, self.tbody_tr1_td2_text)
+        self.check_text_matches_with(self.tbody_tr1_td3, self.tbody_tr1_td3_text)
+        self.check_text_matches_with(self.tbody_tr1_td4, self.tbody_tr1_td4_text)
+        self.check_text_matches_with(self.tbody_tr1_td5, self.tbody_tr1_td5_text)
+        self.check_text_matches_with(self.tbody_tr1_td6, self.tbody_tr1_td6_text)
         # 2
-        assert_that(self.browser.find_element(*self.tbody_tr2_td1).text).is_equal_to(self.tbody_tr2_td1_text)
-        assert_that(self.browser.find_element(*self.tbody_tr2_td2).text).is_equal_to(self.tbody_tr2_td2_text)
-        assert_that(self.browser.find_element(*self.tbody_tr2_td3).text).is_equal_to(self.tbody_tr2_td3_text)
-        assert_that(self.browser.find_element(*self.tbody_tr2_td4).text).is_equal_to(self.tbody_tr2_td4_text)
-        assert_that(self.browser.find_element(*self.tbody_tr2_td5).text).is_equal_to(self.tbody_tr2_td5_text)
-        assert_that(self.browser.find_element(*self.tbody_tr2_td6).text).is_equal_to(self.tbody_tr2_td6_text)
+        self.check_text_matches_with(self.tbody_tr2_td1, self.tbody_tr2_td1_text)
+        self.check_text_matches_with(self.tbody_tr2_td2, self.tbody_tr2_td2_text)
+        self.check_text_matches_with(self.tbody_tr2_td3, self.tbody_tr2_td3_text)
+        self.check_text_matches_with(self.tbody_tr2_td4, self.tbody_tr2_td4_text)
+        self.check_text_matches_with(self.tbody_tr2_td5, self.tbody_tr2_td5_text)
+        self.check_text_matches_with(self.tbody_tr2_td6, self.tbody_tr2_td6_text)
         # 3
-        assert_that(self.browser.find_element(*self.tbody_tr3_td1).text).is_equal_to(self.tbody_tr3_td1_text)
-        assert_that(self.browser.find_element(*self.tbody_tr3_td2).text).is_equal_to(self.tbody_tr3_td2_text)
-        assert_that(self.browser.find_element(*self.tbody_tr3_td3).text).is_equal_to(self.tbody_tr3_td3_text)
-        assert_that(self.browser.find_element(*self.tbody_tr3_td4).text).is_equal_to(self.tbody_tr3_td4_text)
-        assert_that(self.browser.find_element(*self.tbody_tr3_td5).text).is_equal_to(self.tbody_tr3_td5_text)
-        assert_that(self.browser.find_element(*self.tbody_tr3_td6).text).is_equal_to(self.tbody_tr3_td6_text)
+        self.check_text_matches_with(self.tbody_tr3_td1, self.tbody_tr3_td1_text)
+        self.check_text_matches_with(self.tbody_tr3_td2, self.tbody_tr3_td2_text)
+        self.check_text_matches_with(self.tbody_tr3_td3, self.tbody_tr3_td3_text)
+        self.check_text_matches_with(self.tbody_tr3_td4, self.tbody_tr3_td4_text)
+        self.check_text_matches_with(self.tbody_tr3_td5, self.tbody_tr3_td5_text)
+        self.check_text_matches_with(self.tbody_tr3_td6, self.tbody_tr3_td6_text)
         # 4
-        assert_that(self.browser.find_element(*self.tbody_tr4_td1).text).is_equal_to(self.tbody_tr4_td1_text)
-        assert_that(self.browser.find_element(*self.tbody_tr4_td2).text).is_equal_to(self.tbody_tr4_td2_text)
-        assert_that(self.browser.find_element(*self.tbody_tr4_td3).text).is_equal_to(self.tbody_tr4_td3_text)
-        assert_that(self.browser.find_element(*self.tbody_tr4_td4).text).is_equal_to(self.tbody_tr4_td4_text)
-        assert_that(self.browser.find_element(*self.tbody_tr4_td5).text).is_equal_to(self.tbody_tr4_td5_text)
-        assert_that(self.browser.find_element(*self.tbody_tr4_td6).text).is_equal_to(self.tbody_tr4_td6_text)
+        self.check_text_matches_with(self.tbody_tr4_td1, self.tbody_tr4_td1_text)
+        self.check_text_matches_with(self.tbody_tr4_td2, self.tbody_tr4_td2_text)
+        self.check_text_matches_with(self.tbody_tr4_td3, self.tbody_tr4_td3_text)
+        self.check_text_matches_with(self.tbody_tr4_td4, self.tbody_tr4_td4_text)
+        self.check_text_matches_with(self.tbody_tr4_td5, self.tbody_tr4_td5_text)
+        self.check_text_matches_with(self.tbody_tr4_td6, self.tbody_tr4_td6_text)
         # 5
-        assert_that(self.browser.find_element(*self.tbody_tr5_td1).text).is_equal_to(self.tbody_tr5_td1_text)
-        assert_that(self.browser.find_element(*self.tbody_tr5_td2).text).is_equal_to(self.tbody_tr5_td2_text)
-        assert_that(self.browser.find_element(*self.tbody_tr5_td3).text).is_equal_to(self.tbody_tr5_td3_text)
-        assert_that(self.browser.find_element(*self.tbody_tr5_td4).text).is_equal_to(self.tbody_tr5_td4_text)
-        assert_that(self.browser.find_element(*self.tbody_tr5_td5).text).is_equal_to(self.tbody_tr5_td5_text)
-        assert_that(self.browser.find_element(*self.tbody_tr5_td6).text).is_equal_to(self.tbody_tr5_td6_text)
+        self.check_text_matches_with(self.tbody_tr5_td1, self.tbody_tr5_td1_text)
+        self.check_text_matches_with(self.tbody_tr5_td2, self.tbody_tr5_td2_text)
+        self.check_text_matches_with(self.tbody_tr5_td3, self.tbody_tr5_td3_text)
+        self.check_text_matches_with(self.tbody_tr5_td4, self.tbody_tr5_td4_text)
+        self.check_text_matches_with(self.tbody_tr5_td5, self.tbody_tr5_td5_text)
+        self.check_text_matches_with(self.tbody_tr5_td6, self.tbody_tr5_td6_text)
         # 6
-        assert_that(self.browser.find_element(*self.tbody_tr6_td1).text).is_equal_to(self.tbody_tr6_td1_text)
-        assert_that(self.browser.find_element(*self.tbody_tr6_td2).text).is_equal_to(self.tbody_tr6_td2_text)
-        assert_that(self.browser.find_element(*self.tbody_tr6_td3).text).is_equal_to(self.tbody_tr6_td3_text)
-        assert_that(self.browser.find_element(*self.tbody_tr6_td4).text).is_equal_to(self.tbody_tr6_td4_text)
-        assert_that(self.browser.find_element(*self.tbody_tr6_td5).text).is_equal_to(self.tbody_tr6_td5_text)
-        assert_that(self.browser.find_element(*self.tbody_tr6_td6).text).is_equal_to(self.tbody_tr6_td6_text)
+        self.check_text_matches_with(self.tbody_tr6_td1, self.tbody_tr6_td1_text)
+        self.check_text_matches_with(self.tbody_tr6_td2, self.tbody_tr6_td2_text)
+        self.check_text_matches_with(self.tbody_tr6_td3, self.tbody_tr6_td3_text)
+        self.check_text_matches_with(self.tbody_tr6_td4, self.tbody_tr6_td4_text)
+        self.check_text_matches_with(self.tbody_tr6_td5, self.tbody_tr6_td5_text)
+        self.check_text_matches_with(self.tbody_tr6_td6, self.tbody_tr6_td6_text)
         # 7
-        assert_that(self.browser.find_element(*self.tbody_tr7_td1).text).is_equal_to(self.tbody_tr7_td1_text)
-        assert_that(self.browser.find_element(*self.tbody_tr7_td2).text).is_equal_to(self.tbody_tr7_td2_text)
-        assert_that(self.browser.find_element(*self.tbody_tr7_td3).text).is_equal_to(self.tbody_tr7_td3_text)
-        assert_that(self.browser.find_element(*self.tbody_tr7_td4).text).is_equal_to(self.tbody_tr7_td4_text)
-        assert_that(self.browser.find_element(*self.tbody_tr7_td5).text).is_equal_to(self.tbody_tr7_td5_text)
-        assert_that(self.browser.find_element(*self.tbody_tr7_td6).text).is_equal_to(self.tbody_tr7_td6_text)
+        self.check_text_matches_with(self.tbody_tr7_td1, self.tbody_tr7_td1_text)
+        self.check_text_matches_with(self.tbody_tr7_td2, self.tbody_tr7_td2_text)
+        self.check_text_matches_with(self.tbody_tr7_td3, self.tbody_tr7_td3_text)
+        self.check_text_matches_with(self.tbody_tr7_td4, self.tbody_tr7_td4_text)
+        self.check_text_matches_with(self.tbody_tr7_td5, self.tbody_tr7_td5_text)
+        self.check_text_matches_with(self.tbody_tr7_td6, self.tbody_tr7_td6_text)
 
     def second_page_list(self):
         # 8
-        assert_that(self.browser.find_element(*self.tbody_tr8_td1).text).is_equal_to(self.tbody_tr8_td1_text)
-        assert_that(self.browser.find_element(*self.tbody_tr8_td2).text).is_equal_to(self.tbody_tr8_td2_text)
-        assert_that(self.browser.find_element(*self.tbody_tr8_td3).text).is_equal_to(self.tbody_tr8_td3_text)
-        assert_that(self.browser.find_element(*self.tbody_tr8_td4).text).is_equal_to(self.tbody_tr8_td4_text)
-        assert_that(self.browser.find_element(*self.tbody_tr8_td5).text).is_equal_to(self.tbody_tr8_td5_text)
-        assert_that(self.browser.find_element(*self.tbody_tr8_td6).text).is_equal_to(self.tbody_tr8_td6_text)
+        self.check_text_matches_with(self.tbody_tr8_td1, self.tbody_tr8_td1_text)
+        self.check_text_matches_with(self.tbody_tr8_td2, self.tbody_tr8_td2_text)
+        self.check_text_matches_with(self.tbody_tr8_td3, self.tbody_tr8_td3_text)
+        self.check_text_matches_with(self.tbody_tr8_td4, self.tbody_tr8_td4_text)
+        self.check_text_matches_with(self.tbody_tr8_td5, self.tbody_tr8_td5_text)
+        self.check_text_matches_with(self.tbody_tr8_td6, self.tbody_tr8_td6_text)
         # 9
-        assert_that(self.browser.find_element(*self.tbody_tr9_td1).text).is_equal_to(self.tbody_tr9_td1_text)
-        assert_that(self.browser.find_element(*self.tbody_tr9_td2).text).is_equal_to(self.tbody_tr9_td2_text)
-        assert_that(self.browser.find_element(*self.tbody_tr9_td3).text).is_equal_to(self.tbody_tr9_td3_text)
-        assert_that(self.browser.find_element(*self.tbody_tr9_td4).text).is_equal_to(self.tbody_tr9_td4_text)
-        assert_that(self.browser.find_element(*self.tbody_tr9_td5).text).is_equal_to(self.tbody_tr9_td5_text)
-        assert_that(self.browser.find_element(*self.tbody_tr9_td6).text).is_equal_to(self.tbody_tr9_td6_text)
+        self.check_text_matches_with(self.tbody_tr9_td1, self.tbody_tr9_td1_text)
+        self.check_text_matches_with(self.tbody_tr9_td2, self.tbody_tr9_td2_text)
+        self.check_text_matches_with(self.tbody_tr9_td3, self.tbody_tr9_td3_text)
+        self.check_text_matches_with(self.tbody_tr9_td4, self.tbody_tr9_td4_text)
+        self.check_text_matches_with(self.tbody_tr9_td5, self.tbody_tr9_td5_text)
+        self.check_text_matches_with(self.tbody_tr9_td6, self.tbody_tr9_td6_text)
         # 10
-        assert_that(self.browser.find_element(*self.tbody_tr10_td1).text).is_equal_to(self.tbody_tr10_td1_text)
-        assert_that(self.browser.find_element(*self.tbody_tr10_td2).text).is_equal_to(self.tbody_tr10_td2_text)
-        assert_that(self.browser.find_element(*self.tbody_tr10_td3).text).is_equal_to(self.tbody_tr10_td3_text)
-        assert_that(self.browser.find_element(*self.tbody_tr10_td4).text).is_equal_to(self.tbody_tr10_td4_text)
-        assert_that(self.browser.find_element(*self.tbody_tr10_td5).text).is_equal_to(self.tbody_tr10_td5_text)
-        assert_that(self.browser.find_element(*self.tbody_tr10_td6).text).is_equal_to(self.tbody_tr10_td6_text)
+        self.check_text_matches_with(self.tbody_tr10_td1, self.tbody_tr10_td1_text)
+        self.check_text_matches_with(self.tbody_tr10_td2, self.tbody_tr10_td2_text)
+        self.check_text_matches_with(self.tbody_tr10_td3, self.tbody_tr10_td3_text)
+        self.check_text_matches_with(self.tbody_tr10_td4, self.tbody_tr10_td4_text)
+        self.check_text_matches_with(self.tbody_tr10_td5, self.tbody_tr10_td5_text)
+        self.check_text_matches_with(self.tbody_tr10_td6, self.tbody_tr10_td6_text)
 
     def after_sort(self):
         # 1
-        assert_that(self.browser.find_element(*self.tbody_tr1_td1).text).is_equal_to(self.tbody_tr10_td1_text)
-        assert_that(self.browser.find_element(*self.tbody_tr1_td2).text).is_equal_to(self.tbody_tr10_td2_text)
-        assert_that(self.browser.find_element(*self.tbody_tr1_td3).text).is_equal_to(self.tbody_tr10_td3_text)
-        assert_that(self.browser.find_element(*self.tbody_tr1_td4).text).is_equal_to(self.tbody_tr10_td4_text)
-        assert_that(self.browser.find_element(*self.tbody_tr1_td5).text).is_equal_to(self.tbody_tr10_td5_text)
-        assert_that(self.browser.find_element(*self.tbody_tr1_td6).text).is_equal_to(self.tbody_tr10_td6_text)
-        self.browser.find_element(*self.page_next).click()
-        time.sleep(.5)
+        self.check_text_matches_with(self.tbody_tr1_td1, self.tbody_tr10_td1_text)
+        self.check_text_matches_with(self.tbody_tr1_td2, self.tbody_tr10_td2_text)
+        self.check_text_matches_with(self.tbody_tr1_td3, self.tbody_tr10_td3_text)
+        self.check_text_matches_with(self.tbody_tr1_td4, self.tbody_tr10_td4_text)
+        self.check_text_matches_with(self.tbody_tr1_td5, self.tbody_tr10_td5_text)
+        self.check_text_matches_with(self.tbody_tr1_td6, self.tbody_tr10_td6_text)
+        self.do_click(self.page_next)
         # 10
-        assert_that(self.browser.find_element(*self.tbody_tr10_td1).text).is_equal_to(self.tbody_tr1_td1_text)
-        assert_that(self.browser.find_element(*self.tbody_tr10_td2).text).is_equal_to(self.tbody_tr1_td2_text)
-        assert_that(self.browser.find_element(*self.tbody_tr10_td3).text).is_equal_to(self.tbody_tr1_td3_text)
-        assert_that(self.browser.find_element(*self.tbody_tr10_td4).text).is_equal_to(self.tbody_tr1_td4_text)
-        assert_that(self.browser.find_element(*self.tbody_tr10_td5).text).is_equal_to(self.tbody_tr1_td5_text)
-        assert_that(self.browser.find_element(*self.tbody_tr10_td6).text).is_equal_to(self.tbody_tr1_td6_text)
+        self.check_text_matches_with(self.tbody_tr10_td1, self.tbody_tr1_td1_text)
+        self.check_text_matches_with(self.tbody_tr10_td2, self.tbody_tr1_td2_text)
+        self.check_text_matches_with(self.tbody_tr10_td3, self.tbody_tr1_td3_text)
+        self.check_text_matches_with(self.tbody_tr10_td4, self.tbody_tr1_td4_text)
+        self.check_text_matches_with(self.tbody_tr10_td5, self.tbody_tr1_td5_text)
+        self.check_text_matches_with(self.tbody_tr10_td6, self.tbody_tr1_td6_text)
 
-    def testcase(self):
+    def run(self):
         with soft_assertions():
+            """Go to page"""
+            self.go_to(self.advanced_data_table)
+            """Checking widget name"""
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
-                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
+                """Checking widget's documentation"""
                 self.check_documents(self.doc_link, self.doc_name)
             else:
-                self.browser.execute_script("window.scrollTo(0, 2811)")
-                time.sleep(1)
-
-                assert_that(self.browser.find_element(*self.thaead_1).text).is_equal_to(self.thaead_1_text)
-                assert_that(self.browser.find_element(*self.thaead_2).text).is_equal_to(self.thaead_2_text)
-                assert_that(self.browser.find_element(*self.thaead_3).text).is_equal_to(self.thaead_3_text)
-                assert_that(self.browser.find_element(*self.thaead_4).text).is_equal_to(self.thaead_4_text)
-                assert_that(self.browser.find_element(*self.thaead_5).text).is_equal_to(self.thaead_5_text)
-                assert_that(self.browser.find_element(*self.thaead_6).text).is_equal_to(self.thaead_6_text)
+                self.scroll_to(2811)
+                """Check headers"""
+                self.check_text_matches_with(self.thaead_1, self.thaead_1_text)
+                self.check_text_matches_with(self.thaead_2, self.thaead_2_text)
+                self.check_text_matches_with(self.thaead_3, self.thaead_3_text)
+                self.check_text_matches_with(self.thaead_4, self.thaead_4_text)
+                self.check_text_matches_with(self.thaead_5, self.thaead_5_text)
+                self.check_text_matches_with(self.thaead_6, self.thaead_6_text)
+                """Check first page"""
                 self.first_page_list()
-                self.browser.find_element(*self.page_2).click()
-                time.sleep(.5)
+                """Click second pagination and check second page"""
+                self.do_click(self.page_2)
                 self.second_page_list()
-                self.browser.find_element(*self.page_1).click()
-                time.sleep(.5)
+                """Click first pagination and check first page"""
+                self.do_click(self.page_1)
                 self.first_page_list()
-                self.browser.find_element(*self.page_next).click()
-                time.sleep(.5)
+                """Click next pagination and check second page"""
+                self.do_click(self.page_next)
                 self.second_page_list()
-                self.browser.find_element(*self.page_pre).click()
-                time.sleep(.5)
+                """Click previous pagination and check first page"""
+                self.do_click(self.page_pre)
                 self.first_page_list()
-                time.sleep(.5)
-                self.browser.find_element(*self.thaead_1).click()
-                self.browser.find_element(*self.thaead_1).click()
-                time.sleep(.5)
+                """Short Table"""
+                self.do_click(self.thaead_1)
+                self.do_click(self.thaead_1)
+                """Check shorted table"""
                 self.after_sort()
-
-
-
-

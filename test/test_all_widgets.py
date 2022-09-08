@@ -204,10 +204,9 @@ def test_advanced_search(init_driver):
 # DYNAMIC CONTENT ELEMENTS
 # ------------------------------------------------------------------------------------------------
 
-def test_advanced_data_table(browser):
-    adt = AdvancedDataTable(browser)
-    adt.load()
-    adt.testcase()
+def test_advanced_data_table(init_driver):
+    advanced_data_table = AdvancedDataTable(init_driver)
+    advanced_data_table.run()
 
 
 def test_post_block(browser):
