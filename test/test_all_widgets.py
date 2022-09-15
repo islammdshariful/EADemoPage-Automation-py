@@ -209,10 +209,9 @@ def test_advanced_data_table(init_driver):
     advanced_data_table.run()
 
 
-def test_post_block(browser):
-    pb = PostBlock(browser)
-    pb.load()
-    pb.testcase()
+def test_post_block(init_driver):
+    post_block = PostBlock(init_driver)
+    post_block.run()
 
 
 def test_post_timeline(browser):
