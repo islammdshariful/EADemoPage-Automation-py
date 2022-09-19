@@ -214,16 +214,14 @@ def test_post_block(init_driver):
     post_block.run()
 
 
-def test_post_timeline(browser):
-    ptl = PostTimeline(browser)
-    ptl.load()
-    ptl.testcase()
+def test_post_timeline(init_driver):
+    post_timeline = PostTimeline(init_driver)
+    post_timeline.run()
 
 
-def test_smart_post_list(browser):
-    spl = PostList(browser)
-    spl.load()
-    spl.testcase()
+def test_smart_post_list(init_driver):
+    smart_post_list = PostList(init_driver)
+    smart_post_list.run()
 
 
 def test_google_map(browser):
