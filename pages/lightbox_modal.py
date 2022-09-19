@@ -3,7 +3,7 @@ from selenium.webdriver import Keys
 from utils.config import *
 
 
-class LightboxModal(Helper, ImageComparison):
+class LightboxModal(Helper, Snapshot):
     widget = '//*[@id="post-40"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Lightbox & Modal'

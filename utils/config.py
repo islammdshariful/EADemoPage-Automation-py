@@ -5,11 +5,14 @@ import os.path
 import time
 from pathlib import Path
 
+from PIL import Image, ImageChops
 from assertpy import soft_assertions, assert_that
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver import Keys
+
+from pages.basepage import BasePage
 
 
 class Helper:
@@ -151,76 +154,99 @@ class Helper:
             assert_that(self.browser.find_element(By.XPATH, locator).text).is_equal_to(name)
 
 
-class ImageComparison:
+class Snapshot(BasePage):
     def __init__(self, browser):
-        self.browser = browser
+        super().__init__(browser)
 
     def hash_it(self, path):
-        with open(path, 'rb') as f:
+        with open(path, 'rb') as file:
             hasher = hashlib.md5()
-            hasher.update(f.read())
+            hasher.update(file.read())
             return hasher.hexdigest()
 
-    def download_image(self, element_xpth, widget):
+    def take_snap(self, by_locator, widget):
         if not os.path.exists(str(Path(__file__).parent.parent) + '/images/' + widget):
             os.makedirs(str(Path(__file__).parent.parent) + '/images/' + widget)
-        time.sleep(1)
-        img_element = self.browser.find_element(By.XPATH, element_xpth).get_attribute("src")
-        save_img_path = str(Path(__file__).parent.parent) + '/images/' + widget + '/local.png'
-        urllib.request.urlretrieve(img_element, save_img_path)
-        time.sleep(1)
+        element = self.get_element(by_locator)
+        time.sleep(2)
+        element.screenshot(str(Path(__file__).parent.parent) + '/images/' + widget + '/local.png')
 
-    def download_image_comparison(self, element_xpth, widget):
-        time.sleep(1)
-        local_img = str(Path(__file__).parent.parent) + '/images/' + widget + '/local.png'
-        remote_img_path = str(Path(__file__).parent.parent) + '/images/' + widget + '/remote.png'
-
-        img_element = self.browser.find_element(By.XPATH, element_xpth).get_attribute("src")
-        urllib.request.urlretrieve(img_element, remote_img_path)
-
-        local_img_hash = self.hash_it(local_img)
-        remote_img_hash = self.hash_it(remote_img_path)
-        with soft_assertions():
-            assert_that(local_img_hash).is_equal_to(remote_img_hash)
-
-    def download_gif(self, element_xpth, widget):
-        if not os.path.exists(str(Path(__file__).parent.parent) + '/images/' + widget):
-            os.makedirs(str(Path(__file__).parent.parent) + '/images/' + widget)
-        time.sleep(1)
-        img_element = self.browser.find_element(By.XPATH, element_xpth).get_attribute("src")
-        save_img_path = str(Path(__file__).parent.parent) + '/images/' + widget + '/local.gif'
-        urllib.request.urlretrieve(img_element, save_img_path)
-        time.sleep(1)
-
-    def download_gif_comparison(self, element_xpth, widget):
-        time.sleep(1)
-        local_img = str(Path(__file__).parent.parent) +  '/images/' + widget + '/local.gif'
-        remote_img_path = str(Path(__file__).parent.parent) +  '/images/' + widget + '/remote.gif'
-
-        img_element = self.browser.find_element(By.XPATH, element_xpth).get_attribute("src")
-        urllib.request.urlretrieve(img_element, remote_img_path)
-
-        local_img_hash = self.hash_it(local_img)
-        remote_img_hash = self.hash_it(remote_img_path)
-        with soft_assertions():
-            assert_that(local_img_hash).is_equal_to(remote_img_hash)
-
-    def take_new_snap(self, widget):
-        if not os.path.exists(str(Path(__file__).parent.parent) + '/images/' + widget):
-            os.makedirs(str(Path(__file__).parent.parent) + '/images/' + widget)
-        time.sleep(1)
-        self.browser.save_screenshot(str(Path(__file__).parent.parent) + '/images/' + widget + '/local.png')
-
-    def image_comparison(self, widget):
-        time.sleep(1)
+    def snap_comparison(self, by_locator, widget):
         local_img_path = str(Path(__file__).parent.parent) + '/images/' + widget + '/local.png'
         remote_img_path = str(Path(__file__).parent.parent) + '/images/' + widget + '/remote.png'
 
-        self.browser.save_screenshot(str(Path(__file__).parent.parent) + '/images/' + widget + '/remote.png')
+        element = self.get_element(by_locator)
+        time.sleep(2)
+        element.screenshot(str(Path(__file__).parent.parent) + '/images/' + widget + '/remote.png')
+
+        local = Image.open(local_img_path)
+        remote = Image.open(remote_img_path)
+
+        diff_img = ImageChops.difference(local, remote).convert("RGB")
+        if diff_img.getbbox():
+            element.screenshot(str(Path(__file__).parent.parent) + '/images/' + widget + '/not_matched.png')
+            assert_that("Success").is_equal_to("Image comparison Passed")
+        else:
+            assert_that("Success").is_equal_to("Success")
+
+
 
         local_img_hash = self.hash_it(local_img_path)
         remote_img_hash = self.hash_it(remote_img_path)
         with soft_assertions():
             assert_that(local_img_hash).is_equal_to(remote_img_hash)
+
+    # def download_image_comparison(self, element_xpth, widget):
+    #     time.sleep(1)
+    #     local_img = str(Path(__file__).parent.parent) + '/images/' + widget + '/local.png'
+    #     remote_img_path = str(Path(__file__).parent.parent) + '/images/' + widget + '/remote.png'
+    #
+    #     img_element = self.browser.find_element(By.XPATH, element_xpth).get_attribute("src")
+    #     urllib.request.urlretrieve(img_element, remote_img_path)
+    #
+    #     local_img_hash = self.hash_it(local_img)
+    #     remote_img_hash = self.hash_it(remote_img_path)
+    #     with soft_assertions():
+    #         assert_that(local_img_hash).is_equal_to(remote_img_hash)
+    #
+    # def download_gif(self, element_xpth, widget):
+    #     if not os.path.exists(str(Path(__file__).parent.parent) + '/images/' + widget):
+    #         os.makedirs(str(Path(__file__).parent.parent) + '/images/' + widget)
+    #     time.sleep(1)
+    #     img_element = self.browser.find_element(By.XPATH, element_xpth).get_attribute("src")
+    #     save_img_path = str(Path(__file__).parent.parent) + '/images/' + widget + '/local.gif'
+    #     urllib.request.urlretrieve(img_element, save_img_path)
+    #     time.sleep(1)
+    #
+    # def download_gif_comparison(self, element_xpth, widget):
+    #     time.sleep(1)
+    #     local_img = str(Path(__file__).parent.parent) +  '/images/' + widget + '/local.gif'
+    #     remote_img_path = str(Path(__file__).parent.parent) +  '/images/' + widget + '/remote.gif'
+    #
+    #     img_element = self.browser.find_element(By.XPATH, element_xpth).get_attribute("src")
+    #     urllib.request.urlretrieve(img_element, remote_img_path)
+    #
+    #     local_img_hash = self.hash_it(local_img)
+    #     remote_img_hash = self.hash_it(remote_img_path)
+    #     with soft_assertions():
+    #         assert_that(local_img_hash).is_equal_to(remote_img_hash)
+    #
+    # def take_new_snap(self, widget):
+    #     if not os.path.exists(str(Path(__file__).parent.parent) + '/images/' + widget):
+    #         os.makedirs(str(Path(__file__).parent.parent) + '/images/' + widget)
+    #     time.sleep(1)
+    #     self.browser.save_screenshot(str(Path(__file__).parent.parent) + '/images/' + widget + '/local.png')
+    #
+    # def image_comparison(self, widget):
+    #     time.sleep(1)
+    #     local_img_path = str(Path(__file__).parent.parent) + '/images/' + widget + '/local.png'
+    #     remote_img_path = str(Path(__file__).parent.parent) + '/images/' + widget + '/remote.png'
+    #
+    #     self.browser.save_screenshot(str(Path(__file__).parent.parent) + '/images/' + widget + '/remote.png')
+    #
+    #     local_img_hash = self.hash_it(local_img_path)
+    #     remote_img_hash = self.hash_it(remote_img_path)
+    #     with soft_assertions():
+    #         assert_that(local_img_hash).is_equal_to(remote_img_hash)
 
 

@@ -3,7 +3,7 @@ from selenium.webdriver import ActionChains, Keys
 from utils.config import *
 
 
-class ImageScroller(Helper, ImageComparison):
+class ImageScroller(Helper, Snapshot):
     widget = '//*[@id="post-4586"]/div/div/div/div/section[1]/div[4]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Image Scroller'

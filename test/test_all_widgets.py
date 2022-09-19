@@ -72,7 +72,7 @@ from pages.testimonial_slider import TestimonialSlider
 from pages.testimonials import Testimonial
 from pages.tooltip import ToolTip
 from pages.counter import Counter
-from pages.image_comparison import ImageComparison
+from pages.image_comparison import Snapshot
 from pages.progress_bar import ProgressBar
 from pages.twitter_feed import TwitterFeed
 from pages.twitter_feed_carousel import TwitterFeedCarousel
@@ -224,10 +224,9 @@ def test_smart_post_list(init_driver):
     smart_post_list.run()
 
 
-def test_google_map(browser):
-    gm = AdvancedGoogleMap(browser)
-    gm.load()
-    gm.testcase()
+def test_google_map(init_driver):
+    google_map = AdvancedGoogleMap(init_driver)
+    google_map.run()
 
 
 def test_content_ticker(browser):
@@ -311,7 +310,7 @@ def test_one_page_nav(browser):
 
 
 def test_image_comparison(browser):
-    ic = ImageComparison(browser)
+    ic = Snapshot(browser)
     ic.load()
     ic.testcase()
 

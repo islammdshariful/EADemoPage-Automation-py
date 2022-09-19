@@ -35,7 +35,7 @@ class CrossDomainCopyPaste(Helper):
                 img_src = self.browser.find_element(By.XPATH, self.img)
                 assert_that(img_src.get_attribute("src")).is_equal_to(self.src)
 
-                ic = ImageComparison(self.browser)
+                ic = Snapshot(self.browser)
 
                 # This is for downloading the gif
                 # ic.download_gif(self.img, "CrossDomainCopyPaste")
