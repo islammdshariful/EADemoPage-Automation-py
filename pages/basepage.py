@@ -18,6 +18,10 @@ class BasePage:
         element = WebDriverWait(self.browser, 10).until(EC.visibility_of_element_located(by_locator))
         return element
 
+    def does_element_has_text(self, by_locator, text):
+        WebDriverWait(self.browser, 10).until(
+            EC.text_to_be_present_in_element(by_locator, text))
+
     def do_click(self, by_locator):
         self.get_element(by_locator).click()
 

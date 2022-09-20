@@ -229,16 +229,14 @@ def test_google_map(init_driver):
     google_map.run()
 
 
-def test_content_ticker(browser):
-    ct = ContentTicker(browser)
-    ct.load()
-    ct.testcase()
+def test_content_ticker(init_driver):
+    content_ticker = ContentTicker(init_driver)
+    content_ticker.run()
 
 
-def test_content_timeline(browser):
-    ct = ContentTimeline(browser)
-    ct.load()
-    ct.testcase()
+def test_content_timeline(init_driver):
+    content_timeline = ContentTimeline(init_driver)
+    content_timeline.run()
 
 
 def test_dynamic_gallery(browser):
