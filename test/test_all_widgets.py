@@ -239,10 +239,9 @@ def test_content_timeline(init_driver):
     content_timeline.run()
 
 
-def test_dynamic_gallery(browser):
-    dg = DynamicGallery(browser)
-    dg.load()
-    dg.testcase()
+def test_dynamic_gallery(init_driver):
+    dynamic_gallery = DynamicGallery(init_driver)
+    dynamic_gallery.run()
 
 
 def test_post_grid(browser):
