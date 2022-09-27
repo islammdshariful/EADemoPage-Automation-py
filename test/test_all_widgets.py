@@ -244,10 +244,9 @@ def test_dynamic_gallery(init_driver):
     dynamic_gallery.run()
 
 
-def test_post_grid(browser):
-    pg = PostGrid(browser)
-    pg.load()
-    pg.testcase()
+def test_post_grid(init_driver):
+    post_grid = PostGrid(init_driver)
+    post_grid.run()
 
 
 def test_data_table(browser):
