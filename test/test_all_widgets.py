@@ -254,32 +254,28 @@ def test_data_table(init_driver):
     data_table.run()
 
 
-def test_post_carousel(browser):
-    pc = PostCarousel(browser)
-    pc.load()
-    pc.testcase()
+def test_post_carousel(init_driver):
+    post_carousel = PostCarousel(init_driver)
+    post_carousel.run()
 
 
 # ------------------------------------------------------------------------------------------------
 # MARKETING ELEMENTS
 # ------------------------------------------------------------------------------------------------
 
-def test_pricing_table(browser):
-    pt = PricingTable(browser)
-    pt.load()
-    pt.testcase()
+def test_pricing_table(init_driver):
+    pricing_table = PricingTable(init_driver)
+    pricing_table.run()
 
 
-def test_call_to_action(browser):
-    cta = CallToAction(browser)
-    cta.load()
-    cta.testcase()
+def test_call_to_action(init_driver):
+    call_to_action = CallToAction(init_driver)
+    call_to_action.run()
 
 
-def test_price_menu(browser):
-    pm = PriceMenu(browser)
-    pm.load()
-    pm.testcase()
+def test_price_menu(init_driver):
+    price_menu = PriceMenu(init_driver)
+    price_menu.run()
 
 
 # ------------------------------------------------------------------------------------------------
