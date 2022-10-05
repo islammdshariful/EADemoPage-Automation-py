@@ -249,10 +249,9 @@ def test_post_grid(init_driver):
     post_grid.run()
 
 
-def test_data_table(browser):
-    dt = DataTable(browser)
-    dt.load()
-    dt.testcase()
+def test_data_table(init_driver):
+    data_table = DataTable(init_driver)
+    data_table.run()
 
 
 def test_post_carousel(browser):
