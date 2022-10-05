@@ -256,14 +256,17 @@ class DataTable(BasePage, Helper):
                 self.check_documents(self.doc_link, self.doc_name)
             else:
                 self.scroll_to(3971)
-
+                """Checking table header"""
                 self.check_text_matches_with(self.thaead_1, self.thaead_1_text)
                 self.check_text_matches_with(self.thaead_2, self.thaead_2_text)
                 self.check_text_matches_with(self.thaead_3, self.thaead_3_text)
                 self.check_text_matches_with(self.thaead_4, self.thaead_4_text)
                 self.check_text_matches_with(self.thaead_5, self.thaead_5_text)
                 self.check_text_matches_with(self.thaead_6, self.thaead_6_text)
+                """Checking column data"""
                 self.first_page_list()
+                """Sort table"""
                 self.do_click(self.thaead_1)
                 self.do_click(self.thaead_1)
+                """Checking column data after sort"""
                 self.after_sort()
