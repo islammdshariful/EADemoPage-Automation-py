@@ -41,9 +41,7 @@ class BasePage:
         return bool(self.get_element(by_locator))
 
     def is_visible(self, by_locator, error_message):
-        if WebDriverWait(self.browser, 10).until(EC.visibility_of_element_located(by_locator)).is_displayed():
-            assert_that(1).is_equal_to(1)
-        else:
+        if not WebDriverWait(self.browser, 10).until(EC.visibility_of_element_located(by_locator)).is_displayed():
             assert_that(1).is_equal_to(error_message)
 
     def is_displaying(self, *by_locator):

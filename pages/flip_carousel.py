@@ -1,9 +1,7 @@
-from selenium.webdriver import Keys
-
 from utils.config import *
 
 
-class FlipCarousel(Helper):
+class FlipCarousel(BasePage, Helper):
     widget = '//*[@id="post-1616"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Flip Carousel'
@@ -24,29 +22,22 @@ class FlipCarousel(Helper):
 
     def __init__(self, browser):
         super().__init__(browser)
-        self.browser = browser
 
-    def load(self):
-        self.browser.get(self.flip_carousel)
-
-    def testcase(self):
+    def run(self):
         with soft_assertions():
+            """Go to page"""
+            self.go_to(self.flip_carousel)
+            """Checking widget name"""
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
-                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
+                """Checking widget's documentation"""
                 self.check_documents(self.doc_link, self.doc_name)
             else:
-                self.browser.execute_script("window.scrollTo(0, 905)")
-                time.sleep(1)
+                self.scroll_to(905)
 
-                self.browser.find_element(*self.flip_2).click()
-                time.sleep(.5)
-                self.browser.find_element(*self.flip_1).click()
-                time.sleep(.5)
-                self.browser.find_element(*self.flip_2).click()
-                time.sleep(.5)
-                self.browser.find_element(*self.flip_3).click()
-                time.sleep(.5)
-                self.browser.find_element(*self.flip_4).click()
-                time.sleep(.5)
-                self.browser.find_element(*self.flip_5).click()
+                self.do_click(self.flip_2)
+                self.do_click(self.flip_1)
+                self.do_click(self.flip_2)
+                self.do_click(self.flip_3)
+                self.do_click(self.flip_4)
+                self.do_click(self.flip_5)

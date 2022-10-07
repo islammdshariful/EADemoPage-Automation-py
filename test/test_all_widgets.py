@@ -72,7 +72,7 @@ from pages.testimonial_slider import TestimonialSlider
 from pages.testimonials import Testimonial
 from pages.tooltip import ToolTip
 from pages.counter import Counter
-from pages.image_comparison import Snapshot
+from pages.image_comparison import Snapshot, ImageComparison
 from pages.progress_bar import ProgressBar
 from pages.twitter_feed import TwitterFeed
 from pages.twitter_feed_carousel import TwitterFeedCarousel
@@ -282,100 +282,84 @@ def test_price_menu(init_driver):
 # CREATIVE ELEMENTS
 # ------------------------------------------------------------------------------------------------
 
-def test_interactive_promo(browser):
-    ip = InteractivePromo(browser)
-    ip.load()
-    ip.testcase()
+def test_interactive_promo(init_driver):
+    interactive_promo = InteractivePromo(init_driver)
+    interactive_promo.run()
 
 
-def test_interactive_cards(browser):
-    ic = InteractiveCards(browser)
-    ic.load()
-    ic.testcase()
+def test_interactive_cards(init_driver):
+    interactive_cards = InteractiveCards(init_driver)
+    interactive_cards.run()
 
 
-def test_one_page_nav(browser):
-    opn = OnePageNav(browser)
-    opn.load()
-    opn.testcase()
+def test_one_page_nav(init_driver):
+    one_page_nav = OnePageNav(init_driver)
+    one_page_nav.run()
 
 
-def test_image_comparison(browser):
-    ic = Snapshot(browser)
-    ic.load()
-    ic.testcase()
+def test_image_comparison(init_driver):
+    image_comparison = ImageComparison(init_driver)
+    image_comparison.run()
 
 
-def test_filterable_gallery(browser):
-    fg = FilterableGallery(browser)
-    fg.load()
-    fg.testcase()
+def test_filterable_gallery(init_driver):
+    filterable_gallery = FilterableGallery(init_driver)
+    filterable_gallery.run()
 
 
-def test_interactive_circle(browser):
-    ic = InteractiveCircle(browser)
-    ic.load()
-    ic.testcase()
+def test_interactive_circle(init_driver):
+    interactive_circle = InteractiveCircle(init_driver)
+    interactive_circle.run()
 
 
-def test_image_hotspots(browser):
-    ih = ImageHotspots(browser)
-    ih.load()
-    ih.testcase()
+def test_image_hotspots(init_driver):
+    image_hotspots = ImageHotspots(init_driver)
+    image_hotspots.run()
 
 
-def test_image_scroller(browser):
-    imgs = ImageScroller(browser)
-    imgs.load()
-    imgs.testcase()
+def test_image_scroller(init_driver):
+    image_scroller = ImageScroller(init_driver)
+    image_scroller.run()
 
 
-def test_divider(browser):
-    d = Divider(browser)
-    d.load()
-    d.testcase()
+def test_divider(init_driver):
+    divider = Divider(init_driver)
+    divider.run()
 
 
-def test_fancy_text(browser):
-    ft = FancyText(browser)
-    ft.load()
-    ft.testcase()
+def test_fancy_text(init_driver):
+    fancy_text = FancyText(init_driver)
+    fancy_text.run()
 
 
-def test_counter(browser):
-    c = Counter(browser)
-    c.load()
-    c.testcase()
+def test_counter(init_driver):
+    counter = Counter(init_driver)
+    counter.run()
 
 
-def test_countdown(browser):
-    c = Countdown(browser)
-    c.load()
-    c.testcase()
+def test_countdown(init_driver):
+    countdown = Countdown(init_driver)
+    countdown.run()
 
 
-def test_lightbox_modal(browser):
-    lm = LightboxModal(browser)
-    lm.load()
-    lm.testcase()
+def test_lightbox_modal(init_driver):
+    lightbox_modal = LightboxModal(init_driver)
+    lightbox_modal.run()
 
 
-def test_flip_carousel(browser):
-    fc = FlipCarousel(browser)
-    fc.load()
-    fc.testcase()
+def test_flip_carousel(init_driver):
+    flip_carousel = FlipCarousel(init_driver)
+    flip_carousel.run()
 
 
-def test_progress_bar(browser):
-    pb = ProgressBar(browser)
-    pb.load()
-    pb.testcase()
+def test_progress_bar(init_driver):
+    progress_bar = ProgressBar(init_driver)
+    progress_bar.run()
 
 
-def test_image_accordion(browser):
-    ia = ImageAccordion(browser)
-    ia.load()
-    ia.testcase()
+def test_image_accordion(init_driver):
+    image_accordion = ImageAccordion(init_driver)
+    image_accordion.run()
 
 
 # ------------------------------------------------------------------------------------------------
