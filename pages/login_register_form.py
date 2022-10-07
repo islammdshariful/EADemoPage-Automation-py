@@ -1,9 +1,7 @@
-from selenium.webdriver import Keys
-
 from utils.config import *
 
 
-class LoginRegisterForm(Helper):
+class LoginRegisterForm(BasePage, Helper):
     widget = '//*[@id="post-262414"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Login Register Form'
@@ -11,7 +9,7 @@ class LoginRegisterForm(Helper):
                '/div/div/div[2]/div/div/div[5]/div/div/a/span/span'
     doc_name = "LOGIN | REGISTER FORM"
 
-    reg_img = f'//*[@id="eael-register-form-wrapper"]/div/div[1]'
+    reg_img = (By.XPATH, f'//*[@id="eael-register-form-wrapper"]/div/div[1]')
     reg_title = (By.XPATH, f'//*[@id="eael-register-form-wrapper"]/div/div[2]/div/div/h4')
 
     reg_fname_field = (By.XPATH, f'//*[@id="form-field-first_name"]')
@@ -29,7 +27,7 @@ class LoginRegisterForm(Helper):
     create_acc_btn = (By.XPATH, f'//*[@id="eael-register-submit"]')
     reg_recaptcha_iframe = (By.XPATH, f'//*[@id="register-recaptcha-node-be27d56"]/div/div/iframe')
 
-    login_img = f'//*[@id="eael-login-form-wrapper"]/div/div/div/div/img'
+    login_img = (By.XPATH, f'//*[@id="eael-login-form-wrapper"]/div/div/div/div/img')
     login_username_label = (By.XPATH, f'//*[@id="eael-login-form"]/div[1]/label')
     login_username_field = (By.XPATH, f'//*[@id="eael-user-login"]')
     login_pass_label = (By.XPATH, f'//*[@id="eael-login-form"]/div[2]/label')
@@ -41,7 +39,7 @@ class LoginRegisterForm(Helper):
     login_reg_now_btn = (By.XPATH, f'//*[@id="eael-lr-reg-toggle"]')
     login_have_acc_label = (By.XPATH, f'//*[@id="eael-lr-login-toggle"]')
 
-    success_msg = f'//*[@id="fluentform_1_success"]'
+    success_msg = (By.XPATH, f'//*[@id="fluentform_1_success"]')
     success_msg_text = "Thank you for your message. We will get in touch with you shortly"
 
     reg_login_label_Text = "Welcome Back, Please login to your account"
@@ -62,61 +60,54 @@ class LoginRegisterForm(Helper):
 
     def __init__(self, browser):
         super().__init__(browser)
-        self.browser = browser
 
-    def load(self):
-        self.browser.get(self.login_register_form)
-
-    def testcase(self):
+    def run(self):
         with soft_assertions():
+            """Go to page"""
+            self.go_to(self.login_register_form)
+            """Checking widget name"""
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
-                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
+                """Checking widget's documentation"""
                 self.check_documents(self.doc_link, self.doc_name)
             else:
-                self.browser.execute_script("window.scrollTo(0, 1063)")
-                time.sleep(1)
-
-                assert_that(self.browser.find_element(*self.reg_have_acc_label).text).\
-                    is_equal_to(self.reg_have_acc_label_text)
-                self.browser.find_element(*self.reg_have_acc_label).click()
-                time.sleep(1)
-                self.check_visibility(self.login_img, "Login Image not visible.")
-
-                assert_that(self.browser.find_element(*self.reg_login_label).text).is_equal_to(self.reg_login_label_Text)
-                assert_that(self.browser.find_element(*self.login_username_label).text).\
-                    is_equal_to(self.login_username_label_text)
-                assert_that(self.browser.find_element(*self.login_pass_label).text).is_equal_to(self.login_pass_label_text)
-
-                self.browser.find_element(*self.login_username_field).send_keys("testerbhaai@gmail.com")
-                self.browser.find_element(*self.login_pass_field).send_keys("123456")
-                self.browser.find_element(*self.reg_reg_now_label).click()
-
-                assert_that(self.browser.find_element(*self.reg_fname_field).get_attribute("placeholder")).\
+                self.scroll_to(1063)
+                """Switching to login form"""
+                self.check_text_matches_with(self.reg_have_acc_label, self.reg_have_acc_label_text)
+                self.do_click(self.reg_have_acc_label),
+                self.is_visible(self.login_img, "Login Image not visible.")
+                """Check login form"""
+                self.check_text_matches_with(self.reg_login_label, self.reg_login_label_Text)
+                self.check_text_matches_with(self.login_username_label, self.login_username_label_text)
+                self.check_text_matches_with(self.login_pass_label, self.login_pass_label_text)
+                """Entering login field"""
+                self.do_send_keys(self.login_username_field, "testerbhaai@gmail.com")
+                self.do_send_keys(self.login_pass_field, "123456")
+                """Switching to registration form"""
+                self.do_click(self.reg_reg_now_label)
+                """Checking registration form"""
+                assert_that(self.get_element(self.reg_fname_field).get_attribute("placeholder")).\
                     is_equal_to(self.reg_fname_placeholder_text)
-                assert_that(self.browser.find_element(*self.reg_lname_field).get_attribute("placeholder")).\
+                assert_that(self.get_element(self.reg_lname_field).get_attribute("placeholder")).\
                     is_equal_to(self.reg_lname_placeholder_text)
-                assert_that(self.browser.find_element(*self.reg_email_field).get_attribute("placeholder")).\
+                assert_that(self.get_element(self.reg_email_field).get_attribute("placeholder")).\
                     is_equal_to(self.reg_email_placeholder_text)
-                assert_that(self.browser.find_element(*self.reg_pass_field).get_attribute("placeholder")).\
+                assert_that(self.get_element(self.reg_pass_field).get_attribute("placeholder")).\
                     is_equal_to(self.reg_pass_placeholder_text)
-                assert_that(self.browser.find_element(*self.reg_con_pass_field).get_attribute("placeholder")).\
+                assert_that(self.get_element(self.reg_con_pass_field).get_attribute("placeholder")).\
                     is_equal_to(self.reg_con_pass_placeholder_text)
-
-                self.check_visibility(self.reg_img, " Registration Image not visible.")
-
-                self.browser.find_element(*self.reg_fname_field).send_keys("Tester")
-                self.browser.find_element(*self.reg_lname_field).send_keys("Bhaai")
-                self.browser.find_element(*self.reg_email_field).send_keys("testerbhaai@gmail.com")
-                self.browser.find_element(*self.reg_pass_field).send_keys("123456")
-                self.browser.find_element(*self.reg_con_pass_field).send_keys("123456")
-
-                self.browser.find_element(*self.reg_terms_toggle).click()
-                iframe = self.browser.find_element(*self.reg_recaptcha_iframe)
-                self.browser.switch_to.frame(iframe)
-                self.browser.find_element(*self.reg_recaptcha).click()
-                time.sleep(1)
-                self.browser.switch_to.default_content()
+                self.is_visible(self.reg_img, " Registration Image not visible.")
+                """"Entering registration fields"""
+                self.do_send_keys(self.reg_fname_field, "Tester")
+                self.do_send_keys(self.reg_lname_field, "Bhaai")
+                self.do_send_keys(self.reg_email_field, "testerbhaai@gmail.com")
+                self.do_send_keys(self.reg_pass_field, "123456")
+                self.do_send_keys(self.reg_con_pass_field, "123456")
+                """Verify reCAPTCHA"""
+                self.do_click(self.reg_terms_toggle)
+                self.switch_to_frame(self.reg_recaptcha_iframe)
+                self.do_click(self.reg_recaptcha)
+                self.switch_frame_to_default()
 
 
 
