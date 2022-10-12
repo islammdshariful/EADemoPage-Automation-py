@@ -289,14 +289,12 @@ class WooCheckout(BasePage, Helper):
             else:
                 self.scroll_to(1514)
 
-                # Login Form
+                """Default Checkout Page Checking"""
+                """Checking login form"""
                 self.is_visible(self.login_form_icon, "Login Form Icon is not visible.")
-
                 self.check_text_matches_with(self.login_form, self.login_form_text)
-
                 if self.is_displaying(*self.login_form_des):
                     assert_that(1).is_equal_to("Login field is visible which should be hidden")
-
                 self.do_click(self.login_form_expand)
                 self.check_text_matches_with(self.login_form_des, self.login_form_des_text)
                 self.check_text_matches_with(self.login_username_label, self.login_username_label_text)
@@ -305,60 +303,47 @@ class WooCheckout(BasePage, Helper):
                 self.do_send_keys(self.login_username_field, "admin")
                 self.do_clear_field(self.login_pass_field)
                 self.do_send_keys(self.login_pass_field, "123456")
-
                 self.do_click(self.remember_me_field)
                 self.check_text_matches_with(self.remember_me_label, self.remember_me_label_text)
                 self.check_text_matches_with(self.login_btn, "Login")
                 self.check_text_matches_with(self.forget_pass_label, self.forget_pass_label_text)
 
-                # Coupon Form
+                """Checking coupon form"""
                 self.is_visible(self.coupon_form_icon, "Coupon Icon is not visible.")
                 if self.is_displaying(*self.coupon_form_des):
                     assert_that(1).is_equal_to("Coupon field is visible which should be hidden")
-
                 self.scroll_to_element(self.lost_password)
                 self.do_click(self.coupon_form_expand)
-
                 self.check_text_matches_with(self.coupon_form_des, self.coupon_form_des_text)
                 self.do_clear_field(self.coupon_form_field)
                 self.do_send_keys(self.coupon_form_field, "Get50OffNow")
                 self.check_text_matches_with(self.coupon_btn, "Apply Coupon")
                 self.scroll_to_element(self.scroll_1)
                 self.do_click(self.login_form_expand)
-                # time.sleep(1)
                 self.scroll_to_element(self.scroll_2)
                 time.sleep(1)
                 self.do_click(self.coupon_form_expand)
 
-                # Ship to Diff
+                """Ship to different adress"""
                 self.check_text_matches_with(self.ship_diff_address_label, self.ship_diff_address_label_text)
-
                 if self.is_displaying(*self.shipping_fname_field):
                     assert_that(1).is_equal_to("Shipping details is visible which should be hidden.")
-
-                # time.sleep(.5)
                 self.do_click(self.ship_diff_address_field)
-                # time.sleep(.5)
                 self.is_visible(self.shipping_fname_field, "Shipping details is hidden which should be visible.")
 
-                # Create an Account
+                """Create an account"""
                 self.scroll_to(2909)
                 self.check_text_matches_with(self.create_acc_field_label, self.create_acc_field_label_text)
-
                 if self.is_displaying(*self.create_acc_pass_field):
                     assert_that(1).is_equal_to("Create account password is visible which should be hidden.")
-
                 self.scroll_to(2666)
-                # time.sleep(1)
                 self.do_click(self.create_acc_field)
-                # time.sleep(.5)
                 self.check_text_matches_with(self.create_acc_pass_label, self.create_acc_pass_label_text)
                 self.do_clear_field(self.create_acc_pass_field)
                 self.do_send_keys(self.create_acc_pass_field, "123456")
 
-                # Payment Method
+                """Payment method"""
                 self.scroll_to(2984)
-                # time.sleep(1)
                 self.check_text_matches_with(self.payment_method_label, self.payment_method_label_text)
                 self.check_payment_gateway(self.payment_method_bank, self.payment_method_bank_text,
                                            self.payment_method_bank_des, self.payment_method_bank_des_text)
@@ -368,29 +353,27 @@ class WooCheckout(BasePage, Helper):
                                            self.payment_method_cash_des, self.payment_method_cash_des_text)
                 self.check_text_matches_with(self.payment_method_des, self.payment_method_des_text)
 
-                # Go to Multi Step
+                """Multi Step Checkout Page Checking"""
                 self.scroll_to(642)
-
                 self.do_click(self.go_to_multi_step_checkout)
                 self.scroll_to(963)
-
+                """Checking tab labels"""
                 self.check_text_matches_with(self.login_tab, self.login_tab_text)
                 self.check_text_matches_with(self.coupon_tab, self.coupon_tab_text)
                 self.check_text_matches_with(self.billing_tab, self.billing_tab_text)
                 self.check_text_matches_with(self.payment_tab, self.payment_tab_text)
 
-                # Login Tab
+                """Checking login form"""
                 self.is_visible(self.multi_login_form_icon, "Multi Login form icon is not visible.")
                 assert_that(self.browser.find_element(*self.multi_login_form).text).is_equal_to(self.login_form_text)
                 self.do_click(self.next_btn)
-                # Coupon Tab
+                """Checking coupon form"""
                 self.is_visible(self.multi_coupon_form_icon, "Multi coupon form icon is not visible.")
                 self.check_text_matches_with(self.multi_coupon_form, self.coupon_form_text)
                 self.do_click(self.next_btn)
 
-                # Billing & Shipping Tab
+                """Checking billing tab"""
                 self.check_text_matches_with(self.billing_label, self.billing_label_text)
-                # Billing
                 self.check_text_matches_with(self.billing_fname_label, self.fname_label_text)
                 self.do_clear_field(self.billing_fname_field)
                 self.do_send_keys(self.billing_fname_field, "Mr.")
@@ -423,14 +406,14 @@ class WooCheckout(BasePage, Helper):
                 self.check_text_matches_with(self.billing_email_label, self.email_label_text)
                 self.do_clear_field(self.billing_email_field)
                 self.do_send_keys(self.billing_email_field, "testerbhaai@gmail.com")
-                # Create an Account
+                """Create an account"""
                 self.scroll_to(2093)
                 self.check_text_matches_with(self.create_acc_field_label, self.create_acc_field_label_text)
                 self.browser.find_element(*self.create_acc_field).click()
                 self.check_text_matches_with(self.create_acc_pass_label, self.create_acc_pass_label_text)
                 self.do_clear_field(self.create_acc_pass_field)
                 self.do_send_keys(self.create_acc_pass_field, "123456")
-                # Ship to Diff
+                """Ship to different address"""
                 self.check_text_matches_with(self.ship_diff_address_label, self.ship_diff_address_label_text)
                 self.do_click(self.ship_diff_address_field)
                 self.check_text_matches_with(self.shipping_fname_label, self.fname_label_text)
@@ -463,13 +446,13 @@ class WooCheckout(BasePage, Helper):
                 self.do_clear_field(self.shipping_zip_field)
                 self.do_send_keys(self.shipping_zip_field, "1206")
 
-                # Other notes
+                """Billing notes"""
                 self.check_text_matches_with(self.other_note_label, self.other_note_label_text)
                 self.do_clear_field(self.other_note_field)
                 self.do_send_keys(self.other_note_field, "Lorem Ipsum is simply a dummy text.")
                 self.do_click(self.next_btn)
 
-                # payment Tab
+                """Checking payment tab"""
                 self.scroll_to(976)
                 self.check_text_matches_with(self.payment_method_label, self.payment_method_label_text)
                 self.check_text_matches_with(self.payment_method_bank, self.payment_method_bank_text)
@@ -489,7 +472,6 @@ class WooCheckout(BasePage, Helper):
                 self.do_click(self.next_btn)
                 self.scroll_to_element(self.scroll_3)
                 self.do_click(self.next_btn)
-
                 self.check_cart_item(self.p_title_1, self.p_1_title_text, self.p_price_1, self.p_1_price_text,
                                      self.p_img_1)
                 self.check_text_matches_with(self.t_sub_total_label, self.t_sub_total_label_text)
@@ -499,9 +481,7 @@ class WooCheckout(BasePage, Helper):
                 # self.check_text_matches_with(self.t_shipping_amount, self.t_shipping_amount_text)
                 self.check_text_matches_with(self.t_total_amount, self.t_total_amount_text)
                 self.check_text_matches_with(self.place_order_btn, self.place_order_btn_text)
-
                 self.scroll_to_element(self.scroll_5)
-
                 self.do_click(self.continue_shop)
                 self.check_text_matches_with(self.shop_page, self.shop_page_text)
                 self.go_back()
