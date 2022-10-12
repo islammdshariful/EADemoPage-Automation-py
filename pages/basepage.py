@@ -22,8 +22,10 @@ class BasePage:
         WebDriverWait(self.browser, 10).until(
             EC.text_to_be_present_in_element(by_locator, text))
 
-    def do_click(self, by_locator):
+    def do_click(self, by_locator, click_after_wait=None):
         self.get_element(by_locator).click()
+        if click_after_wait is not None:
+            time.sleep(1)
 
     def do_clear_field(self, by_locator):
         self.get_element(by_locator).clear()
@@ -39,6 +41,17 @@ class BasePage:
 
     def check_element_present(self, by_locator):
         return bool(self.get_element(by_locator))
+
+    def run_script(self, script, args):
+        self.browser.execute_script(script, self.get_element(args))
+
+    def set_screen_size(self, width, height):
+        self.browser.set_window_size(width, height)
+        time.sleep(1)
+
+    def set_screen_full_size(self):
+        self.browser.maximize_window()
+        time.sleep(1)
 
     def is_visible(self, by_locator, error_message):
         if not WebDriverWait(self.browser, 10).until(EC.visibility_of_element_located(by_locator)).is_displayed():

@@ -102,7 +102,7 @@ class Helper:
     woo_product_grid = base_url + "woo-product-grid/"
     woo_checkout = base_url + "woo-checkout/"
     cross_domain_copy_paste = base_url + "cross-domain-copy-paste/"
-    scroll_to_top = base_url + "scroll-to-top/"
+    scroll_to_top_extension = base_url + "scroll-to-top/"
     content_protection = base_url + "content-protection/"
     duplicator = base_url + "duplicator/"
     table_of_content = base_url + "table-of-content/"

@@ -421,27 +421,23 @@ def test_login_register_form(init_driver):
 # ------------------------------------------------------------------------------------------------
 
 def test_twitter_feed_carousel(init_driver):
-    tfc = TwitterFeedCarousel(init_driver)
-    tfc.load()
-    tfc.testcase()
+    twitter_feed_carousel = TwitterFeedCarousel(init_driver)
+    twitter_feed_carousel.run()
 
 
 def test_twitter_feed(init_driver):
-    tf = TwitterFeed(init_driver)
-    tf.load()
-    tf.testcase()
+    twitter_feed = TwitterFeed(init_driver)
+    twitter_feed.run()
 
 
 def test_instagram_feed(init_driver):
-    insf = InstagramFeed(init_driver)
-    insf.load()
-    insf.testcase()
+    instagram_feed = InstagramFeed(init_driver)
+    instagram_feed.run()
 
 
 def test_facebook_feed(init_driver):
-    fac = FacebookFeed(init_driver)
-    fac.load()
-    fac.testcase()
+    facebook_feed = FacebookFeed(init_driver)
+    facebook_feed.run()
 
 
 # ------------------------------------------------------------------------------------------------
@@ -449,9 +445,8 @@ def test_facebook_feed(init_driver):
 # ------------------------------------------------------------------------------------------------
 
 def test_learndash_course_list(init_driver):
-    learndash = LearndashCourseList(init_driver)
-    learndash.load()
-    learndash.testcase()
+    learndash_course_list = LearndashCourseList(init_driver)
+    learndash_course_list.run()
 
 
 # ------------------------------------------------------------------------------------------------
@@ -459,21 +454,18 @@ def test_learndash_course_list(init_driver):
 # ------------------------------------------------------------------------------------------------
 
 def test_betterdocs_category_grid(init_driver):
-    bd = BetterdocsCategoryGrid(init_driver)
-    bd.load()
-    bd.testcase()
+    betterdocs_category_grid = BetterdocsCategoryGrid(init_driver)
+    betterdocs_category_grid.run()
 
 
 def test_betterdocs_category_box(init_driver):
-    bcb = BetterdocsCategoryBox(init_driver)
-    bcb.load()
-    bcb.testcase()
+    betterdocs_category_box = BetterdocsCategoryBox(init_driver)
+    betterdocs_category_box.run()
 
 
 def test_betterdocs_search_form(init_driver):
-    bsf = BetterdocsSearchForm(init_driver)
-    bsf.load()
-    bsf.testcase()
+    betterdocs_category_box = BetterdocsSearchForm(init_driver)
+    betterdocs_category_box.run()
 
 
 # ------------------------------------------------------------------------------------------------
@@ -481,51 +473,43 @@ def test_betterdocs_search_form(init_driver):
 # ------------------------------------------------------------------------------------------------
 
 def test_woo_cart(init_driver):
-    wc = WooCart(init_driver)
-    wc.load()
-    wc.testcase()
+    cart = WooCart(init_driver)
+    cart.run()
 
 
 def test_woo_product_slider(init_driver):
-    wps = WooProductSlider(init_driver)
-    wps.load()
-    wps.testcase()
+    product_slider = WooProductSlider(init_driver)
+    product_slider.run()
 
 
 def test_woo_product_carousel(init_driver):
-    wpc = WooProductCarousel(init_driver)
-    wpc.load()
-    wpc.testcase()
+    product_carousel = WooProductCarousel(init_driver)
+    product_carousel.run()
 
 
 def test_woo_product_gallery(init_driver):
-    wpg = WooProductGallery(init_driver)
-    wpg.load()
-    wpg.testcase()
+    product_gallery = WooProductGallery(init_driver)
+    product_gallery.run()
 
 
 def test_woo_product_compare(init_driver):
-    wpc = WooProductCompare(init_driver)
-    wpc.load()
-    wpc.testcase()
+    product_compare = WooProductCompare(init_driver)
+    product_compare.run()
 
 
 def test_woocommerce_product_collections(init_driver):
-    wpc = WoocommerceProductCollections(init_driver)
-    wpc.load()
-    wpc.testcase()
+    product_collections = WoocommerceProductCollections(init_driver)
+    product_collections.run()
 
 
 def test_woo_product_grid(init_driver):
-    wpg = WooProductGrid(init_driver)
-    wpg.load()
-    wpg.testcase()
+    product_grid = WooProductGrid(init_driver)
+    product_grid.run()
 
 
 def test_woo_checkout(init_driver):
-    wc = WooCheckout(init_driver)
-    wc.load()
-    wc.testcase()
+    checkout = WooCheckout(init_driver)
+    checkout.run()
 
 
 # ------------------------------------------------------------------------------------------------
@@ -534,54 +518,45 @@ def test_woo_checkout(init_driver):
 
 
 def test_cross_domain_copy_paste(init_driver):
-    cdcp = CrossDomainCopyPaste(init_driver)
-    cdcp.load()
-    cdcp.testcase()
+    cross_domain_copy_paste = CrossDomainCopyPaste(init_driver)
+    cross_domain_copy_paste.run()
 
 
 def test_scroll_to_top(init_driver):
-    stt = ScrollToTop(init_driver)
-    stt.load()
-    stt.testcase()
+    scroll_to_top = ScrollToTop(init_driver)
+    scroll_to_top.run()
 
 
 def test_content_protection(init_driver):
-    cp = ContentProtection(init_driver)
-    cp.load()
-    cp.testcase()
+    content_protection = ContentProtection(init_driver)
+    content_protection.run()
 
 
-def test_duplicator(init_driver):
-    d = Duplicator(init_driver)
-    d.load()
-    d.testcase()
+# def test_duplicator(init_driver):
+#     duplicator = Duplicator(init_driver)
+#     duplicator.run()
 
 
 def test_table_of_content(init_driver):
-    toc = TableOfContent(init_driver)
-    toc.load()
-    toc.testcase()
+    table_of_content = TableOfContent(init_driver)
+    table_of_content.run()
 
 
 def test_parallax_scrolling(init_driver):
-    ps = ParallaxScrolling(init_driver)
-    ps.load()
-    ps.testcase()
+    parallax = ParallaxScrolling(init_driver)
+    parallax.run()
 
 
-def test_reading_progress(init_driver):
-    rpb = ReadingProgress(init_driver)
-    rpb.load()
-    rpb.testcase()
+# def test_reading_progress(init_driver):
+#     reading_progress = ReadingProgress(init_driver)
+#     reading_progress.run()
 
 
-# def test_particle_effect(init_driver):
-#     pe = ParticleEffect(init_driver)
-#     pe.load()
-#     pe.testcase()
+def test_particle_effect(init_driver):
+    particle = ParticleEffect(init_driver)
+    particle.run()
 
 
 def test_advanced_tooltip(init_driver):
-    att = AdvancedTooltip(init_driver)
-    att.load()
-    att.testcase()
+    advanced_tooltip = AdvancedTooltip(init_driver)
+    advanced_tooltip.run()

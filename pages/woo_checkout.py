@@ -1,9 +1,7 @@
-from selenium.webdriver import Keys
-
 from utils.config import *
 
 
-class WooCheckout(Helper):
+class WooCheckout(BasePage, Helper):
     widget = '//*[@id="post-259772"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Woo Checkout'
@@ -14,8 +12,8 @@ class WooCheckout(Helper):
     go_to_multi_step_checkout = (By.XPATH, f'//*[@id="post-259772"]/div/div/div/div/section[2]/div/div/div/div/div'
                                            f'/section[2]/div/div/div[1]/div/div/div/div/div/a/div/span[2]')
 
-    login_form_icon = f'//*[@id="post-259772"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div' \
-                      f'/div/div[4]/div[1]'
+    login_form_icon = (By.XPATH, f'//*[@id="post-259772"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div' \
+                                 f'/div/div[4]/div[1]')
     login_form = (By.XPATH, f'//*[@id="post-259772"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/div'
                             f'/div[4]/div[2]/div')
     login_form_expand = (By.XPATH, f'//*[@id="post-259772"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div'
@@ -38,8 +36,8 @@ class WooCheckout(Helper):
 
     coupon_form = (By.XPATH, f'//*[@id="post-259772"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/div'
                              f'/div[5]/div[2]/div/a')
-    coupon_form_icon = f'//*[@id="post-259772"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div' \
-                       f'/div/div[5]/div[1]'
+    coupon_form_icon = (By.XPATH, f'//*[@id="post-259772"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div' \
+                                  f'/div/div[5]/div[1]')
     coupon_form_expand = (By.XPATH, f'//*[@id="post-259772"]/div/div/div/div/section[2]/div/div/div/div/div/div/div'
                                     f'/div/div/div[5]/div[2]/div/a')
     coupon_form_des = (By.XPATH, f'//*[@id="post-259772"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div'
@@ -48,15 +46,15 @@ class WooCheckout(Helper):
     coupon_btn = (By.XPATH, f'//*[@id="post-259772"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/div'
                             f'/div[5]/form/p[3]/button')
 
-    multi_login_form_icon = f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div/div' \
-                                       f'/div/div/div[2]/div/div[1]/div[2]/div[1]'
+    multi_login_form_icon = (By.XPATH, f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div/div' \
+                                       f'/div/div/div[2]/div/div[1]/div[2]/div[1]')
     multi_login_form = (By.XPATH, f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div'
                                   f'/div/div[2]/div/div[1]/div[2]/div[2]/div')
 
     multi_coupon_form = (By.XPATH, f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div'
                                    f'/div/div[2]/div/div[1]/div[3]/div[2]/div')
-    multi_coupon_form_icon = f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div/div' \
-                                        f'/div/div/div[2]/div/div[1]/div[3]/div[2]/div'
+    multi_coupon_form_icon = (By.XPATH, f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div/div' \
+                                        f'/div/div/div[2]/div/div[1]/div[3]/div[2]/div')
 
     billing_label = (By.XPATH, f'//*[@id="customer_details"]/div[1]/div[1]/h3')
     billing_fname_label = (By.XPATH, f'//*[@id="billing_first_name_field"]/label')
@@ -92,7 +90,7 @@ class WooCheckout(Helper):
 
     shipping_label = (By.XPATH, f'//*[@id="customer_details"]/div[1]/div[1]/h3')
     shipping_fname_label = (By.XPATH, f'//*[@id="shipping_first_name_field"]/label')
-    shipping_fname_field = f'//*[@id="shipping_first_name"]'
+    shipping_fname_field = (By.XPATH, f'//*[@id="shipping_first_name"]')
     shipping_lname_label = (By.XPATH, f'//*[@id="shipping_last_name_field"]/label')
     shipping_lname_field = (By.XPATH, f'//*[@id="shipping_last_name"]')
     shipping_com_label = (By.XPATH, f'//*[@id="shipping_company_field"]/label')
@@ -114,12 +112,12 @@ class WooCheckout(Helper):
     other_note_field = (By.XPATH, f'//*[@id="order_comments"]')
 
     payment_method_label = (By.XPATH, f'//*[@id="payment-title"]')
-    payment_method_bank = f'//*[@id="payment"]/ul/li[1]/label'
-    payment_method_bank_des = f'//*[@id="payment"]/ul/li[1]/div/p'
-    payment_method_check = f'//*[@id="payment"]/ul/li[2]/label'
-    payment_method_check_des = f'//*[@id="payment"]/ul/li[2]/div/p'
-    payment_method_cash = f'//*[@id="payment"]/ul/li[3]/label'
-    payment_method_cash_des = f'//*[@id="payment"]/ul/li[3]/div/p'
+    payment_method_bank = (By.XPATH, f'//*[@id="payment"]/ul/li[1]/label')
+    payment_method_bank_des = (By.XPATH, f'//*[@id="payment"]/ul/li[1]/div/p')
+    payment_method_check = (By.XPATH, f'//*[@id="payment"]/ul/li[2]/label')
+    payment_method_check_des = (By.XPATH, f'//*[@id="payment"]/ul/li[2]/div/p')
+    payment_method_cash = (By.XPATH, f'//*[@id="payment"]/ul/li[3]/label')
+    payment_method_cash_des = (By.XPATH, f'//*[@id="payment"]/ul/li[3]/div/p')
     payment_method_des = (By.XPATH, f'//*[@id="payment"]/div/div/div/p')
     place_order_btn = (By.XPATH, f'//*[@id="ea_place_order"]')
 
@@ -133,41 +131,41 @@ class WooCheckout(Helper):
     billing_tab = (By.XPATH, f'//*[@id="step-2"]')
     payment_tab = (By.XPATH, f'//*[@id="step-3"]')
 
-    p_img_1 = f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/div' \
-                         f'/div[2]/div/div[2]/div/div/ul/li[1]/div[1]/div[1]/img'
-    p_title_1 = f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/div' \
-                           f'/div[2]/div/div[2]/div/div/ul/li[1]/div[1]/div[2]'
-    p_quantity_1 = f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/div' \
-                         f'/div[2]/div/div[2]/div/div/ul/li[1]/div[1]/div[2]/strong'
-    p_price_1 = f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/div' \
-                           f'/div[2]/div/div[2]/div/div/ul/li[1]/div[2]/span'
+    p_img_1 = (By.XPATH, f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/div' \
+                         f'/div[2]/div/div[2]/div/div/ul/li[1]/div[1]/div[1]/img')
+    p_title_1 = (By.XPATH, f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/div' \
+                           f'/div[2]/div/div[2]/div/div/ul/li[1]/div[1]/div[2]')
+    p_quantity_1 = (By.XPATH, f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/div' \
+                              f'/div[2]/div/div[2]/div/div/ul/li[1]/div[1]/div[2]/strong')
+    p_price_1 = (By.XPATH, f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/div' \
+                           f'/div[2]/div/div[2]/div/div/ul/li[1]/div[2]/span')
 
-    p_img_2 = f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/div' \
-                         f'/div[2]/div/div[2]/div/div/ul/li[2]/div[1]/div[1]/img'
-    p_title_2 = f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/div' \
-                           f'/div[2]/div/div[2]/div/div/ul/li[2]/div[1]/div[2]'
-    p_quantity_2 = f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/div' \
-                         f'/div[2]/div/div[2]/div/div/ul/li[2]/div[1]/div[2]/strong'
-    p_price_2 = f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/div' \
-                           f'/div[2]/div/div[2]/div/div/ul/li[2]/div[2]/span'
+    p_img_2 = (By.XPATH, f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/div' \
+                         f'/div[2]/div/div[2]/div/div/ul/li[2]/div[1]/div[1]/img')
+    p_title_2 = (By.XPATH, f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/div' \
+                           f'/div[2]/div/div[2]/div/div/ul/li[2]/div[1]/div[2]')
+    p_quantity_2 = (By.XPATH, f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/div' \
+                              f'/div[2]/div/div[2]/div/div/ul/li[2]/div[1]/div[2]/strong')
+    p_price_2 = (By.XPATH, f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/div' \
+                           f'/div[2]/div/div[2]/div/div/ul/li[2]/div[2]/span')
 
-    p_img_3 = f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/div' \
-                         f'/div[2]/div/div[2]/div/div/ul/li[3]/div[1]/div[1]/img'
-    p_title_3 = f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/div' \
-                           f'/div[2]/div/div[2]/div/div/ul/li[3]/div[1]/div[2]'
-    p_quantity_3 = f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/div' \
-                         f'/div[2]/div/div[2]/div/div/ul/li[3]/div[1]/div[2]/strong'
-    p_price_3 = f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/div' \
-                           f'/div[2]/div/div[2]/div/div/ul/li[3]/div[2]/span'
+    p_img_3 = (By.XPATH, f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/div' \
+                         f'/div[2]/div/div[2]/div/div/ul/li[3]/div[1]/div[1]/img')
+    p_title_3 = (By.XPATH, f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/div' \
+                           f'/div[2]/div/div[2]/div/div/ul/li[3]/div[1]/div[2]')
+    p_quantity_3 = (By.XPATH, f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/div' \
+                              f'/div[2]/div/div[2]/div/div/ul/li[3]/div[1]/div[2]/strong')
+    p_price_3 = (By.XPATH, f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/div' \
+                           f'/div[2]/div/div[2]/div/div/ul/li[3]/div[2]/span')
 
-    p_img_4 = f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/div' \
-                         f'/div[2]/div/div[2]/div/div/ul/li[4]/div[1]/div[1]/img'
-    p_title_4 = f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/div' \
-                           f'/div[2]/div/div[2]/div/div/ul/li[4]/div[1]/div[2]'
-    p_quantity_4 = f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/div' \
-                         f'/div[2]/div/div[2]/div/div/ul/li[4]/div[1]/div[2]/strong'
-    p_price_4 = f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/div' \
-                           f'/div[2]/div/div[2]/div/div/ul/li[4]/div[2]/span'
+    p_img_4 = (By.XPATH, f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/div' \
+                         f'/div[2]/div/div[2]/div/div/ul/li[4]/div[1]/div[1]/img')
+    p_title_4 = (By.XPATH, f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/div' \
+                           f'/div[2]/div/div[2]/div/div/ul/li[4]/div[1]/div[2]')
+    p_quantity_4 = (By.XPATH, f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/div' \
+                              f'/div[2]/div/div[2]/div/div/ul/li[4]/div[1]/div[2]/strong')
+    p_price_4 = (By.XPATH, f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/div' \
+                           f'/div[2]/div/div[2]/div/div/ul/li[4]/div[2]/span')
 
     t_sub_total_label = (By.XPATH, f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div'
                                    f'/div/div[2]/div/div[2]/div/div/div/div[2]/div[1]/div[1]')
@@ -177,7 +175,7 @@ class WooCheckout(Helper):
     t_shipping_label = (By.XPATH, f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div'
                                   f'/div/div[2]/div/div[2]/div/div/div/div[2]/div[2]')
     t_shipping_amount = (By.XPATH, f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div'
-                                         f'/div/div/div/div[2]/div/div[2]/div/div/div/div[2]/div[2]/span')
+                                   f'/div/div/div/div[2]/div/div[2]/div/div/div/div[2]/div[2]/span')
 
     t_total_label = (By.XPATH, f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/div'
                                f'/div[2]/div/div[2]/div/div/div/div[2]/div[3]/div[1]')
@@ -185,6 +183,8 @@ class WooCheckout(Helper):
                                 f'/div/div[2]/div/div[2]/div/div/div/div[2]/div[3]/div[2]/strong/span')
     continue_shop = (By.XPATH, f'//*[@id="post-260239"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/div'
                                f'/div[2]/div/div[2]/div/div/div/div[1]/a')
+
+    lost_password = (By.XPATH, "//p[@class='lost_password']")
 
     login_form_text = "Returning Customer? Click Here To Login"
     login_form_des_text = "If you have shopped with us before, please enter your details below. If you are a new " \
@@ -256,313 +256,252 @@ class WooCheckout(Helper):
     shop_page = (By.XPATH, f'//*[@id="main"]/header/h1')
     shop_page_text = "Shop"
 
+    scroll_1 = (By.XPATH, '//*[@id="post-259772"]/div/div/div/div/section[2]/div/div'
+                          '/div/div/div/div/div/div/div/div[2]/div/div/div[1]')
+    scroll_2 = (By.XPATH, f'//*[@id="post-259772"]/div/div/div/div/section[2]/div/div'
+                          f'/div/div/div/div/div/div/div/div[4]/div[2]/div/a')
+    scroll_3 = (By.XPATH, "//label[@for='order_comments']")
+    scroll_4 = (By.XPATH, "//span[normalize-space()='Split']")
+    scroll_5 = (By.XPATH, "//div[@class='shipping-area']")
+
     def __init__(self, browser):
         super().__init__(browser)
-        self.browser = browser
-
-    def load(self):
-        self.browser.get(self.woo_checkout)
 
     def check_cart_item(self, title, title_text, price, price_text, image):
-        assert_that(self.browser.find_element(By.XPATH, title).text).is_equal_to(title_text)
-        assert_that(self.browser.find_element(By.XPATH, price).text).is_equal_to(price_text)
-        self.check_visibility(image, "Product Image is not visible.")
+        self.is_visible(title, title_text)
+        self.is_visible(price, price_text)
+        self.is_visible(image, "Product Image is not visible.")
 
     def check_payment_gateway(self, gateway, gateway_text, gateway_des, gateway_des_text):
-        assert_that(self.browser.find_element(By.XPATH, gateway).text).is_equal_to(gateway_text)
-        self.browser.find_element(By.XPATH, gateway).click()
-        time.sleep(.5)
-        assert_that(self.browser.find_element(By.XPATH, gateway_des).text).is_equal_to(gateway_des_text)
+        self.check_text_matches_with(gateway, gateway_text)
+        self.do_click(gateway)
+        self.check_text_matches_with(gateway_des, gateway_des_text)
 
-    def testcase(self):
+    def run(self):
         with soft_assertions():
+            """Go to page"""
+            self.go_to(self.woo_checkout)
+            """Checking widget name"""
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
-                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
+                """Checking widget's documentation"""
                 self.check_documents(self.doc_link, self.doc_name)
             else:
-                self.browser.execute_script("window.scrollTo(0, 1514)")
-                time.sleep(1)
+                self.scroll_to(1514)
 
                 # Login Form
-                self.check_visibility(self.login_form_icon, "Login Form Icon is not visible.")
+                self.is_visible(self.login_form_icon, "Login Form Icon is not visible.")
 
-                assert_that(self.browser.find_element(*self.login_form).text).is_equal_to(self.login_form_text)
+                self.check_text_matches_with(self.login_form, self.login_form_text)
 
-                if self.browser.find_element(*self.login_form_des).is_displayed():
+                if self.is_displaying(*self.login_form_des):
                     assert_that(1).is_equal_to("Login field is visible which should be hidden")
-                else:
-                    assert_that(1).is_equal_to(1)
 
-                self.browser.find_element(*self.login_form_expand).click()
-                time.sleep(1)
-                assert_that(self.browser.find_element(*self.login_form_des).text).is_equal_to(self.login_form_des_text)
-                assert_that(self.browser.find_element(*self.login_username_label).text). \
-                    is_equal_to(self.login_username_label_text)
-                assert_that(self.browser.find_element(*self.login_pass_label).text). \
-                    is_equal_to(self.login_pass_label_text)
-                self.browser.find_element(*self.login_username_field).clear()
-                self.browser.find_element(*self.login_username_field).send_keys("admin")
-                self.browser.find_element(*self.login_pass_field).clear()
-                self.browser.find_element(*self.login_pass_field).send_keys("123456")
+                self.do_click(self.login_form_expand)
+                self.check_text_matches_with(self.login_form_des, self.login_form_des_text)
+                self.check_text_matches_with(self.login_username_label, self.login_username_label_text)
+                self.check_text_matches_with(self.login_pass_label, self.login_pass_label_text)
+                self.do_clear_field(self.login_username_field)
+                self.do_send_keys(self.login_username_field, "admin")
+                self.do_clear_field(self.login_pass_field)
+                self.do_send_keys(self.login_pass_field, "123456")
 
-                self.browser.find_element(*self.remember_me_field).click()
-                assert_that(self.browser.find_element(*self.remember_me_label).text). \
-                    is_equal_to(self.remember_me_label_text)
-                assert_that(self.browser.find_element(*self.login_btn).text).is_equal_to("Login")
-
-                assert_that(self.browser.find_element(*self.forget_pass_label).text). \
-                    is_equal_to(self.forget_pass_label_text)
+                self.do_click(self.remember_me_field)
+                self.check_text_matches_with(self.remember_me_label, self.remember_me_label_text)
+                self.check_text_matches_with(self.login_btn, "Login")
+                self.check_text_matches_with(self.forget_pass_label, self.forget_pass_label_text)
 
                 # Coupon Form
-                self.check_visibility(self.coupon_form_icon, "Coupon Icon is not visible.")
-                if self.browser.find_element(*self.coupon_form_des).is_displayed():
+                self.is_visible(self.coupon_form_icon, "Coupon Icon is not visible.")
+                if self.is_displaying(*self.coupon_form_des):
                     assert_that(1).is_equal_to("Coupon field is visible which should be hidden")
-                else:
-                    assert_that(1).is_equal_to(1)
-                pos_0 = self.browser.find_element(By.XPATH, "//p[@class='lost_password']")
-                self.browser.execute_script("arguments[0].scrollIntoView();", pos_0)
+
+                self.scroll_to_element(self.lost_password)
+                self.do_click(self.coupon_form_expand)
+
+                self.check_text_matches_with(self.coupon_form_des, self.coupon_form_des_text)
+                self.do_clear_field(self.coupon_form_field)
+                self.do_send_keys(self.coupon_form_field, "Get50OffNow")
+                self.check_text_matches_with(self.coupon_btn, "Apply Coupon")
+                self.scroll_to_element(self.scroll_1)
+                self.do_click(self.login_form_expand)
+                # time.sleep(1)
+                self.scroll_to_element(self.scroll_2)
                 time.sleep(1)
-                self.browser.find_element(*self.coupon_form_expand).click()
-                time.sleep(.5)
-                assert_that(self.browser.find_element(*self.coupon_form_des).text).is_equal_to(self.coupon_form_des_text)
-                self.browser.find_element(*self.coupon_form_field).clear()
-                self.browser.find_element(*self.coupon_form_field).send_keys("Get50OffNow")
-                assert_that(self.browser.find_element(*self.coupon_btn).text).is_equal_to("Apply Coupon")
-                pos_1 = self.browser.find_element(By.XPATH, '//*[@id="post-259772"]/div/div/div/div/section[2]/div/div'
-                                                            '/div/div/div/div/div/div/div/div[2]/div/div/div[1]')
-                self.browser.execute_script("arguments[0].scrollIntoView();", pos_1)
-                time.sleep(1)
-                self.browser.find_element(*self.login_form_expand).click()
-                time.sleep(1)
-                pos_2 = self.browser.find_element(By.XPATH, f'//*[@id="post-259772"]/div/div/div/div/section[2]/div/div'
-                                                            f'/div/div/div/div/div/div/div/div[4]/div[2]/div/a')
-                self.browser.execute_script("arguments[0].scrollIntoView();", pos_2)
-                time.sleep(1)
-                self.browser.find_element(*self.coupon_form_expand).click()
+                self.do_click(self.coupon_form_expand)
 
                 # Ship to Diff
-                assert_that(self.browser.find_element(*self.ship_diff_address_label).text). \
-                    is_equal_to(self.ship_diff_address_label_text)
+                self.check_text_matches_with(self.ship_diff_address_label, self.ship_diff_address_label_text)
 
-                if self.browser.find_element(By.XPATH, self.shipping_fname_field).is_displayed():
+                if self.is_displaying(*self.shipping_fname_field):
                     assert_that(1).is_equal_to("Shipping details is visible which should be hidden.")
-                else:
-                    assert_that(1).is_equal_to(1)
 
-                time.sleep(.5)
-                self.browser.find_element(*self.ship_diff_address_field).click()
-                time.sleep(.5)
-                self.check_visibility(self.shipping_fname_field, "Shipping details is hidden which should be visible.")
+                # time.sleep(.5)
+                self.do_click(self.ship_diff_address_field)
+                # time.sleep(.5)
+                self.is_visible(self.shipping_fname_field, "Shipping details is hidden which should be visible.")
 
                 # Create an Account
-                self.browser.execute_script("window.scrollTo(0, 2909)")
-                time.sleep(.5)
-                assert_that(self.browser.find_element(*self.create_acc_field_label).text). \
-                    is_equal_to(self.create_acc_field_label_text)
+                self.scroll_to(2909)
+                self.check_text_matches_with(self.create_acc_field_label, self.create_acc_field_label_text)
 
-                if self.browser.find_element(*self.create_acc_pass_field).is_displayed():
+                if self.is_displaying(*self.create_acc_pass_field):
                     assert_that(1).is_equal_to("Create account password is visible which should be hidden.")
-                else:
-                    assert_that(1).is_equal_to(1)
 
-                self.browser.execute_script("window.scrollTo(0, 2666)")
-                time.sleep(1)
-                self.browser.find_element(*self.create_acc_field).click()
-                time.sleep(.5)
-                assert_that(self.browser.find_element(*self.create_acc_pass_label).text). \
-                    is_equal_to(self.create_acc_pass_label_text)
-                self.browser.find_element(*self.create_acc_pass_field).clear()
-                self.browser.find_element(*self.create_acc_pass_field).send_keys("123456")
+                self.scroll_to(2666)
+                # time.sleep(1)
+                self.do_click(self.create_acc_field)
+                # time.sleep(.5)
+                self.check_text_matches_with(self.create_acc_pass_label, self.create_acc_pass_label_text)
+                self.do_clear_field(self.create_acc_pass_field)
+                self.do_send_keys(self.create_acc_pass_field, "123456")
 
                 # Payment Method
-                self.browser.execute_script("window.scrollTo(0, 2984)")
-                time.sleep(1)
-                assert_that(self.browser.find_element(*self.payment_method_label).text). \
-                    is_equal_to(self.payment_method_label_text)
+                self.scroll_to(2984)
+                # time.sleep(1)
+                self.check_text_matches_with(self.payment_method_label, self.payment_method_label_text)
                 self.check_payment_gateway(self.payment_method_bank, self.payment_method_bank_text,
                                            self.payment_method_bank_des, self.payment_method_bank_des_text)
                 self.check_payment_gateway(self.payment_method_check, self.payment_method_check_text,
                                            self.payment_method_check_des, self.payment_method_check_des_text)
                 self.check_payment_gateway(self.payment_method_cash, self.payment_method_cash_text,
                                            self.payment_method_cash_des, self.payment_method_cash_des_text)
-                assert_that(self.browser.find_element(*self.payment_method_des).text).is_equal_to(self.payment_method_des_text)
+                self.check_text_matches_with(self.payment_method_des, self.payment_method_des_text)
 
                 # Go to Multi Step
-                self.browser.execute_script("window.scrollTo(0, 642)")
-                time.sleep(1)
-                self.browser.find_element(*self.go_to_multi_step_checkout).click()
-                time.sleep(1)
-                self.browser.execute_script("window.scrollTo(0, 963)")
-                time.sleep(.5)
+                self.scroll_to(642)
 
-                assert_that(self.browser.find_element(*self.login_tab).text).is_equal_to(self.login_tab_text)
-                assert_that(self.browser.find_element(*self.coupon_tab).text).is_equal_to(self.coupon_tab_text)
-                assert_that(self.browser.find_element(*self.billing_tab).text).is_equal_to(self.billing_tab_text)
-                assert_that(self.browser.find_element(*self.payment_tab).text).is_equal_to(self.payment_tab_text)
+                self.do_click(self.go_to_multi_step_checkout)
+                self.scroll_to(963)
+
+                self.check_text_matches_with(self.login_tab, self.login_tab_text)
+                self.check_text_matches_with(self.coupon_tab, self.coupon_tab_text)
+                self.check_text_matches_with(self.billing_tab, self.billing_tab_text)
+                self.check_text_matches_with(self.payment_tab, self.payment_tab_text)
 
                 # Login Tab
-                self.check_visibility(self.multi_login_form_icon, "Multi Login form icon is not visible.")
+                self.is_visible(self.multi_login_form_icon, "Multi Login form icon is not visible.")
                 assert_that(self.browser.find_element(*self.multi_login_form).text).is_equal_to(self.login_form_text)
-                self.browser.find_element(*self.next_btn).click()
+                self.do_click(self.next_btn)
                 # Coupon Tab
-                self.check_visibility(self.multi_coupon_form_icon, "Multi coupon form icon is not visible.")
-                assert_that(self.browser.find_element(*self.multi_coupon_form).text).is_equal_to(self.coupon_form_text)
-                self.browser.find_element(*self.next_btn).click()
+                self.is_visible(self.multi_coupon_form_icon, "Multi coupon form icon is not visible.")
+                self.check_text_matches_with(self.multi_coupon_form, self.coupon_form_text)
+                self.do_click(self.next_btn)
 
                 # Billing & Shipping Tab
-                assert_that(self.browser.find_element(*self.billing_label).text).is_equal_to(self.billing_label_text)
+                self.check_text_matches_with(self.billing_label, self.billing_label_text)
                 # Billing
-                assert_that(self.browser.find_element(*self.billing_fname_label).text).is_equal_to(self.fname_label_text)
-                self.browser.find_element(*self.billing_fname_field).clear()
-                self.browser.find_element(*self.billing_fname_field).send_keys("Mr.")
-                assert_that(self.browser.find_element(*self.billing_lname_label).text).is_equal_to(self.lname_label_text)
-                self.browser.find_element(*self.billing_lname_field).clear()
-                self.browser.find_element(*self.billing_lname_field).send_keys("Sabbir")
-                assert_that(self.browser.find_element(*self.billing_com_label).text).is_equal_to(self.com_label_text)
-                self.browser.find_element(*self.billing_com_field).clear()
-                self.browser.find_element(*self.billing_com_field).send_keys("WPDeveloper")
-                assert_that(self.browser.find_element(*self.billing_country_label).text).is_equal_to(self.country_label_text)
+                self.check_text_matches_with(self.billing_fname_label, self.fname_label_text)
+                self.do_clear_field(self.billing_fname_field)
+                self.do_send_keys(self.billing_fname_field, "Mr.")
+                self.check_text_matches_with(self.billing_lname_label, self.lname_label_text)
+                self.do_clear_field(self.billing_lname_field)
+                self.do_send_keys(self.billing_lname_field, "Sabbir")
+                self.check_text_matches_with(self.billing_com_label, self.com_label_text)
+                self.do_clear_field(self.billing_com_field)
+                self.do_send_keys(self.billing_com_field, "WPDeveloper")
+                self.check_text_matches_with(self.billing_country_label, self.country_label_text)
                 self.browser.find_element(*self.billing_country_list).click()
-                time.sleep(.5)
                 self.browser.find_element(*self.billing_country_list).click()
-                assert_that(self.browser.find_element(*self.billing_address_label).text).is_equal_to(self.address_label_text)
-                self.browser.find_element(*self.billing_address_field_1).clear()
-                self.browser.find_element(*self.billing_address_field_1).send_keys("New Street")
-                self.browser.find_element(*self.billing_address_field_2).clear()
-                self.browser.find_element(*self.billing_address_field_2).send_keys("Boxy")
-                assert_that(self.browser.find_element(*self.billing_city_label).text).is_equal_to(self.city_label_text)
-                self.browser.find_element(*self.billing_city_field).clear()
-                self.browser.find_element(*self.billing_city_field).send_keys("New Town")
-                assert_that(self.browser.find_element(*self.billing_district_label).text). \
-                    is_equal_to(self.district_label_text)
-                self.browser.find_element(*self.billing_district_field).clear()
-                self.browser.find_element(*self.billing_district_field).send_keys("Geodon")
-                assert_that(self.browser.find_element(*self.billing_zip_label).text).is_equal_to(self.zip_label_text)
-                self.browser.find_element(*self.billing_zip_field).clear()
-                self.browser.find_element(*self.billing_zip_field).send_keys("1206")
-                assert_that(self.browser.find_element(*self.billing_phone_label).text).is_equal_to(self.phone_label_text)
-                self.browser.find_element(*self.billing_phone_field).clear()
-                self.browser.find_element(*self.billing_phone_field).send_keys("0123456789")
-                assert_that(self.browser.find_element(*self.billing_email_label).text).is_equal_to(self.email_label_text)
-                self.browser.find_element(*self.billing_email_field).clear()
-                self.browser.find_element(*self.billing_email_field).send_keys("testerbhaai@gmail.com")
+                self.check_text_matches_with(self.billing_address_label, self.address_label_text)
+                self.do_clear_field(self.billing_address_field_1)
+                self.do_send_keys(self.billing_address_field_1, "New Street")
+                self.do_clear_field(self.billing_address_field_2)
+                self.do_send_keys(self.billing_address_field_2, "Boxy")
+                self.check_text_matches_with(self.billing_city_label, self.city_label_text)
+                self.do_clear_field(self.billing_city_field)
+                self.do_send_keys(self.billing_city_field, "New Town")
+                self.check_text_matches_with(self.billing_district_label, self.district_label_text)
+                self.do_clear_field(self.billing_district_field)
+                self.do_send_keys(self.billing_district_field, "Geodon")
+                self.check_text_matches_with(self.billing_zip_label, self.zip_label_text)
+                self.do_clear_field(self.billing_zip_field)
+                self.do_send_keys(self.billing_zip_field, "1206")
+                self.check_text_matches_with(self.billing_phone_label, self.phone_label_text)
+                self.do_clear_field(self.billing_phone_field)
+                self.do_send_keys(self.billing_phone_field, "0123456789")
+                self.check_text_matches_with(self.billing_email_label, self.email_label_text)
+                self.do_clear_field(self.billing_email_field)
+                self.do_send_keys(self.billing_email_field, "testerbhaai@gmail.com")
                 # Create an Account
-                self.browser.execute_script("window.scrollTo(0, 2093)")
-                time.sleep(1)
-                assert_that(self.browser.find_element(*self.create_acc_field_label).text). \
-                    is_equal_to(self.create_acc_field_label_text)
+                self.scroll_to(2093)
+                self.check_text_matches_with(self.create_acc_field_label, self.create_acc_field_label_text)
                 self.browser.find_element(*self.create_acc_field).click()
-                time.sleep(1)
-                assert_that(self.browser.find_element(*self.create_acc_pass_label).text). \
-                    is_equal_to(self.create_acc_pass_label_text)
-                self.browser.find_element(*self.create_acc_pass_field).clear()
-                self.browser.find_element(*self.create_acc_pass_field).send_keys("123456")
+                self.check_text_matches_with(self.create_acc_pass_label, self.create_acc_pass_label_text)
+                self.do_clear_field(self.create_acc_pass_field)
+                self.do_send_keys(self.create_acc_pass_field, "123456")
                 # Ship to Diff
-                assert_that(self.browser.find_element(*self.ship_diff_address_label).text). \
-                    is_equal_to(self.ship_diff_address_label_text)
-                self.browser.find_element(*self.ship_diff_address_field).click()
-                time.sleep(1)
-                assert_that(self.browser.find_element(*self.shipping_fname_label).text).is_equal_to(self.fname_label_text)
-                self.browser.find_element(By.XPATH, self.shipping_fname_field).clear()
-                self.browser.find_element(By.XPATH, self.shipping_fname_field).send_keys("Mr.")
-                assert_that(self.browser.find_element(*self.shipping_lname_label).text).is_equal_to(self.lname_label_text)
-                self.browser.find_element(*self.shipping_lname_field).clear()
-                self.browser.find_element(*self.shipping_lname_field).send_keys("Sabbir")
-                assert_that(self.browser.find_element(*self.shipping_com_label).text).is_equal_to(self.com_label_text)
-                self.browser.find_element(*self.shipping_com_field).clear()
-                self.browser.find_element(*self.shipping_com_field).send_keys("WPDeveloper")
-                assert_that(self.browser.find_element(*self.shipping_country_label).text).is_equal_to(self.country_label_text)
-                self.browser.execute_script("window.scrollTo(0, 2420)")
-                time.sleep(.5)
-                self.browser.find_element(*self.shipping_country_list).click()
-                time.sleep(.5)
-                self.browser.execute_script("window.scrollTo(0, 2420)")
-                self.browser.find_element(*self.shipping_country_list).click()
-                assert_that(self.browser.find_element(*self.shipping_address_label).text).is_equal_to(self.address_label_text)
-                self.browser.find_element(*self.shipping_address_field_1).clear()
-                self.browser.find_element(*self.shipping_address_field_1).send_keys("New Street")
-                self.browser.find_element(*self.shipping_address_field_2).clear()
-                self.browser.find_element(*self.shipping_address_field_2).send_keys("Boxy")
-                assert_that(self.browser.find_element(*self.shipping_city_label).text).is_equal_to(self.city_label_text)
-                self.browser.find_element(*self.shipping_city_field).clear()
-                self.browser.find_element(*self.shipping_city_field).send_keys("New Town")
-                assert_that(self.browser.find_element(*self.shipping_district_label).text). \
-                    is_equal_to(self.district_label_text)
-                self.browser.find_element(*self.shipping_district_field).clear()
-                self.browser.find_element(*self.shipping_district_field).send_keys("Geodon")
-                self.browser.execute_script("window.scrollTo(0, 2902)")
-                time.sleep(.5)
-                assert_that(self.browser.find_element(*self.shipping_zip_label).text).is_equal_to(self.zip_label_text)
-                self.browser.find_element(*self.shipping_zip_field).clear()
-                self.browser.find_element(*self.shipping_zip_field).send_keys("1206")
+                self.check_text_matches_with(self.ship_diff_address_label, self.ship_diff_address_label_text)
+                self.do_click(self.ship_diff_address_field)
+                self.check_text_matches_with(self.shipping_fname_label, self.fname_label_text)
+                self.do_clear_field(self.shipping_fname_field)
+                self.do_send_keys(self.shipping_fname_field, "Mr.")
+                self.check_text_matches_with(self.shipping_lname_label, self.lname_label_text)
+                self.do_clear_field(self.shipping_lname_field)
+                self.do_send_keys(self.shipping_lname_field, "Sabbir")
+                self.check_text_matches_with(self.shipping_com_label, self.com_label_text)
+                self.do_clear_field(self.shipping_com_field)
+                self.do_send_keys(self.shipping_com_field, "WPDeveloper")
+                self.check_text_matches_with(self.shipping_country_label, self.country_label_text)
+                self.scroll_to(2420)
+                self.do_click(self.shipping_country_list)
+                self.scroll_to(2420)
+                self.do_click(self.shipping_country_list)
+                self.check_text_matches_with(self.shipping_address_label, self.address_label_text)
+                self.do_clear_field(self.shipping_address_field_1)
+                self.do_send_keys(self.shipping_address_field_1, "New Street")
+                self.do_clear_field(self.shipping_address_field_2)
+                self.do_send_keys(self.shipping_address_field_2, "Boxy")
+                self.check_text_matches_with(self.shipping_city_label, self.city_label_text)
+                self.do_clear_field(self.shipping_city_field)
+                self.do_send_keys(self.shipping_city_field, "New Town")
+                self.check_text_matches_with(self.shipping_district_label, self.district_label_text)
+                self.do_clear_field(self.shipping_district_field)
+                self.do_send_keys(self.shipping_district_field, "Geodon")
+                self.scroll_to(2902)
+                self.check_text_matches_with(self.shipping_zip_label, self.zip_label_text)
+                self.do_clear_field(self.shipping_zip_field)
+                self.do_send_keys(self.shipping_zip_field, "1206")
 
                 # Other notes
-                assert_that(self.browser.find_element(*self.other_note_label).text).is_equal_to(self.other_note_label_text)
-                self.browser.find_element(*self.other_note_field).clear()
-                self.browser.find_element(*self.other_note_field).send_keys("Lorem Ipsum is simply a dummy text.")
-                self.browser.find_element(*self.next_btn).click()
+                self.check_text_matches_with(self.other_note_label, self.other_note_label_text)
+                self.do_clear_field(self.other_note_field)
+                self.do_send_keys(self.other_note_field, "Lorem Ipsum is simply a dummy text.")
+                self.do_click(self.next_btn)
 
                 # payment Tab
-                self.browser.execute_script("window.scrollTo(0, 976)")
-                time.sleep(2)
-                assert_that(self.browser.find_element(*self.payment_method_label).text). \
-                    is_equal_to(self.payment_method_label_text)
-                assert_that(self.browser.find_element(By.XPATH, self.payment_method_bank).text). \
-                    is_equal_to(self.payment_method_bank_text)
-                time.sleep(1.5)
-                self.browser.find_element(By.XPATH, self.payment_method_bank).click()
-                assert_that(self.browser.find_element(By.XPATH, self.payment_method_check).text). \
-                    is_equal_to(self.payment_method_check_text)
-                time.sleep(1.5)
-                self.browser.find_element(By.XPATH, self.payment_method_check).click()
-                assert_that(self.browser.find_element(By.XPATH, self.payment_method_cash).text). \
-                    is_equal_to(self.payment_method_cash_text)
-                time.sleep(1.5)
-                self.browser.find_element(By.XPATH, self.payment_method_cash).click()
-                assert_that(self.browser.find_element(*self.payment_method_des).text).is_equal_to(self.payment_method_des_text)
-                pos_3 = self.browser.find_element(By.XPATH, self.payment_method_cash)
-                self.browser.execute_script("arguments[0].scrollIntoView();", pos_3)
-                time.sleep(1)
-                self.browser.find_element(*self.prev_btn).click()
-                time.sleep(1.5)
-                # self.browser.execute_script("window.scrollTo(0, document.body.scrollHeight)")
-                # time.sleep(1.5)
-                pos_4 = self.browser.find_element(By.XPATH, "//label[@for='order_comments']")
-                self.browser.execute_script("arguments[0].scrollIntoView();", pos_4)
-                time.sleep(1.5)
-                self.browser.find_element(*self.prev_btn).click()
-                time.sleep(1.5)
-                # self.browser.execute_script("window.scrollTo(0, 902)")
-                # time.sleep(1.5)
-                pos_5 = self.browser.find_element(By.XPATH, "//span[normalize-space()='Split']")
-                self.browser.execute_script("arguments[0].scrollIntoView();", pos_5)
-                time.sleep(1.5)
-                self.browser.find_element(*self.prev_btn).click()
-                time.sleep(1.5)
-                self.browser.find_element(*self.next_btn).click()
-                time.sleep(1.5)
-                self.browser.find_element(*self.next_btn).click()
-                time.sleep(1.5)
-                self.browser.execute_script("arguments[0].scrollIntoView();", pos_4)
-                time.sleep(1.5)
-                self.browser.find_element(*self.next_btn).click()
-                time.sleep(1.5)
+                self.scroll_to(976)
+                self.check_text_matches_with(self.payment_method_label, self.payment_method_label_text)
+                self.check_text_matches_with(self.payment_method_bank, self.payment_method_bank_text)
+                self.do_click(self.payment_method_bank)
+                self.check_text_matches_with(self.payment_method_check, self.payment_method_check_text)
+                self.do_click(self.payment_method_check)
+                self.check_text_matches_with(self.payment_method_cash, self.payment_method_cash_text)
+                self.do_click(self.payment_method_cash)
+                self.check_text_matches_with(self.payment_method_des, self.payment_method_des_text)
+                self.scroll_to_element(self.payment_method_cash)
+                self.do_click(self.prev_btn)
+                self.scroll_to_element(self.scroll_3)
+                self.do_click(self.prev_btn)
+                self.scroll_to_element(self.scroll_4)
+                self.do_click(self.prev_btn)
+                self.do_click(self.next_btn)
+                self.do_click(self.next_btn)
+                self.scroll_to_element(self.scroll_3)
+                self.do_click(self.next_btn)
 
-                self.check_cart_item(self.p_title_1, self.p_1_title_text, self.p_price_1, self.p_1_price_text, self.p_img_1)
-                assert_that(self.browser.find_element(*self.t_sub_total_label).text).is_equal_to(self.t_sub_total_label_text)
-                assert_that(self.browser.find_element(*self.t_shipping_label).text).is_equal_to(self.t_shipping_label_text)
-                assert_that(self.browser.find_element(*self.t_total_label).text).is_equal_to(self.t_total_label_text)
+                self.check_cart_item(self.p_title_1, self.p_1_title_text, self.p_price_1, self.p_1_price_text,
+                                     self.p_img_1)
+                self.check_text_matches_with(self.t_sub_total_label, self.t_sub_total_label_text)
+                self.check_text_matches_with(self.t_shipping_label, self.t_shipping_label_text)
+                self.check_text_matches_with(self.t_total_label, self.t_total_label_text)
+                self.check_text_matches_with(self.t_sub_total_amount, self.t_sub_total_amount_text)
+                # self.check_text_matches_with(self.t_shipping_amount, self.t_shipping_amount_text)
+                self.check_text_matches_with(self.t_total_amount, self.t_total_amount_text)
+                self.check_text_matches_with(self.place_order_btn, self.place_order_btn_text)
 
-                assert_that(self.browser.find_element(*self.t_sub_total_amount).text).is_equal_to(self.t_sub_total_amount_text)
-                # assert_that(self.browser.find_element(*self.t_shipping_amount).text).is_equal_to(self.t_shipping_amount_text)
-                assert_that(self.browser.find_element(*self.t_total_amount).text).is_equal_to(self.t_total_amount_text)
+                self.scroll_to_element(self.scroll_5)
 
-                assert_that(self.browser.find_element(*self.place_order_btn).text).is_equal_to(self.place_order_btn_text)
-
-                pos_6 = self.browser.find_element(By.XPATH, "//div[@class='shipping-area']")
-                self.browser.execute_script("arguments[0].scrollIntoView();", pos_6)
-                time.sleep(1)
-                self.browser.find_element(*self.continue_shop).click()
-                assert_that(self.browser.find_element(*self.shop_page).text).is_equal_to(self.shop_page_text)
-                self.browser.back()
+                self.do_click(self.continue_shop)
+                self.check_text_matches_with(self.shop_page, self.shop_page_text)
+                self.go_back()
