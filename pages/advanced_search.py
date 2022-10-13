@@ -16,10 +16,9 @@ class AdvancedSearch(BasePage, Helper):
     search_btn = (By.XPATH, f'//*[@id="eael-advanced-search-widget-4ccceaa9"]/form/button')
     input_field = (By.XPATH, f'//*[@id="eael-advanced-search-widget-4ccceaa9"]/form/div/input')
     clear_btn = (By.XPATH, f'//*[@id="eael-advanced-search-widget-4ccceaa9"]/form/div/span[2]')
-    load_more = (By.XPATH, f'//*[@id="eael-advanced-search-widget-4ccceaa9"]/div/div[5]/a')
-    search_title = (By.XPATH, f'//*[@id="eael-advanced-search-widget-4ccceaa9"]/div/div[3]/a[1]/div[2]/h4')
-    search_result = (By.XPATH, f'//*[@id="eael-advanced-search-widget-4ccceaa9"]/div/div[3]/a[1]/div[2]/h4')
-    search_description = (By.XPATH, f'//*[@id="eael-advanced-search-widget-4ccceaa9"]/div/div[3]/a[1]/div[2]/p')
+    load_more = (By.XPATH, f'//*[@id="eael-advanced-search-widget-4ccceaa9"]/div/div[6]/a')
+    search_title = (By.XPATH, f'//*[@id="eael-advanced-search-widget-4ccceaa9"]/div/div[4]/a[1]/div[2]/h4')
+    search_description = (By.XPATH, f'//*[@id="eael-advanced-search-widget-4ccceaa9"]/div/div[4]/a[1]/div[2]/p')
 
     # Article
     article_title = (By.XPATH, f'//*[@id="page"]/div[1]/div/section/div/div/div[1]/div/div/section[1]'
@@ -46,7 +45,7 @@ class AdvancedSearch(BasePage, Helper):
                 """Search a query"""
                 self.do_click(self.input_field)
                 self.do_send_keys(self.input_field, self.search_keyword)
-                if self.check_element_present(self.search_result):
+                if self.check_element_present(self.search_title):
                     """Clear the field"""
                     self.do_click(self.clear_btn)
                 """Search a query and check it's result"""

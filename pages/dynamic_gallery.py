@@ -95,13 +95,13 @@ class DynamicGallery(BasePage, Helper):
                 self.do_click(self.load_more_btn)
                 self.scroll_to(2018)
                 self.check_widget_post(self.all_post_4_title, self.all_post_4_des, self.all_post_4_img)
-                self.scroll_to(905)
                 # Elementor
+                self.scroll_to(905)
                 self.do_click(self.elementor)
-                self.check_widget_post(self.ele_post_1_title, self.ele_post_1_des, self.ele_post_1_img)
-                self.do_click(self.elementor)
-                self.check_widget_post(self.ele_post_2_title, self.ele_post_2_des, self.ele_post_2_img)
+                self.scroll_to(1439)
+                self.do_click(self.load_more_btn)
                 # WordPress
+                self.scroll_to(905)
                 self.do_click(self.wordpress)
                 self.scroll_to(1439)
                 self.do_click(self.load_more_btn)

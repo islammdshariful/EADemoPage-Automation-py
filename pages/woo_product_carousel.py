@@ -73,13 +73,16 @@ class WooProductCarousel(BasePage, Helper):
     def __init__(self, browser):
         super().__init__(browser)
 
-    def check_product_info(self, img, title, title_text, price, price_text, ratings, ratings_text, cart_btn, link_btn, qv_btn):
+    def check_product_info(self, img, title, title_text, price, price_text, ratings, ratings_text,
+                           cart_btn, link_btn, qv_btn, dot):
+        self.do_click(self.dot_4, click_after_wait='yes')
+        self.do_click(dot, click_after_wait='yes')
         self.move_cursor_to(img)
         self.cursor.move_to_element(self.get_element(cart_btn)).\
             move_to_element(self.get_element(qv_btn)).\
             move_to_element(self.get_element(link_btn)).perform()
 
-        self.do_click(self.dot_1, click_after_wait='yes')
+        self.do_click(dot, click_after_wait='yes')
         assert_that(self.get_element(ratings).get_attribute('aria-label')).is_equal_to(ratings_text)
         self.check_text_matches_with(title, title_text)
         self.check_text_matches_with(price, price_text)
@@ -95,40 +98,25 @@ class WooProductCarousel(BasePage, Helper):
                 self.check_documents(self.doc_link, self.doc_name)
             else:
                 self.scroll_to_element(self.scroll)
-                self.do_click(self.dot_1, click_after_wait='yes')
                 self.check_product_info(self.p_1_img, self.p_1_title, self.p_1_title_text, self.p_1_price,
                                         self.p_1_price_text, self.p_1_ratings, self.p_1_ratings_text,
-                                        self.p_1_cart_btn, self.p_1_link_btn, self.p_1_quickview_btn)
+                                        self.p_1_cart_btn, self.p_1_link_btn, self.p_1_quickview_btn, self.dot_1)
 
-                self.do_click(self.dot_1, click_after_wait='yes')
-                self.scroll_to_element(self.scroll)
-                self.do_click(self.dot_2, click_after_wait='yes')
                 self.check_product_info(self.p_2_img, self.p_2_title, self.p_2_title_text, self.p_2_price,
                                         self.p_2_price_text, self.p_2_ratings, self.p_2_ratings_text,
-                                        self.p_2_cart_btn, self.p_2_link_btn, self.p_2_quickview_btn)
+                                        self.p_2_cart_btn, self.p_2_link_btn, self.p_2_quickview_btn, self.dot_2)
 
-                self.do_click(self.dot_1, click_after_wait='yes')
-                self.scroll_to_element(self.scroll)
-                self.do_click(self.dot_3, click_after_wait='yes')
                 self.check_product_info(self.p_3_img, self.p_3_title, self.p_3_title_text, self.p_3_price,
                                         self.p_3_price_text, self.p_3_ratings, self.p_3_ratings_text,
-                                        self.p_3_cart_btn, self.p_3_link_btn, self.p_3_quickview_btn)
+                                        self.p_3_cart_btn, self.p_3_link_btn, self.p_3_quickview_btn, self.dot_3)
 
-                self.do_click(self.dot_1, click_after_wait='yes')
-                self.scroll_to_element(self.scroll)
-                self.do_click(self.dot_4, click_after_wait='yes')
                 self.check_product_info(self.p_4_img, self.p_4_title, self.p_4_title_text, self.p_4_price,
                                         self.p_4_price_text, self.p_4_ratings, self.p_4_ratings_text,
-                                        self.p_4_cart_btn, self.p_4_link_btn, self.p_4_quickview_btn)
-                self.do_click(self.dot_4, click_after_wait='yes')
+                                        self.p_4_cart_btn, self.p_4_link_btn, self.p_4_quickview_btn, self.dot_4)
 
                 self.scroll_to(1103)
-                self.do_click(self.prev_btn)
-                self.do_click(self.prev_btn)
-                self.do_click(self.prev_btn)
-
+                self.do_click(self.prev_btn, click_after_wait='yes')
                 self.scroll_to_element(self.scroll)
-                self.do_click(self.next_btn, click_after_wait='yes')
                 self.do_click(self.next_btn, click_after_wait='yes')
                 self.move_cursor_to(self.p_3_img)
                 self.do_click(self.p_3_link_btn)
@@ -137,6 +125,3 @@ class WooProductCarousel(BasePage, Helper):
                 self.go_back()
                 self.scroll_to(1103)
                 self.do_click(self.dot_3, click_after_wait='yes')
-                self.do_click(self.dot_1, click_after_wait='yes')
-                self.do_click(self.dot_2, click_after_wait='yes')
-                self.do_click(self.dot_4, click_after_wait='yes')

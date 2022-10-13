@@ -1,3 +1,5 @@
+from selenium.common import StaleElementReferenceException
+
 from utils.config import *
 
 
@@ -22,7 +24,11 @@ class ImageHotspots(BasePage, Helper):
     def hotspot(self, hotspot, title, title_name):
         self.move_cursor_to(hotspot)
         if self.is_displaying(*title):
-            self.check_text_matches_with(title, title_name)
+            try:
+                self.check_text_matches_with(title, title_name)
+            except StaleElementReferenceException:
+                if self.is_displaying(*title):
+                    self.check_text_matches_with(title, title_name)
         else:
             assert_that("Hotspot working").is_equal_to("Hotspot not working")
 

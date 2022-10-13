@@ -1,6 +1,7 @@
 import time
 
 from assertpy import assert_that
+from selenium.common import TimeoutException, ElementClickInterceptedException, NoSuchElementException
 from selenium.webdriver import ActionChains, Keys
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -15,15 +16,28 @@ class BasePage:
         self.browser.get(url)
 
     def get_element(self, by_locator):
-        element = WebDriverWait(self.browser, 10).until(EC.visibility_of_element_located(by_locator))
-        return element
+        try:
+            element = WebDriverWait(self.browser, 10).until(EC.visibility_of_element_located(by_locator))
+            return element
+        except TimeoutException:
+            try:
+                element = WebDriverWait(self.browser, 10).until(EC.presence_of_element_located(by_locator))
+                return element
+            except TimeoutException:
+                print("Loading took too much time!")
 
     def does_element_has_text(self, by_locator, text):
-        WebDriverWait(self.browser, 10).until(
-            EC.text_to_be_present_in_element(by_locator, text))
+        try:
+            WebDriverWait(self.browser, 10).until(EC.text_to_be_present_in_element(by_locator, text))
+        except TimeoutException:
+            assert_that(self.get_element_text(by_locator)).is_equal_to(text)
 
     def do_click(self, by_locator, click_after_wait=None):
-        self.get_element(by_locator).click()
+        try:
+            self.get_element(by_locator).click()
+        except ElementClickInterceptedException:
+            self.get_element(by_locator).click()
+
         if click_after_wait is not None:
             time.sleep(1)
 
@@ -58,9 +72,13 @@ class BasePage:
             assert_that(1).is_equal_to(error_message)
 
     def is_displaying(self, *by_locator):
-        return self.browser.find_element(*by_locator).is_displayed()
+        try:
+            return self.browser.find_element(*by_locator).is_displayed()
+        except NoSuchElementException:
+            time.sleep(2)
+            return self.browser.find_element(*by_locator).is_displayed()
 
-    def get_title(self, title):
+    def get_page_title(self, title):
         WebDriverWait(self.browser, 10).until(EC.title_is(title))
         return self.browser.title
 
@@ -68,9 +86,9 @@ class BasePage:
         self.cursor.move_to_element(self.get_element(by_locator)).perform()
         time.sleep(1)
 
-    def move_cursor_to_and_click(self, by_locator):
+    def move_cursor_and_click(self, by_locator):
         self.cursor.move_to_element(self.get_element(by_locator)).click().perform()
-        time.sleep(.5)
+        time.sleep(1)
 
     def go_back(self):
         self.browser.back()
@@ -87,8 +105,8 @@ class BasePage:
         self.browser.switch_to.default_content()
         time.sleep(1)
 
-    def scroll_to(self, Y):
-        self.browser.execute_script("window.scrollTo(0, " + str(Y) + ")")
+    def scroll_to(self, y):
+        self.browser.execute_script("window.scrollTo(0, " + str(y) + ")")
         time.sleep(1)
 
     def scroll_to_top(self):

@@ -115,7 +115,7 @@ class WooProductGallery(BasePage, Helper):
             else:
                 self.scroll_to(1002)
 
-                self.move_cursor_to_and_click(self.all_tab)
+                self.move_cursor_and_click(self.all_tab)
                 self.scroll_to(1002)
                 self.check_tab_items(self.p_1_img, self.p_1_title, self.p_1_title_text, self.p_1_price, self.p_1_price_text,
                                      self.p_1_cart_btn, self.p_1_qview_btn, self.p_1_link_btn, self.p_2_img, self.p_2_title,
@@ -128,7 +128,7 @@ class WooProductGallery(BasePage, Helper):
                                       self.q_cat, self.p_2_cat_text, self.q_tag, self.p_2_tag_text, self.q_image,
                                       self.q_zoom, self.q_cross)
                 self.scroll_to(1002)
-                self.move_cursor_to_and_click(self.fashion_tab)
+                self.move_cursor_and_click(self.fashion_tab)
                 self.scroll_to(1002)
                 self.check_tab_items(self.p_1_img, self.p_1_title, self.p_1_title_text, self.p_1_price, self.p_1_price_text,
                                      self.p_1_cart_btn, self.p_1_qview_btn, self.p_1_link_btn, self.p_2_img, self.p_2_title,
@@ -136,7 +136,7 @@ class WooProductGallery(BasePage, Helper):
                                      self.p_2_qview_btn, self.p_2_link_btn, self.p_3_img, self.p_3_title, self.p_3_title_text,
                                      self.p_3_price, self.p_3_price_text, self.p_3_cart_btn, self.p_3_qview_btn, self.p_3_link_btn)
                 self.scroll_to(1002)
-                self.move_cursor_to_and_click(self.men_tab)
+                self.move_cursor_and_click(self.men_tab)
                 self.scroll_to(1002)
                 self.check_tab_items(self.p_1_img, self.p_1_title, self.p_1_title_text, self.p_1_price, self.p_1_price_text,
                                      self.p_1_cart_btn, self.p_1_qview_btn, self.p_1_link_btn, self.p_2_img, self.p_2_title,
@@ -144,7 +144,7 @@ class WooProductGallery(BasePage, Helper):
                                      self.p_2_qview_btn, self.p_2_link_btn, self.p_3_img, self.p_3_title, self.p_3_title_text,
                                      self.p_3_price, self.p_3_price_text, self.p_3_cart_btn, self.p_3_qview_btn, self.p_3_link_btn)
                 self.scroll_to(1002)
-                self.move_cursor_to_and_click(self.women_tab)
+                self.move_cursor_and_click(self.women_tab)
                 self.scroll_to(1002)
                 self.check_tab_items(self.p_1_img, self.p_1_title, self.p_4_title_text, self.p_1_price, self.p_4_price_text,
                                      self.p_1_cart_btn, self.p_1_qview_btn, self.p_1_link_btn, self.p_2_img, self.p_2_title,

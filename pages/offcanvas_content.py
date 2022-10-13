@@ -14,10 +14,10 @@ class OffCanvas(BasePage, Helper):
                '/div/div/div[2]/div/div/div[3]/div/div/a/span/span'
     doc_name = "OFFCANVAS"
 
-    left_side = (By.XPATH, f'//*[@id="post-3926"]/div/div/div/div/section[2]/div/div/div/div/div/div[2]'
-                           f'/div/div/div/div/span[2]')
+    left_side = (By.XPATH, f'//*[@id="post-3926"]/div/div/div/div/section[2]/div/div/div/div/div/div[2]/'
+                           f'div/div/div/div/span')
     right_side = (By.XPATH, f'//*[@id="post-3926"]/div/div/div/div/section[2]/div/div/div/div/div/div[3]'
-                            f'/div/div/div/div/span[2]')
+                            f'/div/div/div/div/span')
     left_img = (By.XPATH, f"//div[starts-with(@class, 'elementor-element elementor-element-7fa94fd2 elementor-widget "
                           f"elementor-widget-image')]//div//div//img")
     left = f"//div[starts-with(@class, 'elementor-element elementor-element-379af5cf elementor-icon-list--layout-" \

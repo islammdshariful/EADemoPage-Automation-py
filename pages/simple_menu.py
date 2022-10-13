@@ -64,7 +64,6 @@ class SimpleMenu(BasePage, Helper):
             move_to_element(self.get_element(self.h_blog)). \
             move_to_element(self.get_element(self.h_support)).perform()
         """Click a sub menu items"""
-        self.reload_page()
         self.move_cursor_to(self.h_elementor)
         self.cursor.move_to_element(self.get_element(self.h_elementor)). \
             move_to_element(self.get_element(self.h_elementor_woo_slider)).click().perform()
@@ -90,7 +89,7 @@ class SimpleMenu(BasePage, Helper):
             move_to_element(self.get_element(self.v_blog)). \
             move_to_element(self.get_element(self.v_contact)).perform()
         """Click a sub menu items"""
-        self.move_cursor_to_and_click(self.v_elementor_accordion)
+        self.move_cursor_and_click(self.v_elementor_accordion)
         self.check_widget_name(self.adv_acor, self.adv_acor_text)
         self.go_back()
 

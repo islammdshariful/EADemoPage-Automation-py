@@ -90,7 +90,7 @@ class WooProductSlider(BasePage, Helper):
         self.check_text_matches_with(tag_2, tag_2_text)
         assert_that(self.get_element(ratings).get_attribute('aria-label')).is_equal_to(ratings_text)
         self.move_cursor_to(cart_btn)
-        self.move_cursor_to_and_click(cart_btn)
+        self.move_cursor_and_click(cart_btn)
         self.move_cursor_to(link_btn)
 
     def run(self):

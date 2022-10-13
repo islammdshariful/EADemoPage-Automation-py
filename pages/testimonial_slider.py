@@ -16,14 +16,14 @@ class TestimonialSlider(BasePage, Helper):
 
     slide_1_img = (By.XPATH, f'//*[@id="eael-testimonial-695ee53e"]/div/div[1]/div[3]/div/div[1]/figure/img')
     slide_1_quote = (By.XPATH, f'//*[@id="eael-testimonial-695ee53e"]/div/div[1]/div[3]/div/div[2]/span')
-    slide_1_des = (By.XPATH, f'//*[@id="eael-testimonial-695ee53e"]/div/div[1]/div[3]/div/div[2]/div/p')
+    slide_1_des = (By.XPATH, f'//*[@id="eael-testimonial-695ee53e"]/div/div[1]/div[3]/div/div[2]/div')
     slide_1_rate = (By.XPATH, f'//*[@id="eael-testimonial-695ee53e"]/div/div[1]/div[3]/div/div[2]/ul')
     slide_1_name = (By.XPATH, f'//*[@id="eael-testimonial-695ee53e"]/div/div[1]/div[3]/div/div[2]/p[1]')
     slide_1_com = (By.XPATH, f'//*[@id="eael-testimonial-695ee53e"]/div/div[1]/div[3]/div/div[2]/p[2]')
 
     slide_2_img = (By.XPATH, f'//*[@id="eael-testimonial-695ee53e"]/div/div[1]/div[4]/div/div[1]/figure/img')
     slide_2_quote = (By.XPATH, f'//*[@id="eael-testimonial-695ee53e"]/div/div[1]/div[4]/div/div[2]/span')
-    slide_2_des = (By.XPATH, f'//*[@id="eael-testimonial-695ee53e"]/div/div[1]/div[4]/div/div[2]/div/p')
+    slide_2_des = (By.XPATH, f'//*[@id="eael-testimonial-695ee53e"]/div/div[1]/div[4]/div/div[2]/div')
     slide_2_rate = (By.XPATH, f'//*[@id="eael-testimonial-695ee53e"]/div/div[1]/div[4]/div/div[2]/ul')
     slide_2_name = (By.XPATH, f'//*[@id="eael-testimonial-695ee53e"]/div/div[1]/div[4]/div/div[2]/p[1]')
     slide_2_com = (By.XPATH, f'//*[@id="eael-testimonial-695ee53e"]/div/div[1]/div[4]/div/div[2]/p[2]')

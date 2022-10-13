@@ -56,7 +56,7 @@ class AdvancedAccordion(BasePage, Helper):
                 self.is_visible(self.accor_2_icon, "Accordion 2 icon is not visible")
                 self.is_visible(self.accor_3_icon, "Accordion 3 icon is not visible")
                 """Click on accordion tab 2"""
-                self.move_cursor_to_and_click(self.accor_2_title)
+                self.move_cursor_and_click(self.accor_2_title)
                 """Check accordion tab 2's description"""
                 self.check_text_matches_with(self.accor_2_des, self.accor_2_des_text)
                 """Checking if other tabs are closed"""
@@ -68,7 +68,7 @@ class AdvancedAccordion(BasePage, Helper):
                 else:
                     assert_that(1).is_equal_to("Tab one open, FAILED")
                 """Click on accordion tab 3"""
-                self.move_cursor_to_and_click(self.accor_3_title)
+                self.move_cursor_and_click(self.accor_3_title)
                 """Check accordion tab 3's description"""
                 self.check_text_matches_with(self.accor_3_des, self.accor_3_des_text)
                 """Checking if other tabs are closed"""
@@ -81,7 +81,7 @@ class AdvancedAccordion(BasePage, Helper):
                 else:
                     assert_that(1).is_equal_to("Tab one open, FAILED")
                 """Click on accordion tab 2"""
-                self.move_cursor_to_and_click(self.accor_1_title)
+                self.move_cursor_and_click(self.accor_1_title)
                 """Check accordion tab 2's description"""
                 self.check_text_matches_with(self.accor_1_des, self.accor_1_des_text)
                 """Checking if other tabs are closed"""
