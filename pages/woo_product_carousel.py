@@ -1,9 +1,7 @@
-from selenium.webdriver import ActionChains, Keys
-
 from utils.config import *
 
 
-class WooProductCarousel(Helper):
+class WooProductCarousel(BasePage, Helper):
     widget = '//*[@id="post-266120"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Woo Product Carousel'
@@ -11,37 +9,37 @@ class WooProductCarousel(Helper):
                '/div/div/div[2]/div/div/div[3]/div/div/a/span/span'
     doc_name = "WOO PRODUCT CAROUSEL"
 
-    p_1_title = f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[4]/div/div[2]/div[1]/div[1]/h2'
-    p_1_ratings = f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[4]/div/div[2]/div[1]/div[2]'
-    p_1_price = f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[4]/div/div[2]/div[2]/span'
-    p_1_cart_btn = f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[4]/div/div[1]/div[2]/ul/li[1]'
-    p_1_quickview_btn = f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[4]/div/div[1]/div[2]/ul/li[2]'
-    p_1_link_btn = f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[4]/div/div[1]/div[2]/ul/li[3]'
-    p_1_img = f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[4]/div/div[1]/div[1]/img'
+    p_1_title = (By.XPATH, f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[4]/div/div[2]/div[1]/div[1]/h2')
+    p_1_ratings = (By.XPATH, f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[4]/div/div[2]/div[1]/div[2]')
+    p_1_price = (By.XPATH, f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[4]/div/div[2]/div[2]/span')
+    p_1_cart_btn = (By.XPATH, f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[4]/div/div[1]/div[2]/ul/li[1]')
+    p_1_quickview_btn = (By.XPATH, f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[4]/div/div[1]/div[2]/ul/li[2]')
+    p_1_link_btn = (By.XPATH, f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[4]/div/div[1]/div[2]/ul/li[3]')
+    p_1_img = (By.XPATH, f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[4]/div/div[1]/div[1]/img')
 
-    p_2_title = f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[5]/div/div[2]/div[1]/div[1]/h2'
-    p_2_ratings = f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[5]/div/div[2]/div[1]/div[2]'
-    p_2_price = f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[5]/div/div[2]/div[2]/span'
-    p_2_cart_btn = f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[5]/div/div[1]/div[2]/ul/li[1]'
-    p_2_quickview_btn = f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[5]/div/div[1]/div[2]/ul/li[2]'
-    p_2_link_btn = f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[5]/div/div[1]/div[2]/ul/li[3]'
-    p_2_img = f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[5]/div/div[1]/div[1]/img'
+    p_2_title = (By.XPATH, f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[5]/div/div[2]/div[1]/div[1]/h2')
+    p_2_ratings = (By.XPATH, f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[5]/div/div[2]/div[1]/div[2]')
+    p_2_price = (By.XPATH, f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[5]/div/div[2]/div[2]/span')
+    p_2_cart_btn = (By.XPATH, f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[5]/div/div[1]/div[2]/ul/li[1]')
+    p_2_quickview_btn = (By.XPATH, f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[5]/div/div[1]/div[2]/ul/li[2]')
+    p_2_link_btn = (By.XPATH, f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[5]/div/div[1]/div[2]/ul/li[3]')
+    p_2_img = (By.XPATH, f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[5]/div/div[1]/div[1]/img')
 
-    p_3_title = f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[6]/div/div[2]/div[1]/div[1]/h2'
-    p_3_ratings = f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[6]/div/div[2]/div[1]/div[2]'
-    p_3_price = f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[6]/div/div[2]/div[2]/span'
-    p_3_cart_btn = f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[6]/div/div[1]/div[2]/ul/li[1]'
-    p_3_quickview_btn = f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[6]/div/div[1]/div[2]/ul/li[2]'
-    p_3_link_btn = f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[6]/div/div[1]/div[2]/ul/li[3]'
-    p_3_img = f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[6]/div/div[1]/div[1]/img'
+    p_3_title = (By.XPATH, f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[6]/div/div[2]/div[1]/div[1]/h2')
+    p_3_ratings = (By.XPATH, f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[6]/div/div[2]/div[1]/div[2]')
+    p_3_price = (By.XPATH, f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[6]/div/div[2]/div[2]/span')
+    p_3_cart_btn = (By.XPATH, f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[6]/div/div[1]/div[2]/ul/li[1]')
+    p_3_quickview_btn = (By.XPATH, f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[6]/div/div[1]/div[2]/ul/li[2]')
+    p_3_link_btn = (By.XPATH, f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[6]/div/div[1]/div[2]/ul/li[3]')
+    p_3_img = (By.XPATH, f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[6]/div/div[1]/div[1]/img')
 
-    p_4_title = f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[7]/div/div[2]/div[1]/div[1]/h2'
-    p_4_ratings = f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[7]/div/div[2]/div[1]/div[2]'
-    p_4_price = f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[7]/div/div[2]/div[2]/span'
-    p_4_cart_btn = f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[7]/div/div[1]/div[2]/ul/li[1]'
-    p_4_quickview_btn = f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[7]/div/div[1]/div[2]/ul/li[2]'
-    p_4_link_btn = f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[7]/div/div[1]/div[2]/ul/li[3]'
-    p_4_img = f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[7]/div/div[1]/div[1]/img'
+    p_4_title = (By.XPATH, f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[7]/div/div[2]/div[1]/div[1]/h2')
+    p_4_ratings = (By.XPATH, f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[7]/div/div[2]/div[1]/div[2]')
+    p_4_price = (By.XPATH, f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[7]/div/div[2]/div[2]/span')
+    p_4_cart_btn = (By.XPATH, f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[7]/div/div[1]/div[2]/ul/li[1]')
+    p_4_quickview_btn = (By.XPATH, f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[7]/div/div[1]/div[2]/ul/li[2]')
+    p_4_link_btn = (By.XPATH, f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[7]/div/div[1]/div[2]/ul/li[3]')
+    p_4_img = (By.XPATH, f'//*[@id="eael-product-carousel-ace5bb1"]/div[1]/ul/li[7]/div/div[1]/div[1]/img')
 
     prev_btn = (By.XPATH, f'//*[@id="eael-product-carousel-ace5bb1"]/div[4]')
     next_btn = (By.XPATH, f'//*[@id="eael-product-carousel-ace5bb1"]/div[3]')
@@ -50,6 +48,8 @@ class WooProductCarousel(Helper):
     dot_2 = (By.XPATH, f'//*[@id="eael-product-carousel-ace5bb1"]/div[2]/span[2]')
     dot_3 = (By.XPATH, f'//*[@id="eael-product-carousel-ace5bb1"]/div[2]/span[3]')
     dot_4 = (By.XPATH, f'//*[@id="eael-product-carousel-ace5bb1"]/div[2]/span[4]')
+
+    item_name = (By.XPATH, f'/html/body/div[1]/div/div/div/main/div[2]/div[2]/h1')
 
     p_1_title_text = "Mens Trendy T Shirt"
     p_1_ratings_text = "Rated 4.00 out of 5"
@@ -67,88 +67,61 @@ class WooProductCarousel(Helper):
     p_4_ratings_text = "Rated 5.00 out of 5"
     p_4_price_text = "£45.00"
 
+    scroll = (By.XPATH, f'//*[@id="post-266120"]/div/div/div/div/section[2]/div/div/div/div/div/section'
+                        f'/div/div/div/div/div/div[2]/div/p')
+
     def __init__(self, browser):
         super().__init__(browser)
-        self.browser = browser
 
-    def load(self):
-        self.browser.get(self.woo_product_carousel)
+    def check_product_info(self, img, title, title_text, price, price_text, ratings, ratings_text,
+                           cart_btn, link_btn, qv_btn, dot):
+        self.do_click(self.dot_4, click_after_wait='yes')
+        self.do_click(dot, click_after_wait='yes')
+        self.move_cursor_to(img)
+        self.cursor.move_to_element(self.get_element(cart_btn)).\
+            move_to_element(self.get_element(qv_btn)).\
+            move_to_element(self.get_element(link_btn)).perform()
 
-    def check_product_info(self, img, title, title_text, price, price_text, ratings, ratings_text, cart_btn, link_btn, qv_btn):
-        time.sleep(.5)
-        assert_that(self.browser.find_element(By.XPATH, title).text).is_equal_to(title_text)
-        assert_that(self.browser.find_element(By.XPATH, price).text).is_equal_to(price_text)
-        rate = self.browser.find_element(By.XPATH, ratings)
-        assert_that(rate.get_attribute('aria-label')).is_equal_to(ratings_text)
+        self.do_click(dot, click_after_wait='yes')
+        assert_that(self.get_element(ratings).get_attribute('aria-label')).is_equal_to(ratings_text)
+        self.check_text_matches_with(title, title_text)
+        self.check_text_matches_with(price, price_text)
 
-        cursor = ActionChains(self.browser)
-        img = self.browser.find_element(By.XPATH, img)
-        cart = self.browser.find_element(By.XPATH, cart_btn)
-        link = self.browser.find_element(By.XPATH, link_btn)
-        qview = self.browser.find_element(By.XPATH, qv_btn)
-        cursor.move_to_element(img).perform()
-        cursor.move_to_element(cart).move_to_element(qview).move_to_element(link).perform()
-
-    def testcase(self):
+    def run(self):
         with soft_assertions():
+            """Go to page"""
+            self.go_to(self.woo_product_carousel)
+            """Checking widget name"""
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
-                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
+                """Checking widget's documentation"""
                 self.check_documents(self.doc_link, self.doc_name)
             else:
-                self.browser.execute_script("window.scrollTo(0, 1103)")
-                time.sleep(2)
+                self.scroll_to_element(self.scroll)
+                self.check_product_info(self.p_1_img, self.p_1_title, self.p_1_title_text, self.p_1_price,
+                                        self.p_1_price_text, self.p_1_ratings, self.p_1_ratings_text,
+                                        self.p_1_cart_btn, self.p_1_link_btn, self.p_1_quickview_btn, self.dot_1)
 
-                self.browser.find_element(*self.dot_1).click()
+                self.check_product_info(self.p_2_img, self.p_2_title, self.p_2_title_text, self.p_2_price,
+                                        self.p_2_price_text, self.p_2_ratings, self.p_2_ratings_text,
+                                        self.p_2_cart_btn, self.p_2_link_btn, self.p_2_quickview_btn, self.dot_2)
 
-                self.check_product_info(self.p_1_img, self.p_1_title, self.p_1_title_text, self.p_1_price, self.p_1_price_text,
-                                        self.p_1_ratings, self.p_1_ratings_text, self.p_1_cart_btn,
-                                        self.p_1_link_btn, self.p_1_quickview_btn)
+                self.check_product_info(self.p_3_img, self.p_3_title, self.p_3_title_text, self.p_3_price,
+                                        self.p_3_price_text, self.p_3_ratings, self.p_3_ratings_text,
+                                        self.p_3_cart_btn, self.p_3_link_btn, self.p_3_quickview_btn, self.dot_3)
 
-                self.browser.find_element(*self.dot_2).click()
-                self.check_product_info(self.p_2_img, self.p_2_title, self.p_2_title_text, self.p_2_price, self.p_2_price_text,
-                                        self.p_2_ratings, self.p_2_ratings_text, self.p_2_cart_btn,
-                                        self.p_2_link_btn, self.p_2_quickview_btn)
+                self.check_product_info(self.p_4_img, self.p_4_title, self.p_4_title_text, self.p_4_price,
+                                        self.p_4_price_text, self.p_4_ratings, self.p_4_ratings_text,
+                                        self.p_4_cart_btn, self.p_4_link_btn, self.p_4_quickview_btn, self.dot_4)
 
-                self.browser.find_element(*self.dot_3).click()
-                self.check_product_info(self.p_3_img, self.p_3_title, self.p_3_title_text, self.p_3_price, self.p_3_price_text,
-                                        self.p_3_ratings, self.p_3_ratings_text, self.p_3_cart_btn,
-                                        self.p_3_link_btn, self.p_3_quickview_btn)
+                self.scroll_to(1103)
+                self.do_click(self.prev_btn, click_after_wait='yes')
+                self.scroll_to_element(self.scroll)
+                self.do_click(self.next_btn, click_after_wait='yes')
+                self.move_cursor_to(self.p_3_img)
+                self.do_click(self.p_3_link_btn)
+                self.check_text_matches_with(self.item_name, self.p_3_title_text)
 
-                self.browser.find_element(*self.dot_4).click()
-                self.check_product_info(self.p_4_img, self.p_4_title, self.p_4_title_text, self.p_4_price, self.p_4_price_text,
-                                        self.p_4_ratings, self.p_4_ratings_text, self.p_4_cart_btn,
-                                        self.p_4_link_btn, self.p_4_quickview_btn)
-                self.browser.find_element(*self.dot_4).click()
-                time.sleep(.5)
-                self.browser.execute_script("window.scrollTo(0, 1103)")
-                time.sleep(1)
-                self.browser.find_element(*self.prev_btn).click()
-                time.sleep(.5)
-                self.browser.find_element(*self.prev_btn).click()
-                time.sleep(.5)
-                self.browser.find_element(*self.prev_btn).click()
-                time.sleep(.5)
-
-                self.browser.find_element(*self.next_btn).click()
-                time.sleep(1)
-                self.browser.find_element(*self.next_btn).click()
-                time.sleep(1)
-                cursor = ActionChains(self.browser)
-                p_3 = self.browser.find_element(By.XPATH, self.p_3_img)
-                cursor.move_to_element(p_3).perform()
-                self.browser.find_element(By.XPATH, self.p_3_link_btn).click()
-                assert_that(self.browser.find_element(By.XPATH, f'/html/body/div[1]/div/div/div/main/div[2]/div[2]/h1')
-                            .text).is_equal_to(self.p_3_title_text)
-
-                self.browser.back()
-                self.browser.execute_script("window.scrollTo(0, 1103)")
-                time.sleep(1)
-                self.browser.find_element(*self.dot_3).click()
-                time.sleep(.5)
-                self.browser.find_element(*self.dot_1).click()
-                time.sleep(.5)
-                self.browser.find_element(*self.dot_2).click()
-                time.sleep(.5)
-                self.browser.find_element(*self.dot_4).click()
-                time.sleep(.5)
+                self.go_back()
+                self.scroll_to(1103)
+                self.do_click(self.dot_3, click_after_wait='yes')

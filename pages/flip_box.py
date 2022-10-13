@@ -1,9 +1,8 @@
-from selenium.webdriver import ActionChains, Keys
-
+from pages.basepage import BasePage
 from utils.config import *
 
 
-class FlipBox(Helper):
+class FlipBox(BasePage, Helper):
     widget = '//*[@id="post-1519"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = "Flip Box"
@@ -29,42 +28,30 @@ class FlipBox(Helper):
 
     def __init__(self, browser):
         super().__init__(browser)
-        self.browser = browser
 
-    def load(self):
-        self.browser.get(self.flip_box)
-
-    def testcase(self):
+    def run(self):
         with soft_assertions():
+            """Go to page"""
+            self.go_to(self.flip_box)
+            """Checking widget name"""
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
-                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
+                """Checking widget's documentation"""
                 self.check_documents(self.doc_link, self.doc_name)
             else:
-                self.browser.execute_script("window.scrollTo(0, 1023)")
-                time.sleep(1)
-
-                front_header_ele = self.browser.find_element(*self.BOX_FRONT_HEADER)
-
-                if self.browser.find_element(*self.BOX_FRONT_HEADER).is_displayed():
-                    assert_that(front_header_ele.text).is_equal_to(self.BOX_FRONT_HEADER_TEXT)
-
-                cursor = ActionChains(self.browser)
-
-                box_1_element = self.browser.find_element(*self.BOX_1)
-
-                cursor.move_to_element(box_1_element).perform()
-
-                back_header_ele = self.browser.find_element(*self.BOX_BACK_HEADER)
-                back_des_ele = self.browser.find_element(*self.BOX_BACK_DES)
-
-                if self.browser.find_element(*self.BOX_BACK_HEADER).is_displayed():
-                    if self.browser.find_element(*self.BOX_BACK_DES).is_displayed():
-                        assert_that(back_header_ele.text).is_equal_to(self.BOX_BACK_HEADER_TEXT)
-                        assert_that(back_des_ele.text).is_equal_to(self.BOX_DES_TEXT)
-
-                box_2_element = self.browser.find_element(*self.BOX_2)
-                cursor.move_to_element(box_2_element).perform()
+                self.scroll_to(1023)
+                """Flip box front side checking"""
+                if self.is_displaying(*self.BOX_FRONT_HEADER):
+                    self.check_text_matches_with(self.BOX_FRONT_HEADER, self.BOX_FRONT_HEADER_TEXT)
+                """Move cursor to flip box"""
+                self.move_cursor_to(self.BOX_1)
+                """Flip box back side checking"""
+                if self.is_displaying(*self.BOX_BACK_HEADER):
+                    if self.is_displaying(*self.BOX_BACK_DES):
+                        self.check_text_matches_with(self.BOX_BACK_HEADER, self.BOX_BACK_HEADER_TEXT)
+                        self.check_text_matches_with(self.BOX_BACK_DES, self.BOX_DES_TEXT)
+                """Move out cursor from flip box"""
+                self.move_cursor_to(self.BOX_2)
 
 
 

@@ -1,9 +1,8 @@
-from selenium.webdriver import ActionChains, Keys
-
+from pages.basepage import BasePage
 from utils.config import *
 
 
-class PostList(Helper):
+class PostList(BasePage, Helper):
     widget = '//*[@id="post-2322"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Smart Post List'
@@ -12,7 +11,7 @@ class PostList(Helper):
     doc_name = "SMART POST LIST"
 
     search = (By.ID, f'search_field')
-    search_icon = f'//*[@id="post-list-search-form-312f98e8"]/i'
+    search_icon = (By.XPATH, f'//*[@id="post-list-search-form-312f98e8"]/i')
     search_result_title = (By.XPATH, f'//*[@id="post-2322"]/div/div/div/div/section[2]/div/div/div'
                                      f'/div/div/div/div/div/div[1]/div[2]/div/div[1]/h6/a')
 
@@ -25,19 +24,19 @@ class PostList(Helper):
     wordpress = (By.XPATH, f'//*[@id="post-2322"]/div/div/div/div/section[2]/div/div/div/div/div/div'
                            f'/div/div/div[1]/div[1]/a[4]')
 
-    post_1_title = f'//*[@id="post-2322"]/div/div/div/div/section[2]/div/div/div' \
-                   f'/div/div/div/div/div/div[2]/div/div[1]/div/div[2]/h2/a'
-    post_1_date = f'//*[@id="post-2322"]/div/div/div/div/section[2]/div/div/div/div' \
-                                       f'/div/div/div/div/div[2]/div/div[1]/div/div[2]/div[1]/span'
-    post_1_img = f'//*[@id="post-2322"]/div/div/div/div/section[2]/div/div/div/div/div' \
-                                      f'/div/div/div/div[2]/div/div[1]/div/div[1]/img'
+    post_1_title = (By.XPATH, f'//*[@id="post-2322"]/div/div/div/div/section[2]/div/div/div' \
+                              f'/div/div/div/div/div/div[2]/div/div[1]/div/div[2]/h2/a')
+    post_1_date = (By.XPATH, f'//*[@id="post-2322"]/div/div/div/div/section[2]/div/div/div/div' \
+                             f'/div/div/div/div/div[2]/div/div[1]/div/div[2]/div[1]/span')
+    post_1_img = (By.XPATH, f'//*[@id="post-2322"]/div/div/div/div/section[2]/div/div/div/div/div' \
+                            f'/div/div/div/div[2]/div/div[1]/div/div[1]/img')
 
-    post_2_title = f'//*[@id="post-2322"]/div/div/div/div/section[2]/div/div/div/div/div/div' \
-                                        f'/div/div/div[2]/div/div[6]/div/div[2]/h2/a'
-    post_2_date = f'//*[@id="post-2322"]/div/div/div/div/section[2]/div/div/div/div/div/div' \
-                                       f'/div/div/div[2]/div/div[6]/div/div[2]/div[1]/span'
-    post_2_img = f'//*[@id="post-2322"]/div/div/div/div/section[2]/div/div/div/div/div' \
-                                      f'/div/div/div/div[2]/div/div[6]/div/div[1]/img'
+    post_2_title = (By.XPATH, f'//*[@id="post-2322"]/div/div/div/div/section[2]/div/div/div/div/div/div' \
+                              f'/div/div/div[2]/div/div[6]/div/div[2]/h2/a')
+    post_2_date = (By.XPATH, f'//*[@id="post-2322"]/div/div/div/div/section[2]/div/div/div/div/div/div' \
+                             f'/div/div/div[2]/div/div[6]/div/div[2]/div[1]/span')
+    post_2_img = (By.XPATH, f'//*[@id="post-2322"]/div/div/div/div/section[2]/div/div/div/div/div' \
+                            f'/div/div/div/div[2]/div/div[6]/div/div[1]/img')
 
     # Article
     article_title = (By.XPATH, f'//*[@id="page"]/div[1]/div/section/div/div/div[1]/div/div/section[1]'
@@ -45,102 +44,74 @@ class PostList(Helper):
     article_date = (By.XPATH, f'//*[@id="page"]/div[1]/div/section/div/div/div[1]/div/div/section[1]'
                               f'/div/div/div/div/div/div[2]/div/ul/li[1]/a/span[2]')
 
+    scroll = (By.XPATH, "//div[@class='elementor-element elementor-element-1220b3b1 "
+                        "elementor-widget elementor-widget-heading']"
+                        "//div[@class='elementor-widget-container']")
+
     def __init__(self, browser):
         super().__init__(browser)
-        self.browser = browser
-
-    def load(self):
-        self.browser.get(self.post_list)
-
-    def check_post(self, title, date):
-        assert_that(self.browser.find_element(*self.article_title).text).is_equal_to(title)
-        assert_that(self.browser.find_element(*self.article_date).text).is_equal_to(date)
 
     def check_widget_post(self, post, date, img):
-        cursor = ActionChains(self.browser)
-        post_title = self.browser.find_element(By.XPATH, post)
+        self.move_cursor_to(post)
+        self.is_visible(img, "Post Image is not visible.")
+        post_title = self.get_element_text(post)
+        published_date = self.get_element_text(date)
+        self.do_click(post)
 
-        cursor.move_to_element(post_title).perform()
-        self.check_visibility(img, "Post Image is not visible.")
+        """Match post meta"""
+        self.check_text_matches_with(self.article_title, post_title)
+        self.check_text_matches_with(self.article_date, published_date)
+        self.go_back()
 
-        p_title = post_title.text
-        p_date = self.browser.find_element(By.XPATH, date).text
-
-        post_title.click()
-
-        # windows = self.browser.window_handles
-        # self.browser.switch_to.window(windows[1])
-        self.check_post(p_title, p_date)
-        # self.browser.close()
-        # self.browser.switch_to.window(windows[0])
-        self.browser.back()
-        time.sleep(1)
-
-    def testcase(self):
+    def run(self):
         with soft_assertions():
+            """Go to page"""
+            self.go_to(self.post_list)
+            """Checking widget name"""
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
-                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
+                """Checking widget's documentation"""
                 self.check_documents(self.doc_link, self.doc_name)
             else:
-                self.browser.execute_script("window.scrollTo(0, 1133)")
-                time.sleep(1)
-
+                self.scroll_to(1133)
                 # All
-                self.browser.find_element(*self.all).click()
-                time.sleep(1.5)
-                self.check_widget_post(self.post_1_title, self.post_1_date, self.post_1_img)
+                self.do_click(self.all)
                 time.sleep(1)
+                self.check_widget_post(self.post_1_title, self.post_1_date, self.post_1_img)
                 self.check_widget_post(self.post_2_title, self.post_2_date, self.post_2_img)
                 # Elementor
-                pos_1 = self.browser.find_element(By.XPATH, "//div[@class='elementor-element elementor-element-1220b3b1"
-                                                            " elementor-widget elementor-widget-heading']"
-                                                            "//div[@class='elementor-widget-container']")
-                self.browser.execute_script("arguments[0].scrollIntoView();", pos_1)
+                self.scroll_to_element(self.scroll)
+                self.do_click(self.elementor)
                 time.sleep(1)
-                self.browser.find_element(*self.elementor).click()
-                time.sleep(1.5)
                 self.check_widget_post(self.post_1_title, self.post_1_date, self.post_1_img)
-                self.browser.find_element(*self.elementor).click()
-                time.sleep(1.5)
+                self.do_click(self.elementor)
+                time.sleep(1)
                 self.check_widget_post(self.post_2_title, self.post_2_date, self.post_2_img)
                 # Essential Addons
-                pos_1 = self.browser.find_element(By.XPATH, "//div[@class='elementor-element elementor-element-1220b3b1"
-                                                            " elementor-widget elementor-widget-heading']"
-                                                            "//div[@class='elementor-widget-container']")
-                self.browser.execute_script("arguments[0].scrollIntoView();", pos_1)
+                self.scroll_to_element(self.scroll)
+                self.do_click(self.essential_addons)
                 time.sleep(1)
-                self.browser.find_element(*self.essential_addons).click()
-                time.sleep(1.5)
                 self.check_widget_post(self.post_1_title, self.post_1_date, self.post_1_img)
-                self.browser.find_element(*self.essential_addons).click()
-                time.sleep(1.5)
+                self.do_click(self.essential_addons)
+                time.sleep(1)
                 self.check_widget_post(self.post_2_title, self.post_2_date, self.post_2_img)
                 # WordPress
-                pos_1 = self.browser.find_element(By.XPATH, "//div[@class='elementor-element elementor-element-1220b3b1"
-                                                            " elementor-widget elementor-widget-heading']"
-                                                            "//div[@class='elementor-widget-container']")
-                self.browser.execute_script("arguments[0].scrollIntoView();", pos_1)
+                self.scroll_to_element(self.scroll)
+                self.do_click(self.wordpress)
                 time.sleep(1)
-                self.browser.find_element(*self.wordpress).click()
-                time.sleep(1.5)
                 self.check_widget_post(self.post_1_title, self.post_1_date, self.post_1_img)
-                self.browser.find_element(*self.wordpress).click()
-                time.sleep(1.5)
+                self.do_click(self.wordpress)
+                time.sleep(1)
                 self.check_widget_post(self.post_2_title, self.post_2_date, self.post_2_img)
 
                 # Search
-                pos_1 = self.browser.find_element(By.XPATH, "//div[@class='elementor-element elementor-element-1220b3b1"
-                                                            " elementor-widget elementor-widget-heading']"
-                                                            "//div[@class='elementor-widget-container']")
-                self.browser.execute_script("arguments[0].scrollIntoView();", pos_1)
-                time.sleep(1)
-                self.check_visibility(self.search_icon, "Search Icon not Visible.")
-                self.browser.find_element(*self.search).send_keys("Essential Addons")
+                self.reload_page()
+                self.scroll_to_element(self.scroll)
+                self.is_visible(self.search_icon, "Search Icon not Visible.")
+                """Search post"""
+                self.do_send_keys(self.search, "Essential Addons")
                 time.sleep(4)
-                title = self.browser.find_element(*self.search_result_title).text
-                self.browser.find_element(*self.search_result_title).click()
-                assert_that(self.browser.find_element(*self.article_title).text).is_equal_to(title)
-                self.browser.back()
-
-
+                title = self.get_element_text(self.search_result_title)
+                self.do_click(self.search_result_title)
+                self.check_text_matches_with(self.article_title, title)
+                self.go_back()

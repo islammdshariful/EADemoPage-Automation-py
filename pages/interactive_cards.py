@@ -1,9 +1,7 @@
-from selenium.webdriver import ActionChains, Keys
-
 from utils.config import *
 
 
-class InteractiveCards(Helper):
+class InteractiveCards(BasePage, Helper):
     widget = '//*[@id="post-1716"]/div/div/div/div/section[1]/div[4]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Interactive Cards'
@@ -22,27 +20,26 @@ class InteractiveCards(Helper):
 
     def __init__(self, browser):
         super().__init__(browser)
-        self.browser = browser
 
-    def load(self):
-        self.browser.get(self.interactive_cards)
-
-    def testcase(self):
+    def run(self):
         with soft_assertions():
+            """Go to page"""
+            self.go_to(self.interactive_cards)
+            """Checking widget name"""
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
-                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
+                """Checking widget's documentation"""
                 self.check_documents(self.doc_link, self.doc_name)
             else:
-                self.browser.execute_script("window.scrollTo(0, 1031)")
-                time.sleep(1)
+                self.scroll_to(1031)
 
-                self.browser.find_element(*self.promo).click()
-                time.sleep(1.5)
-                assert_that(self.browser.find_element(*self.title).text).is_equal_to(self.title_text)
-                assert_that(self.browser.find_element(*self.des).text).is_equal_to(self.des_text)
-                cursor = ActionChains(self.browser)
-                btn = self.browser.find_element(*self.button)
-                cursor.move_to_element(btn).perform()
-                time.sleep(1)
-                self.browser.find_element(*self.close_btn).click()
+                self.do_click(self.promo)
+                self.check_text_matches_with(self.title, self.title_text)
+                self.check_text_matches_with(self.des, self.des_text)
+                self.move_cursor_to(self.button)
+                self.do_click(self.close_btn)
+                time.sleep(2)
+
+                if self.is_displaying(*self.title):
+                    assert_that("Card closed").is_equal_to("Card not closed")
+

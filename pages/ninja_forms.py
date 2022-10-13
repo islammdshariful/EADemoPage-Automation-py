@@ -1,10 +1,7 @@
-from selenium.webdriver import Keys
-
 from utils.config import *
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
-class NinjaForms(Helper):
+
+class NinjaForms(BasePage, Helper):
     widget = '//*[@id="post-1762"]/div/div/div/div/section[1]/div[4]/div/div[2]/div/div/section/div/div/div[2]' \
              '/div/div/div[1]/div/h2'
     widget_name = 'Ninja Forms'
@@ -23,7 +20,7 @@ class NinjaForms(Helper):
     message_field = (By.XPATH, f'//*[@id="nf-field-3"]')
     submit_btn = (By.XPATH, f'//*[@id="nf-field-4"]')
 
-    success_message = f'//*[@id="nf-form-1-cont"]/div/div[1]'
+    success_message = (By.XPATH, f'//*[@id="nf-form-1-cont"]/div/div[1]')
 
     title_text = "Contact Me"
     des_text = "Fields marked with an * are required"
@@ -35,35 +32,29 @@ class NinjaForms(Helper):
 
     def __init__(self, browser):
         super().__init__(browser)
-        self.browser = browser
 
-    def load(self):
-        self.browser.get(self.ninja_forms)
-
-    def testcase(self):
+    def run(self):
         with soft_assertions():
+            """Go to page"""
+            self.go_to(self.ninja_forms)
+            """Checking widget name"""
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
-                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
+                """Checking widget's documentation"""
                 self.check_documents(self.doc_link, self.doc_name)
             else:
-                self.browser.execute_script("window.scrollTo(0, 1177)")
-                time.sleep(1)
+                self.scroll_to(1171)
 
-                # assert_that(self.browser.find_element(*self.title).text).is_equal_to(self.title_text)
-                assert_that(self.browser.find_element(*self.des).text).is_equal_to(self.des_text)
-                assert_that(self.browser.find_element(*self.name_label).text).is_equal_to(self.name_label_text)
-                assert_that(self.browser.find_element(*self.email_label).text).is_equal_to(self.email_label_text)
-                assert_that(self.browser.find_element(*self.message_label).text).is_equal_to(self.message_label_text)
+                self.check_text_matches_with(self.title, self.title_text)
+                self.check_text_matches_with(self.des, self.des_text)
+                self.check_text_matches_with(self.name_label, self.name_label_text)
+                self.check_text_matches_with(self.email_label, self.email_label_text)
+                self.check_text_matches_with(self.message_label, self.message_label_text)
 
-                self.browser.find_element(*self.name_field).send_keys("Tester Bhaai")
-                self.browser.find_element(*self.email_field).send_keys("testerbhaai@gmail.com")
-                self.browser.find_element(*self.message_field).send_keys("Automation Script is Running...\nHi, Don't reply"
-                                                                         " to this message. Have a good day.")
+                self.do_send_keys(self.name_field, "Tester Bhaai")
+                self.do_send_keys(self.email_field, "testerbhaai@gmail.com")
+                self.do_send_keys(self.message_field, "Automation Script is Running...\nHi, Don't reply"
+                                                      " to this message. Have a good day.")
+                self.do_click(self.submit_btn)
 
-                self.browser.find_element(*self.submit_btn).click()
-
-                WebDriverWait(self.browser, 15).until(
-                    EC.presence_of_element_located((By.XPATH, self.success_message)))
-                WebDriverWait(self.browser, 5000).until(EC.text_to_be_present_in_element((By.XPATH, self.success_message),
-                                                                                         self.success_message_text))
+                self.does_element_has_text(self.success_message, self.success_message_text)

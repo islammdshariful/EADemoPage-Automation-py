@@ -1,9 +1,7 @@
-from selenium.webdriver import Keys
-
 from utils.config import *
 
 
-class PriceMenu(Helper):
+class PriceMenu(BasePage, Helper):
     widget = '//*[@id="post-2953"]/div/div/div/div/section[1]/div[4]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Price Menu'
@@ -11,12 +9,12 @@ class PriceMenu(Helper):
                '/div/div/div[2]/div/div/div[3]/div/div/a/span/span'
     doc_name = "PRICE MENU"
 
-    menu_img = f'//*[@id="post-2953"]/div/div/div/div/section[3]/div/div/div[1]/div/div/div[1]/div/div/img'
+    menu_img = (By.XPATH, f'//*[@id="post-2953"]/div/div/div/div/section[3]/div/div/div[1]/div/div/div[1]/div/div/img')
     menu_title = (By.XPATH, f'//*[@id="post-2953"]/div/div/div/div/section[3]/div/div/div[1]/div/div/div[2]/div/h3')
     menu_title_text = "Breakfast Menu"
 
     menu_list_1_name = (By.XPATH, f'//*[@id="post-2953"]/div/div/div/div/section[3]/div/div/div[1]/div/div'
-                             f'/div[3]/div/div/div/div[1]/div/div/div/h4/span')
+                                  f'/div[3]/div/div/div/div[1]/div/div/div/h4/span')
     menu_list_1_name_text = "Fig And Lemon Cake"
     menu_list_1_price = (By.XPATH, f'//*[@id="post-2953"]/div/div/div/div/section[3]/div/div/div[1]/div/div/div[3]'
                                    f'/div/div/div/div[1]/div/div/div/span[2]/span')
@@ -52,45 +50,32 @@ class PriceMenu(Helper):
 
     def __init__(self, browser):
         super().__init__(browser)
-        self.browser = browser
 
-    def load(self):
-        self.browser.get(self.price_menu)
-
-    def testcase(self):
+    def run(self):
         with soft_assertions():
+            """Go to page"""
+            self.go_to(self.price_menu)
+            """Checking widget name"""
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
-                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
+                """Checking widget's documentation"""
                 self.check_documents(self.doc_link, self.doc_name)
             else:
-                self.browser.execute_script("window.scrollTo(0, 965)")
-                time.sleep(1)
+                self.scroll_to(965)
 
-                self.check_visibility(self.menu_img, "Menu image is not visible.")
+                self.is_visible(self.menu_img, "Menu image is not visible.")
 
-                assert_that(self.browser.find_element(*self.menu_list_1_name).text).\
-                    is_equal_to(self.menu_list_1_name_text)
-                assert_that(self.browser.find_element(*self.menu_list_1_price).text).\
-                    is_equal_to(self.menu_list_1_price_text)
+                self.check_text_matches_with(self.menu_list_1_name, self.menu_list_1_name_text)
+                self.check_text_matches_with(self.menu_list_1_price, self.menu_list_1_price_text)
 
-                assert_that(self.browser.find_element(*self.menu_list_2_name).text).\
-                    is_equal_to(self.menu_list_2_name_text)
-                assert_that(self.browser.find_element(*self.menu_list_2_price).text).\
-                    is_equal_to(self.menu_list_2_price_text)
+                self.check_text_matches_with(self.menu_list_2_name, self.menu_list_2_name_text)
+                self.check_text_matches_with(self.menu_list_2_price, self.menu_list_2_price_text)
 
-                assert_that(self.browser.find_element(*self.menu_list_3_name).text).\
-                    is_equal_to(self.menu_list_3_name_text)
-                assert_that(self.browser.find_element(*self.menu_list_3_price).text).\
-                    is_equal_to(self.menu_list_3_price_text)
+                self.check_text_matches_with(self.menu_list_3_name, self.menu_list_3_name_text)
+                self.check_text_matches_with(self.menu_list_3_price, self.menu_list_3_price_text)
 
-                assert_that(self.browser.find_element(*self.menu_list_4_name).text).\
-                    is_equal_to(self.menu_list_4_name_text)
-                assert_that(self.browser.find_element(*self.menu_list_4_price).text).\
-                    is_equal_to(self.menu_list_4_price_text)
+                self.check_text_matches_with(self.menu_list_4_name, self.menu_list_4_name_text)
+                self.check_text_matches_with(self.menu_list_4_price, self.menu_list_4_price_text)
 
-                assert_that(self.browser.find_element(*self.menu_list_5_name).text).\
-                    is_equal_to(self.menu_list_5_name_text)
-                assert_that(self.browser.find_element(*self.menu_list_5_price).text).\
-                    is_equal_to(self.menu_list_5_price_text)
-
+                self.check_text_matches_with(self.menu_list_5_price, self.menu_list_5_price_text)
+                self.check_text_matches_with(self.menu_list_5_price, self.menu_list_5_price_text)

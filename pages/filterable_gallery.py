@@ -1,11 +1,7 @@
-from selenium.webdriver import ActionChains, Keys
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-
 from utils.config import *
 
 
-class FilterableGallery(Helper):
+class FilterableGallery(BasePage, Helper):
     widget = '//*[@id="post-1925"]/div/div/div/div/section[1]/div[4]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Filterable Gallery'
@@ -25,123 +21,131 @@ class FilterableGallery(Helper):
 
     gallery_title_text = "HIGHLY DELIGHTED PRESENT"
 
-    all_gallery_1 = f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[1]'
-    all_gallery_1_title = f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[1]/div/div[2]/div[2]/h5'
-    all_gallery_1_icon = f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[1]/div/div[2]/div[2]/div/a/span/i'
+    all_gallery_1 = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[1]')
+    all_gallery_1_title = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[1]/div/div[2]/'
+                                     f'div[2]/h5')
+    all_gallery_1_icon = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[1]/div/div[2]/'
+                                    f'div[2]/div/a/span/i')
 
-    gallery_2 = f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[2]'
-    gallery_2_title = f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[2]/div/div[2]/div[2]/h5'
-    gallery_2_icon = f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[2]/div/div[2]/div[2]/div/a/span/i'
+    gallery_2 = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[2]')
+    gallery_2_title = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[2]/div/div[2]/div[2]/h5')
+    gallery_2_icon = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[2]/div/div[2]/div[2]/'
+                                f'div/a/span/i')
 
-    all_gallery_3 = f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[8]'
-    all_gallery_3_title = f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[8]/div/div[2]/div[2]/h5'
-    all_gallery_3_icon = f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[8]/div/div[2]/div[2]/div/a/span/i'
+    all_gallery_3 = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[8]')
+    all_gallery_3_title = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[8]/div/div[2]/'
+                                     f'div[2]/h5')
+    all_gallery_3_icon = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[8]/div/div[2]/'
+                                    f'div[2]/div/a/span/i')
 
-    news_gallery_1 = f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[1]'
-    news_gallery_1_title = f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[1]/div/div[2]/div[2]/h5'
-    news_gallery_1_icon = f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[1]/div/div[2]/div[2]/div/a/span/i'
+    news_gallery_1 = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[1]')
+    news_gallery_1_title = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[1]/div/div[2]/'
+                                      f'div[2]/h5')
+    news_gallery_1_icon = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[1]/div/div[2]/'
+                                     f'div[2]/div/a/span/i')
 
-    news_gallery_2 = f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[5]'
-    news_gallery_2_title = f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[5]/div/div[2]/div[2]/h5'
-    news_gallery_2_icon = f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[5]/div/div[2]/div[2]/div/a/span/i'
+    news_gallery_2 = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[5]')
+    news_gallery_2_title = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[5]/div/div[2]/'
+                                      f'div[2]/h5')
+    news_gallery_2_icon = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[5]/div/div[2]/'
+                                     f'div[2]/div/a/span/i')
 
-    updates_gallery_1 = f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[2]'
-    updates_gallery_1_title = f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[2]/div/div[2]/div[2]/h5'
-    updates_gallery_1_icon = f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[2]/div/div[2]/div[2]/div/a/span/i'
+    updates_gallery_1 = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[2]')
+    updates_gallery_1_title = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[2]/div/div[2]/'
+                                         f'div[2]/h5')
+    updates_gallery_1_icon = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[2]/div/div[2]/'
+                                        f'div[2]/div/a/span/i')
 
-    updates_gallery_2 = f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[6]'
-    updates_gallery_2_title = f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[6]/div/div[2]/div[2]/h5'
-    updates_gallery_2_icon = f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[6]/div/div[2]/div[2]/div/a/span/i'
+    updates_gallery_2 = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[6]')
+    updates_gallery_2_title = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[6]/div/div[2]/'
+                                         f'div[2]/h5')
+    updates_gallery_2_icon = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[6]/div/div[2]/'
+                                        f'div[2]/div/a/span/i')
 
-    events_gallery_1 = f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[3]'
-    events_gallery_1_title = f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[3]/div/div[2]/div[2]/h5'
-    events_gallery_1_icon = f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[3]/div/div[2]/div[2]/div/a/span/i'
+    events_gallery_1 = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[3]')
+    events_gallery_1_title = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[3]/div/div[2]/'
+                                        f'div[2]/h5')
+    events_gallery_1_icon = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[3]/div/div[2]/'
+                                       f'div[2]/div/a/span/i')
 
-    events_gallery_2 = f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[7]'
-    events_gallery_2_title = f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[7]/div/div[2]/div[2]/h5'
-    events_gallery_2_icon = f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[7]/div/div[2]/div[2]/div/a/span/i'
+    events_gallery_2 = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[7]')
+    events_gallery_2_title = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[7]/div/div[2]/'
+                                        f'div[2]/h5')
+    events_gallery_2_icon = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[7]/div/div[2]/'
+                                       f'div[2]/div/a/span/i')
 
-    masonry_gallery_1 = f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[4]'
-    masonry_gallery_1_title = f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[4]/div/div[2]/div[2]/h5'
-    masonry_gallery_1_icon = f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[4]/div/div[2]/div[2]/div/a/span/i'
+    masonry_gallery_1 = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[4]')
+    masonry_gallery_1_title = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[4]/div/div[2]/'
+                                         f'div[2]/h5')
+    masonry_gallery_1_icon = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[4]/div/div[2]/'
+                                        f'div[2]/div/a/span/i')
 
-    masonry_gallery_2 = f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[8]'
-    masonry_gallery_2_title = f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[8]/div/div[2]/div[2]/h5'
-    masonry_gallery_2_icon = f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[8]/div/div[2]/div[2]/div/a/span/i'
+    masonry_gallery_2 = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[8]')
+    masonry_gallery_2_title = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[8]/div/div[2]/'
+                                         f'div[2]/h5')
+    masonry_gallery_2_icon = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[8]/div/div[2]/'
+                                        f'div[2]/div/a/span/i')
+
+    scroll = (By.XPATH, "//div[@class='elementor-element elementor-element-1d43b1f elementor-widget "
+                        "elementor-widget-heading']//div[@class='elementor-widget-container']")
 
     def __init__(self, browser):
         super().__init__(browser)
-        self.browser = browser
-
-    def load(self):
-        self.browser.get(self.filterable_gallery)
 
     def open_gallery(self, gallery, title, title_text, icon):
-        cursor = ActionChains(self.browser)
-        element = self.browser.find_element(By.XPATH, gallery)
-        cursor.move_to_element(element).perform()
-        cursor.reset_actions()
-        time.sleep(1)
-        assert_that(self.browser.find_element(By.XPATH, title).text).is_equal_to(title_text)
-        self.check_visibility(icon, "Icon is not visible.")
-        self.browser.find_element(By.XPATH, icon).click()
         time.sleep(.5)
-        self.browser.find_element(*self.next_btn).click()
-        time.sleep(.5)
-        self.browser.find_element(*self.prev_btn).click()
-        time.sleep(1)
-        self.browser.find_element(*self.cross_btn).click()
+        self.move_cursor_to(gallery)
+        self.check_text_matches_with(title, title_text)
+        self.is_visible(icon, "Icon is not visible.")
+        self.do_click(icon)
+        self.do_click(self.next_btn)
+        self.do_click(self.prev_btn)
+        self.do_click(self.cross_btn)
 
-    def testcase(self):
-        # with soft_assertions():
-        self.check_widget_name(self.widget, self.widget_name)
-        if self.check_doc:
-            self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
-            self.check_documents(self.doc_link, self.doc_name)
-        else:
-            self.browser.execute_script("window.scrollTo(0, 1061)")
-            time.sleep(1)
+    def run(self):
+        with soft_assertions():
+            """Go to page"""
+            self.go_to(self.filterable_gallery)
+            """Checking widget name"""
+            self.check_widget_name(self.widget, self.widget_name)
+            if self.check_doc:
+                """Checking widget's documentation"""
+                self.check_documents(self.doc_link, self.doc_name)
+            else:
+                self.scroll_to(1061)
+            """Filter Gallery: All"""
+            self.do_click(self.all)
+            self.open_gallery(self.all_gallery_1, self.all_gallery_1_title, self.gallery_title_text,
+                              self.all_gallery_1_icon)
 
-            self.browser.find_element(*self.all).click()
-            time.sleep(.5)
-            self.open_gallery(self.all_gallery_1, self.all_gallery_1_title, self.gallery_title_text, self.all_gallery_1_icon)
-            time.sleep(.5)
-            self.open_gallery(self.all_gallery_3, self.all_gallery_3_title, self.gallery_title_text, self.all_gallery_3_icon)
-            pos_1 = self.browser.find_element(By.XPATH, "//div[@class='elementor-element elementor-element-1d43b1f "
-                                                        "elementor-widget elementor-widget-heading']"
-                                                        "//div[@class='elementor-widget-container']")
-            self.browser.execute_script("arguments[0].scrollIntoView();", pos_1)
-            time.sleep(1)
-
-            self.browser.find_element(*self.news).click()
-            time.sleep(.5)
-            self.open_gallery(self.news_gallery_1, self.news_gallery_1_title, self.gallery_title_text, self.news_gallery_1_icon)
-            time.sleep(.5)
-            self.open_gallery(self.news_gallery_2, self.news_gallery_2_title, self.gallery_title_text, self.news_gallery_2_icon)
-            self.browser.execute_script("arguments[0].scrollIntoView();", pos_1)
-            time.sleep(1)
-
-            self.browser.find_element(*self.updates).click()
-            time.sleep(.5)
-            self.open_gallery(self.updates_gallery_1, self.updates_gallery_1_title, self.gallery_title_text, self.updates_gallery_1_icon)
-            time.sleep(.5)
-            self.open_gallery(self.updates_gallery_2, self.updates_gallery_2_title, self.gallery_title_text, self.updates_gallery_2_icon)
-            self.browser.execute_script("arguments[0].scrollIntoView();", pos_1)
-            time.sleep(1)
-
-            self.browser.find_element(*self.events).click()
-            time.sleep(.5)
-            self.open_gallery(self.events_gallery_1, self.events_gallery_1_title, self.gallery_title_text, self.events_gallery_1_icon)
-            time.sleep(.5)
-            self.open_gallery(self.events_gallery_2, self.events_gallery_2_title, self.gallery_title_text, self.events_gallery_2_icon)
-            self.browser.execute_script("arguments[0].scrollIntoView();", pos_1)
-            time.sleep(1)
-
-            self.browser.find_element(*self.masonry).click()
-            time.sleep(.5)
+            self.open_gallery(self.all_gallery_3, self.all_gallery_3_title, self.gallery_title_text,
+                              self.all_gallery_3_icon)
+            self.scroll_to_element(self.scroll)
+            """Filter Gallery: News"""
+            self.do_click(self.news)
+            self.open_gallery(self.news_gallery_1, self.news_gallery_1_title, self.gallery_title_text,
+                              self.news_gallery_1_icon)
+            self.open_gallery(self.news_gallery_2, self.news_gallery_2_title, self.gallery_title_text,
+                              self.news_gallery_2_icon)
+            self.scroll_to_element(self.scroll)
+            """Filter Gallery: Updates"""
+            self.do_click(self.updates)
+            self.open_gallery(self.updates_gallery_1, self.updates_gallery_1_title, self.gallery_title_text,
+                              self.updates_gallery_1_icon)
+            self.open_gallery(self.updates_gallery_2, self.updates_gallery_2_title, self.gallery_title_text,
+                              self.updates_gallery_2_icon)
+            self.scroll_to_element(self.scroll)
+            """Filter Gallery: Events"""
+            self.do_click(self.events)
+            self.open_gallery(self.events_gallery_1, self.events_gallery_1_title, self.gallery_title_text,
+                              self.events_gallery_1_icon)
+            self.open_gallery(self.events_gallery_2, self.events_gallery_2_title, self.gallery_title_text,
+                              self.events_gallery_2_icon)
+            self.scroll_to_element(self.scroll)
+            """Filter Gallery: Masonry"""
+            self.do_click(self.masonry)
             self.open_gallery(self.masonry_gallery_1, self.masonry_gallery_1_title, self.gallery_title_text,
                               self.masonry_gallery_1_icon)
-            time.sleep(.5)
             self.open_gallery(self.masonry_gallery_2, self.masonry_gallery_2_title, self.gallery_title_text,
                               self.masonry_gallery_2_icon)
 

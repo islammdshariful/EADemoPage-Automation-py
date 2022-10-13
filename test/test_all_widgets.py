@@ -1,4 +1,4 @@
-from pages.Wpforms import Wpforms
+from pages.wp_forms import Wpforms
 from pages.advanced_accordion import AdvancedAccordion
 from pages.advanced_data_table import AdvancedDataTable
 from pages.advanced_google_map import AdvancedGoogleMap
@@ -72,7 +72,7 @@ from pages.testimonial_slider import TestimonialSlider
 from pages.testimonials import Testimonial
 from pages.tooltip import ToolTip
 from pages.counter import Counter
-from pages.image_comparison import ImageComparison
+from pages.image_comparison import Snapshot, ImageComparison
 from pages.progress_bar import ProgressBar
 from pages.twitter_feed import TwitterFeed
 from pages.twitter_feed_carousel import TwitterFeedCarousel
@@ -90,505 +90,426 @@ from pages.woocommerce_product_collections import WoocommerceProductCollections
 # ------------------------------------------------------------------------------------------------
 # CONTENT ELEMENTS
 # ------------------------------------------------------------------------------------------------
-
-def test_content_toggle(browser):
-    ct = ContentToggle(browser)
-    ct.load()
-    ct.testcase()
+def test_content_toggle(init_driver):
+    content_toggle = ContentToggle(init_driver)
+    content_toggle.run()
 
 
-def test_advanced_menu(browser):
-    am = AdvancedMenu(browser)
-    am.load()
-    am.testcase()
+def test_advanced_menu(init_driver):
+    advanced_menu = AdvancedMenu(init_driver)
+    advanced_menu.run()
 
 
-def test_off_canvas(browser):
-    oc = OffCanvas(browser)
-    oc.load()
-    oc.testcase()
+def test_off_canvas(init_driver):
+    off_canvas = OffCanvas(init_driver)
+    off_canvas.run()
 
 
-def test_feature_list(browser):
-    fl = FeatureList(browser)
-    fl.load()
-    fl.testcase()
+def test_feature_list(init_driver):
+    feature_list = FeatureList(init_driver)
+    feature_list.run()
 
 
-def testimonial(browser):
-    t = Testimonial(browser)
-    t.load()
-    t.testcase()
+def test_testimonial(init_driver):
+    testimonial = Testimonial(init_driver)
+    testimonial.run()
 
 
-def test_sticky_video(browser):
-    sv = StickyVideo(browser)
-    sv.load()
-    sv.testcase()
+def test_sticky_video(init_driver):
+    sticky_video = StickyVideo(init_driver)
+    sticky_video.run()
 
 
-def test_tooltip(browser):
-    tt = ToolTip(browser)
-    tt.load()
-    tt.testcase()
+def test_tooltip(init_driver):
+    tool_tip = ToolTip(init_driver)
+    tool_tip.run()
 
 
-def test_protected_content(browser):
-    pc = ProtectedContent(browser)
-    pc.load()
-    pc.testcase()
+def test_protected_content(init_driver):
+    protected_content = ProtectedContent(init_driver)
+    protected_content.run()
 
 
-def test_testimonial_slide(browser):
-    ts = TestimonialSlider(browser)
-    ts.load()
-    ts.testcase()
+def test_testimonial_slide(init_driver):
+    testimonial_slide = TestimonialSlider(init_driver)
+    testimonial_slide.run()
 
 
-def test_advanced_tab(browser):
-    at = AdvancedTabs(browser)
-    at.load()
-    at.testcase()
+def test_advanced_tab(init_driver):
+    advanced_tab = AdvancedTabs(init_driver)
+    advanced_tab.run()
 
 
-def test_advanced_accordion(browser):
-    adva = AdvancedAccordion(browser)
-    adva.load()
-    adva.testcase()
+def test_advanced_accordion(init_driver):
+    advanced_accordion = AdvancedAccordion(init_driver)
+    advanced_accordion.run()
 
 
-def test_team_member(browser):
-    tc = TeamMember(browser)
-    tc.load()
-    tc.testcase()
+def test_team_member(init_driver):
+    team_member = TeamMember(init_driver)
+    team_member.run()
 
 
-def test_infobox(browser):
-    ib = InfoBox(browser)
-    ib.load()
-    ib.testcase()
+def test_infobox(init_driver):
+    infobox = InfoBox(init_driver)
+    infobox.run()
 
 
-def test_dual_color_heading(browser):
-    dc = DualColorHeading(browser)
-    dc.load()
-    dc.testcase()
+def test_dual_color_heading(init_driver):
+    dual_color_heading = DualColorHeading(init_driver)
+    dual_color_heading.run()
 
 
-def test_logo_carousel(browser):
-    lc = LogoCarousel(browser)
-    lc.load()
-    lc.testcase()
+def test_logo_carousel(init_driver):
+    logo_carousel = LogoCarousel(init_driver)
+    logo_carousel.run()
 
 
-def test_team_member_carousle(browser):
-    tmc = TeamMemberCarousel(browser)
-    tmc.load()
-    tmc.testcase()
+def test_team_member_carousel(init_driver):
+    team_member_carousel = TeamMemberCarousel(init_driver)
+    team_member_carousel.run()
 
 
-def test_simple_menu(browser):
-    smp = SimpleMenu(browser)
-    smp.load()
-    smp.testcase()
+def test_simple_menu(init_driver):
+    simple_menu = SimpleMenu(init_driver)
+    simple_menu.run()
 
 
-def test_flip_box(browser):
-    fpb = FlipBox(browser)
-    fpb.load()
-    fpb.testcase()
+def test_flip_box(init_driver):
+    flip_box = FlipBox(init_driver)
+    flip_box.run()
 
 
-def test_creative_button(browser):
-    cb = CreativeButton(browser)
-    cb.load()
-    cb.testcase()
+def test_creative_button(init_driver):
+    creative_button = CreativeButton(init_driver)
+    creative_button.run()
 
 
-def test_static_product(browser):
-    sp = StaticProduct(browser)
-    sp.load()
-    sp.testcase()
+def test_static_product(init_driver):
+    static_product = StaticProduct(init_driver)
+    static_product.run()
 
 
-def test_event_calender(browser):
-    evc = EventCalendar(browser)
-    evc.load()
-    evc.testcase()
+def test_event_calender(init_driver):
+    event_calender = EventCalendar(init_driver)
+    event_calender.run()
 
 
-def test_advanced_search(browser):
-    ads = AdvancedSearch(browser)
-    ads.load()
-    ads.testcase()
+def test_advanced_search(init_driver):
+    advanced_search = AdvancedSearch(init_driver)
+    advanced_search.run()
 
 
 # ------------------------------------------------------------------------------------------------
 # DYNAMIC CONTENT ELEMENTS
 # ------------------------------------------------------------------------------------------------
 
-def test_advanced_data_table(browser):
-    adt = AdvancedDataTable(browser)
-    adt.load()
-    adt.testcase()
+def test_advanced_data_table(init_driver):
+    advanced_data_table = AdvancedDataTable(init_driver)
+    advanced_data_table.run()
 
 
-def test_post_block(browser):
-    pb = PostBlock(browser)
-    pb.load()
-    pb.testcase()
+def test_post_block(init_driver):
+    post_block = PostBlock(init_driver)
+    post_block.run()
 
 
-def test_post_timeline(browser):
-    ptl = PostTimeline(browser)
-    ptl.load()
-    ptl.testcase()
+def test_post_timeline(init_driver):
+    post_timeline = PostTimeline(init_driver)
+    post_timeline.run()
 
 
-def test_smart_post_list(browser):
-    spl = PostList(browser)
-    spl.load()
-    spl.testcase()
+def test_smart_post_list(init_driver):
+    smart_post_list = PostList(init_driver)
+    smart_post_list.run()
 
 
-def test_google_map(browser):
-    gm = AdvancedGoogleMap(browser)
-    gm.load()
-    gm.testcase()
+def test_google_map(init_driver):
+    google_map = AdvancedGoogleMap(init_driver)
+    google_map.run()
 
 
-def test_content_ticker(browser):
-    ct = ContentTicker(browser)
-    ct.load()
-    ct.testcase()
+def test_content_ticker(init_driver):
+    content_ticker = ContentTicker(init_driver)
+    content_ticker.run()
 
 
-def test_content_timeline(browser):
-    ct = ContentTimeline(browser)
-    ct.load()
-    ct.testcase()
+def test_content_timeline(init_driver):
+    content_timeline = ContentTimeline(init_driver)
+    content_timeline.run()
 
 
-def test_dynamic_gallery(browser):
-    dg = DynamicGallery(browser)
-    dg.load()
-    dg.testcase()
+def test_dynamic_gallery(init_driver):
+    dynamic_gallery = DynamicGallery(init_driver)
+    dynamic_gallery.run()
 
 
-def test_post_grid(browser):
-    pg = PostGrid(browser)
-    pg.load()
-    pg.testcase()
+def test_post_grid(init_driver):
+    post_grid = PostGrid(init_driver)
+    post_grid.run()
 
 
-def test_data_table(browser):
-    dt = DataTable(browser)
-    dt.load()
-    dt.testcase()
+def test_data_table(init_driver):
+    data_table = DataTable(init_driver)
+    data_table.run()
 
 
-def test_post_carousel(browser):
-    pc = PostCarousel(browser)
-    pc.load()
-    pc.testcase()
+def test_post_carousel(init_driver):
+    post_carousel = PostCarousel(init_driver)
+    post_carousel.run()
 
 
 # ------------------------------------------------------------------------------------------------
 # MARKETING ELEMENTS
 # ------------------------------------------------------------------------------------------------
 
-def test_pricing_table(browser):
-    pt = PricingTable(browser)
-    pt.load()
-    pt.testcase()
+def test_pricing_table(init_driver):
+    pricing_table = PricingTable(init_driver)
+    pricing_table.run()
 
 
-def test_call_to_action(browser):
-    cta = CallToAction(browser)
-    cta.load()
-    cta.testcase()
+def test_call_to_action(init_driver):
+    call_to_action = CallToAction(init_driver)
+    call_to_action.run()
 
 
-def test_price_menu(browser):
-    pm = PriceMenu(browser)
-    pm.load()
-    pm.testcase()
+def test_price_menu(init_driver):
+    price_menu = PriceMenu(init_driver)
+    price_menu.run()
 
 
 # ------------------------------------------------------------------------------------------------
 # CREATIVE ELEMENTS
 # ------------------------------------------------------------------------------------------------
 
-def test_interactive_promo(browser):
-    ip = InteractivePromo(browser)
-    ip.load()
-    ip.testcase()
+def test_interactive_promo(init_driver):
+    interactive_promo = InteractivePromo(init_driver)
+    interactive_promo.run()
 
 
-def test_interactive_cards(browser):
-    ic = InteractiveCards(browser)
-    ic.load()
-    ic.testcase()
+def test_interactive_cards(init_driver):
+    interactive_cards = InteractiveCards(init_driver)
+    interactive_cards.run()
 
 
-def test_one_page_nav(browser):
-    opn = OnePageNav(browser)
-    opn.load()
-    opn.testcase()
+def test_one_page_nav(init_driver):
+    one_page_nav = OnePageNav(init_driver)
+    one_page_nav.run()
 
 
-def test_image_comparison(browser):
-    ic = ImageComparison(browser)
-    ic.load()
-    ic.testcase()
+def test_image_comparison(init_driver):
+    image_comparison = ImageComparison(init_driver)
+    image_comparison.run()
 
 
-def test_filterable_gallery(browser):
-    fg = FilterableGallery(browser)
-    fg.load()
-    fg.testcase()
+def test_filterable_gallery(init_driver):
+    filterable_gallery = FilterableGallery(init_driver)
+    filterable_gallery.run()
 
 
-def test_interactive_circle(browser):
-    ic = InteractiveCircle(browser)
-    ic.load()
-    ic.testcase()
+def test_interactive_circle(init_driver):
+    interactive_circle = InteractiveCircle(init_driver)
+    interactive_circle.run()
 
 
-def test_image_hotspots(browser):
-    ih = ImageHotspots(browser)
-    ih.load()
-    ih.testcase()
+def test_image_hotspots(init_driver):
+    image_hotspots = ImageHotspots(init_driver)
+    image_hotspots.run()
 
 
-def test_image_scroller(browser):
-    imgs = ImageScroller(browser)
-    imgs.load()
-    imgs.testcase()
+def test_image_scroller(init_driver):
+    image_scroller = ImageScroller(init_driver)
+    image_scroller.run()
 
 
-def test_divider(browser):
-    d = Divider(browser)
-    d.load()
-    d.testcase()
+def test_divider(init_driver):
+    divider = Divider(init_driver)
+    divider.run()
 
 
-def test_fancy_text(browser):
-    ft = FancyText(browser)
-    ft.load()
-    ft.testcase()
+def test_fancy_text(init_driver):
+    fancy_text = FancyText(init_driver)
+    fancy_text.run()
 
 
-def test_counter(browser):
-    c = Counter(browser)
-    c.load()
-    c.testcase()
+def test_counter(init_driver):
+    counter = Counter(init_driver)
+    counter.run()
 
 
-def test_countdown(browser):
-    c = Countdown(browser)
-    c.load()
-    c.testcase()
+def test_countdown(init_driver):
+    countdown = Countdown(init_driver)
+    countdown.run()
 
 
-def test_lightbox_modal(browser):
-    lm = LightboxModal(browser)
-    lm.load()
-    lm.testcase()
+def test_lightbox_modal(init_driver):
+    lightbox_modal = LightboxModal(init_driver)
+    lightbox_modal.run()
 
 
-def test_flip_carousel(browser):
-    fc = FlipCarousel(browser)
-    fc.load()
-    fc.testcase()
+def test_flip_carousel(init_driver):
+    flip_carousel = FlipCarousel(init_driver)
+    flip_carousel.run()
 
 
-def test_progress_bar(browser):
-    pb = ProgressBar(browser)
-    pb.load()
-    pb.testcase()
+def test_progress_bar(init_driver):
+    progress_bar = ProgressBar(init_driver)
+    progress_bar.run()
 
 
-def test_image_accordion(browser):
-    ia = ImageAccordion(browser)
-    ia.load()
-    ia.testcase()
+def test_image_accordion(init_driver):
+    image_accordion = ImageAccordion(init_driver)
+    image_accordion.run()
 
 
 # ------------------------------------------------------------------------------------------------
 # FORM STYLER ELEMENTS
 # ------------------------------------------------------------------------------------------------
 
-def test_contact_form_7(browser):
-    cf7 = ContactForm7(browser)
-    cf7.load()
-    cf7.testcase()
+def test_contact_form_7(init_driver):
+    contact_form_7 = ContactForm7(init_driver)
+    contact_form_7.run()
 
 
-def test_wpforms(browser):
-    wpf = Wpforms(browser)
-    wpf.load()
-    wpf.testcase()
+def test_wp_forms(init_driver):
+    wp_forms = Wpforms(init_driver)
+    wp_forms.run()
 
 
-def test_ninja_forms(browser):
-    nf = NinjaForms(browser)
-    nf.load()
-    nf.testcase()
+def test_ninja_forms(init_driver):
+    ninja_forms = NinjaForms(init_driver)
+    ninja_forms.run()
 
 
-def test_mailchimp(browser):
-    mc = Mailchimp(browser)
-    mc.load()
-    mc.testcase()
+def test_mailchimp(init_driver):
+    mailchimp = Mailchimp(init_driver)
+    mailchimp.run()
 
 
-def test_caldera_forms(browser):
-    cf = CalderaForms(browser)
-    cf.load()
-    cf.testcase()
+def test_caldera_forms(init_driver):
+    caldera_forms = CalderaForms(init_driver)
+    caldera_forms.run()
 
 
-def test_fluent_forms(browser):
-    ff = FluentForms(browser)
-    ff.load()
-    ff.testcase()
+def test_fluent_forms(init_driver):
+    fluent_forms = FluentForms(init_driver)
+    fluent_forms.run()
 
 
-def test_weforms(browser):
-    wf = Weforms(browser)
-    wf.load()
-    wf.testcase()
+def test_we_forms(init_driver):
+    we_forms = Weforms(init_driver)
+    we_forms.run()
 
 
-def test_formstack(browser):
-    fs = Formstack(browser)
-    fs.load()
-    fs.testcase()
+def test_formstack(init_driver):
+    formstack = Formstack(init_driver)
+    formstack.run()
 
 
-def test_gravity_forms(browser):
-    gf = GravityForms(browser)
-    gf.load()
-    gf.testcase()
+def test_gravity_forms(init_driver):
+    gravity_forms = GravityForms(init_driver)
+    gravity_forms.run()
 
 
-def test_login_register_form(browser):
-    lrf = LoginRegisterForm(browser)
-    lrf.load()
-    lrf.testcase()
+def test_login_register_form(init_driver):
+    login_register_form = LoginRegisterForm(init_driver)
+    login_register_form.run()
 
 
 # ------------------------------------------------------------------------------------------------
 # SOCIAL ELEMENTS
 # ------------------------------------------------------------------------------------------------
 
-def test_twitter_feed_carousel(browser):
-    tfc = TwitterFeedCarousel(browser)
-    tfc.load()
-    tfc.testcase()
+def test_twitter_feed_carousel(init_driver):
+    twitter_feed_carousel = TwitterFeedCarousel(init_driver)
+    twitter_feed_carousel.run()
 
 
-def test_twitter_feed(browser):
-    tf = TwitterFeed(browser)
-    tf.load()
-    tf.testcase()
+def test_twitter_feed(init_driver):
+    twitter_feed = TwitterFeed(init_driver)
+    twitter_feed.run()
 
 
-def test_instagram_feed(browser):
-    insf = InstagramFeed(browser)
-    insf.load()
-    insf.testcase()
+def test_instagram_feed(init_driver):
+    instagram_feed = InstagramFeed(init_driver)
+    instagram_feed.run()
 
 
-def test_facebook_feed(browser):
-    fac = FacebookFeed(browser)
-    fac.load()
-    fac.testcase()
+def test_facebook_feed(init_driver):
+    facebook_feed = FacebookFeed(init_driver)
+    facebook_feed.run()
 
 
 # ------------------------------------------------------------------------------------------------
 # LEARNDASH ELEMENTS
 # ------------------------------------------------------------------------------------------------
 
-def test_learndash_course_list(browser):
-    learndash = LearndashCourseList(browser)
-    learndash.load()
-    learndash.testcase()
+def test_learndash_course_list(init_driver):
+    learndash_course_list = LearndashCourseList(init_driver)
+    learndash_course_list.run()
 
 
 # ------------------------------------------------------------------------------------------------
 # DOCUMENTATION ELEMENTS
 # ------------------------------------------------------------------------------------------------
 
-def test_betterdocs_category_grid(browser):
-    bd = BetterdocsCategoryGrid(browser)
-    bd.load()
-    bd.testcase()
+def test_betterdocs_category_grid(init_driver):
+    betterdocs_category_grid = BetterdocsCategoryGrid(init_driver)
+    betterdocs_category_grid.run()
 
 
-def test_betterdocs_category_box(browser):
-    bcb = BetterdocsCategoryBox(browser)
-    bcb.load()
-    bcb.testcase()
+def test_betterdocs_category_box(init_driver):
+    betterdocs_category_box = BetterdocsCategoryBox(init_driver)
+    betterdocs_category_box.run()
 
 
-def test_betterdocs_search_form(browser):
-    bsf = BetterdocsSearchForm(browser)
-    bsf.load()
-    bsf.testcase()
+def test_betterdocs_search_form(init_driver):
+    betterdocs_category_box = BetterdocsSearchForm(init_driver)
+    betterdocs_category_box.run()
 
 
 # ------------------------------------------------------------------------------------------------
 # WOOCOMMERCE ELEMENTS
 # ------------------------------------------------------------------------------------------------
 
-def test_woo_cart(browser):
-    wc = WooCart(browser)
-    wc.load()
-    wc.testcase()
+def test_woo_cart(init_driver):
+    cart = WooCart(init_driver)
+    cart.run()
 
 
-def test_woo_product_slider(browser):
-    wps = WooProductSlider(browser)
-    wps.load()
-    wps.testcase()
+def test_woo_product_slider(init_driver):
+    product_slider = WooProductSlider(init_driver)
+    product_slider.run()
 
 
-def test_woo_product_carousel(browser):
-    wpc = WooProductCarousel(browser)
-    wpc.load()
-    wpc.testcase()
+def test_woo_product_carousel(init_driver):
+    product_carousel = WooProductCarousel(init_driver)
+    product_carousel.run()
 
 
-def test_woo_product_gallery(browser):
-    wpg = WooProductGallery(browser)
-    wpg.load()
-    wpg.testcase()
+def test_woo_product_gallery(init_driver):
+    product_gallery = WooProductGallery(init_driver)
+    product_gallery.run()
 
 
-def test_woo_product_compare(browser):
-    wpc = WooProductCompare(browser)
-    wpc.load()
-    wpc.testcase()
+def test_woo_product_compare(init_driver):
+    product_compare = WooProductCompare(init_driver)
+    product_compare.run()
 
 
-def test_woocommerce_product_collections(browser):
-    wpc = WoocommerceProductCollections(browser)
-    wpc.load()
-    wpc.testcase()
+def test_woocommerce_product_collections(init_driver):
+    product_collections = WoocommerceProductCollections(init_driver)
+    product_collections.run()
 
 
-def test_woo_product_grid(browser):
-    wpg = WooProductGrid(browser)
-    wpg.load()
-    wpg.testcase()
+def test_woo_product_grid(init_driver):
+    product_grid = WooProductGrid(init_driver)
+    product_grid.run()
 
 
-def test_woo_checkout(browser):
-    wc = WooCheckout(browser)
-    wc.load()
-    wc.testcase()
+def test_woo_checkout(init_driver):
+    checkout = WooCheckout(init_driver)
+    checkout.run()
 
 
 # ------------------------------------------------------------------------------------------------
@@ -596,55 +517,46 @@ def test_woo_checkout(browser):
 # ------------------------------------------------------------------------------------------------
 
 
-def test_cross_domain_copy_paste(browser):
-    cdcp = CrossDomainCopyPaste(browser)
-    cdcp.load()
-    cdcp.testcase()
+def test_cross_domain_copy_paste(init_driver):
+    cross_domain_copy_paste = CrossDomainCopyPaste(init_driver)
+    cross_domain_copy_paste.run()
 
 
-def test_scroll_to_top(browser):
-    stt = ScrollToTop(browser)
-    stt.load()
-    stt.testcase()
+def test_scroll_to_top(init_driver):
+    scroll_to_top = ScrollToTop(init_driver)
+    scroll_to_top.run()
 
 
-def test_content_protection(browser):
-    cp = ContentProtection(browser)
-    cp.load()
-    cp.testcase()
+def test_content_protection(init_driver):
+    content_protection = ContentProtection(init_driver)
+    content_protection.run()
 
 
-def test_duplicator(browser):
-    d = Duplicator(browser)
-    d.load()
-    d.testcase()
+# def test_duplicator(init_driver):
+#     duplicator = Duplicator(init_driver)
+#     duplicator.run()
 
 
-def test_table_of_content(browser):
-    toc = TableOfContent(browser)
-    toc.load()
-    toc.testcase()
+def test_table_of_content(init_driver):
+    table_of_content = TableOfContent(init_driver)
+    table_of_content.run()
 
 
-def test_parallax_scrolling(browser):
-    ps = ParallaxScrolling(browser)
-    ps.load()
-    ps.testcase()
+def test_parallax_scrolling(init_driver):
+    parallax = ParallaxScrolling(init_driver)
+    parallax.run()
 
 
-def test_reading_progress(browser):
-    rpb = ReadingProgress(browser)
-    rpb.load()
-    rpb.testcase()
+# def test_reading_progress(init_driver):
+#     reading_progress = ReadingProgress(init_driver)
+#     reading_progress.run()
 
 
-# def test_particle_effect(browser):
-#     pe = ParticleEffect(browser)
-#     pe.load()
-#     pe.testcase()
+def test_particle_effect(init_driver):
+    particle = ParticleEffect(init_driver)
+    particle.run()
 
 
-def test_advanced_tooltip(browser):
-    att = AdvancedTooltip(browser)
-    att.load()
-    att.testcase()
+def test_advanced_tooltip(init_driver):
+    advanced_tooltip = AdvancedTooltip(init_driver)
+    advanced_tooltip.run()

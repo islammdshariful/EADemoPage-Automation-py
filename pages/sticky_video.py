@@ -1,9 +1,10 @@
-from selenium.webdriver import ActionChains, Keys
+from selenium.webdriver import ActionChains
 
+from pages.basepage import BasePage
 from utils.config import *
 
 
-class StickyVideo(Helper):
+class StickyVideo(BasePage, Helper):
     widget = '//*[@id="post-255935"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Sticky Video'
@@ -25,34 +26,37 @@ class StickyVideo(Helper):
 
     def __init__(self, browser):
         super().__init__(browser)
-        self.browser = browser
 
-    def load(self):
-        self.browser.get(self.sticky_video)
-
-    def testcase(self):
-        c = Helper(self.browser)
+    def run(self):
         with soft_assertions():
-            c.check_widget_name(self.widget, self.widget_name)
+            """Go to page"""
+            self.go_to(self.sticky_video)
+            """Checking widget name"""
+            self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
-                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
+                """Checking widget's documentation"""
                 self.check_documents(self.doc_link, self.doc_name)
             else:
-                self.browser.execute_script("window.scrollTo(0, 629)")
+                self.scroll_to(629)
                 time.sleep(1)
 
-                self.browser.find_element(*self.start_button).click()
+                """Click Play button"""
+                self.do_click(self.start_button)
                 time.sleep(1)
-                self.browser.switch_to.frame(self.browser.find_element(*self.iframe_box))
-                cursor = ActionChains(self.browser)
-                player = self.browser.find_element(*self.video_frame)
-                cursor.move_to_element(player).perform()
-                self.browser.find_element(*self.pause_btn).click()
+                """Switching to iFrame"""
+                self.switch_to_frame(self.iframe_box)
+                self.move_cursor_to(self.video_frame)
+                """Clicking pause button"""
+                self.do_click(self.pause_btn)
                 time.sleep(1)
-                self.browser.switch_to.default_content()
-                self.browser.find_element(*self.play_btn).click()
+                """Switching to default frame"""
+                self.switch_frame_to_default()
+                """Clicking the play button"""
+                self.do_click(self.play_btn)
                 time.sleep(1)
+                """Scrolling bottom to popup sticky video player"""
                 for i in range(629, 1500, 2):
                     self.browser.execute_script("window.scrollTo(0, " + str(i) + ")")
                 time.sleep(1)
-                self.browser.find_element(*self.cross).click()
+                """Close the sticky video player"""
+                self.do_click(self.cross)

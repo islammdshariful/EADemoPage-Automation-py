@@ -1,9 +1,7 @@
-from selenium.webdriver import ActionChains, Keys
-
 from utils.config import *
 
 
-class DynamicGallery(Helper):
+class DynamicGallery(BasePage, Helper):
     widget = '//*[@id="post-260882"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Dynamic Gallery'
@@ -16,45 +14,45 @@ class DynamicGallery(Helper):
     wordpress = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[1]/ul/li[3]')
     templates = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[1]/ul/li[4]')
 
-    all_post_1_title = f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[1]/div[1]/div[2]/h2/a'
-    all_post_1_des = f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[1]/div[1]/div[2]/p'
-    all_post_1_img = f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[1]/div[1]/div[1]/img'
+    all_post_1_title = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[1]/div[1]/div[2]/h2/a')
+    all_post_1_des = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[1]/div[1]/div[2]/p')
+    all_post_1_img = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[1]/div[1]/div[1]/img')
 
-    all_post_2_title = f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[3]/div[1]/div[2]/h2/a'
-    all_post_2_des = f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[3]/div[1]/div[2]/p'
-    all_post_2_img = f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[3]/div[1]/div[1]/img'
+    all_post_2_title = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[3]/div[1]/div[2]/h2/a')
+    all_post_2_des = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[3]/div[1]/div[2]/p')
+    all_post_2_img = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[3]/div[1]/div[1]/img')
 
-    all_post_3_title = f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[6]/div/div[2]/h2/a'
-    all_post_3_des = f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[6]/div[1]/div[2]/p'
-    all_post_3_img = f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[6]/div[1]/div[1]/img'
+    all_post_3_title = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[6]/div/div[2]/h2/a')
+    all_post_3_des = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[6]/div[1]/div[2]/p')
+    all_post_3_img = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[6]/div[1]/div[1]/img')
 
-    all_post_4_title = f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[12]/div/div[2]/h2/a'
-    all_post_4_des = f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[12]/div[1]/div[2]/p'
-    all_post_4_img = f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[12]/div[1]/div[1]/img'
+    all_post_4_title = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[12]/div/div[2]/h2/a')
+    all_post_4_des = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[12]/div[1]/div[2]/p')
+    all_post_4_img = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[12]/div[1]/div[1]/img')
 
-    ele_post_1_title = f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[1]/div[1]/div[2]/h2/a'
-    ele_post_1_des = f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[1]/div[1]/div[2]/p'
-    ele_post_1_img = f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[1]/div[1]/div[1]/img'
+    ele_post_1_title = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[1]/div[1]/div[2]/h2/a')
+    ele_post_1_des = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[1]/div[1]/div[2]/p')
+    ele_post_1_img = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[1]/div[1]/div[1]/img')
 
-    ele_post_2_title = f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[3]/div[1]/div[2]/h2/a'
-    ele_post_2_des = f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[3]/div[1]/div[2]/p'
-    ele_post_2_img = f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[3]/div[1]/div[1]/img'
+    ele_post_2_title = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[3]/div[1]/div[2]/h2/a')
+    ele_post_2_des = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[3]/div[1]/div[2]/p')
+    ele_post_2_img = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[3]/div[1]/div[1]/img')
 
-    wp_post_1_title = f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[1]/div[1]/div[2]/h2/a'
-    wp_post_1_des = f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[1]/div[1]/div[2]/p'
-    wp_post_1_img = f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[1]/div[1]/div[1]/img'
+    wp_post_1_title = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[1]/div[1]/div[2]/h2/a')
+    wp_post_1_des = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[1]/div[1]/div[2]/p')
+    wp_post_1_img = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[1]/div[1]/div[1]/img')
 
-    wp_post_2_title = f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[4]/div[1]/div[2]/h2/a'
-    wp_post_2_des = f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[4]/div[1]/div[2]/p'
-    wp_post_2_img = f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[4]/div[1]/div[1]/img'
+    wp_post_2_title = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[4]/div[1]/div[2]/h2/a')
+    wp_post_2_des = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[4]/div[1]/div[2]/p')
+    wp_post_2_img = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[4]/div[1]/div[1]/img')
 
-    tm_post_1_title = f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[2]/div[1]/div[2]/h2/a'
-    tm_post_1_des = f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[2]/div[1]/div[2]/p'
-    tm_post_1_img = f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[2]/div[1]/div[1]/img'
+    tm_post_1_title = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[2]/div[1]/div[2]/h2/a')
+    tm_post_1_des = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[2]/div[1]/div[2]/p')
+    tm_post_1_img = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[2]/div[1]/div[1]/img')
 
-    tm_post_2_title = f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[8]/div/div[2]/h2/a'
-    tm_post_2_des = f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[8]/div[1]/div[2]/p'
-    tm_post_2_img = f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[8]/div[1]/div[1]/img'
+    tm_post_2_title = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[8]/div/div[2]/h2/a')
+    tm_post_2_des = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[8]/div[1]/div[2]/p')
+    tm_post_2_img = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-3990f5c"]/div[2]/div[8]/div[1]/div[1]/img')
 
     load_more_btn = (By.ID, f'eael-load-more-btn-3990f5c')
 
@@ -66,82 +64,49 @@ class DynamicGallery(Helper):
 
     def __init__(self, browser):
         super().__init__(browser)
-        self.browser = browser
-
-    def load(self):
-        self.browser.get(self.dynamic_gallery)
 
     def check_widget_post(self, post, des, img):
-        cursor = ActionChains(self.browser)
-        post_title = self.browser.find_element(By.XPATH, post)
+        self.move_cursor_to(post)
+        self.is_visible(des, "Gallery Description is not visible")
+        self.is_visible(img, "Gallery Image is not visible")
 
-        cursor.move_to_element(post_title).perform()
-        self.check_visibility(des, "Galary Description is not visible")
-        self.check_visibility(img, "Galary Image is not visible")
+        post_title = self.get_element_text(post)
+        self.do_click(post)
+        assert_that(self.browser.find_element(*self.article_title).text).is_equal_to(post_title)
+        self.go_back()
 
-        p_title = post_title.text
-
-        post_title.click()
-        assert_that(self.browser.find_element(*self.article_title).text).is_equal_to(p_title)
-        self.browser.back()
-        time.sleep(1)
-
-    def testcase(self):
+    def run(self):
         with soft_assertions():
+            """Go to page"""
+            self.go_to(self.dynamic_gallery)
+            """Checking widget name"""
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
-                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
+                """Checking widget's documentation"""
                 self.check_documents(self.doc_link, self.doc_name)
             else:
-                self.browser.execute_script("window.scrollTo(0, 905)")
-                time.sleep(1)
-
+                self.scroll_to(905)
                 # All
-                self.browser.find_element(*self.all).click()
-                time.sleep(1)
+                self.do_click(self.all)
                 self.check_widget_post(self.all_post_1_title, self.all_post_1_des, self.all_post_1_img)
-                self.browser.execute_script("window.scrollTo(0, 1439)")
-                time.sleep(1)
+                self.scroll_to(1439)
                 self.check_widget_post(self.all_post_3_title, self.all_post_3_des, self.all_post_3_img)
-                self.browser.execute_script("window.scrollTo(0, 1450)")
-                time.sleep(2)
-                self.browser.find_element(*self.load_more_btn).click()
-                time.sleep(1)
-                self.browser.execute_script("window.scrollTo(0, 2018)")
-                time.sleep(1)
+                self.scroll_to(1450)
+                self.do_click(self.load_more_btn)
+                self.scroll_to(2018)
                 self.check_widget_post(self.all_post_4_title, self.all_post_4_des, self.all_post_4_img)
-                self.browser.execute_script("window.scrollTo(0, 905)")
-                time.sleep(1)
                 # Elementor
-                self.browser.find_element(*self.elementor).click()
-                time.sleep(1)
-                self.check_widget_post(self.ele_post_1_title, self.ele_post_1_des, self.ele_post_1_img)
-                self.browser.find_element(*self.elementor).click()
-                time.sleep(1)
-                self.check_widget_post(self.ele_post_2_title, self.ele_post_2_des, self.ele_post_2_img)
+                self.scroll_to(905)
+                self.do_click(self.elementor)
+                self.scroll_to(1439)
+                self.do_click(self.load_more_btn)
                 # WordPress
-                self.browser.find_element(*self.wordpress).click()
-                time.sleep(1)
-                self.browser.execute_script("window.scrollTo(0, 1439)")
-                time.sleep(1)
-                self.browser.find_element(*self.load_more_btn).click()
-                time.sleep(1)
-                # self.check_widget_post(self.wp_post_1_title, self.wp_post_1_des, self.wp_post_1_img)
-                # self.browser.find_element(*self.wordpress).click()
-                # time.sleep(1)
-                # self.check_widget_post(self.wp_post_2_title, self.wp_post_2_des, self.wp_post_2_img)
+                self.scroll_to(905)
+                self.do_click(self.wordpress)
+                self.scroll_to(1439)
+                self.do_click(self.load_more_btn)
                 # Templates
-                self.browser.execute_script("window.scrollTo(0, 905)")
-                time.sleep(1)
-                self.browser.find_element(*self.templates).click()
-                time.sleep(1)
-                self.browser.execute_script("window.scrollTo(0, 1439)")
-                time.sleep(1)
-                self.browser.find_element(*self.load_more_btn).click()
-                time.sleep(1)
-                # self.check_widget_post(self.tm_post_1_title, self.tm_post_1_des, self.tm_post_1_img)
-                # self.browser.find_element(*self.templates).click()
-                # time.sleep(1)
-                # self.browser.find_element(*self.load_more_btn).click()
-                # time.sleep(1)
-                # self.check_widget_post(self.tm_post_2_title, self.tm_post_2_des, self.tm_post_2_img)
+                self.scroll_to(905)
+                self.do_click(self.templates)
+                self.scroll_to(1439)
+                self.do_click(self.load_more_btn)

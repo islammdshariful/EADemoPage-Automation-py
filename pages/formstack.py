@@ -1,9 +1,7 @@
-from selenium.webdriver import Keys
-
 from utils.config import *
 
 
-class Formstack(Helper):
+class Formstack(BasePage, Helper):
     widget = '//*[@id="post-259465"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section' \
              '/div/div/div[2]/div/div/div[1]/div/h2'
     widget_name = 'Formstack'
@@ -34,14 +32,14 @@ class Formstack(Helper):
 
     submit_btn = (By.XPATH, f'//*[@id="fsSubmitButton3799616"]')
 
-    success_msg = f'//*[@id="post-1300"]/div/div/div/div/section[2]/div/div/div/div/div/section[2]' \
-                  f'/div/div/div/div/div/div/div/div/div'
+    success_msg = (By.XPATH, f'//*[@id="post-1300"]/div/div/div/div/section[2]/div/div/div/div/div/section[2]' \
+                             f'/div/div/div/div/div/div/div/div/div')
     success_msg_text = "Thanks for contacting us! We will get in touch with you shortly."
 
     name_label_text = "Name*"
     fname_bottom_label_text = "First Name"
     lname_bottom_label_text = "Last Name"
-    address_bottom_label_text= "Address*"
+    address_bottom_label_text = "Address*"
     address_label_text = "Address Line 1"
     hphone_label_text = "Home Phone*"
     wphone_label_text = "Work Phone"
@@ -50,47 +48,37 @@ class Formstack(Helper):
 
     def __init__(self, browser):
         super().__init__(browser)
-        self.browser = browser
 
-    def load(self):
-        self.browser.get(self.formstack)
-
-    def testcase(self):
+    def run(self):
         with soft_assertions():
+            """Go to page"""
+            self.go_to(self.formstack)
+            """Checking widget name"""
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
-                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
+                """Checking widget's documentation"""
                 self.check_documents(self.doc_link, self.doc_name)
             else:
-                self.browser.execute_script("window.scrollTo(0, 905)")
-                time.sleep(1)
+                self.scroll_to(905)
 
-                assert_that(self.browser.find_element(*self.name_label).text).is_equal_to(self.name_label_text)
-                assert_that(self.browser.find_element(*self.fname_bottom_label).text).\
-                    is_equal_to(self.fname_bottom_label_text)
-                assert_that(self.browser.find_element(*self.lname_bottom_label).text). \
-                    is_equal_to(self.lname_bottom_label_text)
-                assert_that(self.browser.find_element(*self.fname_bottom_label).text). \
-                    is_equal_to(self.fname_bottom_label_text)
-                assert_that(self.browser.find_element(*self.address_label).text).\
-                    is_equal_to(self.address_bottom_label_text)
-                assert_that(self.browser.find_element(*self.hphone_label).text).is_equal_to(self.hphone_label_text)
-                assert_that(self.browser.find_element(*self.wphone_label).text).is_equal_to(self.wphone_label_text)
-                assert_that(self.browser.find_element(*self.email_label).text).is_equal_to(self.email_label_text)
-                assert_that(self.browser.find_element(*self.comment_label).text).is_equal_to(self.comment_label_text)
+                self.check_text_matches_with(self.name_label, self.name_label_text)
+                self.check_text_matches_with(self.fname_bottom_label, self.fname_bottom_label_text)
+                self.check_text_matches_with(self.lname_bottom_label, self.lname_bottom_label_text)
+                self.check_text_matches_with(self.fname_bottom_label, self.fname_bottom_label_text)
+                self.check_text_matches_with(self.address_label, self.address_bottom_label_text)
+                self.check_text_matches_with(self.hphone_label, self.hphone_label_text)
+                self.check_text_matches_with(self.wphone_label, self.wphone_label_text)
+                self.check_text_matches_with(self.email_label, self.email_label_text)
+                self.check_text_matches_with(self.comment_label, self.comment_label_text)
 
-                self.browser.find_element(*self.fname_field).send_keys("Tester")
-                self.browser.find_element(*self.lname_field).send_keys("Bhaai")
-                self.browser.find_element(*self.address_field).send_keys("planet Earth, Universe Level 7")
-                self.browser.find_element(*self.hphone_field).send_keys("01234567890")
-                self.browser.find_element(*self.wphone_field).send_keys("09876543210")
-                self.browser.find_element(*self.email_field).send_keys("testerbhaai@gmail.com")
-                self.browser.find_element(*self.comment_field).send_keys("Automation Script is Running...\nHi, Don't reply"
-                                                                         " to this message. Have a good day.")
-
-                # self.browser.find_element(*self.submit_btn).click()
+                self.do_send_keys(self.fname_field, "Tester")
+                self.do_send_keys(self.lname_field, "Bhaai")
+                self.do_send_keys(self.address_field, "planet Earth, Universe Level 7")
+                self.do_send_keys(self.hphone_field, "01234567890")
+                self.do_send_keys(self.wphone_field, "09876543210")
+                self.do_send_keys(self.email_field, "testerbhaai@gmail.com")
+                self.do_send_keys(self.comment_field, "Automation Script is Running...\nHi, Don't reply"
+                                                      " to this message. Have a good day.")
+                # self.do_click(self.submit_btn)
                 #
-                # WebDriverWait(self.browser, 15).until(
-                #     EC.presence_of_element_located((By.XPATH, self.success_msg)))
-                # WebDriverWait(self.browser, 15).until(EC.text_to_be_present_in_element((By.XPATH, self.success_msg),
-                #                                                                        self.success_msg_text))
+                # self.does_element_has_text(self.success_msg, self.success_msg_text)

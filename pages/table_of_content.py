@@ -1,9 +1,7 @@
-from selenium.webdriver import Keys
-
 from utils.config import *
 
 
-class TableOfContent(Helper):
+class TableOfContent(BasePage, Helper):
     widget = '//*[@id="post-257840"]/div/div/div/div/section[1]/div[3]/div/div[2]/div/div/section/div/div/div[2]' \
              '/div/div/div[1]/div/h2'
     widget_name = 'Table of Contents'
@@ -12,40 +10,35 @@ class TableOfContent(Helper):
     doc_name = "EA TABLE OF CONTENTS"
 
     toc = (By.XPATH, f'//*[@id="eael-toc"]/button/span')
-    toc_cp = f'//*[@id="eael-toc-list"]/li[5]/a/span'
+    toc_cp = (By.XPATH, f'//*[@id="eael-toc-list"]/li[5]/a/span')
     toc_cp_text = "EA Content Protection"
-    toc_cp_content = f'//*[@id="92-eael-table-of-content"]'
+    toc_cp_content = (By.XPATH, f'//*[@id="92-eael-table-of-content"]')
 
-    toc_ds = f'//*[@id="eael-toc-list"]/li[2]/a/span'
+    toc_ds = (By.XPATH, f'//*[@id="eael-toc-list"]/li[2]/a/span')
     toc_ds_text = "Different Styles Of Table Of Contents"
-    toc_ds_content = f'//*[@id="83-eael-table-of-content"]'
+    toc_ds_content = (By.XPATH, f'//*[@id="83-eael-table-of-content"]')
 
     def __init__(self, browser):
         super().__init__(browser)
-        self.browser = browser
 
-    def load(self):
-        self.browser.get(self.table_of_content)
-
-    def testcase(self):
+    def run(self):
         with soft_assertions():
+            """Go to page"""
+            self.go_to(self.table_of_content)
+            """Checking widget name"""
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
-                self.browser.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
+                """Checking widget's documentation"""
                 self.check_documents(self.doc_link, self.doc_name)
             else:
-                self.browser.execute_script("window.scrollTo(0, 1504)")
-                time.sleep(1)
+                self.scroll_to(1504)
 
-                self.browser.find_element(*self.toc).click()
-                time.sleep(.5)
+                self.do_click(self.toc)
 
-                assert_that(self.browser.find_element(By.XPATH, self.toc_cp).text).is_equal_to(self.toc_cp_text)
-                self.browser.find_element(By.XPATH, self.toc_cp).click()
-                time.sleep(1)
-                self.check_visibility(self.toc_cp_content, "Table of content is not working.")
+                self.check_text_matches_with(self.toc_cp, self.toc_cp_text)
+                self.do_click(self.toc_cp)
+                self.is_visible(self.toc_cp_content, "Table of content is not working.")
 
-                assert_that(self.browser.find_element(By.XPATH, self.toc_ds).text).is_equal_to(self.toc_ds_text)
-                self.browser.find_element(By.XPATH, self.toc_ds).click()
-                time.sleep(1)
-                self.check_visibility(self.toc_ds_content, "Table of content is not working.")
+                self.check_text_matches_with(self.toc_ds, self.toc_ds_text)
+                self.do_click(self.toc_ds)
+                self.is_visible(self.toc_ds_content, "Table of content is not working.")
