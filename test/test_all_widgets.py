@@ -365,50 +365,50 @@ def test_image_accordion(init_driver):
 # ------------------------------------------------------------------------------------------------
 # FORM STYLER ELEMENTS
 # ------------------------------------------------------------------------------------------------
-
-def test_contact_form_7(init_driver):
-    contact_form_7 = ContactForm7(init_driver)
-    contact_form_7.run()
-
-
-def test_wp_forms(init_driver):
-    wp_forms = Wpforms(init_driver)
-    wp_forms.run()
-
-
-def test_ninja_forms(init_driver):
-    ninja_forms = NinjaForms(init_driver)
-    ninja_forms.run()
-
-
-def test_mailchimp(init_driver):
-    mailchimp = Mailchimp(init_driver)
-    mailchimp.run()
-
-
-def test_caldera_forms(init_driver):
-    caldera_forms = CalderaForms(init_driver)
-    caldera_forms.run()
-
-
-def test_fluent_forms(init_driver):
-    fluent_forms = FluentForms(init_driver)
-    fluent_forms.run()
-
-
-def test_we_forms(init_driver):
-    we_forms = Weforms(init_driver)
-    we_forms.run()
-
-
-def test_formstack(init_driver):
-    formstack = Formstack(init_driver)
-    formstack.run()
-
-
-def test_gravity_forms(init_driver):
-    gravity_forms = GravityForms(init_driver)
-    gravity_forms.run()
+#
+# def test_contact_form_7(init_driver):
+#     contact_form_7 = ContactForm7(init_driver)
+#     contact_form_7.run()
+#
+#
+# def test_wp_forms(init_driver):
+#     wp_forms = Wpforms(init_driver)
+#     wp_forms.run()
+#
+#
+# def test_ninja_forms(init_driver):
+#     ninja_forms = NinjaForms(init_driver)
+#     ninja_forms.run()
+#
+#
+# def test_mailchimp(init_driver):
+#     mailchimp = Mailchimp(init_driver)
+#     mailchimp.run()
+#
+#
+# def test_caldera_forms(init_driver):
+#     caldera_forms = CalderaForms(init_driver)
+#     caldera_forms.run()
+#
+#
+# def test_fluent_forms(init_driver):
+#     fluent_forms = FluentForms(init_driver)
+#     fluent_forms.run()
+#
+#
+# def test_we_forms(init_driver):
+#     we_forms = Weforms(init_driver)
+#     we_forms.run()
+#
+#
+# def test_formstack(init_driver):
+#     formstack = Formstack(init_driver)
+#     formstack.run()
+#
+#
+# def test_gravity_forms(init_driver):
+#     gravity_forms = GravityForms(init_driver)
+#     gravity_forms.run()
 
 
 def test_login_register_form(init_driver):
