@@ -44,7 +44,6 @@ class PostGrid(BasePage, Helper):
         self.browser.get(self.post_grid)
 
     def check_widget_post(self, post, author, date, media, icon):
-        self.is_visible(media, "Media is not visible.")
         self.move_cursor_to(media)
         self.is_visible(icon, "Icon is not visible.")
         post_title = self.get_element_text(post)
