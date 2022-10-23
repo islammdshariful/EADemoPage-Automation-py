@@ -50,3 +50,5 @@ def init_driver():
     browser.implicitly_wait('10')
 
     yield browser
+
+    # browser.quit()
