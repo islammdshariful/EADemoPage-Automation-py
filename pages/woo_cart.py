@@ -122,6 +122,9 @@ class WooCart(BasePage, Helper):
 
     c_checkout_text = "Proceed to Checkout"
 
+    scroll = (By.XPATH, f'//*[@id="post-271400"]/div/div/div/div/section[2]/div/div/div/div/div/section[2]'
+                        f'/div/div/div/div/div/div/div/div/form/div[1]/div[1]/div/div[1]/div')
+
     def __init__(self, browser):
         super().__init__(browser)
 
@@ -168,7 +171,8 @@ class WooCart(BasePage, Helper):
                 self.update_quantity(self.p_quantity_1_plus, self.p_quantity_1_minus, 4, 3)
                 self.update_quantity(self.p_quantity_2_plus, self.p_quantity_2_minus, 3, 2)
 
-                assert_that(self.get_element(self.p_coupon_code).get_attribute('placeholder')).is_equal_to("Coupon code")
+                assert_that(self.get_element(self.p_coupon_code).get_attribute('placeholder')).is_equal_to(
+                    "Coupon code")
                 self.do_send_keys(self.p_coupon_code, "FreeForLife")
 
                 self.check_visibility_of_buttons(self.coupon_btn, self.coupon_btn_text)
@@ -190,13 +194,13 @@ class WooCart(BasePage, Helper):
                 self.do_click(self.checkout_btn)
                 self.check_text_matches_with(self.checkout_page, self.checkout_page_text)
                 self.go_back()
-                self.scroll_to(1004)
+                self.scroll_to_element(self.scroll)
 
                 self.check_text_matches_with(self.shop_page_btn, self.shop_page_btn_text)
                 self.do_click(self.shop_page_btn)
                 self.check_text_matches_with(self.shop_page, self.shop_page_text)
                 self.browser.back()
-                self.scroll_to(1004)
+                self.scroll_to_element(self.scroll)
 
                 self.check_cart_item(self.p_title_1, self.p_title_1_text, self.p_price_1, self.p_price_1_text,
                                      self.p_quantity_1, self.p_quantity_1_text, self.p_subtotal_1,

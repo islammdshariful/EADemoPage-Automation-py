@@ -542,9 +542,9 @@ def test_table_of_content(init_driver):
     table_of_content.run()
 
 
-def test_parallax_scrolling(init_driver):
-    parallax = ParallaxScrolling(init_driver)
-    parallax.run()
+# def test_parallax_scrolling(init_driver):
+#     parallax = ParallaxScrolling(init_driver)
+#     parallax.run()
 
 
 # def test_reading_progress(init_driver):
@@ -552,9 +552,9 @@ def test_parallax_scrolling(init_driver):
 #     reading_progress.run()
 
 
-def test_particle_effect(init_driver):
-    particle = ParticleEffect(init_driver)
-    particle.run()
+# def test_particle_effect(init_driver):
+#     particle = ParticleEffect(init_driver)
+#     particle.run()
 
 
 def test_advanced_tooltip(init_driver):
