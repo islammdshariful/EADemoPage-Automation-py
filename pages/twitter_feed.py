@@ -9,33 +9,33 @@ class TwitterFeed(BasePage, Helper):
                '/div/div/div[2]/div/div/div[3]/div/div/a/span/span'
     doc_name = "TWITTER FEED"
 
-    img_1 = (By.XPATH, f'//*[@id="post-2899"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div' \
-                       f'/div[1]/div/div[1]/a[1]/img')
-    icon_1 = (By.XPATH, f'//*[@id="post-2899"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div' \
-                        f'/div[1]/div/div[1]/a[2]/i')
-    author_1 = (By.XPATH, f'//*[@id="post-2899"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div' \
-                          f'/div[1]/div/div[1]/a[2]/span')
-    content_1 = (By.XPATH, f'//*[@id="post-2899"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div' \
-                           f'/div[1]/div/div[2]/p')
-    read_more_1 = (By.XPATH, f'//*[@id="post-2899"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div' \
-                             f'/div[1]/div/div[2]/a')
+    img_1 = (By.XPATH, f'//*[@id="post-2899"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div'
+                       f'/div[1]/div[1]/div/div[1]/a[1]/img')
+    icon_1 = (By.XPATH, f'//*[@id="post-2899"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div'
+                        f'/div[1]/div[1]/div/div[1]/a[2]/i')
+    author_1 = (By.XPATH, f'//*[@id="post-2899"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div'
+                          f'/div[1]/div[1]/div/div[1]/a[2]/span')
+    content_1 = (By.XPATH, f'//*[@id="post-2899"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/'
+                           f'div[1]/div[1]/div/div[2]/p')
+    read_more_1 = (By.XPATH, f'//*[@id="post-2899"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div'
+                             f'/div[1]/div[1]/div/div[2]/a')
 
-    img_2 = (By.XPATH, f'//*[@id="post-2899"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div' \
+    img_2 = (By.XPATH, f'//*[@id="post-2899"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/div[1]'
                        f'/div[3]/div/div[1]/a[1]/img')
-    icon_2 = (By.XPATH, f'//*[@id="post-2899"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div' \
+    icon_2 = (By.XPATH, f'//*[@id="post-2899"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/div[1]'
                         f'/div[3]/div/div[1]/a[2]/i')
-    author_2 = (By.XPATH, f'//*[@id="post-2899"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div' \
+    author_2 = (By.XPATH, f'//*[@id="post-2899"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/div[1]'
                           f'/div[3]/div/div[1]/a[2]/span')
-    content_2 = (By.XPATH, f'//*[@id="post-2899"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div' \
+    content_2 = (By.XPATH, f'//*[@id="post-2899"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/div[1]'
                            f'/div[3]/div/div[2]/p')
-    read_more_2 = (By.XPATH, f'//*[@id="post-2899"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div' \
+    read_more_2 = (By.XPATH, f'//*[@id="post-2899"]/div/div/div/div/section[2]/div/div/div/div/div/div/div/div/div[1]'
                              f'/div[3]/div/div[2]/a')
 
     def __init__(self, browser):
         super().__init__(browser)
 
     def check_post(self, img, icon, author, content, read_more):
-        self.is_visible(img, "Image is not visible")
+        # self.is_visible(img, "Image is not visible")
         self.is_visible(icon, "Icon is not visible")
 
         self.check_text_matches_with(author, "WPDeveloper")

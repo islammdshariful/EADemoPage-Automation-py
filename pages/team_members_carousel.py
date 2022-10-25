@@ -120,6 +120,7 @@ class TeamMemberCarousel(BasePage, Helper):
                 self.scroll_to_element(self.scroll_to_2)
                 """Click on navigation dot"""
                 self.do_click(self.dot_1, click_after_wait='yes')
+                self.scroll_to_element(self.scroll_to_2)
                 self.member_card(self.mem_3_img, self.mem_3_soc_fb,
                                  self.mem_3_soc_tw, self.mem_3_soc_lk,
                                  self.mem_3_name, self.mem_3_name_text,
@@ -128,6 +129,7 @@ class TeamMemberCarousel(BasePage, Helper):
                 self.do_click(self.dot_2, click_after_wait='yes')
                 """Click on navigation dot"""
                 self.do_click(self.dot_3, click_after_wait='yes')
+                self.scroll_to_element(self.scroll_to_2)
                 self.member_card(self.mem_4_img, self.mem_4_soc_fb,
                                  self.mem_4_soc_tw, self.mem_4_soc_lk,
                                  self.mem_4_name, self.mem_4_name_text,

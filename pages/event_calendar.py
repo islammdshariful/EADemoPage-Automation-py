@@ -26,7 +26,7 @@ class EventCalendar(BasePage, Helper):
     event_end = (By.XPATH, f'//*[@id="eaelecModal"]/div[2]/div[1]/span[2]')
     event_end_text = "- 7:00 AM"
 
-    event_des = (By.XPATH, f'//*[@id="eaelecModal"]/div[2]/div[2]/p')
+    event_des = (By.XPATH, f'//*[@id="eaelecModal"]/div[2]/div[2]')
     event_des_text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod " \
                      "tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse " \
                      "ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. " \
