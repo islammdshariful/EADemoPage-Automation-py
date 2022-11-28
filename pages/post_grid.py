@@ -13,20 +13,26 @@ class PostGrid(BasePage, Helper):
     post_1_media = (By.XPATH, f'//*[@id="eael-post-grid-4d645e5c"]/div[1]/article[1]/div/div/div[1]/div[2]')
     post_1_overlay_icon = (By.XPATH, f'//*[@id="eael-post-grid-4d645e5c"]/div[1]/article[1]/div/div/div[1]/div[1]/i')
     post_1_title = (By.XPATH, f'//*[@id="eael-post-grid-4d645e5c"]/div[1]/article[1]/div/div/div[2]/header/h2/a')
-    post_1_author = (By.XPATH, f'//*[@id="eael-post-grid-4d645e5c"]/div[1]/article[1]/div/div/div[2]/div/span[1]/a')
-    post_1_date = (By.XPATH, f'//*[@id="eael-post-grid-4d645e5c"]/div[1]/article[1]/div/div/div[2]/div/span[2]/time')
+    post_1_author = (By.XPATH, f'//*[@id="eael-post-grid-4d645e5c"]/div[1]/article[1]/div/div/div[2]/div/div[2]/span['
+                               f'1]/a')
+    post_1_date = (By.XPATH, f'//*[@id="eael-post-grid-4d645e5c"]/div[1]/article[1]/div/div/div[2]/div/div[2]/span['
+                             f'2]/time')
     # Post 2
     post_2_media = (By.XPATH, f'//*[@id="eael-post-grid-4d645e5c"]/div[1]/article[6]/div/div/div[1]/div[2]')
     post_2_overlay_icon = (By.XPATH, f'//*[@id="eael-post-grid-4d645e5c"]/div[1]/article[6]/div/div/div[1]/div[1]/i')
     post_2_title = (By.XPATH, f'//*[@id="eael-post-grid-4d645e5c"]/div[1]/article[6]/div/div/div[2]/header/h2/a')
-    post_2_author = (By.XPATH, f'//*[@id="eael-post-grid-4d645e5c"]/div[1]/article[6]/div/div/div[2]/div/span[1]/a')
-    post_2_date = (By.XPATH, f'//*[@id="eael-post-grid-4d645e5c"]/div[1]/article[6]/div/div/div[2]/div/span[2]/time')
+    post_2_author = (By.XPATH, f'//*[@id="eael-post-grid-4d645e5c"]/div[1]/article[6]/div/div/div[2]/div/div[2]/span['
+                               f'1]/a')
+    post_2_date = (By.XPATH, f'//*[@id="eael-post-grid-4d645e5c"]/div[1]/article[6]/div/div/div[2]/div/div[2]/span['
+                             f'2]/time')
     # Post 3
     post_3_media = (By.XPATH, f'//*[@id="eael-post-grid-4d645e5c"]/div[1]/article[12]/div/div/div[1]/div[2]')
     post_3_overlay_icon = (By.XPATH, f'//*[@id="eael-post-grid-4d645e5c"]/div[1]/article[12]/div/div/div[1]/div[1]/i')
     post_3_title = (By.XPATH, f'//*[@id="eael-post-grid-4d645e5c"]/div[1]/article[12]/div/div/div[2]/header/h2/a')
-    post_3_author = (By.XPATH, f'//*[@id="eael-post-grid-4d645e5c"]/div[1]/article[12]/div/div/div[2]/div/span[1]/a')
-    post_3_date = (By.XPATH, f'//*[@id="eael-post-grid-4d645e5c"]/div[1]/article[12]/div/div/div[2]/div/span[2]/time')
+    post_3_author = (By.XPATH, f'//*[@id="eael-post-grid-4d645e5c"]/div[1]/article[12]/div/div/div[2]/div/div['
+                               f'2]/span[1]/a')
+    post_3_date = (By.XPATH, f'//*[@id="eael-post-grid-4d645e5c"]/div[1]/article[12]/div/div/div[2]/div/div[2]/span['
+                             f'2]/time')
 
     load_more_btn = (By.ID, f'eael-load-more-btn-4d645e5c')
 
