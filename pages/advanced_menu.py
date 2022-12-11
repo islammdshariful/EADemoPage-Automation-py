@@ -78,6 +78,8 @@ class AdvancedMenu(BasePage, Helper):
                f'/div/div[1]/div/h2'
     adv_acor_text = "Advanced Accordion"
 
+    scroll = (By.XPATH, f'//*[@id="post-4584"]/div/div/div/div/section[16]')
+
     def __init__(self, browser):
         super().__init__(browser)
 
@@ -134,6 +136,7 @@ class AdvancedMenu(BasePage, Helper):
     def vertical_menu(self):
         """Checking Vertical Menu"""
         """Checking all menu items' name"""
+        self.scroll_to_element(self.scroll)
         self.check_text_matches_with(self.v_home, self.v_home_text)
         self.check_text_matches_with(self.v_elementor, self.v_elementor_text)
         self.check_text_matches_with(self.v_support, self.v_support_text)
@@ -144,7 +147,7 @@ class AdvancedMenu(BasePage, Helper):
         self.check_widget_name(self.ea_l_p, self.ea_l_p_text)
         """Navigating Back"""
         self.go_back()
-        self.browser.execute_script("window.scrollTo(0, 3158)")
+        self.scroll_to_element(self.scroll)
         time.sleep(1)
         """Expanding sub menus"""
         self.do_click(self.v_toogle)

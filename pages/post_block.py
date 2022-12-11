@@ -32,6 +32,9 @@ class PostBlock(BasePage, Helper):
                               f'/div/div/div/div/div/div[2]/div/ul/li[1]/a/span[2]')
     article_author = (By.XPATH, f'//*[@id="content"]/div[1]/div/div/h2')
 
+    scroll = (By.XPATH, f"//div[@class='elementor-element elementor-element-1a7f19a0 elementor-widget "
+                        f"elementor-widget-text-editor']")
+
     def __init__(self, browser):
         super().__init__(browser)
 
@@ -65,7 +68,7 @@ class PostBlock(BasePage, Helper):
                 """Checking widget's documentation"""
                 self.check_documents(self.doc_link, self.doc_name)
             else:
-                self.scroll_to(1150)
+                self.scroll_to_element(self.scroll)
 
                 self.check_widget_post(self.post_1_title, self.post_1_author, self.post_1_des,
                                        self.post_1_date, self.post_1_media, self.post_1_overlay_icon)

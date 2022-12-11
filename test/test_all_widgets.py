@@ -406,9 +406,9 @@ def test_formstack(init_driver):
     formstack.run()
 
 
-def test_gravity_forms(init_driver):
-    gravity_forms = GravityForms(init_driver)
-    gravity_forms.run()
+# def test_gravity_forms(init_driver):
+#     gravity_forms = GravityForms(init_driver)
+#     gravity_forms.run()
 
 
 def test_login_register_form(init_driver):

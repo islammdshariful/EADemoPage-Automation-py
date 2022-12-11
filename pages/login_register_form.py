@@ -39,8 +39,35 @@ class LoginRegisterForm(BasePage, Helper):
     login_reg_now_btn = (By.XPATH, f'//*[@id="eael-lr-reg-toggle"]')
     login_have_acc_label = (By.XPATH, f'//*[@id="eael-lr-login-toggle"]')
 
+    login_form_image = (By.XPATH, f'//*[@id="eael-login-form-wrapper"]/div/div/div/div/img')
+    login_form_username_label = (By.XPATH, f"//div[@class='elementor-element elementor-element-dc7ae1a elementor-widget"
+                                           f" elementor-widget-eael-login-register']//label[@for='eael-user-login']"
+                                           f"[normalize-space()='Username or Email Address']")
+    login_form_username_field = (By.XPATH, f"//div[@class='eael-login-registration-wrapper ']//"
+                                           f"input[@id='eael-user-login']")
+    login_form_password_label = (By.XPATH, f"//div[@class='elementor-element elementor-element-dc7ae1a elementor-widget"
+                                           f" elementor-widget-eael-login-register']//label[@for='eael-user-password']"
+                                           f"[normalize-space()='Password']")
+    login_form_password_field = (By.XPATH, f"//div[@class='eael-login-registration-wrapper ']//"
+                                           f"input[@id='eael-user-password']")
+    login_form_password_visibility_button = (By.XPATH, f'//*[@id="wp-hide-pw"]/span')
+    login_form_forgot_password = (By.XPATH, f"//div[@class='elementor-element elementor-element-dc7ae1a "
+                                            f"elementor-widget elementor-widget-eael-login-register']//"
+                                            f"p[@class='forget-pass']")
+    login_form_remember_label = (By.XPATH, f"//div[@class='elementor-element elementor-element-dc7ae1a elementor-widget"
+                                           f" elementor-widget-eael-login-register']//label[@for='rememberme']"
+                                           f"[normalize-space()='Remember Me']")
+    login_form_remember_field = (By.XPATH, f"//div[@class='eael-login-registration-wrapper ']//"
+                                           f"input[@id='rememberme']")
+    login_form_signin_button = (By.XPATH, f"//div[@class='eael-login-registration-wrapper ']//"
+                                          f"input[@id='eael-login-submit']")
+
+    wordpress_login = (By.XPATH, f'//*[@id="login"]/h1/a')
+
     success_msg = (By.XPATH, f'//*[@id="fluentform_1_success"]')
     success_msg_text = "Thank you for your message. We will get in touch with you shortly"
+    error_msg = (By.XPATH, f'//*[@id="eael-login-form"]/div[5]/div')
+    error_msg_text = "You have used an invalid email"
 
     reg_login_label_Text = "Welcome Back, Please login to your account"
     reg_fname_placeholder_text = "First Name"
@@ -58,8 +85,76 @@ class LoginRegisterForm(BasePage, Helper):
     login_rem_label_text = "Remember Me"
     login_forget_label_text = "Forgot password?"
 
+    scroll = (By.XPATH, f"//div[@class='elementor-element elementor-element-39172dd6 elementor-widget__width-initial "
+                        f"elementor-widget elementor-widget-text-editor']")
+
     def __init__(self, browser):
         super().__init__(browser)
+
+    def registration_form(self):
+        self.scroll_to(1063)
+        """Switching to login form"""
+        self.check_text_matches_with(self.reg_have_acc_label, self.reg_have_acc_label_text)
+        self.do_click(self.reg_have_acc_label),
+        self.is_visible(self.login_img, "Login Image not visible.")
+        """Check login form"""
+        self.check_text_matches_with(self.reg_login_label, self.reg_login_label_Text)
+        self.check_text_matches_with(self.login_username_label, self.login_username_label_text)
+        self.check_text_matches_with(self.login_pass_label, self.login_pass_label_text)
+        """Entering login field"""
+        self.do_send_keys(self.login_username_field, "testerbhaai@gmail.com")
+        self.do_send_keys(self.login_pass_field, "123456")
+        """Switching to registration form"""
+        self.do_click(self.reg_reg_now_label)
+        """Checking registration form"""
+        assert_that(self.get_element(self.reg_fname_field).get_attribute("placeholder")). \
+            is_equal_to(self.reg_fname_placeholder_text)
+        assert_that(self.get_element(self.reg_lname_field).get_attribute("placeholder")). \
+            is_equal_to(self.reg_lname_placeholder_text)
+        assert_that(self.get_element(self.reg_email_field).get_attribute("placeholder")). \
+            is_equal_to(self.reg_email_placeholder_text)
+        assert_that(self.get_element(self.reg_pass_field).get_attribute("placeholder")). \
+            is_equal_to(self.reg_pass_placeholder_text)
+        assert_that(self.get_element(self.reg_con_pass_field).get_attribute("placeholder")). \
+            is_equal_to(self.reg_con_pass_placeholder_text)
+        self.is_visible(self.reg_img, " Registration Image not visible.")
+        """"Entering registration fields"""
+        self.do_send_keys(self.reg_fname_field, "Tester")
+        self.do_send_keys(self.reg_lname_field, "Bhaai")
+        self.do_send_keys(self.reg_email_field, "testerbhaai@gmail.com")
+        self.do_send_keys(self.reg_pass_field, "123456")
+        self.do_send_keys(self.reg_con_pass_field, "123456")
+        """Verify reCAPTCHA"""
+        self.do_click(self.reg_terms_toggle)
+        self.switch_to_frame(self.reg_recaptcha_iframe)
+        self.do_click(self.reg_recaptcha)
+        self.switch_frame_to_default()
+
+    def login_form(self):
+        self.scroll_to_element(self.scroll)
+        self.do_click(self.login_form_username_field)
+        self.do_send_keys(self.login_form_username_field, 'testerbhaai')
+        self.do_click(self.login_form_password_field)
+        self.do_send_keys(self.login_form_password_field, '123456')
+        # self.do_click(self.login_form_password_visibility_button)
+        self.do_click(self.login_form_remember_field)
+        time.sleep(1)
+        self.get_element(self.login_form_remember_field).is_selected()
+
+        # self.do_click(self.login_form_signin_button)
+        # self.does_element_has_text(self.error_msg, self.error_msg_text)
+
+        self.check_text_matches_with(self.login_form_username_label, self.login_username_label_text)
+        self.check_text_matches_with(self.login_form_password_label, self.login_pass_label_text)
+        self.check_text_matches_with(self.login_form_remember_label, self.login_rem_label_text)
+        self.check_text_matches_with(self.login_form_forgot_password, self.login_forget_label_text)
+        assert_that(self.get_element(self.login_form_signin_button).get_attribute("value")). \
+            is_equal_to('Sign In')
+
+        self.do_click(self.login_form_forgot_password)
+        self.is_visible(self.wordpress_login, "Logo not visible")
+        self.check_title("Lost Password ‹ Essential Addons for Elementor — WordPress")
+        self.go_back()
 
     def run(self):
         with soft_assertions():
@@ -71,43 +166,14 @@ class LoginRegisterForm(BasePage, Helper):
                 """Checking widget's documentation"""
                 self.check_documents(self.doc_link, self.doc_name)
             else:
-                self.scroll_to(1063)
-                """Switching to login form"""
-                self.check_text_matches_with(self.reg_have_acc_label, self.reg_have_acc_label_text)
-                self.do_click(self.reg_have_acc_label),
-                self.is_visible(self.login_img, "Login Image not visible.")
-                """Check login form"""
-                self.check_text_matches_with(self.reg_login_label, self.reg_login_label_Text)
-                self.check_text_matches_with(self.login_username_label, self.login_username_label_text)
-                self.check_text_matches_with(self.login_pass_label, self.login_pass_label_text)
-                """Entering login field"""
-                self.do_send_keys(self.login_username_field, "testerbhaai@gmail.com")
-                self.do_send_keys(self.login_pass_field, "123456")
-                """Switching to registration form"""
-                self.do_click(self.reg_reg_now_label)
-                """Checking registration form"""
-                assert_that(self.get_element(self.reg_fname_field).get_attribute("placeholder")).\
-                    is_equal_to(self.reg_fname_placeholder_text)
-                assert_that(self.get_element(self.reg_lname_field).get_attribute("placeholder")).\
-                    is_equal_to(self.reg_lname_placeholder_text)
-                assert_that(self.get_element(self.reg_email_field).get_attribute("placeholder")).\
-                    is_equal_to(self.reg_email_placeholder_text)
-                assert_that(self.get_element(self.reg_pass_field).get_attribute("placeholder")).\
-                    is_equal_to(self.reg_pass_placeholder_text)
-                assert_that(self.get_element(self.reg_con_pass_field).get_attribute("placeholder")).\
-                    is_equal_to(self.reg_con_pass_placeholder_text)
-                self.is_visible(self.reg_img, " Registration Image not visible.")
-                """"Entering registration fields"""
-                self.do_send_keys(self.reg_fname_field, "Tester")
-                self.do_send_keys(self.reg_lname_field, "Bhaai")
-                self.do_send_keys(self.reg_email_field, "testerbhaai@gmail.com")
-                self.do_send_keys(self.reg_pass_field, "123456")
-                self.do_send_keys(self.reg_con_pass_field, "123456")
-                """Verify reCAPTCHA"""
-                self.do_click(self.reg_terms_toggle)
-                self.switch_to_frame(self.reg_recaptcha_iframe)
-                self.do_click(self.reg_recaptcha)
-                self.switch_frame_to_default()
+                # Check Registration Form 1
+                # self.registration_form()
+                # Check Login Form
+                self.login_form()
+
+
+
+
 
 
 
