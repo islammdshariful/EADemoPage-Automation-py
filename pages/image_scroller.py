@@ -32,10 +32,8 @@ class ImageScroller(BasePage, Helper):
                 self.move_cursor_to(self.img_1)
                 time.sleep(3)
                 transform = self.get_element(self.img_1).get_attribute("style")
-                if not transform.__eq__("transform: translateY(-133.766px);"):
-                    if not transform.__eq__("transform: translateY(-133.75px);"):
-                        assert_that(['transform: translateY(-133.766px);', 'transform: translateY(-133.75px);']).\
-                            contains(transform)
+                assert_that(['transform: translateY(-144.562px);', 'transform: translateY(-144.57px);']).\
+                    contains(transform)
 
                 self.move_cursor_to(self.img_2)
                 time.sleep(2)

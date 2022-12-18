@@ -36,7 +36,7 @@ class BasePage:
         try:
             self.get_element(by_locator).click()
         except ElementClickInterceptedException:
-            self.get_element(by_locator).click()
+            self.cursor.move_to_element(self.get_element(by_locator)).click().perform()
 
         if click_after_wait is not None:
             time.sleep(1)

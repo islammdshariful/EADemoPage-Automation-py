@@ -15,6 +15,12 @@ class FilterableGallery(BasePage, Helper):
     events = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[1]/ul/li[4]')
     masonry = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[1]/ul/li[5]')
 
+    all_control_text = 'ALL'
+    news_control_text = 'NEWS'
+    updates_control_text = 'UPDATES'
+    events_control_text = 'EVENTS'
+    masonry_control_text = 'MASONRY'
+
     prev_btn = (By.XPATH, f"//button[@title='Previous (Left arrow key)']")
     next_btn = (By.XPATH, f"//button[@title='Next (Right arrow key)']")
     cross_btn = (By.XPATH, f"//button[normalize-space()='×']")
@@ -86,8 +92,7 @@ class FilterableGallery(BasePage, Helper):
     masonry_gallery_2_icon = (By.XPATH, f'//*[@id="eael-filter-gallery-wrapper-66fe3cdd"]/div[2]/div[8]/div/div[2]/'
                                         f'div[2]/div/a/span/i')
 
-    scroll = (By.XPATH, "//div[@class='elementor-element elementor-element-1d43b1f elementor-widget "
-                        "elementor-widget-heading']//div[@class='elementor-widget-container']")
+    scroll = (By.CSS_SELECTOR, 'h3.elementor-heading-title')
 
     def __init__(self, browser):
         super().__init__(browser)
@@ -112,40 +117,46 @@ class FilterableGallery(BasePage, Helper):
                 """Checking widget's documentation"""
                 self.check_documents(self.doc_link, self.doc_name)
             else:
-                self.scroll_to(1061)
-            """Filter Gallery: All"""
-            self.do_click(self.all)
-            self.open_gallery(self.all_gallery_1, self.all_gallery_1_title, self.gallery_title_text,
-                              self.all_gallery_1_icon)
+                self.scroll_to_element(self.scroll)
+                self.check_text_matches_with(self.all, self.all_control_text)
+                self.check_text_matches_with(self.news, self.news_control_text)
+                self.check_text_matches_with(self.updates, self.updates_control_text)
+                self.check_text_matches_with(self.events, self.events_control_text)
+                self.check_text_matches_with(self.masonry, self.masonry_control_text)
 
-            self.open_gallery(self.all_gallery_3, self.all_gallery_3_title, self.gallery_title_text,
-                              self.all_gallery_3_icon)
-            self.scroll_to_element(self.scroll)
-            """Filter Gallery: News"""
-            self.do_click(self.news)
-            self.open_gallery(self.news_gallery_1, self.news_gallery_1_title, self.gallery_title_text,
-                              self.news_gallery_1_icon)
-            self.open_gallery(self.news_gallery_2, self.news_gallery_2_title, self.gallery_title_text,
-                              self.news_gallery_2_icon)
-            self.scroll_to_element(self.scroll)
-            """Filter Gallery: Updates"""
-            self.do_click(self.updates)
-            self.open_gallery(self.updates_gallery_1, self.updates_gallery_1_title, self.gallery_title_text,
-                              self.updates_gallery_1_icon)
-            self.open_gallery(self.updates_gallery_2, self.updates_gallery_2_title, self.gallery_title_text,
-                              self.updates_gallery_2_icon)
-            self.scroll_to_element(self.scroll)
-            """Filter Gallery: Events"""
-            self.do_click(self.events)
-            self.open_gallery(self.events_gallery_1, self.events_gallery_1_title, self.gallery_title_text,
-                              self.events_gallery_1_icon)
-            self.open_gallery(self.events_gallery_2, self.events_gallery_2_title, self.gallery_title_text,
-                              self.events_gallery_2_icon)
-            self.scroll_to_element(self.scroll)
-            """Filter Gallery: Masonry"""
-            self.do_click(self.masonry)
-            self.open_gallery(self.masonry_gallery_1, self.masonry_gallery_1_title, self.gallery_title_text,
-                              self.masonry_gallery_1_icon)
-            self.open_gallery(self.masonry_gallery_2, self.masonry_gallery_2_title, self.gallery_title_text,
-                              self.masonry_gallery_2_icon)
+                """Filter Gallery: All"""
+                self.do_click(self.all)
+                self.open_gallery(self.all_gallery_1, self.all_gallery_1_title, self.gallery_title_text,
+                                  self.all_gallery_1_icon)
+
+                self.open_gallery(self.all_gallery_3, self.all_gallery_3_title, self.gallery_title_text,
+                                  self.all_gallery_3_icon)
+                self.scroll_to_element(self.scroll)
+                """Filter Gallery: News"""
+                self.do_click(self.news)
+                self.open_gallery(self.news_gallery_1, self.news_gallery_1_title, self.gallery_title_text,
+                                  self.news_gallery_1_icon)
+                self.open_gallery(self.news_gallery_2, self.news_gallery_2_title, self.gallery_title_text,
+                                  self.news_gallery_2_icon)
+                self.scroll_to_element(self.scroll)
+                """Filter Gallery: Updates"""
+                self.do_click(self.updates)
+                self.open_gallery(self.updates_gallery_1, self.updates_gallery_1_title, self.gallery_title_text,
+                                  self.updates_gallery_1_icon)
+                self.open_gallery(self.updates_gallery_2, self.updates_gallery_2_title, self.gallery_title_text,
+                                  self.updates_gallery_2_icon)
+                self.scroll_to_element(self.scroll)
+                """Filter Gallery: Events"""
+                self.do_click(self.events)
+                self.open_gallery(self.events_gallery_1, self.events_gallery_1_title, self.gallery_title_text,
+                                  self.events_gallery_1_icon)
+                self.open_gallery(self.events_gallery_2, self.events_gallery_2_title, self.gallery_title_text,
+                                  self.events_gallery_2_icon)
+                self.scroll_to_element(self.scroll)
+                """Filter Gallery: Masonry"""
+                self.do_click(self.masonry)
+                self.open_gallery(self.masonry_gallery_1, self.masonry_gallery_1_title, self.gallery_title_text,
+                                  self.masonry_gallery_1_icon)
+                self.open_gallery(self.masonry_gallery_2, self.masonry_gallery_2_title, self.gallery_title_text,
+                                  self.masonry_gallery_2_icon)
 

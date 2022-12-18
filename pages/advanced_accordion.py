@@ -33,6 +33,8 @@ class AdvancedAccordion(BasePage, Helper):
                        "Magni dolorum quidem ipsam eligendi, totam, facilis laudantium cum accusamus ullam " \
                        "voluptatibus commodi numquam, error, est. Ea, consequatur."
 
+    scroll = (By.CSS_SELECTOR, '.elementor-element-5751e96f')
+
     def __init__(self, browser):
         super().__init__(browser)
 
@@ -46,7 +48,7 @@ class AdvancedAccordion(BasePage, Helper):
                 """Checking widget's documentation"""
                 self.check_documents(self.doc_link, self.doc_name)
             else:
-                self.scroll_to(1047)
+                self.scroll_to_element(self.scroll)
                 """Check accordion title"""
                 self.check_text_matches_with(self.accor_1_title, self.accor_1_title_text)
                 self.check_text_matches_with(self.accor_2_title, self.accor_2_title_text)

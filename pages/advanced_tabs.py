@@ -97,6 +97,8 @@ class AdvancedTabs(BasePage, Helper):
     tab_5_text = "PRIVACY"
     tab_5_des = (By.XPATH, f"//div[@id='privacy-tab']")
 
+    scroll = (By.CSS_SELECTOR, '.elementor-element-6958a769')
+
     def __init__(self, browser):
         super().__init__(browser)
 
@@ -116,7 +118,7 @@ class AdvancedTabs(BasePage, Helper):
                 """Checking widget's documentation"""
                 self.check_documents(self.doc_link, self.doc_name)
             else:
-                self.scroll_to(2378)
+                self.scroll_to_element(self.scroll)
                 """Click on Tab 1"""
                 self.tab_checker(self.tab_1, self.tab_1_text, self.tab_1_des, self.tab_des_text)
                 """Click on Tab 2"""

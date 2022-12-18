@@ -34,6 +34,8 @@ class EventCalendar(BasePage, Helper):
                      "incididunt ut labore et dolore magna aliqua."
     modal_close = (By.XPATH, f'//*[@id="eaelecModal"]/div[2]/div[1]/div/span/i')
 
+    scroll = (By.CSS_SELECTOR, '.elementor-element-ac056ce')
+
     def __init__(self, browser):
         super().__init__(browser)
 
@@ -47,7 +49,7 @@ class EventCalendar(BasePage, Helper):
                 """Checking widget's documentation"""
                 self.check_documents(self.doc_link, self.doc_name)
             else:
-                self.scroll_to(1641)
+                self.scroll_to_element(self.scroll)
                 for i in range(12):
                     month_name = self.get_element_text(self.month)
                     """click previous button util get the expected month"""

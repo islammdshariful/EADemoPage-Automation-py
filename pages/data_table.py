@@ -152,6 +152,8 @@ class DataTable(BasePage, Helper):
     tbody_tr10_td6 = (By.XPATH, f'//*[@id="eael-data-table-1c75c528"]/tbody/tr[10]/td[6]')
     tbody_tr10_td6_text = "$736"
 
+    scroll = (By.CSS_SELECTOR, '.elementor-element-386c9184')
+
     def __init__(self, browser):
         super().__init__(browser)
 
@@ -255,7 +257,7 @@ class DataTable(BasePage, Helper):
                 """Checking widget's documentation"""
                 self.check_documents(self.doc_link, self.doc_name)
             else:
-                self.scroll_to(3971)
+                self.scroll_to_element(self.scroll)
                 """Checking table header"""
                 self.check_text_matches_with(self.thaead_1, self.thaead_1_text)
                 self.check_text_matches_with(self.thaead_2, self.thaead_2_text)

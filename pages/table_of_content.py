@@ -16,7 +16,7 @@ class TableOfContent(BasePage, Helper):
 
     toc_ds = (By.XPATH, f'//*[@id="eael-toc-list"]/li[2]/a/span')
     toc_ds_text = "Different Styles Of Table Of Contents"
-    toc_ds_content = (By.XPATH, f'//*[@id="83-eael-table-of-content"]')
+    toc_ds_content = (By.XPATH, f"(//h3[normalize-space()='Different Styles Of Table Of Contents'])[1]")
 
     def __init__(self, browser):
         super().__init__(browser)
