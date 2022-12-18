@@ -8,7 +8,7 @@ from selenium.webdriver.chrome.options import Options
 def init_driver():
     options = Options()
     # # opts.add_experimental_option("detach", True)
-    # options.add_experimental_option('debuggerAddress', 'localhost:9250')
+    options.add_experimental_option('debuggerAddress', 'localhost:9250')
     browser = webdriver.Chrome(chrome_options=options)
     browser.maximize_window()
     browser.implicitly_wait(10)

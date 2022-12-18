@@ -1,3 +1,4 @@
+from pages.nft_gallery import NFTGallery
 from pages.wp_forms import Wpforms
 from pages.advanced_accordion import AdvancedAccordion
 from pages.advanced_data_table import AdvancedDataTable
@@ -212,6 +213,11 @@ def test_advanced_data_table(init_driver):
 def test_post_block(init_driver):
     post_block = PostBlock(init_driver)
     post_block.run()
+
+
+def test_nft_gallery(init_driver):
+    nft_gallery = NFTGallery(init_driver)
+    nft_gallery.run()
 
 
 def test_post_timeline(init_driver):

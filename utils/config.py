@@ -110,6 +110,7 @@ class Helper:
     reading_progress = base_url + "reading-progress/"
     particle_effect = base_url + "particle-effect/"
     advanced_tooltip = base_url + "advanced-tooltip/"
+    nft_gallery = base_url + "nft-gallery/"
 
     HEADING = (By.ID, f'betterdocs-entry-title')
 
