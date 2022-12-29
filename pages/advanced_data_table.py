@@ -228,6 +228,10 @@ class AdvancedDataTable(BasePage, Helper):
     page_next = (By.XPATH, f'//*[@id="post-256377"]/div/div/div/div/section[4]/div/div/div/div/div/div/div/div'
                            f'/div[2]/a[4]')
 
+    sort = (By.XPATH, "//th[normalize-space()='#']")
+
+    scroll = (By.CSS_SELECTOR, '.elementor-element-466afb7b')
+
     def __init__(self, browser):
         super().__init__(browser)
 
@@ -332,7 +336,7 @@ class AdvancedDataTable(BasePage, Helper):
                 """Checking widget's documentation"""
                 self.check_documents(self.doc_link, self.doc_name)
             else:
-                self.scroll_to(2811)
+                self.scroll_to_element(self.scroll)
                 """Check headers"""
                 self.check_text_matches_with(self.thaead_1, self.thaead_1_text)
                 self.check_text_matches_with(self.thaead_2, self.thaead_2_text)
@@ -355,7 +359,8 @@ class AdvancedDataTable(BasePage, Helper):
                 self.do_click(self.page_pre)
                 self.first_page_list()
                 """Short Table"""
-                self.do_click(self.thaead_1)
-                self.do_click(self.thaead_1)
+                self.do_click(self.sort)
+                self.scroll_to_element(self.scroll)
+                self.do_click(self.sort)
                 """Check shorted table"""
                 self.after_sort()

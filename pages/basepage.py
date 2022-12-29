@@ -12,6 +12,13 @@ class BasePage:
         self.browser = browser
         self.cursor = ActionChains(self.browser)
 
+    def close_nx_popup(self):
+        close_button = self.browser.find_elements('xpath', "//div[@class='notificationx-inner']//div[3]")
+        if len(close_button) > 0:
+            ele = self.browser.find_element('xpath', "//div[@class='notificationx-inner']//div[3]")
+            self.browser.execute_script("arguments[0].click();", ele)
+        time.sleep(1)
+
     def go_to(self, url):
         self.browser.get(url)
 
@@ -34,8 +41,10 @@ class BasePage:
 
     def do_click(self, by_locator, click_after_wait=None):
         try:
+            WebDriverWait(self.browser, 10).until(EC.element_to_be_clickable(by_locator))
             self.get_element(by_locator).click()
         except ElementClickInterceptedException:
+            self.close_nx_popup()
             self.cursor.move_to_element(self.get_element(by_locator)).click().perform()
 
         if click_after_wait is not None:
@@ -83,10 +92,12 @@ class BasePage:
         return self.browser.title
 
     def move_cursor_to(self, by_locator):
+        WebDriverWait(self.browser, 10).until(EC.visibility_of_element_located(by_locator))
         self.cursor.move_to_element(self.get_element(by_locator)).perform()
         time.sleep(1)
 
     def move_cursor_and_click(self, by_locator):
+        WebDriverWait(self.browser, 10).until(EC.element_to_be_clickable(by_locator))
         self.cursor.move_to_element(self.get_element(by_locator)).click().perform()
         time.sleep(1)
 

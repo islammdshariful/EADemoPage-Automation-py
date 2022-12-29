@@ -41,6 +41,7 @@ class PostBlock(BasePage, Helper):
     def check_widget_post(self, post, author, des, date, media, icon):
         """Check post description"""
         self.is_visible(des, "Description is not visible.")
+        time.sleep(.5)
         self.move_cursor_to(media)
         self.is_visible(icon, "Icon is not visible.")
         post_title = self.get_element_text(post)

@@ -1,2 +1,4 @@
 venv/
 .idea/
+assets/
+.pytest_cache/

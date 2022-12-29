@@ -84,6 +84,8 @@ class ContentToggle(BasePage, Helper):
 
     close_scrips_chat_btn = (By.XPATH, f'//*[@id="crisp-chatbox"]/div/a/span[1]/span/span[1]/span[1]/span')
 
+    scroll = (By.CSS_SELECTOR, '.elementor-element-373dbd4c')
+
     def __init__(self, browser):
         super().__init__(browser)
 
@@ -91,6 +93,7 @@ class ContentToggle(BasePage, Helper):
         """Toggle page one"""
 
         """Check page heading"""
+        self.scroll_to_element(self.scroll)
         self.move_cursor_to(self.p_1_title)
 
         """Check page heading"""
@@ -112,6 +115,7 @@ class ContentToggle(BasePage, Helper):
         self.move_cursor_to(self.p_1_button)
 
     def toggle_page_two(self):
+        self.scroll_to_element(self.scroll)
         """Toggle page two"""
 
         """Check page heading"""
@@ -145,7 +149,7 @@ class ContentToggle(BasePage, Helper):
                 """Checking widget's documentation"""
                 self.check_documents(self.doc_link, self.doc_name)
             else:
-                self.scroll_to(1967)
+                self.scroll_to_element(self.scroll)
 
                 """Checking button labels"""
                 self.check_text_matches_with(self.primary_btn, self.primary_btn_text)

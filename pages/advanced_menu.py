@@ -14,8 +14,7 @@ class AdvancedMenu(BasePage, Helper):
                '/div/div/div[2]/div/div/div[3]/div/div/a/span/span'
     doc_name = "EA ADVANCED MENU"
 
-    h_home = (By.XPATH, f'/html[1]/body[1]/div[3]/div[1]/div[1]/div[1]/div[1]/main[1]/article[1]/div[1]/div[1]/div[1]'
-                        f'/div[1]/section[3]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/ul[1]/li[1]/a[1]')
+    h_home = (By.ID, f"menu-item-4842")
     h_home_text = "Home"
     h_elementor = (By.XPATH, f'//*[@id="menu-item-4843"]')
     h_elementor_text = "Elements"
@@ -78,7 +77,8 @@ class AdvancedMenu(BasePage, Helper):
                f'/div/div[1]/div/h2'
     adv_acor_text = "Advanced Accordion"
 
-    scroll = (By.XPATH, f'//*[@id="post-4584"]/div/div/div/div/section[16]')
+    scroll_1 = (By.CSS_SELECTOR, '.elementor-element-22e4ae19')
+    scroll_2 = (By.CSS_SELECTOR, '.elementor-element-24b7ab9c')
 
     def __init__(self, browser):
         super().__init__(browser)
@@ -96,7 +96,7 @@ class AdvancedMenu(BasePage, Helper):
         self.check_widget_name(self.ea_l_p, self.ea_l_p_text)
         """Navigating Back"""
         self.go_back()
-        self.browser.execute_script("window.scrollTo(0, 934)")
+        self.scroll_to_element(self.scroll_1)
         time.sleep(1)
         """Move cursor to Element item"""
         self.move_cursor_to(self.h_elementor)
@@ -136,7 +136,7 @@ class AdvancedMenu(BasePage, Helper):
     def vertical_menu(self):
         """Checking Vertical Menu"""
         """Checking all menu items' name"""
-        self.scroll_to_element(self.scroll)
+        self.scroll_to_element(self.scroll_2)
         self.check_text_matches_with(self.v_home, self.v_home_text)
         self.check_text_matches_with(self.v_elementor, self.v_elementor_text)
         self.check_text_matches_with(self.v_support, self.v_support_text)
@@ -147,7 +147,7 @@ class AdvancedMenu(BasePage, Helper):
         self.check_widget_name(self.ea_l_p, self.ea_l_p_text)
         """Navigating Back"""
         self.go_back()
-        self.scroll_to_element(self.scroll)
+        self.scroll_to_element(self.scroll_2)
         time.sleep(1)
         """Expanding sub menus"""
         self.do_click(self.v_toogle)
@@ -162,6 +162,7 @@ class AdvancedMenu(BasePage, Helper):
         self.check_text_matches_with(self.v_elementor_cf7, self.v_elementor_cf7_text)
         self.check_text_matches_with(self.v_elementor_ticker, self.v_elementor_ticker_text)
         """Moving cursor to all the sub menus"""
+        self.scroll_to_element(self.scroll_2)
         self.cursor.move_to_element(self.get_element(self.v_elementor)).move_to_element(
             self.get_element(self.v_elementor_accor)).move_to_element(
             self.get_element(self.v_elementor_map)).move_to_element(
@@ -195,7 +196,7 @@ class AdvancedMenu(BasePage, Helper):
                 """Checking widget's documentation"""
                 self.check_documents(self.doc_link, self.doc_name)
             else:
-                self.scroll_to(934)
+                self.scroll_to_element(self.scroll_1)
 
                 """Check horizontal menu"""
                 self.horizontal_menu()

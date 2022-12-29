@@ -42,8 +42,6 @@ class NFTGallery(BasePage, Helper):
 
     def check_item(self, image, chain, name, price, creator_image, creator_name_label, creator_name, last_sale,
                    button, *last_sale_label):
-        self.move_cursor_to(image)
-        self.is_visible(chain, 'NFT 1 Chain not visible')
         self.is_visible(self.item_1_image, 'NFT 1 image is not visible')
         self.is_visible(creator_image, 'NFT 1 Creator avatar is not visible')
         item_name = self.get_element_text(name)
@@ -54,8 +52,11 @@ class NFTGallery(BasePage, Helper):
         if len(self.browser.find_elements(*last_sale_label)) > 0:
             self.check_text_matches_with(last_sale_label, 'Last sale:')
             self.is_visible(last_sale, 'Last sale data is not showing')
-
+        self.move_cursor_to(image)
+        self.is_visible(chain, 'NFT 1 Chain not visible')
         self.check_text_matches_with(button, 'View Details')
+        self.close_nx_popup()
+        self.move_cursor_to(image)
         self.do_click(button)
         windows = self.browser.window_handles
         self.browser.switch_to.window(windows[1])
@@ -63,7 +64,7 @@ class NFTGallery(BasePage, Helper):
         self.check_text_matches_with(self.nft_price, price)
         self.browser.close()
         self.browser.switch_to.window(windows[0])
-
+        self.close_nx_popup()
         self.do_click(creator_name)
         windows = self.browser.window_handles
         self.browser.switch_to.window(windows[1])

@@ -45,12 +45,15 @@ class OffCanvas(BasePage, Helper):
     right_button = (By.XPATH, f"//div[starts-with(@class, 'elementor-element elementor-element-31ac75f elementor-"
                               f"widget elementor-widget-button')]//div//div//a//span")
 
+    scroll = (By.CSS_SELECTOR, '.elementor-element-59506345')
+
     def __init__(self, browser):
         super().__init__(browser)
 
     def left_canvas(self):
         self.do_click(self.left_side)
         time.sleep(1)
+        self.scroll_to_element(self.scroll)
 
         self.cursor.move_to_element(self.get_element(self.left_home)).\
             move_to_element(self.get_element(self.left_about)).\
@@ -67,6 +70,7 @@ class OffCanvas(BasePage, Helper):
     def right_canvas(self):
         self.do_click(self.right_side)
         time.sleep(1)
+        self.scroll_to_element(self.scroll)
 
         self.cursor.move_to_element(self.get_element(self.right_home)). \
             move_to_element(self.get_element(self.right_about)). \

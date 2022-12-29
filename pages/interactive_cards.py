@@ -18,6 +18,8 @@ class InteractiveCards(BasePage, Helper):
                "don’t make it hell. We have only one earth to dwell, don’t destroy."
     button = (By.XPATH, f'//*[@id="interactive-card-368e06c7"]/div[2]/div/div[1]/div/a')
 
+    scroll = (By.CSS_SELECTOR, '.elementor-element-66b9ccf8')
+
     def __init__(self, browser):
         super().__init__(browser)
 
@@ -31,7 +33,7 @@ class InteractiveCards(BasePage, Helper):
                 """Checking widget's documentation"""
                 self.check_documents(self.doc_link, self.doc_name)
             else:
-                self.scroll_to(1031)
+                self.scroll_to_element(self.scroll)
 
                 self.do_click(self.promo)
                 self.check_text_matches_with(self.title, self.title_text)

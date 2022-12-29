@@ -15,8 +15,7 @@ class PostList(BasePage, Helper):
     search_result_title = (By.XPATH, f'//*[@id="post-2322"]/div/div/div/div/section[2]/div/div/div'
                                      f'/div/div/div/div/div/div[1]/div[2]/div/div[1]/h6/a')
 
-    all = (By.XPATH, f'//*[@id="post-2322"]/div/div/div/div/section[2]/div/div/div/div/div/div/div'
-                     f'/div/div[1]/div[1]/a[1]')
+    all = (By.XPATH, f"//a[normalize-space()='All']")
     elementor = (By.XPATH, f'//*[@id="post-2322"]/div/div/div/div/section[2]/div/div/div/div/div/div'
                            f'/div/div/div[1]/div[1]/a[2]')
     essential_addons = (By.XPATH, f'//*[@id="post-2322"]/div/div/div/div/section[2]/div/div/div/div'
@@ -44,9 +43,7 @@ class PostList(BasePage, Helper):
     article_date = (By.XPATH, f'//*[@id="page"]/div[1]/div/section/div/div/div[1]/div/div/section[1]'
                               f'/div/div/div/div/div/div[2]/div/ul/li[1]/a/span[2]')
 
-    scroll = (By.XPATH, "//div[@class='elementor-element elementor-element-1220b3b1 "
-                        "elementor-widget elementor-widget-heading']"
-                        "//div[@class='elementor-widget-container']")
+    scroll = (By.CSS_SELECTOR, '.elementor-element-1220b3b1')
 
     def __init__(self, browser):
         super().__init__(browser)
@@ -73,7 +70,7 @@ class PostList(BasePage, Helper):
                 """Checking widget's documentation"""
                 self.check_documents(self.doc_link, self.doc_name)
             else:
-                self.scroll_to(1133)
+                self.scroll_to_element(self.scroll)
                 # All
                 self.do_click(self.all)
                 time.sleep(1)
