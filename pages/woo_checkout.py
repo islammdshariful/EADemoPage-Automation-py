@@ -399,7 +399,7 @@ class WooCheckout(BasePage, Helper):
                 self.do_send_keys(self.billing_district_field, "Geodon")
                 self.check_text_matches_with(self.billing_zip_label, self.zip_label_text)
                 self.do_clear_field(self.billing_zip_field)
-                self.do_send_keys(self.billing_zip_field, "1206")
+                self.do_send_keys(self.billing_zip_field, "B46 1AA")
                 self.check_text_matches_with(self.billing_phone_label, self.phone_label_text)
                 self.do_clear_field(self.billing_phone_field)
                 self.do_send_keys(self.billing_phone_field, "0123456789")
@@ -444,7 +444,7 @@ class WooCheckout(BasePage, Helper):
                 self.scroll_to(2902)
                 self.check_text_matches_with(self.shipping_zip_label, self.zip_label_text)
                 self.do_clear_field(self.shipping_zip_field)
-                self.do_send_keys(self.shipping_zip_field, "1206")
+                self.do_send_keys(self.shipping_zip_field, "B46 1AA")
 
                 """Billing notes"""
                 self.check_text_matches_with(self.other_note_label, self.other_note_label_text)

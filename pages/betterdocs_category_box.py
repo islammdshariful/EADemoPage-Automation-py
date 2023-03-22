@@ -23,7 +23,7 @@ class BetterdocsCategoryBox(BasePage, Helper):
     count_1_text = "7articles"
 
     title_2_text = "Dynamic Content Elements"
-    count_2_text = "10articles"
+    count_2_text = "11articles"
 
     betterdocs_entry_heading = (By.XPATH, f'//*[@id="main"]/div/div[1]/h3')
 

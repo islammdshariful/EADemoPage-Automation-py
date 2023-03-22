@@ -26,7 +26,7 @@ class WooProductGrid(BasePage, Helper):
         By.XPATH, f"//section[@class='elementor-section elementor-top-section elementor-element elementor-element-" \
                   f"2a8ceca elementor-section-boxed elementor-section-height-default elementor-section-height-" \
                   f"default']//li[1]//div[1]//div[1]//a[1]")
-    p_1_img = (By.XPATH, f"//img[@title='Woo Product Grid for Elementor 96']")
+    p_1_img = (By.XPATH, f"//img[@title='Woo Product Grid for Elementor 97']")
 
     p_2_title = (
         By.XPATH,
@@ -43,7 +43,7 @@ class WooProductGrid(BasePage, Helper):
     p_2_vcart_btn = (By.XPATH, f"//li[2]//div[1]//div[1]//a[3]")
     p_2_link_btn = (By.XPATH, f"//a[@href='https://essential-addons.com/elementor/product/mens-stylish-shirt/']" \
                               f"//span[@class='fas fa-link']")
-    p_2_img = (By.XPATH, f"//img[@title='Woo Product Grid for Elementor 97']")
+    p_2_img = (By.XPATH, f"//img[@title='Woo Product Grid for Elementor 98']")
 
     p_3_title = (
         By.XPATH,
@@ -60,7 +60,7 @@ class WooProductGrid(BasePage, Helper):
     p_3_vcart_btn = (By.XPATH, f"//li[3]//div[1]//div[1]//a[3]")
     p_3_link_btn = (By.XPATH, f"//a[@href='https://essential-addons.com/elementor/product/mens-comfy-t-shirt/']" \
                               f"//span[@class='fas fa-link']")
-    p_3_img = (By.XPATH, f"//img[@title='Woo Product Grid for Elementor 98']")
+    p_3_img = (By.XPATH, f"//img[@title='Woo Product Grid for Elementor 99']")
 
     p_4_title = (
         By.XPATH,
@@ -79,7 +79,7 @@ class WooProductGrid(BasePage, Helper):
         By.XPATH, f"//section[@class='elementor-section elementor-top-section elementor-element elementor-element-" \
                   f"2a8ceca elementor-section-boxed elementor-section-height-default elementor-section-height-" \
                   f"default']//li[4]//div[1]//div[1]//a[1]")
-    p_4_img = (By.XPATH, f"//img[@title='Woo Product Grid for Elementor 99']")
+    p_4_img = (By.XPATH, f"//img[@title='Woo Product Grid for Elementor 100']")
 
     shop_page = (By.XPATH, f'/html/body/div[1]/div/div/div/main/div[2]/div[2]/h1')
 

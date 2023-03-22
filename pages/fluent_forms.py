@@ -9,18 +9,27 @@ class FluentForms(BasePage, Helper):
                '/div/div/div[4]/div/div/a/span/span'
     doc_name = "FLUENT FORMS"
 
-    name_label = (By.XPATH, f'//*[@id="fluentform_1"]/div[1]/div[1]/label')
-    name_field = (By.XPATH, f'//*[@id="ff_1_input_text"]')
-    email_label = (By.XPATH, f'//*[@id="fluentform_1"]/div[2]/div[1]/label')
-    email_field = (By.XPATH, f'//*[@id="ff_1_email"]')
-    sub_label = (By.XPATH, f'//*[@id="fluentform_1"]/div[3]/div[1]/label')
-    sub_field = (By.XPATH, f'//*[@id="ff_1_input_text_1"]')
-    message_label = (By.XPATH, f'//*[@id="fluentform_1"]/div[4]/div[1]/label')
-    message_field = (By.XPATH, f'//*[@id="ff_1_description"]')
+    name_label = (By.XPATH, f'//form[@class="frm-fluent-form fluent_form_1 ff-el-form-top ff_form_instance_1_1 '
+                            f'ff-form-loaded"]/fieldset/div[1]/div[1]/label')
+    name_field = (By.XPATH, f'//form[@class="frm-fluent-form fluent_form_1 ff-el-form-top ff_form_instance_1_1 '
+                            f'ff-form-loaded"]/fieldset/div[1]/div[2]/input')
+    email_label = (By.XPATH, f'//form[@class="frm-fluent-form fluent_form_1 ff-el-form-top ff_form_instance_1_1 '
+                             f'ff-form-loaded"]/fieldset/div[2]/div[1]/label')
+    email_field = (By.XPATH, f'//form[@class="frm-fluent-form fluent_form_1 ff-el-form-top ff_form_instance_1_1 '
+                             f'ff-form-loaded"]/fieldset/div[2]/div[2]/input')
+    sub_label = (By.XPATH, f'//form[@class="frm-fluent-form fluent_form_1 ff-el-form-top ff_form_instance_1_1 '
+                           f'ff-form-loaded"]/fieldset/div[3]/div[1]/label')
+    sub_field = (By.XPATH, f'//form[@class="frm-fluent-form fluent_form_1 ff-el-form-top ff_form_instance_1_1 '
+                           f'ff-form-loaded"]/fieldset/div[3]/div[2]/input')
+    message_label = (By.XPATH, f'//form[@class="frm-fluent-form fluent_form_1 ff-el-form-top ff_form_instance_1_1 '
+                               f'ff-form-loaded"]/fieldset/div[4]/div[1]/label')
+    message_field = (By.XPATH, f'//form[@class="frm-fluent-form fluent_form_1 ff-el-form-top ff_form_instance_1_1 '
+                               f'ff-form-loaded"]/fieldset/div[4]/div[2]/textarea')
 
-    send_message_btn = (By.XPATH, f'//*[@id="fluentform_1"]/div[5]/button')
+    send_message_btn = (By.XPATH, f'//form[@class="frm-fluent-form fluent_form_1 ff-el-form-top ff_form_instance_1_1 '
+                                  f'ff-form-loaded"]/fieldset/div[5]/button')
 
-    success_msg = (By.XPATH, f'//*[@id="fluentform_1_success"]')
+    success_msg = (By.ID, f'fluentform_1_success')
     success_msg_text = "Thank you for your message. We will get in touch with you shortly"
 
     name_label_text = "YOUR NAME (REQUIRED)"

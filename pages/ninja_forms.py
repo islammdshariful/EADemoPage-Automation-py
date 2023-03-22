@@ -9,7 +9,7 @@ class NinjaForms(BasePage, Helper):
                '/div/div[3]/div/div/a/span/span'
     doc_name = "EA NINJA FORMS"
 
-    title = (By.XPATH, f'//*[@id="nf-form-title-1"]/h3')
+    title = (By.XPATH, f'//*[@id="nf-form-title-1"]/hundefined')
     des = (By.XPATH, f'//*[@id="nf-form-1-cont"]/div/div[4]/form/div/div[1]/nf-section/div')
 
     name_label = (By.XPATH, f'//*[@id="nf-label-field-1"]')
