@@ -2,3 +2,4 @@ venv/
 .idea/
 assets/
 .pytest_cache/
+test/__pycache__
