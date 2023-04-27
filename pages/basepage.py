@@ -41,7 +41,10 @@ class BasePage:
 
     def do_click(self, by_locator, click_after_wait=None):
         try:
-            WebDriverWait(self.browser, 10).until(EC.element_to_be_clickable(by_locator))
+            try:
+                WebDriverWait(self.browser, 10).until(EC.element_to_be_clickable(by_locator))
+            except TimeoutException:
+                self.get_element(by_locator).click()
             self.get_element(by_locator).click()
         except ElementClickInterceptedException:
             self.close_nx_popup()

@@ -241,7 +241,6 @@ def test_post_block(init_driver):
     post_block.run()
 
 
-@pytest.mark.flaky(reruns=1)
 def test_nft_gallery(init_driver):
     nft_gallery = NFTGallery(init_driver)
     nft_gallery.run()

@@ -10,24 +10,24 @@ class AdvancedDataTable(BasePage, Helper):
                '/div/div/div[2]/div/div/div[3]/div/div/a'
     doc_name = "EA ADVANCED DATA TABLE"
     # ---------------------------------------------
-    thaead_1 = (By.XPATH, f'//*[@id="post-256377"]/div/div/div/div/section[4]/div/div/div/div/div/div/div/div'
+    thead_1 = (By.XPATH, f'//*[@id="post-256377"]/div/div/div/div/section[4]/div/div/div/div/div/div/div/div'
                           f'/div[1]/table/thead/tr/th[1]')
-    thaead_1_text = "#"
-    thaead_2 = (By.XPATH, f'//*[@id="post-256377"]/div/div/div/div/section[4]/div/div/div/div/div/div/div/div'
+    thead_1_text = "#"
+    thead_2 = (By.XPATH, f'//*[@id="post-256377"]/div/div/div/div/section[4]/div/div/div/div/div/div/div/div'
                           f'/div[1]/table/thead/tr/th[2]')
-    thaead_2_text = "Employee"
-    thaead_3 = (By.XPATH, f'//*[@id="post-256377"]/div/div/div/div/section[4]/div/div/div/div/div/div/div/div'
+    thead_2_text = "Employee"
+    thead_3 = (By.XPATH, f'//*[@id="post-256377"]/div/div/div/div/section[4]/div/div/div/div/div/div/div/div'
                           f'/div[1]/table/thead/tr/th[3]')
-    thaead_3_text = "Working Days"
-    thaead_4 = (By.XPATH, f'//*[@id="post-256377"]/div/div/div/div/section[4]/div/div/div/div/div/div/div/div'
+    thead_3_text = "Working Days"
+    thead_4 = (By.XPATH, f'//*[@id="post-256377"]/div/div/div/div/section[4]/div/div/div/div/div/div/div/div'
                           f'/div[1]/table/thead/tr/th[4]')
-    thaead_4_text = "Hours"
-    thaead_5 = (By.XPATH, f'//*[@id="post-256377"]/div/div/div/div/section[4]/div/div/div/div/div/div/div/div'
+    thead_4_text = "Hours"
+    thead_5 = (By.XPATH, f'//*[@id="post-256377"]/div/div/div/div/section[4]/div/div/div/div/div/div/div/div'
                           f'/div[1]/table/thead/tr/th[5]')
-    thaead_5_text = "Rate"
-    thaead_6 = (By.XPATH, f'//*[@id="post-256377"]/div/div/div/div/section[4]/div/div/div/div/div/div/div/div'
+    thead_5_text = "Rate"
+    thead_6 = (By.XPATH, f'//*[@id="post-256377"]/div/div/div/div/section[4]/div/div/div/div/div/div/div/div'
                           f'/div[1]/table/thead/tr/th[6]')
-    thaead_6_text = "PAY"
+    thead_6_text = "PAY"
     # ---------------------------------------------
     tbody_tr1_td1 = (By.XPATH, f'//*[@id="post-256377"]/div/div/div/div/section[4]/div/div/div/div/div/div/div/'
                                f'div/div[1]/table/tbody/tr[1]/td[1]')
@@ -231,6 +231,24 @@ class AdvancedDataTable(BasePage, Helper):
     sort = (By.XPATH, "//th[normalize-space()='#']")
 
     scroll = (By.CSS_SELECTOR, '.elementor-element-466afb7b')
+    scroll_1 = (By.CSS_SELECTOR, '.elementor-element-72de6d0c')
+
+    # Data Table Style 05
+    thead_dt5_1 = (By.XPATH, "//span[normalize-space()='Custom CSS']")
+    thead_dt5_2 = (By.XPATH, "//span[normalize-space()='Forms']")
+    thead_dt5_3 = (By.XPATH, "//span[normalize-space()='Mobile Editing']")
+    thead_dt5_4 = (By.XPATH, "//span[normalize-space()='Nav Menu']")
+    thead_dt5_5 = (By.XPATH, "//span[normalize-space()='Nav Menu']")
+    thead_dt5_6 = (By.XPATH, "//span[normalize-space()='Shape Divider']")
+    thead_dt5_7 = (By.XPATH, "//span[normalize-space()='Template Library']")
+
+    thead_dt5_1_text = "Custom CSS"
+    thead_dt5_2_text = "Forms"
+    thead_dt5_3_text = "Mobile Editing"
+    thead_dt5_4_text = "Nav Menu"
+    thead_dt5_5_text = "Nav Menu"
+    thead_dt5_6_text = "Shape Divider"
+    thead_dt5_7_text = "Template Library"
 
     def __init__(self, browser):
         super().__init__(browser)
@@ -326,10 +344,30 @@ class AdvancedDataTable(BasePage, Helper):
         self.check_text_matches_with(self.tbody_tr10_td5, self.tbody_tr1_td5_text)
         self.check_text_matches_with(self.tbody_tr10_td6, self.tbody_tr1_td6_text)
 
+    def data_table_style_05(self):
+        self.check_text_matches_with(self.thead_dt5_1, self.thead_dt5_1_text)
+        self.check_text_matches_with(self.thead_dt5_2, self.thead_dt5_2_text)
+        self.check_text_matches_with(self.thead_dt5_3, self.thead_dt5_3_text)
+        self.check_text_matches_with(self.thead_dt5_4, self.thead_dt5_4_text)
+        self.check_text_matches_with(self.thead_dt5_5, self.thead_dt5_5_text)
+        self.check_text_matches_with(self.thead_dt5_6, self.thead_dt5_6_text)
+        self.check_text_matches_with(self.thead_dt5_7, self.thead_dt5_7_text)
+
+        for i in range(2, 4):
+            self.is_visible((By.XPATH, f'//*[@id="post-256377"]/div/div/div/div/section[7]/div/div/div/div/div/div/'
+                                       f'div/div/div/table/tbody/tr[1]/td[{i}]/img'),
+                            f'Image {i - 1} is not visible')
+
+        for i in range(2, 5):
+            for j in range(2, 9):
+                self.is_visible((By.XPATH, f'//*[@id="post-256377"]/div/div/div/div/section[7]/div/div/div/div/div/'
+                                           f'div/div/div/div/table/tbody/tr[{j}]/td[{i}]/i'),
+                                f'Column {i-1} raw {j} not visible')
+
     def run(self):
         with soft_assertions():
             """Go to page"""
-            self.go_to(self.advanced_data_table)
+            # self.go_to(self.advanced_data_table)
             """Checking widget name"""
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
@@ -338,12 +376,12 @@ class AdvancedDataTable(BasePage, Helper):
             else:
                 self.scroll_to_element(self.scroll)
                 """Check headers"""
-                self.check_text_matches_with(self.thaead_1, self.thaead_1_text)
-                self.check_text_matches_with(self.thaead_2, self.thaead_2_text)
-                self.check_text_matches_with(self.thaead_3, self.thaead_3_text)
-                self.check_text_matches_with(self.thaead_4, self.thaead_4_text)
-                self.check_text_matches_with(self.thaead_5, self.thaead_5_text)
-                self.check_text_matches_with(self.thaead_6, self.thaead_6_text)
+                self.check_text_matches_with(self.thead_1, self.thead_1_text)
+                self.check_text_matches_with(self.thead_2, self.thead_2_text)
+                self.check_text_matches_with(self.thead_3, self.thead_3_text)
+                self.check_text_matches_with(self.thead_4, self.thead_4_text)
+                self.check_text_matches_with(self.thead_5, self.thead_5_text)
+                self.check_text_matches_with(self.thead_6, self.thead_6_text)
                 """Check first page"""
                 self.first_page_list()
                 """Click second pagination and check second page"""
@@ -364,3 +402,8 @@ class AdvancedDataTable(BasePage, Helper):
                 self.do_click(self.sort)
                 """Check shorted table"""
                 self.after_sort()
+
+                # Data table Style 05
+                self.scroll_to_element(self.scroll_1)
+                self.data_table_style_05()
+

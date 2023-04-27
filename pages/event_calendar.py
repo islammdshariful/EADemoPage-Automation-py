@@ -34,7 +34,7 @@ class EventCalendar(BasePage, Helper):
                      "incididunt ut labore et dolore magna aliqua."
     modal_close = (By.XPATH, f'//*[@id="eaelecModal"]/div[2]/div[1]/div/span/i')
 
-    scroll = (By.CSS_SELECTOR, '.elementor-element-ac056ce')
+    scroll = (By.CSS_SELECTOR, '.elementor-element-9daeb76')
 
     def __init__(self, browser):
         super().__init__(browser)
