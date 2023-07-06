@@ -6,10 +6,9 @@ from selenium.webdriver.chrome.options import Options
 
 @pytest.fixture(scope='session', autouse=True)
 def init_driver():
-    options = Options()
-    # opts.add_experimental_option("detach", True)
+    # options = Options()
     # options.add_experimental_option('debuggerAddress', 'localhost:9250')
-    browser = webdriver.Chrome(chrome_options=options)
+    browser = webdriver.Chrome()
     browser.maximize_window()
     browser.implicitly_wait(10)
     close_all_notice(browser)
