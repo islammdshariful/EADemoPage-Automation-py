@@ -20,7 +20,7 @@ def init_driver():
 
 def close_all_notice(browser):
     browser.get('https://essential-addons.com/elementor/demos/')
-    close_crips(browser)
+    # close_crips(browser)
     close_nx_bar(browser)
 
 

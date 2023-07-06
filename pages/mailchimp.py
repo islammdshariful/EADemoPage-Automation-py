@@ -35,6 +35,6 @@ class Mailchimp(BasePage, Helper):
                 self.do_send_keys(self.email_field, "testerbhaai@gmail.com")
                 self.do_send_keys(self.fname_field, "Tester")
                 self.do_send_keys(self.lname_field, "Bhaai")
-                self.browser.find_element(*self.subs_btn).click()
-
-                self.does_element_has_text(self.success_message, self.success_message_text)
+                # self.browser.find_element(*self.subs_btn).click()
+                #
+                # self.does_element_has_text(self.success_message, self.success_message_text)

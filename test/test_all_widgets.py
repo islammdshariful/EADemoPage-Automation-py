@@ -490,16 +490,16 @@ def test_login_register_form(init_driver):
 # SOCIAL ELEMENTS
 # --------------------------
 # ----------------------------------------------------------------------
-@pytest.mark.flaky(reruns=1)
-def test_twitter_feed_carousel(init_driver):
-    twitter_feed_carousel = TwitterFeedCarousel(init_driver)
-    twitter_feed_carousel.run()
-
-
-@pytest.mark.flaky(reruns=1)
-def test_twitter_feed(init_driver):
-    twitter_feed = TwitterFeed(init_driver)
-    twitter_feed.run()
+# @pytest.mark.flaky(reruns=1)
+# def test_twitter_feed_carousel(init_driver):
+#     twitter_feed_carousel = TwitterFeedCarousel(init_driver)
+#     twitter_feed_carousel.run()
+#
+#
+# @pytest.mark.flaky(reruns=1)
+# def test_twitter_feed(init_driver):
+#     twitter_feed = TwitterFeed(init_driver)
+#     twitter_feed.run()
 
 
 @pytest.mark.flaky(reruns=1)

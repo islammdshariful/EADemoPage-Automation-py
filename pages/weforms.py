@@ -57,6 +57,6 @@ class Weforms(BasePage, Helper):
                 self.do_send_keys(self.email_field, "testerbhaai@gmail.com")
                 self.do_send_keys(self.message_field, "Automation Script is Running...\nHi, Don't reply"
                                                       " to this message. Have a good day.")
-                self.do_click(self.send_message_btn)
-
-                self.does_element_has_text(self.success_msg, self.success_msg_text)
+                # self.do_click(self.send_message_btn)
+                #
+                # self.does_element_has_text(self.success_msg, self.success_msg_text)

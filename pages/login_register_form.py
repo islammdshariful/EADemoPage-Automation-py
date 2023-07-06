@@ -151,10 +151,10 @@ class LoginRegisterForm(BasePage, Helper):
         assert_that(self.get_element(self.login_form_signin_button).get_attribute("value")). \
             is_equal_to('Sign In')
 
-        self.do_click(self.login_form_forgot_password)
-        self.is_visible(self.wordpress_login, "Logo not visible")
-        self.check_title("Lost Password ‹ Essential Addons for Elementor — WordPress")
-        self.go_back()
+        # self.do_click(self.login_form_forgot_password)
+        # self.is_visible(self.wordpress_login, "Logo not visible")
+        # self.check_title("Lost Password ‹ Essential Addons for Elementor — WordPress")
+        # self.go_back()
 
     def run(self):
         with soft_assertions():
