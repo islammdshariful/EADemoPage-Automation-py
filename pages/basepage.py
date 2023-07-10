@@ -23,32 +23,39 @@ class BasePage:
         self.browser.get(url)
 
     def get_element(self, by_locator):
-        try:
-            element = WebDriverWait(self.browser, 10).until(EC.visibility_of_element_located(by_locator))
-            return element
-        except TimeoutException:
-            try:
-                element = WebDriverWait(self.browser, 10).until(EC.presence_of_element_located(by_locator))
-                return element
-            except TimeoutException:
-                print("Loading took too much time!")
+        element = WebDriverWait(self.browser, 10).until(EC.visibility_of_element_located(by_locator))
+        return element
+
+        # try:
+        #     element = WebDriverWait(self.browser, 10).until(EC.visibility_of_element_located(by_locator))
+        #     return element
+        # except TimeoutException:
+        #     try:
+        #         element = WebDriverWait(self.browser, 10).until(EC.presence_of_element_located(by_locator))
+        #         return element
+        #     except TimeoutException:
+        #         print("Loading took too much time!")
 
     def does_element_has_text(self, by_locator, text):
-        try:
-            WebDriverWait(self.browser, 10).until(EC.text_to_be_present_in_element(by_locator, text))
-        except TimeoutException:
-            assert_that(self.get_element_text(by_locator)).is_equal_to(text)
+        WebDriverWait(self.browser, 10).until(EC.text_to_be_present_in_element(by_locator, text))
+
+        # try:
+        #     WebDriverWait(self.browser, 10).until(EC.text_to_be_present_in_element(by_locator, text))
+        # except TimeoutException:
+        #     assert_that(self.get_element_text(by_locator)).is_equal_to(text)
 
     def do_click(self, by_locator, click_after_wait=None):
-        try:
-            try:
-                WebDriverWait(self.browser, 10).until(EC.element_to_be_clickable(by_locator))
-            except TimeoutException:
-                self.get_element(by_locator).click()
-            self.get_element(by_locator).click()
-        except ElementClickInterceptedException:
-            self.close_nx_popup()
-            self.cursor.move_to_element(self.get_element(by_locator)).click().perform()
+        self.get_element(by_locator).click()
+
+        # try:
+        #     try:
+        #         WebDriverWait(self.browser, 10).until(EC.element_to_be_clickable(by_locator))
+        #     except TimeoutException:
+        #         self.get_element(by_locator).click()
+        #     self.get_element(by_locator).click()
+        # except ElementClickInterceptedException:
+        #     self.close_nx_popup()
+        #     self.cursor.move_to_element(self.get_element(by_locator)).click().perform()
 
         if click_after_wait is not None:
             time.sleep(1)
