@@ -9,23 +9,23 @@ class ContactForm7(BasePage, Helper):
                '/div/div/div[2]/div/div/div[3]/div/div/a/span/span'
     doc_name = "CONTACT FORM 7"
 
-    name_label = (By.XPATH, f'//*[@id="wpcf7-f4-p1231-o2"]/form/p[1]/label')
+    name_label = (By.XPATH, f'//*[@id="wpcf7-f277430-p1231-o2"]/form/p[1]/label')
     name_label_text = "YOUR NAME (REQUIRED)"
-    email_label = (By.XPATH, f'//*[@id="wpcf7-f4-p1231-o2"]/form/p[2]/label')
+    email_label = (By.XPATH, f'//*[@id="wpcf7-f277430-p1231-o2"]/form/p[2]/label')
     email_label_text = "YOUR EMAIL (REQUIRED)"
-    sub_label = (By.XPATH, f'//*[@id="wpcf7-f4-p1231-o2"]/form/p[3]/label')
+    sub_label = (By.XPATH, f'//*[@id="wpcf7-f277430-p1231-o2"]/form/p[3]/label')
     sub_label_text = "SUBJECT"
-    msg_label = (By.XPATH, f'//*[@id="wpcf7-f4-p1231-o2"]/form/p[4]/label')
+    msg_label = (By.XPATH, f'//*[@id="wpcf7-f277430-p1231-o2"]/form/p[4]/label')
     msg_label_text = "YOUR MESSAGE"
 
-    name_field = (By.XPATH, f'//*[@id="wpcf7-f4-p1231-o2"]/form/p[1]/label/span/input')
-    email_field = (By.XPATH, f'//*[@id="wpcf7-f4-p1231-o2"]/form/p[2]/label/span/input')
-    sub_field = (By.XPATH, f'//*[@id="wpcf7-f4-p1231-o2"]/form/p[3]/label/span/input')
-    msg_field = (By.XPATH, f'//*[@id="wpcf7-f4-p1231-o2"]/form/p[4]/label/span/textarea')
+    name_field = (By.XPATH, f'//*[@id="wpcf7-f277430-p1231-o2"]/form/p[1]/label/span/input')
+    email_field = (By.XPATH, f'//*[@id="wpcf7-f277430-p1231-o2"]/form/p[2]/label/span/input')
+    sub_field = (By.XPATH, f'//*[@id="wpcf7-f277430-p1231-o2"]/form/p[3]/label/span/input')
+    msg_field = (By.XPATH, f'//*[@id="wpcf7-f277430-p1231-o2"]/form/p[4]/label/span/textarea')
 
-    send_btn = (By.XPATH, f'//*[@id="wpcf7-f4-p1231-o2"]/form/p[5]/input')
+    send_btn = (By.XPATH, f'//*[@id="wpcf7-f277430-p1231-o2"]/form/p[5]/input')
 
-    success_msg = (By.XPATH, f'//*[@id="wpcf7-f4-p1231-o2"]/form/div[2]')
+    success_msg = (By.XPATH, f'//*[@id="wpcf7-f277430-p1231-o2"]/form/div[2]')
     success_msg_text = "Thank you for your message. It has been sent."
 
     def __init__(self, browser):

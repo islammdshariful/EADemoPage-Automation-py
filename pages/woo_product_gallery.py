@@ -35,15 +35,14 @@ class WooProductGallery(BasePage, Helper):
     p_3_link_btn = (By.XPATH, f'//*[@id="eael-product-gallery"]/div/ul/li[3]/div/div[1]/div[2]/ul/li[3]')
     p_3_img = (By.XPATH, f'//*[@id="eael-product-gallery"]/div/ul/li[3]/div/div[1]/div[1]/img')
 
-    quick_view = f"//div[@class='eael-popup-details-render eael-woo-slider-popup elementor-269692']//div//div//"
-    q_title = (By.XPATH, quick_view + f"div[2]//h1")
-    q_price = (By.XPATH, quick_view + f"div[2]//p//span")
-    q_cat = (By.XPATH, quick_view + f"div[2]//div//span[1]")
-    q_tag = (By.XPATH, quick_view + f"div[2]//div//span[2]")
-    q_image = (By.XPATH, '//*[@id="product-"]/div[1]/div/figure/div/a')
-    q_cart_btn = (By.XPATH, f'//*[@id="product-"]/div[2]/form/button')
+    q_title = (By.XPATH, f'//*[@id="product-"]/div[2]/h1')
+    q_price = (By.XPATH, f'//*[@id="product-"]/div[2]/p/span')
+    q_cat = (By.XPATH, f'//*[@id="product-"]/div[2]/div/span[1]')
+    q_tag = (By.XPATH, f'//*[@id="product-"]/div[2]/div/span[2]')
+    q_image = (By.XPATH, f'//*[@id="product-"]/div[1]/div/div')
+    q_cart_btn = (By.XPATH, f"//button[normalize-space()='Add to cart']")
     q_cross = (By.XPATH, f"//button[@class='eael-product-popup-close']")
-    q_zoom = (By.XPATH, quick_view + f"div[1]//div//a")
+    q_zoom = (By.XPATH, f'//*[@id="product-"]/div[1]/div/a')
 
     item_name = (By.XPATH, f"//h1[@class='product_title entry-title']")
 

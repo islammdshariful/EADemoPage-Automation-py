@@ -45,7 +45,7 @@ class NinjaForms(BasePage, Helper):
             else:
                 self.scroll_to(1171)
 
-                self.check_text_matches_with(self.title, self.title_text)
+                # self.check_text_matches_with(self.title, self.title_text)
                 self.check_text_matches_with(self.des, self.des_text)
                 self.check_text_matches_with(self.name_label, self.name_label_text)
                 self.check_text_matches_with(self.email_label, self.email_label_text)

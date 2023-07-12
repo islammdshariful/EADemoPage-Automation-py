@@ -367,7 +367,7 @@ class AdvancedDataTable(BasePage, Helper):
     def run(self):
         with soft_assertions():
             """Go to page"""
-            # self.go_to(self.advanced_data_table)
+            self.go_to(self.advanced_data_table)
             """Checking widget name"""
             self.check_widget_name(self.widget, self.widget_name)
             if self.check_doc:
