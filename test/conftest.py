@@ -6,9 +6,10 @@ from selenium.webdriver.chrome.options import Options
 
 @pytest.fixture(scope='session', autouse=True)
 def init_driver():
-    # options = Options()
+    options = Options()
+    # uncomment this ↓ if you want to run the test in chrome port 9250
     # options.add_experimental_option('debuggerAddress', 'localhost:9250')
-    browser = webdriver.Chrome()
+    browser = webdriver.Chrome(options=options)
     browser.maximize_window()
     browser.implicitly_wait(10)
     close_all_notice(browser)
